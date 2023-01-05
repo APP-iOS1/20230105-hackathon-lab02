@@ -25,13 +25,14 @@ final class VocabularyNetworkManager: ObservableObject {
             for document in documents.documents {
                 let id = document.documentID
                 let word = document["word"] as? String ?? ""
+                let pronunciation = document["pronunciation"] as? String ?? ""
                 let definition = document["definition"] as? String ?? ""
                 let example = document["example"] as? Array<String> ?? []
                 let likes = document["likes"] as? Int ?? 0
                 let dislikes = document["dislikes"] as? Int ?? 0
                 let creatorId = document["creatorId"] as? String ?? ""
                 let isApproved = document["isApproved"] as? Bool ?? false
-                self.vocabularies.append(Vocabulary(id: id, word: word, definition: definition, example: example, likes: likes, dislikes: dislikes, creatorId: creatorId, isApproved: isApproved))
+                self.vocabularies.append(Vocabulary(id: id, word: word, pronunciation: pronunciation ,definition: definition, example: example, likes: likes, dislikes: dislikes, creatorId: creatorId, isApproved: isApproved))
             }
             print("\(vocabularies)")
         } catch {
@@ -47,6 +48,7 @@ final class VocabularyNetworkManager: ObservableObject {
             try await path.document(voca.id).setData([
                 "id": voca.id,
                 "word": voca.word,
+                "pronunciation": voca.pronunciation,
                 "definition": voca.definition,
                 "example": voca.example,
                 "likes": voca.likes,
