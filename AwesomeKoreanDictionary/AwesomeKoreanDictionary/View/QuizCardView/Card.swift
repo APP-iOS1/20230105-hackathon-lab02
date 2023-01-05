@@ -20,5 +20,3 @@ struct Card: Identifiable {
         return cardId
     }
 }
-
-// word, definition

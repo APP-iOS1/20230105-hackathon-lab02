@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Foundation
+
 import Firebase
 import FirebaseFirestore
 import FirebaseAuth
@@ -31,7 +31,9 @@ final class UserInfoManager: ObservableObject {
                         let userNickname = document["userNickname"] as? String ?? ""
                         let userEmail = document["userEmail"] as? String ?? ""
                         
-                        self.userInfo = User(id: id, isAdmin: isAdmin, userNickname: userNickname, userEmail: userEmail)
+                        
+                        self.userInfo =
+                        User(id: id, isAdmin: isAdmin, userNickname: userNickname, userEmail: userEmail)
                         
                         print(self.userInfo!)
                     }

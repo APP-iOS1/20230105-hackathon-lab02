@@ -9,15 +9,15 @@ import SwiftUI
 
 struct CardView: View {
     
-    var card: Card
-    var reader: GeometryProxy
     @Binding var swipedIndex: Int
     @Binding var isShowing: Bool
     @Binding var selectedCard: Card
+    
+    var card: Card
+    var reader: GeometryProxy
     var name: Namespace.ID
 
     var body: some View {
-//        VStack {
         LazyVStack {
             Spacer(minLength: 0)
 
@@ -60,7 +60,6 @@ struct CardView: View {
 
             })
             .frame(height: reader.size.height/2)
-//            .frame(height:UIScreen.main.bounds.height - 120)
             .padding(.vertical, 10)
             .background(Color.white)
             .cornerRadius(25)

@@ -21,7 +21,6 @@ final class PapagoNetworkManager {
 
     let baseURL: String = "https://openapi.naver.com/v1/papago/n2mt"
     
-
     // 한 -> 영 중 일
     func requestTranslate(sourceString: String, target: TargetLanguage) async throws -> String {
         
@@ -40,9 +39,7 @@ final class PapagoNetworkManager {
         request.httpBody = data
         
         let (responseData, _ ) = try await URLSession.shared.upload(for: request, from: data)
-        print(String(data: responseData, encoding: .utf8))
         let response: TranslateResponse = decodeData(responseData)
-        
         let translatedString = response.message.result.translatedText
         
         return translatedString

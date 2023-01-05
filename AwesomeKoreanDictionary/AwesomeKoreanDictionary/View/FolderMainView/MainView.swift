@@ -65,7 +65,7 @@ struct ToolbarModifier: ViewModifier {
                     SearchBar(searchText: $searchText)
                         .frame(width: 240)
                     NavigationLink {
-                        QuizCardView()
+                        QuizView()
                     } label: {
                         Image(systemName: "trophy.fill")
                     }

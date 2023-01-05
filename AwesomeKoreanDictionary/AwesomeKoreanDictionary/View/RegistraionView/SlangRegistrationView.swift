@@ -13,8 +13,8 @@ struct SlangRegistrationView: View {
     @Environment(\.dismiss) private var dismiss
     
     //MARK: - 텍스트필드 작성시 사용되는 속성들
-    @State private (set) var slangTextField: String = ""              //(필수) 속어
-    @State private (set) var slangDescriptionTextField: String = ""   //(필수) 속어 단어 설명
+    @State private (set) var slangTextField: String = "" //(필수) 속어
+    @State private (set) var slangDescriptionTextField: String = "" //(필수) 속어 단어 설명
     @State private (set) var slangSituationUsedTextField: String = "" //(선택) 속어 상황 재연
     
     var DescriptionExample: String = "‘농협은행 어디예요?’를 ‘너무 예쁘네요’로잘못 알아들은 썰에서 나온 신조어.‘너무 예쁘다’라는 뜻으로 쓰임"
@@ -37,17 +37,17 @@ struct SlangRegistrationView: View {
         slangSituationUsedTextField.trimmingCharacters(in: .whitespaces)
     }
     
-    @State private var summitAlertToggle: Bool = false          // 공백문자 없으면 띄우는 얼럿
-    @State private var summitAlertToggle2: Bool = false         // 공백문자만 있으면 띄우는 얼럿
+    @State private var summitAlertToggle: Bool = false // 공백문자 없으면 띄우는 얼럿
+    @State private var summitAlertToggle2: Bool = false // 공백문자만 있으면 띄우는 얼럿
     
     var body: some View {
         NavigationView {
-            VStack{
+            VStack {
                 //MARK: - 텍스트필드 3개 (필수2, 선택1) + 국적선택 피커 1개
-                Form{
+                Form {
                     descriptionText
                     //속어 입력 텍스트필드(필수)
-                    Section{
+                    Section {
                         Text("*필수 (공백만 입력 불가능)")
                             .font(.caption)
                             .foregroundColor(.red)
@@ -61,7 +61,7 @@ struct SlangRegistrationView: View {
                             .foregroundColor(.gray)
                     }
                     //속어에 사용되는 단어 의미 설명 텍스트필드(필수)
-                    Section{
+                    Section {
                         Text("*필수 (공백만 입력 불가능)")
                             .font(.caption)
                             .foregroundColor(.red)
@@ -69,14 +69,14 @@ struct SlangRegistrationView: View {
                             .font(.subheadline)
                             .lineLimit(7, reservesSpace: true)
                             .frame(width: 320, height: 150, alignment: .top)
-
+                        
                         Text("예) \(DescriptionExample)")
                             .font(.caption)
                         
                             .foregroundColor(.gray)
                     }
                     //속어가 사용되는 상활 재연(선택)
-                    Section{
+                    Section {
                         Text("*필수 (공백만 입력 불가능)")
                             .font(.caption)
                             .foregroundColor(.red)
@@ -96,17 +96,17 @@ struct SlangRegistrationView: View {
                 
                 //MARK: - 제출하기 버튼
                 if trimslangTextField.count > 0 && trimslangDescriptionTextField.count > 0 && trimslangSituationUsedTextField.count > 0 {
-                    VStack{
+                    VStack {
                         Button {
                             Task {
-                                await vocaManager.createVoca(voca: Vocabulary(id: UUID().uuidString, word: slangTextField, pronunciation: "", definition: slangDescriptionTextField, example: [slangSituationUsedTextField], likes: 0, dislikes: 0, creatorId: Auth.auth().currentUser?.uid ?? ""))
+                                await vocaManager.createVoca(voca: Vocabulary(id: UUID().uuidString, word: slangTextField, pronunciation: "", definition: slangDescriptionTextField, example: slangSituationUsedTextField, likes: 0, dislikes: 0, creatorId: Auth.auth().currentUser?.uid ?? ""))
                                 
                                 summitAlertToggle.toggle()
                                 
-                                print(Vocabulary(id: UUID().uuidString, word: slangTextField, pronunciation: "", definition: slangDescriptionTextField, example: [slangSituationUsedTextField], likes: 0, dislikes: 0, creatorId: Auth.auth().currentUser?.uid ?? ""))
+                                print(Vocabulary(id: UUID().uuidString, word: slangTextField, pronunciation: "", definition: slangDescriptionTextField, example: slangSituationUsedTextField, likes: 0, dislikes: 0, creatorId: Auth.auth().currentUser?.uid ?? ""))
                             }
                         } label: {
-                            ZStack{
+                            ZStack {
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(Color.clear)
                                     .frame(width: 350, height: 70)
@@ -129,11 +129,11 @@ struct SlangRegistrationView: View {
                     }
                 } else {
                     //공백문자만 입력시 얼럿창 띄우는 코드
-                    VStack{
+                    VStack {
                         Button(action: {
                             summitAlertToggle2.toggle()
                         }) {
-                            ZStack{
+                            ZStack {
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(Color.clear)
                                     .frame(width: 350, height: 70)
@@ -149,7 +149,7 @@ struct SlangRegistrationView: View {
                             }
                         }
                         .alert("필수문항을 모두 입력해주세요.", isPresented: $summitAlertToggle2) {
-                            Button("Ok") {}
+                            Button("Ok") { }
                         }
                     }
                 }
@@ -161,15 +161,15 @@ struct SlangRegistrationView: View {
 extension SlangRegistrationView {
     //간단한 등록 설명 텍스트 (프리뷰 맨 위에 사용 됨)
     private var descriptionText: some View {
-        VStack{
-            HStack{
+        VStack {
+            HStack {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("AwesomeKoreanDictionary 에서 자신만의 단어 뜻을 넣어서 공유해보세요!")
                 }
                 .font(.subheadline)
                 Spacer()
             }
-            HStack{
+            HStack {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("많은 사람들이 보기 좋게 써주세요.")
                     Text("많은 사람들이 이 뜻을 읽고 궁금해할 수 있으니 작은 뒷 이야기도 함께 써주세요.")

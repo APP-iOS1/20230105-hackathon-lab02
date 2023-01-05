@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct Detail: View {
-    var card: Card
+    
     @Binding var isShowing: Bool
+    
+    var card: Card
     var name: Namespace.ID
 
     var body: some View {
@@ -44,7 +46,7 @@ struct Detail: View {
                             Text("Design tools")
                                 .font(.system(size: 30))
                                 .foregroundColor(.black)
-
+                            // TODO: - 어떤 데이터를 보여줄지
                             Text("Free")
                                 .font(.title)
                                 .fontWeight(.bold)
@@ -58,7 +60,7 @@ struct Detail: View {
                     }
                     .padding(.vertical)
 
-
+                    // TODO: - text alignment
                     Text("정의: \(card.definition).")
                         .font(.system(size: 22))
                         .foregroundColor(Color.black.opacity(0.7))

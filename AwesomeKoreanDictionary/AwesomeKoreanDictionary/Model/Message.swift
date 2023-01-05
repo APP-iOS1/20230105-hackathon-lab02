@@ -30,20 +30,3 @@ struct TranslateResponse: Decodable {
     let message: Message
 }
 
-/*
- {
- "message": {
-            "result": {
-                        "srcLangType":"ko",
-                        "tarLangType":"en",
-                        "translatedText":"Good to meet you.",
-                        "engineType":"PRETRANS","pivot":null,
-                        "dict":null,
-                        "tarDict":null
-                        },
-            "@type":"response",
-            "@service":"naverservice.nmt.proxy",
-            "@version":"1.0.0"
-            }
- }%
- */

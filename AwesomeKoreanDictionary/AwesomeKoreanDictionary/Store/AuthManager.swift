@@ -19,7 +19,8 @@ class AuthManager: ObservableObject {
     @Published var currentUser = GIDSignIn.sharedInstance.currentUser
     
     //  -----
-    @Published var user: User = User(isAdmin: false, userNickname: "", bookmarked: [], createdVoca: [], userId: "", email: "")
+    @Published var user: User = User(id: "", isAdmin: false, userNickname: "", userEmail: "")
+//    User(isAdmin: false, userNickname: "", bookmarked: [], createdVoca: [], userId: "", email: "")
     
     func signIn() {
         // You check if there’s a previous Sign-In. If yes, then restore it. Otherwise, move on to defining the sign-in process.
@@ -113,9 +114,10 @@ class AuthManager: ObservableObject {
         
         //  var id: String = id
         
-        user.userId = id
-        
-        return user.userId.components(separatedBy: "@")[0]
+//        user.userId = id
+//
+//        return user.userId.components(separatedBy: "@")[0]
+        return ""
     }
     
     /*
