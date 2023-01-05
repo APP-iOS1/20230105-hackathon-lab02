@@ -9,13 +9,16 @@ import SwiftUI
 
 struct ListCell: View {
     var vocabulary: Vocabulary
-    @State var selection: String = "ENG"
     var languages = ["KOR", "ENG", "CHN", "JPN"]
+    
+    @State var selection: String = ""
+    @State var sharedSheet: Bool = false
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             
             // 이름
-            HStack {
+            HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     Text(vocabulary.word)
                         .font(.largeTitle)
@@ -32,6 +35,7 @@ struct ListCell: View {
                 } label: {
                     Text("언어 선택")
                 }
+                .frame(height: 30)
 
                 
                 
@@ -39,6 +43,7 @@ struct ListCell: View {
                     print("북마크 버튼")
                 } label: {
                     Image(systemName: "bookmark.fill")
+                        .font(.title)
                 }
             }
             
@@ -77,6 +82,7 @@ struct ListCell: View {
                 } label: {
                     HStack(spacing: 5) {
                         Image(systemName: "hand.thumbsup.fill")
+                            .font(.title2)
                         Text("\(vocabulary.likes)")
                     }
                 }
@@ -85,6 +91,7 @@ struct ListCell: View {
                 } label: {
                     HStack(spacing: 5) {
                         Image(systemName: "hand.thumbsdown.fill")
+                            .font(.title2)
                         Text("\(vocabulary.dislikes)")
                     }
                 }
@@ -93,8 +100,13 @@ struct ListCell: View {
                 
                 Button {
                     print("공유")
+                    
                 } label: {
-                    Image(systemName: "square.and.arrow.up")
+                    
+                    ShareLink(item: vocabulary.word) {
+                        Image(systemName: "square.and.arrow.up")
+                            .font(.title2)
+                    }
                 }
             }
         }

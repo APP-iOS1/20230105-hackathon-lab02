@@ -2,9 +2,16 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State private var searchText = "Search"
-    @State var isShowingSheet = false
-
+    @State private var searchText = ""
+//    @State var isShowingSheet = false
+    var filteredVoca: [Vocabulary] {
+        if searchText.isEmpty {
+            return dictionary
+        } else {
+            //            return dictionary.filter { $0.word.localizedStandardContains(searchText) }
+            return dictionary.filter { $0.word.contains(searchText) }
+        }
+    }
     var body: some View {
         NavigationStack {
             ZStack {
@@ -13,37 +20,29 @@ struct MainView: View {
                 ScrollView {
                     Spacer(minLength: 10)
                     VStack(spacing: 15) {
-                        ForEach(dictionary, id: \.self) { vocabulary in
+                        ForEach(filteredVoca, id: \.self) { vocabulary in
                             ListCell(vocabulary: vocabulary)
                         }
+                        
                     }
-                    NavigationLink {
-                        Text("")
-                    } label: {
-                        TextField(text: $searchText) {
-                            Text("hello")
-                        }
-                    }
-
-//                    .fullScreenCover(isPresented: $isShowingSheet) {
-//                    Text("hello")
-//                    }
                 }
-                .scrollContentBackground(.hidden)
+                .refreshable {
+                    ProgressView()
+                }
                 .toolbar {
                     HStack {
-//                        SearchBar(searchText: $searchText, isShowingSheet: $isShowingSheet)
-//                            .frame(width: 240)
-//
+                        SearchBar(searchText: $searchText)
+                            .frame(width: 240)
+
 //                        Text("Awesome")
 //                            .font(.largeTitle)
 //                            .fontWeight(.bold)
-//                        
-                        NavigationLink {
-                            SearchView()
-                        } label: {
-                            Image(systemName: "magnifyingglass")
-                        }
+//
+//                        NavigationLink {
+//                            SearchView()
+//                        } label: {
+//                            Image(systemName: "magnifyingglass")
+//                        }
                         NavigationLink {
                             QuizCardView()
                         } label: {
