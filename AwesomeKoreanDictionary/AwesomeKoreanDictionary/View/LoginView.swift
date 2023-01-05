@@ -10,6 +10,7 @@ import GoogleSignIn
 
 struct LoginView: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var viewModel: AuthManager
     @State private var userID = ""
     @State private var userPassword = ""
     
@@ -42,6 +43,9 @@ struct LoginView: View {
                 
                 GoogleSignInButton()
                     .frame(width: 320)
+                    .onTapGesture {
+                        viewModel.signIn()
+                    }
                 
             }.frame(height: 100)
                 .padding()
@@ -70,6 +74,6 @@ struct GoogleSignInButton: UIViewRepresentable {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView().environmentObject(AuthManager())
     }
 }

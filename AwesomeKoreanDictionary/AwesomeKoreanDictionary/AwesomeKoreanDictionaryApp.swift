@@ -24,7 +24,7 @@ struct AwesomeKoreanDictionaryApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
                 .environmentObject(viewModel)
         }
     }
