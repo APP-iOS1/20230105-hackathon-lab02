@@ -48,8 +48,6 @@ struct MainView: View {
     }
 }
 
-
-
 struct ToolbarModifier: ViewModifier {
     
     @EnvironmentObject var authManager: AuthManager
@@ -109,7 +107,6 @@ struct ToolbarModifier: ViewModifier {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-            .environmentObject(CardModel())
             .environmentObject(AuthManager())
             .environmentObject(VocabularyNetworkManager())
     }
