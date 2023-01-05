@@ -29,13 +29,13 @@ enum Languages: String, CaseIterable{
 
 struct MyPageView_SelectingLanguageView: View {
     
-    @State private var defaultLanguage: String = "English"
+    @State private var defaultLanguage: String = "영어"
     @State private var selectedLanguage: String?
     @State private var showingOptions: Bool = false
     
     var body: some View {
         
-        let languages: [String] = ["Korean", "English", "Chinese", "Japanese"]
+        let languages: [String] = ["한국어", "영어", "중국어", "일본어"]
         
         VStack{
 
@@ -47,7 +47,7 @@ struct MyPageView_SelectingLanguageView: View {
                 Text(defaultLanguage)
                     .padding(.horizontal)
                 
-                Text("언어선택")
+                Text("언어 선택")
                     .font(.title3)
                     .padding(.top)
                 
@@ -59,26 +59,15 @@ struct MyPageView_SelectingLanguageView: View {
                     } label: {
                         Text("\(language)")
                     }.buttonStyle(.plain)
-                        .confirmationDialog("Select a language", isPresented: $showingOptions, titleVisibility: .visible) {
+                        .confirmationDialog("해당 언어로 설정을 변경합니다.", isPresented: $showingOptions, titleVisibility: .visible) {
                             Button(selectedLanguage ?? "") {
                                 defaultLanguage = selectedLanguage ?? ""
                             }
-                            
-                            Button(defaultLanguage) {
-                                defaultLanguage = defaultLanguage
-                            } // 여기까지가 .confirmation 한 덩어리
                         }
                         .padding(.horizontal)
-                    
-
                 }
                 
             }.listStyle(.plain)
-            
-            
-            
-            
-
         }
     }
 }
