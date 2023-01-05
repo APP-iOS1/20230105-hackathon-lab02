@@ -16,6 +16,7 @@ final class UserInfoManager: ObservableObject {
     let database = Firestore.firestore()
     let currentUserId = Auth.auth().currentUser?.uid ?? ""
     
+    @MainActor
     public func fetchUserInfo() {
         database.collection("user").getDocuments { snapshot, error in
             if let snapshot {
@@ -27,10 +28,9 @@ final class UserInfoManager: ObservableObject {
                     if id == self.currentUserId {
                         
                         let id = document.documentID
-                        let isAdmin = document["isAdmin"] as? Bool ?? false
-                        let userNickname = document["userNickname"] as? String ?? ""
-                        let userEmail = document["userEmail"] as? String ?? ""
-                        
+                        let isAdmin = docData["isAdmin"] as? Bool ?? false
+                        let userNickname = docData["userNickname"] as? String ?? ""
+                        let userEmail = docData["userEmail"] as? String ?? ""
                         
                         self.userInfo =
                         User(id: id, isAdmin: isAdmin, userNickname: userNickname, userEmail: userEmail)
