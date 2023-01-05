@@ -3,6 +3,7 @@ import SwiftUI
 struct MainView: View {
     
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
+    @EnvironmentObject var authManager: AuthManager
     
     @State private var searchText = ""
     
@@ -85,13 +86,13 @@ struct ToolbarModifier: ViewModifier {
                             Text("취소")
                         }
                         Button {
-                            isShowingSheet.toggle()
+                            isShowingSheet = true
                         } label: {
                             Text("로그인")
                         }
                     }
                     .sheet(isPresented: $isShowingSheet) {
-                        LoginView()
+                        LoginView(isShowingSheet: $isShowingSheet)
                     }
                     NavigationLink {
                         MyPageView()

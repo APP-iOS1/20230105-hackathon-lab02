@@ -11,8 +11,7 @@ import GoogleSignIn
 struct LoginView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var authManager: AuthManager
-    @State private var userID = ""
-    @State private var userPassword = ""
+    @Binding var isShowingSheet: Bool
     
     var body: some View {
         ZStack {
@@ -31,16 +30,6 @@ struct LoginView: View {
                     }.padding(.trailing, 30)
                         .padding(.top, 30)
                 }
-                
-
-                GoogleSignInButton()
-                    .frame(width: 320)
-                    .onTapGesture {
-                        authManager.signIn()
-                        
-                        //  -----
-//                        authManager.checkSignUp()
-                    }
 
                 Spacer()
 
@@ -57,10 +46,22 @@ struct LoginView: View {
                         .foregroundColor(.white)
                         .padding(.top, 10)
                     
+//                    Button {
+//                        authManager.signIn()
+//                        dismiss()
+//                    } label: {
+//                        Text("로그인")
+//                    }
+
                     GoogleSignInButton()
                         .frame(width: 320)
                         .onTapGesture {
                             authManager.signIn()
+                            // 여기서 변수 바꿔주면 너무 빨라서 안바뀜
+                                if authManager.state == .signedIn {
+                                    isShowingSheet = false
+                                }
+                            print(isShowingSheet)
                         }
                 }
                 .frame(height: 100)
@@ -98,6 +99,6 @@ struct GoogleSignInButton: UIViewRepresentable {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView().environmentObject(AuthManager())
+        LoginView(isShowingSheet: .constant(true)).environmentObject(AuthManager())
     }
 }
