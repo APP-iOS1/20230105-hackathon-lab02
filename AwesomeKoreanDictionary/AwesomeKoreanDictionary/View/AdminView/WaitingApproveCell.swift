@@ -1,22 +1,16 @@
 //
-//  MyPageView_MyRegisterView.swift
+//  WaitingApproveCell.swift
 //  AwesomeKoreanDictionary
 //
-//  Created by Yooj on 2023/01/05.
-//
-
-//
-//  ListCell.swift
-//  AwesomeKoreanDictionary
-//
-//  Created by TAEHYOUNG KIM on 2023/01/05.
+//  Created by Yooj on 2023/01/06.
 //
 
 import SwiftUI
 
-struct MyPageView_MyRegisterCell: View {
+struct WaitingApproveCell: View {
+    
+    @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
     var vocabulary: Vocabulary
-    var languages = ["KOR", "ENG", "CHN", "JPN"]
     
     @State var selection: String = ""
     @State var sharedSheet: Bool = false
@@ -55,11 +49,28 @@ struct MyPageView_MyRegisterCell: View {
             
             // 사용자 이름 / 날짜
             HStack {
-                Text("승인여부 \(vocabulary.isApproved.description)")
-                    .fontWeight(.bold)
+                
+                Text("\(vocabulary.creatorId)")
                 Spacer()
+                
+                if vocabulary.isApproved == false {
+                    Button {
+                    Task{
+                        await vocabularyNetworkManager.updateVocaApproved(voca: vocabulary)
+                        await vocabularyNetworkManager.requestVocabularyList()
+                    }
+                    
+                } label: {
+                    Text("승인하기")
+                }
+                .padding(5)
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color(.black)))
+                .foregroundColor(.white)
+                }
+               
                 //                Text("업로드 날짜")
             }
+            
  
         }
         .foregroundColor(.black)
@@ -70,9 +81,8 @@ struct MyPageView_MyRegisterCell: View {
     }
 }
 
-struct MyPageView_MyRegisterView_Previews: PreviewProvider {
+struct WaitingApproveCell_Previews: PreviewProvider {
     static var previews: some View {
-        MyPageView_MyRegisterCell(vocabulary: dictionary[0])
+        WaitingApproveCell(vocabulary: dictionary[0])
     }
 }
-

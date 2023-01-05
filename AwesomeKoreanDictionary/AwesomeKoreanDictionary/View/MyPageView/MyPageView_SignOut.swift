@@ -12,6 +12,7 @@ import SwiftUI
 struct MyPageView_SignOut: View {
     
     @EnvironmentObject var authManager: AuthManager
+    @EnvironmentObject var userInfoManager: UserInfoManager
     @State var sheet1: Bool = false //개인정보 보호정책
     @State var sheet2: Bool = false //이용약관
     var body: some View {
@@ -96,19 +97,24 @@ struct MyPageView_SignOut: View {
                             Text("Master")
                                 .font(.title3)
                                 .padding(.top)
-                            
-                            NavigationLink{
-                                AdminMainView()
-                            } label : {
-                            Text(thirdMyPageList[0])
-                                .padding(.horizontal)
+                            if userInfoManager.userInfo?.isAdmin == true {
+                                NavigationLink{
+                                    AdminMainView()
+                                } label : {
+                                    Text(thirdMyPageList[0])
+                                        .padding(.horizontal)
+                                }
                             }
                         }
                         .foregroundColor(.black)
                         .listStyle(.plain)
                     } // 리스트 끝
                 }// 전체 한칸 안쪽 VStack 끝
-            } // 전체 VStack 끝
+            }
+            .onAppear(){
+                userInfoManager.fetchUserInfo()
+            }
+            // 전체 VStack 끝
         } // NavigationStack 끝
     }
 }
