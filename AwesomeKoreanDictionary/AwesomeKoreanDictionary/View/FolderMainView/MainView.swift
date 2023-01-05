@@ -70,30 +70,35 @@ struct ToolbarModifier: ViewModifier {
                     } label: {
                         Image(systemName: "trophy.fill")
                     }
-                    Button {
-                        isSignedIn = authManager.state == .signedOut ? false : true
-                        showingSignInAlert = !isSignedIn
+                    NavigationLink {
+                        SlangRegistrationView()
                     } label: {
                         Image(systemName: "plus.rectangle.portrait.fill")
                     }
-                    .navigationDestination(isPresented: $isSignedIn) {
-                        SlangRegistrationView()
-                    }
-                    .alert("로그인이 필요합니다", isPresented: $showingSignInAlert) {
-                        Button {
-                            print("취소")
-                        } label: {
-                            Text("취소")
-                        }
-                        Button {
-                            isShowingSheet = true
-                        } label: {
-                            Text("로그인")
-                        }
-                    }
-                    .sheet(isPresented: $isShowingSheet) {
-                        LoginView(isShowingSheet: $isShowingSheet)
-                    }
+//                    Button {
+//                        isSignedIn = authManager.state == .signedOut ? false : true
+//                        showingSignInAlert = !isSignedIn
+//                    } label: {
+//                        Image(systemName: "plus.rectangle.portrait.fill")
+//                    }
+//                    .navigationDestination(isPresented: $isSignedIn) {
+//                        SlangRegistrationView()
+//                    }
+//                    .alert("로그인이 필요합니다", isPresented: $showingSignInAlert) {
+//                        Button {
+//                            print("취소")
+//                        } label: {
+//                            Text("취소")
+//                        }
+//                        Button {
+//                            isShowingSheet = true
+//                        } label: {
+//                            Text("로그인")
+//                        }
+//                    }
+//                    .sheet(isPresented: $isShowingSheet) {
+//                        LoginView(isShowingSheet: $isShowingSheet)
+//                    }
                     NavigationLink {
                         MyPageView()
                     } label: {
