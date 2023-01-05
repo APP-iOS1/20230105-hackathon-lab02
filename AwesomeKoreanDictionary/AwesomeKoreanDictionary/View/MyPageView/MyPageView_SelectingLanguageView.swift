@@ -38,24 +38,21 @@ struct MyPageView_SelectingLanguageView: View {
         let languages: [String] = ["Korean", "English", "Chinese", "Japanese"]
         
         VStack{
-            HStack {
-                Text("현재 설정된 언어 : ")
+
+            
+            List{
+                Text("현재 설정된 언어")
                     .font(.title3)
+                    .padding(.top)
                 Text(defaultLanguage)
-                    .bold()
-                    .font(.title3)
-            }
-            .padding(.vertical, 20)
-            
-            Divider()
-            
-            VStack(alignment: .leading) {
-                Text("언어 선택")
-                    .font(.title)
-                    .bold()
-                    .padding(.horizontal, 20)
+                    .padding(.horizontal)
                 
-                List(languages, id: \.self, selection: $selectedLanguage) { language in
+                Text("언어선택")
+                    .font(.title3)
+                    .padding(.top)
+                
+                ForEach(languages, id: \.self) { language in
+
                     Button {
                         self.selectedLanguage = language
                         showingOptions.toggle()
@@ -73,9 +70,15 @@ struct MyPageView_SelectingLanguageView: View {
                         }
                         .padding(.horizontal)
                     
-                }.listStyle(.plain) // 리스트 끝
-            }
-            .padding(.vertical, 20)
+
+                }
+                
+            }.listStyle(.plain)
+            
+            
+            
+            
+
         }
     }
 }

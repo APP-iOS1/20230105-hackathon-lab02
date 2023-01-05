@@ -96,7 +96,7 @@ struct ToolbarModifier: ViewModifier {
                         LoginView()
                     }
                     NavigationLink {
-                        MyPageView_SignOut()
+                        MyPageView()
                     } label: {
                         Image(systemName: "person.circle.fill")
                     }
