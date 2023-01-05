@@ -20,6 +20,9 @@
 		6505FC322966633C0054591D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6505FC312966633C0054591D /* ContentView.swift */; };
 		6505FC342966633D0054591D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6505FC332966633D0054591D /* Assets.xcassets */; };
 		6505FC372966633D0054591D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6505FC362966633D0054591D /* Preview Assets.xcassets */; };
+		7649454D2966B1620017D830 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649454C2966B1610017D830 /* MainView.swift */; };
+		7649454F2966B1670017D830 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649454E2966B1670017D830 /* SearchBar.swift */; };
+		764945512966B16D0017D830 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764945502966B16D0017D830 /* ListCell.swift */; };
 		C5F90DA3296666CE00DE5024 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F90DA2296666CE00DE5024 /* LoginView.swift */; };
 		C5F90DA5296667CF00DE5024 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F90DA4296667CF00DE5024 /* SignUpView.swift */; };
 		C5F90DB12966A40D00DE5024 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5F90DB02966A40C00DE5024 /* GoogleService-Info.plist */; };
@@ -36,6 +39,9 @@
 		6505FC312966633C0054591D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6505FC332966633D0054591D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6505FC362966633D0054591D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7649454C2966B1610017D830 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		7649454E2966B1670017D830 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		764945502966B16D0017D830 /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		C5F90DA2296666CE00DE5024 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = AwesomeKoreanDictionary/View/LoginView.swift; sourceTree = SOURCE_ROOT; };
 		C5F90DA4296667CF00DE5024 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C5F90DB02966A40C00DE5024 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -118,10 +124,21 @@
 		6505FC3F2966644D0054591D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7649454B2966B14A0017D830 /* FolderMainView */,
 				C5F90DA2296666CE00DE5024 /* LoginView.swift */,
 				C5F90DA4296667CF00DE5024 /* SignUpView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7649454B2966B14A0017D830 /* FolderMainView */ = {
+			isa = PBXGroup;
+			children = (
+				7649454C2966B1610017D830 /* MainView.swift */,
+				7649454E2966B1670017D830 /* SearchBar.swift */,
+				764945502966B16D0017D830 /* ListCell.swift */,
+			);
+			path = FolderMainView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,8 +228,11 @@
 				6505FC302966633C0054591D /* AwesomeKoreanDictionaryApp.swift in Sources */,
 				C5F90DA3296666CE00DE5024 /* LoginView.swift in Sources */,
 				36BD6BDE296686D700DC6387 /* User.swift in Sources */,
+				764945512966B16D0017D830 /* ListCell.swift in Sources */,
+				7649454F2966B1670017D830 /* SearchBar.swift in Sources */,
 				36BD6BE22966876300DC6387 /* AuthManager.swift in Sources */,
 				36BD6BE02966875500DC6387 /* VocabularyNetworkManager.swift in Sources */,
+				7649454D2966B1620017D830 /* MainView.swift in Sources */,
 				6505FC322966633C0054591D /* ContentView.swift in Sources */,
 				6505FC302966633C0054591D /* AwesomeKoreanDictionaryApp.swift in Sources */,
 				36BD6BDC296686CA00DC6387 /* Vocabulary.swift in Sources */,
