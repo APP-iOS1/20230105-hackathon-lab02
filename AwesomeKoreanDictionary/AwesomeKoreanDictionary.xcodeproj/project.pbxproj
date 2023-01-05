@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22D990B229671E070050913A /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990AE29671E070050913A /* QuizView.swift */; };
-		22D990B329671E070050913A /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990AF29671E070050913A /* Detail.swift */; };
-		22D990B429671E070050913A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990B029671E070050913A /* CardView.swift */; };
-		22D990B529671E070050913A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990B129671E070050913A /* Card.swift */; };
-		369A797B2967456F00B4DEA9 /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369A797A2967456F00B4DEA9 /* UserInfoManager.swift */; };
 		22D990A42966EFCF0050913A /* PapagoNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990A32966EFCF0050913A /* PapagoNetworkManager.swift */; };
 		22D990A62966F20A0050913A /* APIInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22D990A52966F20A0050913A /* APIInfo.plist */; };
 		22D990AB2966F2EA0050913A /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990AA2966F2EA0050913A /* BundleExtension.swift */; };
 		22D990AD2966F6470050913A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990AC2966F6470050913A /* Message.swift */; };
+		22D990B229671E070050913A /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990AE29671E070050913A /* QuizView.swift */; };
+		22D990B329671E070050913A /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990AF29671E070050913A /* Detail.swift */; };
+		22D990B429671E070050913A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990B029671E070050913A /* CardView.swift */; };
+		22D990B529671E070050913A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990B129671E070050913A /* Card.swift */; };
+		367301A629675FE70032B659 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367301A829675FE70032B659 /* Localizable.strings */; };
+		369A797B2967456F00B4DEA9 /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369A797A2967456F00B4DEA9 /* UserInfoManager.swift */; };
 		36BD6BD4296667ED00DC6387 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BD3296667ED00DC6387 /* FirebaseAuth */; };
 		36BD6BD6296667ED00DC6387 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BD5296667ED00DC6387 /* FirebaseFirestore */; };
 		36BD6BD8296667ED00DC6387 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BD7296667ED00DC6387 /* FirebaseFirestoreSwift */; };
@@ -55,15 +56,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		22D990AE29671E070050913A /* QuizView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
-		22D990AF29671E070050913A /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
-		22D990B029671E070050913A /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		22D990B129671E070050913A /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		369A797A2967456F00B4DEA9 /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 		22D990A32966EFCF0050913A /* PapagoNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoNetworkManager.swift; sourceTree = "<group>"; };
 		22D990A52966F20A0050913A /* APIInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIInfo.plist; sourceTree = "<group>"; };
 		22D990AA2966F2EA0050913A /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		22D990AC2966F6470050913A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		22D990AE29671E070050913A /* QuizView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		22D990AF29671E070050913A /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
+		22D990B029671E070050913A /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		22D990B129671E070050913A /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		367301A729675FE70032B659 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		367301A9296763400032B659 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		367301AA296763500032B659 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		367301AB2967635A0032B659 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		369A797A2967456F00B4DEA9 /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 		36BD6BDB296686CA00DC6387 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
 		36BD6BDD296686D700DC6387 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		36BD6BDF2966875500DC6387 /* VocabularyNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyNetworkManager.swift; sourceTree = "<group>"; };
@@ -126,6 +131,7 @@
 		6505FC232966633C0054591D = {
 			isa = PBXGroup;
 			children = (
+				367301A829675FE70032B659 /* Localizable.strings */,
 				6505FC2E2966633C0054591D /* AwesomeKoreanDictionary */,
 				6505FC2D2966633C0054591D /* Products */,
 			);
@@ -308,6 +314,9 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
+				ja,
+				"zh-Hans",
 			);
 			mainGroup = 6505FC232966633C0054591D;
 			packageReferences = (
@@ -328,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				367301A629675FE70032B659 /* Localizable.strings in Resources */,
 				6505FC372966633D0054591D /* Preview Assets.xcassets in Resources */,
 				22D990A62966F20A0050913A /* APIInfo.plist in Resources */,
 				6505FC342966633D0054591D /* Assets.xcassets in Resources */,
@@ -342,7 +352,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5AB90392966B8D1005A6CFF /* AnswerCardView.swift in Sources */,
 				65FB3931296703BB008756AA /* MyPageView.swift in Sources */,
 				4CE1621929673B5D00533369 /* TermsAndConditionsView.swift in Sources */,
 				C5F90DA5296667CF00DE5024 /* SignUpView.swift in Sources */,
@@ -357,12 +366,9 @@
 				36BD6BDE296686D700DC6387 /* User.swift in Sources */,
 				22D990B529671E070050913A /* Card.swift in Sources */,
 				C5AB90322966B7DF005A6CFF /* SlangRegistrationView.swift in Sources */,
-				C5AB903D2966B8DB005A6CFF /* CardModeltemp.swift in Sources */,
 				765DF2DC2966FCF6004CF7D9 /* TestView.swift in Sources */,
 				C5AB90322966B7DF005A6CFF /* SlangRegistrationView.swift in Sources */,
 				65487B3829673BA500D7AB0A /* AdminView_SignInView.swift in Sources */,
-				C5AB903B2966B8D6005A6CFF /* Cardtemp.swift in Sources */,
-				C5AB90372966B88E005A6CFF /* QuizCardDetailView.swift in Sources */,
 				36BD6BED2966BBC000DC6387 /* DataController.swift in Sources */,
 				C5AB90292966B700005A6CFF /* MyPageView_SignIn.swift in Sources */,
 				764945512966B16D0017D830 /* ListCell.swift in Sources */,
@@ -378,7 +384,6 @@
 				36BD6BEB2966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodeld in Sources */,
 				C5AB902B2966B705005A6CFF /* MyPageView_SelectingLanguageView.swift in Sources */,
 				65487B3129671E5A00D7AB0A /* MyPageView_MyBookmarkView.swift in Sources */,
-				C5AB90352966B888005A6CFF /* QuizCardView.swift in Sources */,
 				65487B332967238F00D7AB0A /* MyPageView_MyRegisterView.swift in Sources */,
 				65487B352967382E00D7AB0A /* AdminMainView.swift in Sources */,
 				7649454D2966B1620017D830 /* MainView.swift in Sources */,
@@ -391,11 +396,26 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		367301A829675FE70032B659 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				367301A729675FE70032B659 /* en */,
+				367301A9296763400032B659 /* ko */,
+				367301AA296763500032B659 /* ja */,
+				367301AB2967635A0032B659 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		6505FC382966633D0054591D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -456,6 +476,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
