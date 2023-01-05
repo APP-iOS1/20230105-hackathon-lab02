@@ -25,6 +25,8 @@
 		65487B2D29671D4700D7AB0A /* MyPageView_MyRegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65487B2C29671D4700D7AB0A /* MyPageView_MyRegisterCell.swift */; };
 		65487B3129671E5A00D7AB0A /* MyPageView_MyBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65487B3029671E5A00D7AB0A /* MyPageView_MyBookmarkView.swift */; };
 		65487B332967238F00D7AB0A /* MyPageView_MyRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65487B322967238E00D7AB0A /* MyPageView_MyRegisterView.swift */; };
+		65487B352967382E00D7AB0A /* AdminMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65487B342967382E00D7AB0A /* AdminMainView.swift */; };
+		65487B3829673BA500D7AB0A /* AdminView_SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65487B3729673BA500D7AB0A /* AdminView_SignInView.swift */; };
 		65FB3931296703BB008756AA /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB3930296703BB008756AA /* MyPageView.swift */; };
 		7649454D2966B1620017D830 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649454C2966B1610017D830 /* MainView.swift */; };
 		7649454F2966B1670017D830 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649454E2966B1670017D830 /* SearchBar.swift */; };
@@ -62,6 +64,8 @@
 		65487B2C29671D4700D7AB0A /* MyPageView_MyRegisterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView_MyRegisterCell.swift; sourceTree = "<group>"; };
 		65487B3029671E5A00D7AB0A /* MyPageView_MyBookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView_MyBookmarkView.swift; sourceTree = "<group>"; };
 		65487B322967238E00D7AB0A /* MyPageView_MyRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView_MyRegisterView.swift; sourceTree = "<group>"; };
+		65487B342967382E00D7AB0A /* AdminMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMainView.swift; sourceTree = "<group>"; };
+		65487B3729673BA500D7AB0A /* AdminView_SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView_SignInView.swift; sourceTree = "<group>"; };
 		65FB3930296703BB008756AA /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		7649454C2966B1610017D830 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		7649454E2966B1670017D830 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -164,12 +168,22 @@
 			children = (
 				C5AB90332966B874005A6CFF /* QuizCardView */,
 				C5AB902E2966B7CA005A6CFF /* RegistraionView */,
+				65487B362967384600D7AB0A /* AdminView */,
 				C5AB90252966B6E6005A6CFF /* MyPageView */,
 				7649454B2966B14A0017D830 /* FolderMainView */,
 				C5F90DA2296666CE00DE5024 /* LoginView.swift */,
 				C5F90DA4296667CF00DE5024 /* SignUpView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		65487B362967384600D7AB0A /* AdminView */ = {
+			isa = PBXGroup;
+			children = (
+				65487B342967382E00D7AB0A /* AdminMainView.swift */,
+				65487B3729673BA500D7AB0A /* AdminView_SignInView.swift */,
+			);
+			path = AdminView;
 			sourceTree = "<group>";
 		};
 		7649454B2966B14A0017D830 /* FolderMainView */ = {
@@ -312,6 +326,7 @@
 				C5AB903D2966B8DB005A6CFF /* CardModeltemp.swift in Sources */,
 				765DF2DC2966FCF6004CF7D9 /* TestView.swift in Sources */,
 				C5AB90322966B7DF005A6CFF /* SlangRegistrationView.swift in Sources */,
+				65487B3829673BA500D7AB0A /* AdminView_SignInView.swift in Sources */,
 				C5AB903B2966B8D6005A6CFF /* Cardtemp.swift in Sources */,
 				C5AB90372966B88E005A6CFF /* QuizCardDetailView.swift in Sources */,
 				36BD6BED2966BBC000DC6387 /* DataController.swift in Sources */,
@@ -328,6 +343,7 @@
 				65487B3129671E5A00D7AB0A /* MyPageView_MyBookmarkView.swift in Sources */,
 				C5AB90352966B888005A6CFF /* QuizCardView.swift in Sources */,
 				65487B332967238F00D7AB0A /* MyPageView_MyRegisterView.swift in Sources */,
+				65487B352967382E00D7AB0A /* AdminMainView.swift in Sources */,
 				7649454D2966B1620017D830 /* MainView.swift in Sources */,
 				6505FC322966633C0054591D /* ContentView.swift in Sources */,
 				6505FC302966633C0054591D /* AwesomeKoreanDictionaryApp.swift in Sources */,

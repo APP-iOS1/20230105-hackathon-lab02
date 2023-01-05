@@ -80,7 +80,7 @@ struct MyPageView_SignOut: View {
                                 .padding(.top)
                             
                             NavigationLink{
-//                                MyPageView_MasterLoginView()
+                                AdminMainView()
                             } label : {
                             Text(thirdMyPageList[0])
                                 .padding(.horizontal)
