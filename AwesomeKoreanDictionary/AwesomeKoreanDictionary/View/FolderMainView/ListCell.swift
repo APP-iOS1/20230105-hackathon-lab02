@@ -17,7 +17,7 @@ struct ListCell: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             
-            // 이름
+            // 단어의 이름
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     Text(vocabulary.word)
@@ -27,17 +27,17 @@ struct ListCell: View {
                         .font(.title3)
                 }
                 Spacer()
-               
+                
                 Picker(selection: $selection) {
                     ForEach(languages, id: \.self) { lang in
                         Text(lang)
                     }
                 } label: {
                     Text("언어 선택")
+                    
                 }
                 .frame(height: 30)
-
-                
+                .tint(.black)
                 
                 Button {
                     print("북마크 버튼")
@@ -110,6 +110,7 @@ struct ListCell: View {
                 }
             }
         }
+        .foregroundColor(.black)
         .padding(20)
         .frame(width: 365)
         .background(Color.white)
