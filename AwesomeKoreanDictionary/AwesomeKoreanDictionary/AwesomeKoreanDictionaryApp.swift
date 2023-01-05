@@ -28,6 +28,7 @@ struct AwesomeKoreanDictionaryApp: App {
             MainView()
             .environmentObject(VocabularyNetworkManager())
             .environmentObject(authManager)
+            .environmentObject(CardModel())
 
         }
     }
