@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22D990A42966EFCF0050913A /* PapagoNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990A32966EFCF0050913A /* PapagoNetworkManager.swift */; };
+		22D990A62966F20A0050913A /* APIInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22D990A52966F20A0050913A /* APIInfo.plist */; };
+		22D990AB2966F2EA0050913A /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990AA2966F2EA0050913A /* BundleExtension.swift */; };
+		22D990AD2966F6470050913A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990AC2966F6470050913A /* Message.swift */; };
 		36BD6BD4296667ED00DC6387 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BD3296667ED00DC6387 /* FirebaseAuth */; };
 		36BD6BD6296667ED00DC6387 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BD5296667ED00DC6387 /* FirebaseFirestore */; };
 		36BD6BD8296667ED00DC6387 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BD7296667ED00DC6387 /* FirebaseFirestoreSwift */; };
@@ -51,6 +55,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22D990A32966EFCF0050913A /* PapagoNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoNetworkManager.swift; sourceTree = "<group>"; };
+		22D990A52966F20A0050913A /* APIInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIInfo.plist; sourceTree = "<group>"; };
+		22D990AA2966F2EA0050913A /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
+		22D990AC2966F6470050913A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		36BD6BDB296686CA00DC6387 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
 		36BD6BDD296686D700DC6387 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		36BD6BDF2966875500DC6387 /* VocabularyNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyNetworkManager.swift; sourceTree = "<group>"; };
@@ -107,6 +115,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22D990A72966F2CA0050913A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				22D990AA2966F2EA0050913A /* BundleExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		6505FC232966633C0054591D = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +142,8 @@
 		6505FC2E2966633C0054591D /* AwesomeKoreanDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				22D990A72966F2CA0050913A /* Extension */,
+				22D990A52966F20A0050913A /* APIInfo.plist */,
 				36BD6BE32966990400DC6387 /* Info.plist */,
 				C5F90DB02966A40C00DE5024 /* GoogleService-Info.plist */,
 				6505FC2F2966633C0054591D /* AwesomeKoreanDictionaryApp.swift */,
@@ -154,6 +172,7 @@
 				36BD6BDD296686D700DC6387 /* User.swift */,
 				36BD6BE92966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodeld */,
 				36BD6BEC2966BBC000DC6387 /* DataController.swift */,
+				22D990AC2966F6470050913A /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -163,6 +182,7 @@
 			children = (
 				36BD6BDF2966875500DC6387 /* VocabularyNetworkManager.swift */,
 				36BD6BE12966876300DC6387 /* AuthManager.swift */,
+				22D990A32966EFCF0050913A /* PapagoNetworkManager.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -309,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6505FC372966633D0054591D /* Preview Assets.xcassets in Resources */,
+				22D990A62966F20A0050913A /* APIInfo.plist in Resources */,
 				6505FC342966633D0054591D /* Assets.xcassets in Resources */,
 				C5F90DB12966A40D00DE5024 /* GoogleService-Info.plist in Resources */,
 			);
@@ -328,6 +349,8 @@
 				65487B2D29671D4700D7AB0A /* MyPageView_MyRegisterCell.swift in Sources */,
 				4CE1621729673B4E00533369 /* PrivacyPolicyView.swift in Sources */,
 				6505FC322966633C0054591D /* ContentView.swift in Sources */,
+				22D990AB2966F2EA0050913A /* BundleExtension.swift in Sources */,
+				22D990A42966EFCF0050913A /* PapagoNetworkManager.swift in Sources */,
 				6505FC302966633C0054591D /* AwesomeKoreanDictionaryApp.swift in Sources */,
 				C5F90DA3296666CE00DE5024 /* LoginView.swift in Sources */,
 				36BD6BDE296686D700DC6387 /* User.swift in Sources */,
@@ -344,6 +367,7 @@
 				C5AB90272966B6FC005A6CFF /* MyPageView_SignOut.swift in Sources */,
 				765DF2D62966C63B004CF7D9 /* SearchView.swift in Sources */,
 				36BD6BE22966876300DC6387 /* AuthManager.swift in Sources */,
+				22D990AD2966F6470050913A /* Message.swift in Sources */,
 				C5AB902D2966B70D005A6CFF /* MyPageView_EditUserInfoView.swift in Sources */,
 				36BD6BE02966875500DC6387 /* VocabularyNetworkManager.swift in Sources */,
 				36BD6BEB2966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodeld in Sources */,
@@ -484,6 +508,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AwesomeKoreanDictionary/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AwesomeKoreanDictionary/Info.plist;
@@ -513,6 +538,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AwesomeKoreanDictionary/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AwesomeKoreanDictionary/Info.plist;

@@ -13,4 +13,5 @@ struct User {
     var bookmarked: [String]
     var createdVoca: [String]
     var userId: String
+    var email: String
 }

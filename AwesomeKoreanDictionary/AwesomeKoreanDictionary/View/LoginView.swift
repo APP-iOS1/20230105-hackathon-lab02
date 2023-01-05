@@ -32,7 +32,18 @@ struct LoginView: View {
                         .padding(.top, 30)
                 }
                 
+
+                GoogleSignInButton()
+                    .frame(width: 320)
+                    .onTapGesture {
+                        viewModel.signIn()
+                        
+                        //  -----
+                        viewModel.checkSignUp()
+                    }
+
                 Spacer()
+
                 
                 Text("SIGN IN")
                     .font(.largeTitle)
@@ -59,6 +70,13 @@ struct LoginView: View {
                 
                 Spacer()
             }
+        }
+        .onAppear {
+            Task {
+                let string = try await PapagoNetworkManager.shared.requestTranslate(sourceString: "안녕하세요", target: .english)
+                print(string)
+            }
+            
         }
     }
 }
