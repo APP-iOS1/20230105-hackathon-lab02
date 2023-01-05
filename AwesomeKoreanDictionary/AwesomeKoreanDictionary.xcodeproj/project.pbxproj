@@ -16,6 +16,8 @@
 		36BD6BE22966876300DC6387 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD6BE12966876300DC6387 /* AuthManager.swift */; };
 		36BD6BE6296699FC00DC6387 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BE5296699FC00DC6387 /* GoogleSignIn */; };
 		36BD6BE8296699FC00DC6387 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BE7296699FC00DC6387 /* GoogleSignInSwift */; };
+		36BD6BEB2966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 36BD6BE92966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodeld */; };
+		36BD6BED2966BBC000DC6387 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD6BEC2966BBC000DC6387 /* DataController.swift */; };
 		6505FC302966633C0054591D /* AwesomeKoreanDictionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6505FC2F2966633C0054591D /* AwesomeKoreanDictionaryApp.swift */; };
 		6505FC322966633C0054591D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6505FC312966633C0054591D /* ContentView.swift */; };
 		6505FC342966633D0054591D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6505FC332966633D0054591D /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 		36BD6BDF2966875500DC6387 /* VocabularyNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyNetworkManager.swift; sourceTree = "<group>"; };
 		36BD6BE12966876300DC6387 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		36BD6BE32966990400DC6387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		36BD6BEA2966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookmarkedVocaModel.xcdatamodel; sourceTree = "<group>"; };
+		36BD6BEC2966BBC000DC6387 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		6505FC2C2966633C0054591D /* AwesomeKoreanDictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeKoreanDictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6505FC2F2966633C0054591D /* AwesomeKoreanDictionaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeKoreanDictionaryApp.swift; sourceTree = "<group>"; };
 		6505FC312966633C0054591D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 			children = (
 				36BD6BDB296686CA00DC6387 /* Vocabulary.swift */,
 				36BD6BDD296686D700DC6387 /* User.swift */,
+				36BD6BE92966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodeld */,
+				36BD6BEC2966BBC000DC6387 /* DataController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -291,6 +297,7 @@
 				C5AB90322966B7DF005A6CFF /* SlangRegistrationView.swift in Sources */,
 				C5AB903B2966B8D6005A6CFF /* Cardtemp.swift in Sources */,
 				C5AB90372966B88E005A6CFF /* QuizCardDetailView.swift in Sources */,
+				36BD6BED2966BBC000DC6387 /* DataController.swift in Sources */,
 				C5AB90292966B700005A6CFF /* MyPageView_SignIn.swift in Sources */,
 				764945512966B16D0017D830 /* ListCell.swift in Sources */,
 				7649454F2966B1670017D830 /* SearchBar.swift in Sources */,
@@ -298,6 +305,7 @@
 				36BD6BE22966876300DC6387 /* AuthManager.swift in Sources */,
 				C5AB902D2966B70D005A6CFF /* MyPageView_EditUserInfoView.swift in Sources */,
 				36BD6BE02966875500DC6387 /* VocabularyNetworkManager.swift in Sources */,
+				36BD6BEB2966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodeld in Sources */,
 				C5AB902B2966B705005A6CFF /* MyPageView_SelectingLanguageView.swift in Sources */,
 				C5AB90352966B888005A6CFF /* QuizCardView.swift in Sources */,
 				7649454D2966B1620017D830 /* MainView.swift in Sources */,
@@ -551,6 +559,19 @@
 			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		36BD6BE92966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				36BD6BEA2966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodel */,
+			);
+			currentVersion = 36BD6BEA2966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodel */;
+			path = BookmarkedVocaModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6505FC242966633C0054591D /* Project object */;
 }
