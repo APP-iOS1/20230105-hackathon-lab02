@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class PapagoNetworkManager {
+final class PapagoNetworkManager: ObservableObject {
 
     enum TargetLanguage: String {
         case english = "en"

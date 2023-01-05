@@ -11,6 +11,7 @@ struct QuizView: View {
     
     // TODO: - Quiz로 보여줄 단어는 어떻게 정할건지? - likes수가 높은 상위 몇개의 단어?
     @ObservedObject var vocabularyNetworkManager = VocabularyNetworkManager()
+    @ObservedObject var papagoNetworkManager = PapagoNetworkManager()
     
     // To track which card is swiped
     @Namespace var name
