@@ -12,6 +12,7 @@ struct AwesomeKoreanDictionaryApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+           // QuizCardView(quizCard: CardModel())
         }
     }
 }
