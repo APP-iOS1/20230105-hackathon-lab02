@@ -7,13 +7,23 @@
 
 import SwiftUI
 
+
+
 struct MyPageView_SignOut: View {
+    
+    @EnvironmentObject var authManager: AuthManager
+    @State var sheet1: Bool = false //개인정보 보호정책
+    @State var sheet2: Bool = false //이용약관
     var body: some View {
         
         let firstMyPageList: [String] = ["Language"]
         let secondMyPageList: [String] = ["Privacy Policy (개인정보 보호정책)", "Terms and Conditions (이용약관)"]
         let thirdMyPageList: [String] = ["Master Login"]
         NavigationStack{
+            
+            
+           
+            
             VStack {
                 
                 VStack(alignment: .leading) {
@@ -25,7 +35,7 @@ struct MyPageView_SignOut: View {
                             
                     
                         Button {
-                            // 구글 로그인 액션 넣어주세요 :)
+                            authManager.signIn()
                         } label: {
                             ZStack{
                                 Rectangle()
@@ -51,18 +61,35 @@ struct MyPageView_SignOut: View {
                                 .padding(.horizontal)
                                 
                             } // 첫번째 리스트
-                            
                             Text("Help")
                                 .font(.title3)
                                 .padding(.top)
-                            ForEach(secondMyPageList, id: \.self) {
-                                listString in
-                                HStack {
-                                    Text(listString)
-                                    Spacer()
-                                    Image(systemName: "arrow.up.right")
+                            
+                            ForEach(0..<secondMyPageList.count, id: \.self) {
+                                index in
+                                Button(action: {
+                                    if secondMyPageList[0] ==  secondMyPageList[index] {
+                                        sheet1.toggle()
+                                    }
+                                    if secondMyPageList[1] ==  secondMyPageList[index] {
+                                        sheet2.toggle()
+                                    }
+                                }) {
+                                    HStack {
+                                        Text(secondMyPageList[index])
+                                        Spacer()
+                                        Image(systemName: "arrow.up.right")
+                                    }
                                     
                                 }
+                                //개인정보 보호정책 시트뷰
+                                .sheet(isPresented: $sheet1, content: {
+                                        PrivacyPolicyView(sheet1: $sheet1)
+                                })
+                                // 이용약관 시트뷰
+                                .sheet(isPresented: $sheet2, content: {
+                                        TermsAndConditionsView(sheet2: $sheet2)
+                                })
                                 .padding(.horizontal)
                             } // 두번째 리스트
                             
@@ -71,7 +98,7 @@ struct MyPageView_SignOut: View {
                                 .padding(.top)
                             
                             NavigationLink{
-//                                MyPageView_MasterLoginView()
+                                AdminMainView()
                             } label : {
                             Text(thirdMyPageList[0])
                                 .padding(.horizontal)

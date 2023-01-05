@@ -30,7 +30,7 @@ final class VocabularyNetworkManager: ObservableObject {
                 let word = document["word"] as? String ?? ""
                 let pronunciation = document["pronunciation"] as? String ?? ""
                 let definition = document["definition"] as? String ?? ""
-                let example = document["example"] as? Array<String> ?? []
+                let example = document["example"] as? String ?? ""
                 let likes = document["likes"] as? Int ?? 0
                 let dislikes = document["dislikes"] as? Int ?? 0
                 let creatorId = document["creatorId"] as? String ?? ""
