@@ -9,12 +9,14 @@ import Firebase
 import GoogleSignIn
 
 class AuthManager: ObservableObject {
+    
     enum signInState {
         case signedIn
         case signedOut
     }
     
     @Published var state: signInState = .signedOut
+    @Published var currentUser = GIDSignIn.sharedInstance.currentUser
     
     func signIn() {
         // You check if there’s a previous Sign-In. If yes, then restore it. Otherwise, move on to defining the sign-in process.
@@ -28,7 +30,7 @@ class AuthManager: ObservableObject {
             
             // Create a Google Sign-In configuration object with the clientID.
             
-            let configuration = GIDConfiguration(clientID: clientID)
+//            let configuration = GIDConfiguration(clientID: clientID)
             
             // As you’re not using view controllers to retrieve the presentingViewController, access it through the shared instance of the UIApplication. Note that directly using the UIWindow is now deprecated, and you should use the scene instead.
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
