@@ -21,12 +21,7 @@ struct MyPageView_SignOut: View {
         let secondMyPageList: [String] = ["개인정보 보호정책", "이용 약관"]
         let thirdMyPageList: [String] = ["관리자 로그인"]
         NavigationStack{
-            
-            
-           
-            
             VStack {
-                
                 VStack(alignment: .leading) {
         
                         Text("새로운 단어를 정의하려면 로그인하세요")
@@ -46,8 +41,9 @@ struct MyPageView_SignOut: View {
                                 Text("구글 로그인하기")
                                     .foregroundColor(.white)
                             }
+
                         }
-                    
+                    }
                     
                     // 리스트 시작
                     VStack {
@@ -58,8 +54,8 @@ struct MyPageView_SignOut: View {
                             NavigationLink{
                                 MyPageView_SelectingLanguageView()
                             } label: {
-                            Text(firstMyPageList[0])
-                                .padding(.horizontal)
+                                Text(firstMyPageList[0])
+                                    .padding(.horizontal)
                                 
                             } // 첫번째 리스트
                             Text("도움")
@@ -81,15 +77,14 @@ struct MyPageView_SignOut: View {
                                         Spacer()
                                         Image(systemName: "arrow.up.right")
                                     }
-                                    
                                 }
                                 //개인정보 보호정책 시트뷰
                                 .sheet(isPresented: $sheet1, content: {
-                                        PrivacyPolicyView(sheet1: $sheet1)
+                                    PrivacyPolicyView(sheet1: $sheet1)
                                 })
                                 // 이용약관 시트뷰
                                 .sheet(isPresented: $sheet2, content: {
-                                        TermsAndConditionsView(sheet2: $sheet2)
+                                    TermsAndConditionsView(sheet2: $sheet2)
                                 })
                                 .padding(.horizontal)
                             } // 두번째 리스트
@@ -97,6 +92,7 @@ struct MyPageView_SignOut: View {
                             Text("관리자 로그인")
                                 .font(.title3)
                                 .padding(.top)
+
                             if userInfoManager.userInfo?.isAdmin == true {
                                 NavigationLink{
                                     AdminMainView()
@@ -104,6 +100,7 @@ struct MyPageView_SignOut: View {
                                     Text(thirdMyPageList[0])
                                         .padding(.horizontal)
                                 }
+
                             }
                         }
                         .foregroundColor(.black)
