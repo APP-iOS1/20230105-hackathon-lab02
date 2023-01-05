@@ -44,7 +44,7 @@ struct MainView: View {
 //                            Image(systemName: "magnifyingglass")
 //                        }
                         NavigationLink {
-                            QuizCardView()
+                            QuizView()
                         } label: {
                             Image(systemName: "trophy.fill")
                         }
@@ -72,6 +72,5 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-            .environmentObject(CardModel())
     }
 }
