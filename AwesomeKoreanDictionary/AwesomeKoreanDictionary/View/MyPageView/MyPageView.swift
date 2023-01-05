@@ -24,3 +24,4 @@ struct MyPageView1_Previews: PreviewProvider {
         MyPageView()
     }
 }
+
