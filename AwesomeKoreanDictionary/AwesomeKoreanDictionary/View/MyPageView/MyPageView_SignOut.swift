@@ -7,13 +7,22 @@
 
 import SwiftUI
 
+
+
 struct MyPageView_SignOut: View {
+    
+    @EnvironmentObject var authManager: AuthManager
+    
     var body: some View {
         
         let firstMyPageList: [String] = ["Language"]
         let secondMyPageList: [String] = ["Privacy Policy (개인정보 보호정책)", "Terms and Conditions (이용약관)"]
         let thirdMyPageList: [String] = ["Master Login"]
         NavigationStack{
+            
+            
+           
+            
             VStack {
                 
                 VStack(alignment: .leading) {
@@ -25,7 +34,7 @@ struct MyPageView_SignOut: View {
                             
                     
                         Button {
-                            // 구글 로그인 액션 넣어주세요 :)
+                            authManager.signIn()
                         } label: {
                             ZStack{
                                 Rectangle()

@@ -54,7 +54,8 @@ struct MainView: View {
                             Image(systemName: "plus.rectangle.portrait.fill")
                         }
                         NavigationLink {
-                            MyPageView_SignOut()
+                            MyPageView()
+
                         } label: {
                             Image(systemName: "person.circle.fill")
                         }
