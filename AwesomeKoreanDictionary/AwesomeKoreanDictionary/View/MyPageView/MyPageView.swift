@@ -10,8 +10,6 @@ import SwiftUI
 struct MyPageView: View {
     @EnvironmentObject var authManager: AuthManager
     
-    
-    
     var body: some View {
         if authManager.state == .signedIn {
             MyPageView_SignIn()
