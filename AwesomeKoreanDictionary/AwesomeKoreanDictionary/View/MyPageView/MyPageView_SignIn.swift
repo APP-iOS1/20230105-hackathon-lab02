@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MyPageView_SignIn: View {
     
+    @EnvironmentObject var authManager: AuthManager
     @State private var userNickName: String = "YOOJ"
-    // User 모델, 스토어 주세요!
     @State private var showEditViewModal: Bool = false
     @State var sheet1: Bool = false //개인정보 보호정책
     @State var sheet2: Bool = false //이용약관
@@ -24,7 +24,7 @@ struct MyPageView_SignIn: View {
         NavigationStack{
             VStack {
                 VStack(alignment: .leading) {
-
+                    
                     HStack{
                         Text("This is \(userNickName).")
                             .font(.title2)
@@ -53,7 +53,7 @@ struct MyPageView_SignIn: View {
                     
                     // 리스트 시작
                     VStack {
-
+                        
                         List {
                             Text("My Page")
                                 .font(.title3)
@@ -111,14 +111,22 @@ struct MyPageView_SignIn: View {
                                 }
                                 //개인정보 보호정책 시트뷰
                                 .sheet(isPresented: $sheet1, content: {
-                                        PrivacyPolicyView(sheet1: $sheet1)
+                                    PrivacyPolicyView(sheet1: $sheet1)
                                 })
                                 // 이용약관 시트뷰
                                 .sheet(isPresented: $sheet2, content: {
-                                        TermsAndConditionsView(sheet2: $sheet2)
+                                    TermsAndConditionsView(sheet2: $sheet2)
                                 })
                                 .padding(.horizontal)
                             } // 두번째 리스트 끝
+                            
+                            Button {
+                                authManager.signOut()
+                            } label: {
+                                Text("로그아웃")
+                                    .font(.title3)
+                                    .padding(.top)
+                            }.buttonStyle(.plain)
                         }
                     }
                     .listStyle(.plain)
