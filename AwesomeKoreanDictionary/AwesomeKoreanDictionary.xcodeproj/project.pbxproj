@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36BD6BD12966674800DC6387 /* GoogleService-Info (3).plist in Resources */ = {isa = PBXBuildFile; fileRef = 36BD6BD02966674800DC6387 /* GoogleService-Info (3).plist */; };
+		36BD6BD4296667ED00DC6387 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BD3296667ED00DC6387 /* FirebaseAuth */; };
+		36BD6BD6296667ED00DC6387 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BD5296667ED00DC6387 /* FirebaseFirestore */; };
+		36BD6BD8296667ED00DC6387 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BD7296667ED00DC6387 /* FirebaseFirestoreSwift */; };
+		36BD6BDC296686CA00DC6387 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD6BDB296686CA00DC6387 /* Vocabulary.swift */; };
+		36BD6BDE296686D700DC6387 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD6BDD296686D700DC6387 /* User.swift */; };
+		36BD6BE02966875500DC6387 /* VocabularyNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD6BDF2966875500DC6387 /* VocabularyNetworkManager.swift */; };
+		36BD6BE22966876300DC6387 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD6BE12966876300DC6387 /* AuthManager.swift */; };
 		6505FC302966633C0054591D /* AwesomeKoreanDictionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6505FC2F2966633C0054591D /* AwesomeKoreanDictionaryApp.swift */; };
 		6505FC322966633C0054591D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6505FC312966633C0054591D /* ContentView.swift */; };
 		6505FC342966633D0054591D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6505FC332966633D0054591D /* Assets.xcassets */; };
@@ -14,6 +22,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		36BD6BD02966674800DC6387 /* GoogleService-Info (3).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info (3).plist"; path = "../../../../../../Downloads/GoogleService-Info (3).plist"; sourceTree = "<group>"; };
+		36BD6BDB296686CA00DC6387 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
+		36BD6BDD296686D700DC6387 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		36BD6BDF2966875500DC6387 /* VocabularyNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyNetworkManager.swift; sourceTree = "<group>"; };
+		36BD6BE12966876300DC6387 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		6505FC2C2966633C0054591D /* AwesomeKoreanDictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeKoreanDictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6505FC2F2966633C0054591D /* AwesomeKoreanDictionaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeKoreanDictionaryApp.swift; sourceTree = "<group>"; };
 		6505FC312966633C0054591D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,6 +39,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36BD6BD4296667ED00DC6387 /* FirebaseAuth in Frameworks */,
+				36BD6BD6296667ED00DC6387 /* FirebaseFirestore in Frameworks */,
+				36BD6BD8296667ED00DC6387 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +67,7 @@
 		6505FC2E2966633C0054591D /* AwesomeKoreanDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				36BD6BD02966674800DC6387 /* GoogleService-Info (3).plist */,
 				6505FC2F2966633C0054591D /* AwesomeKoreanDictionaryApp.swift */,
 				6505FC312966633C0054591D /* ContentView.swift */,
 				6505FC3D2966643B0054591D /* Model */,
@@ -73,6 +90,8 @@
 		6505FC3D2966643B0054591D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				36BD6BDB296686CA00DC6387 /* Vocabulary.swift */,
+				36BD6BDD296686D700DC6387 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -80,6 +99,8 @@
 		6505FC3E296664440054591D /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				36BD6BDF2966875500DC6387 /* VocabularyNetworkManager.swift */,
+				36BD6BE12966876300DC6387 /* AuthManager.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -107,6 +128,11 @@
 			dependencies = (
 			);
 			name = AwesomeKoreanDictionary;
+			packageProductDependencies = (
+				36BD6BD3296667ED00DC6387 /* FirebaseAuth */,
+				36BD6BD5296667ED00DC6387 /* FirebaseFirestore */,
+				36BD6BD7296667ED00DC6387 /* FirebaseFirestoreSwift */,
+			);
 			productName = AwesomeKoreanDictionary;
 			productReference = 6505FC2C2966633C0054591D /* AwesomeKoreanDictionary.app */;
 			productType = "com.apple.product-type.application";
@@ -135,6 +161,9 @@
 				Base,
 			);
 			mainGroup = 6505FC232966633C0054591D;
+			packageReferences = (
+				36BD6BD2296667ED00DC6387 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 6505FC2D2966633C0054591D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -150,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6505FC372966633D0054591D /* Preview Assets.xcassets in Resources */,
+				36BD6BD12966674800DC6387 /* GoogleService-Info (3).plist in Resources */,
 				6505FC342966633D0054591D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,8 +191,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36BD6BDE296686D700DC6387 /* User.swift in Sources */,
+				36BD6BE22966876300DC6387 /* AuthManager.swift in Sources */,
+				36BD6BE02966875500DC6387 /* VocabularyNetworkManager.swift in Sources */,
 				6505FC322966633C0054591D /* ContentView.swift in Sources */,
 				6505FC302966633C0054591D /* AwesomeKoreanDictionaryApp.swift in Sources */,
+				36BD6BDC296686CA00DC6387 /* Vocabulary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +395,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		36BD6BD2296667ED00DC6387 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		36BD6BD3296667ED00DC6387 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36BD6BD2296667ED00DC6387 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		36BD6BD5296667ED00DC6387 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36BD6BD2296667ED00DC6387 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		36BD6BD7296667ED00DC6387 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36BD6BD2296667ED00DC6387 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6505FC242966633C0054591D /* Project object */;
 }
