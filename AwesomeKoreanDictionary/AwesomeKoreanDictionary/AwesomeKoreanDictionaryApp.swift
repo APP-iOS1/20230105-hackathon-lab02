@@ -26,6 +26,7 @@ struct AwesomeKoreanDictionaryApp: App {
         WindowGroup {
             LoginView()
                 .environmentObject(viewModel)
+                .environmentObject(CardModel())
         }
     }
 }
