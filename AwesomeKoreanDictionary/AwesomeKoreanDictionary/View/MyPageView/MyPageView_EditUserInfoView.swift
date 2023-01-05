@@ -11,6 +11,8 @@ struct MyPageView_EditUserInfoView: View {
 
     @Environment(\.dismiss) var dismiss
     @State private var userNickName: String = "YOOJ"
+    @ObservedObject var userNickName2 : AuthManager = AuthManager()
+    // 닉네임 받아오는 프로퍼티 생성되면 변경할게요!
 
     var body: some View {
         VStack{
@@ -28,13 +30,13 @@ struct MyPageView_EditUserInfoView: View {
             Rectangle()
                 .frame(width: .infinity, height: 70)
                 .foregroundColor(.black)
-            Text("This is the name your definitions will appear\nunder when they're published on Urban Dictionary.")
+            Text("이것은 당신의 정의가 사전에 게시될 때 \n 게시글 아래에 나타날 이름이다.")
                 .foregroundColor(.white)
                 .font(.callout)
             }
         
             VStack(alignment: .leading){
-                Text("NickName")
+                Text("닉네임")
                     .font(.title2)
                 
                 TextEditor(text: $userNickName)
@@ -49,7 +51,7 @@ struct MyPageView_EditUserInfoView: View {
             Button {
                 // 변경된 닉네임 저장하기
             } label: {
-                Text("Save")
+                Text("저장")
                     .frame(width: 300, height: 50)
                     .font(.subheadline)
                     .fontWeight(.bold)

@@ -20,6 +20,7 @@ struct Vocabulary: Identifiable, Hashable {
 }
 
 
+
 var dictionary: [Vocabulary] = [
     Vocabulary(
         id: "1",
@@ -54,3 +55,6 @@ var dictionary: [Vocabulary] = [
     ),
 
 ]
+
+
+
