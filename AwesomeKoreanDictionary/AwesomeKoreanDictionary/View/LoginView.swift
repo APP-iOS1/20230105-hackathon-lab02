@@ -15,44 +15,50 @@ struct LoginView: View {
     @State private var userPassword = ""
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark.square")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.blue)
-                        
-                }.padding(.trailing, 10)
-            }
-            
-            Spacer()
-            
-            Text("SIGN IN")
-                .font(.largeTitle)
-                .fontWeight(.heavy)
-                .foregroundColor(.blue)
+        ZStack {
+            Color.mint
+                .edgesIgnoringSafeArea(.all)
             VStack {
-                Text("Please sign in to register new words")
-                    .fontWeight(.heavy)
+                HStack {
+                    Spacer()
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                            .foregroundColor(Color.white.opacity(0.7))
+                    }.padding(.trailing, 30)
+                        .padding(.top, 30)
+                }
+                
+                Spacer()
+                
+                Text("SIGN IN")
+                    .font(.largeTitle)
+                    .fontWeight(.light)
                     .foregroundColor(.white)
-                    .padding(.top, 10)
-                
-                GoogleSignInButton()
-                    .frame(width: 320)
-                    .onTapGesture {
-                        viewModel.signIn()
-                    }
-                
-            }.frame(height: 100)
+                VStack {
+                    Text("Please sign in to register new words!")
+                        .font(.title3)
+                        .fontWeight(.medium)
+                        .kerning(-0.5)
+                        .foregroundColor(.white)
+                        .padding(.top, 10)
+                    
+                    GoogleSignInButton()
+                        .frame(width: 320)
+                        .onTapGesture {
+                            viewModel.signIn()
+                        }
+                }
+                .frame(height: 100)
                 .padding()
-                .background(.blue)
+                
                 .padding(.bottom, 50)
-            
-            Spacer()
+                
+                Spacer()
+            }
         }
     }
 }

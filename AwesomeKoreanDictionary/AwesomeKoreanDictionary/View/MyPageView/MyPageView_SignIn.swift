@@ -23,15 +23,14 @@ struct MyPageView_SignIn: View {
         
         NavigationStack{
             VStack {
-                
                 VStack(alignment: .leading) {
-                    
-                    
+
                     HStack{
                         Text("This is \(userNickName).")
                             .font(.title2)
                             .foregroundColor(.black)
                             .padding()
+                        
                         Spacer()
                         
                         Button {
@@ -54,10 +53,8 @@ struct MyPageView_SignIn: View {
                     
                     // 리스트 시작
                     VStack {
-                        
-                        
+
                         List {
-                            
                             Text("My Page")
                                 .font(.title3)
                                 .padding(.top)
