@@ -68,7 +68,7 @@ struct MyPageView_SignIn: View {
                                     .padding(.horizontal)
                             }
                             NavigationLink {
-                                // 내가 등록한 단어들 리스트뷰 필요
+                                MyPageView_MyRegisterView()
                             } label: {
                                 Text("\(firstMyPageList[1])")
                                     .padding(.horizontal)
