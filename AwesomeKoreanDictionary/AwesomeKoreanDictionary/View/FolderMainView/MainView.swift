@@ -41,6 +41,7 @@ struct MainView: View {
             .onAppear {
                 Task {
                     await vocabularyNetworkManager.requestVocabularyList()
+//                    vocabularyNetworkManager.cards.shuffle()
                 }
             }
             

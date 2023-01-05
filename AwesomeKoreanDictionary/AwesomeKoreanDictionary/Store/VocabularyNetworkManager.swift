@@ -81,15 +81,13 @@ final class VocabularyNetworkManager: ObservableObject {
     // MARK: - Vocabulary를 가져와서 Card로 만들어주는 함수
     @MainActor
     public func vocabularyToCard() async -> Void {
-
-//        let path = database.collection("vocabulary")
-
+        
         do {
 
             let documents = try await database.collection("vocabulary").getDocuments()
             self.cards.removeAll()
             var count = 0
-
+            
             for document in documents.documents {
 
                 let id = count
@@ -100,15 +98,15 @@ final class VocabularyNetworkManager: ObservableObject {
 //                let likes = document["likes"] as? Int ?? 0
 //                let dislikes = document["dislikes"] as? Int ?? 0
 //                let creatorId = document["creatorId"] as? String ?? ""
-//                let isApproved = document["isApproved"] as? Bool ?? false
-                self.cards.append(Card(cardId: id, name: word, offset: 0, definition: definition))
-                count += 1
+                let isApproved = document["isApproved"] as? Bool ?? false
+                if isApproved {
+                    self.cards.append(Card(cardId: id, name: word, offset: 0, definition: definition))
+                    count += 1
+                }
             }
-//            try await
         } catch (let error) {
             print(error)
         }
-
 
     }
 
