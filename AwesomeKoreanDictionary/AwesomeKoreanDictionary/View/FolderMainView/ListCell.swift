@@ -51,11 +51,13 @@ struct ListCell: View {
                 Text("Example")
                     .foregroundColor(.secondary)
                 VStack(alignment: .leading, spacing: 10) {
-                    ForEach(vocabulary.example, id: \.self) { example in
-                        
-                        Text("• \(example)")
-                            .italic()
-                    }
+                    Text("• \(vocabulary.example)")
+                        .italic()
+//                    ForEach(vocabulary.example, id: \.self) { example in
+//
+//                        Text("• \(example)")
+//                            .italic()
+//                    }
                 }
             }
             

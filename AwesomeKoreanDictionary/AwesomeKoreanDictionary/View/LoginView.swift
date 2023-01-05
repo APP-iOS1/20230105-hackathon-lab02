@@ -54,6 +54,13 @@ struct LoginView: View {
             
             Spacer()
         }
+        .onAppear {
+            Task {
+                let string = try await PapagoNetworkManager.shared.requestTranslate(sourceString: "안녕하세요", target: .english)
+                print(string)
+            }
+            
+        }
     }
 }
 
