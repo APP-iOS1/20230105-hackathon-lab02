@@ -12,17 +12,19 @@ struct MyPageView_SignIn: View {
     @State private var userNickName: String = "YOOJ"
     // User 모델, 스토어 주세요!
     @State private var showEditViewModal: Bool = false
-    
+    @State var sheet1: Bool = false //개인정보 보호정책
+    @State var sheet2: Bool = false //이용약관
     var body: some View {
         
         let firstMyPageList: [String] = ["My BookMark (내가 북마크한 단어들)", "My Definitions (내가 등록한 단어들)"]
         let secondMyPageList: [String] = ["Language"]
         let thirdMyPageList: [String] = ["Privacy Policy (개인정보 보호정책)", "Terms and Conditions (이용약관)"]
-    
+        
         
         NavigationStack{
             VStack {
                 VStack(alignment: .leading) {
+
                     HStack{
                         Text("This is \(userNickName).")
                             .font(.title2)
@@ -48,9 +50,10 @@ struct MyPageView_SignIn: View {
                                 MyPageView_EditUserInfoView()
                             }
                     } // 상단 내 닉네임 노출 및 개인 정보 수정 HStack 끝
-              
+                    
                     // 리스트 시작
                     VStack {
+
                         List {
                             Text("My Page")
                                 .font(.title3)
@@ -74,13 +77,13 @@ struct MyPageView_SignIn: View {
                             NavigationLink{
                                 MyPageView_SelectingLanguageView()
                             } label: {
-                            ForEach(secondMyPageList, id: \.self) {
-                                listString in
-                                HStack {
-                                    Text(listString)
-                                    Spacer()
+                                ForEach(secondMyPageList, id: \.self) {
+                                    listString in
+                                    HStack {
+                                        Text(listString)
+                                        Spacer()
+                                    }
                                 }
-                            }
                                 .padding(.horizontal)
                                 
                             } // 첫번째 리스트 끄
@@ -88,13 +91,32 @@ struct MyPageView_SignIn: View {
                             Text("Help")
                                 .font(.title3)
                                 .padding(.top)
-                            ForEach(thirdMyPageList, id: \.self) {
-                                listString in
-                                HStack {
-                                    Text(listString)
-                                    Spacer()
-                                    Image(systemName: "arrow.up.right")
+                            
+                            ForEach(0..<thirdMyPageList.count, id: \.self) {
+                                index in
+                                Button(action: {
+                                    if thirdMyPageList[0] ==  thirdMyPageList[index] {
+                                        sheet1.toggle()
+                                    }
+                                    if thirdMyPageList[1] ==  thirdMyPageList[index] {
+                                        sheet2.toggle()
+                                    }
+                                }) {
+                                    HStack {
+                                        Text(thirdMyPageList[index])
+                                        Spacer()
+                                        Image(systemName: "arrow.up.right")
+                                    }
+                                    
                                 }
+                                //개인정보 보호정책 시트뷰
+                                .sheet(isPresented: $sheet1, content: {
+                                        PrivacyPolicyView(sheet1: $sheet1)
+                                })
+                                // 이용약관 시트뷰
+                                .sheet(isPresented: $sheet2, content: {
+                                        TermsAndConditionsView(sheet2: $sheet2)
+                                })
                                 .padding(.horizontal)
                             } // 두번째 리스트 끝
                         }
