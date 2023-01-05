@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MyPageView_SignIn: View {
     
+    @EnvironmentObject var authManager: AuthManager
     @State private var userNickName: String = "YOOJ"
     // User 모델, 스토어 주세요!
     @State private var showEditViewModal: Bool = false
@@ -18,14 +19,14 @@ struct MyPageView_SignIn: View {
         let firstMyPageList: [String] = ["My BookMark (내가 북마크한 단어들)", "My Definitions (내가 등록한 단어들)"]
         let secondMyPageList: [String] = ["Language"]
         let thirdMyPageList: [String] = ["Privacy Policy (개인정보 보호정책)", "Terms and Conditions (이용약관)"]
-    
+        
         
         NavigationStack{
             VStack {
                 
                 VStack(alignment: .leading) {
-        
-                        
+                    
+                    
                     HStack{
                         Text("This is \(userNickName).")
                             .font(.title2)
@@ -50,11 +51,11 @@ struct MyPageView_SignIn: View {
                                 MyPageView_EditUserInfoView()
                             }
                     } // 상단 내 닉네임 노출 및 개인 정보 수정 HStack 끝
-              
+                    
                     // 리스트 시작
                     VStack {
                         
-    
+                        
                         List {
                             
                             Text("My Page")
@@ -79,13 +80,13 @@ struct MyPageView_SignIn: View {
                             NavigationLink{
                                 MyPageView_SelectingLanguageView()
                             } label: {
-                            ForEach(secondMyPageList, id: \.self) {
-                                listString in
-                                HStack {
-                                    Text(listString)
-                                    Spacer()
+                                ForEach(secondMyPageList, id: \.self) {
+                                    listString in
+                                    HStack {
+                                        Text(listString)
+                                        Spacer()
+                                    }
                                 }
-                            }
                                 .padding(.horizontal)
                                 
                             } // 첫번째 리스트 끄
@@ -103,6 +104,15 @@ struct MyPageView_SignIn: View {
                                 }
                                 .padding(.horizontal)
                             } // 두번째 리스트 끝
+                            
+                            Button {
+                                authManager.signOut()
+                            } label: {
+                                Text("로그아웃")
+                                    .font(.title3)
+                                    .padding(.top)
+                            }.buttonStyle(.plain)
+                            
                         }
                     }
                     .listStyle(.plain)
