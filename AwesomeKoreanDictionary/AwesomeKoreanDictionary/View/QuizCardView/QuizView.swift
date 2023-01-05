@@ -66,15 +66,15 @@ struct QuizView: View {
                                     // Update position
                                     withAnimation {
                                         // Only left swipe
-                                        if value.translation.width > 0 {
+                                        if value.translation.width < 0 {
                                             vocabularyNetworkManager.cards[card.cardId].offset = value.translation.width
                                         }
                                     }
                                 })
                                     .onEnded({ value in
                                     withAnimation {
-                                        if value.translation.width > 150 {
-                                            vocabularyNetworkManager.cards[card.cardId].offset = 1000
+                                        if value.translation.width < 150 {
+                                            vocabularyNetworkManager.cards[card.cardId].offset = -1000
                                             // Update swipe id
                                             // Since its starting from 0
                                             swipedIndex = card.cardId + 1
