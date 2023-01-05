@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseCore
+import GoogleSignIn
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
@@ -19,10 +20,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct AwesomeKoreanDictionaryApp: App {
+    @StateObject var viewModel = AuthManager()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(viewModel)
         }
     }
 }

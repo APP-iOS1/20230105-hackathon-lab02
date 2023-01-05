@@ -15,6 +15,8 @@
 		36BD6BDE296686D700DC6387 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD6BDD296686D700DC6387 /* User.swift */; };
 		36BD6BE02966875500DC6387 /* VocabularyNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD6BDF2966875500DC6387 /* VocabularyNetworkManager.swift */; };
 		36BD6BE22966876300DC6387 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD6BE12966876300DC6387 /* AuthManager.swift */; };
+		36BD6BE6296699FC00DC6387 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BE5296699FC00DC6387 /* GoogleSignIn */; };
+		36BD6BE8296699FC00DC6387 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BE7296699FC00DC6387 /* GoogleSignInSwift */; };
 		6505FC302966633C0054591D /* AwesomeKoreanDictionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6505FC2F2966633C0054591D /* AwesomeKoreanDictionaryApp.swift */; };
 		6505FC322966633C0054591D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6505FC312966633C0054591D /* ContentView.swift */; };
 		6505FC342966633D0054591D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6505FC332966633D0054591D /* Assets.xcassets */; };
@@ -27,6 +29,7 @@
 		36BD6BDD296686D700DC6387 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		36BD6BDF2966875500DC6387 /* VocabularyNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyNetworkManager.swift; sourceTree = "<group>"; };
 		36BD6BE12966876300DC6387 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		36BD6BE32966990400DC6387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6505FC2C2966633C0054591D /* AwesomeKoreanDictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeKoreanDictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6505FC2F2966633C0054591D /* AwesomeKoreanDictionaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeKoreanDictionaryApp.swift; sourceTree = "<group>"; };
 		6505FC312966633C0054591D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -39,7 +42,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36BD6BE8296699FC00DC6387 /* GoogleSignInSwift in Frameworks */,
 				36BD6BD4296667ED00DC6387 /* FirebaseAuth in Frameworks */,
+				36BD6BE6296699FC00DC6387 /* GoogleSignIn in Frameworks */,
 				36BD6BD6296667ED00DC6387 /* FirebaseFirestore in Frameworks */,
 				36BD6BD8296667ED00DC6387 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -67,6 +72,7 @@
 		6505FC2E2966633C0054591D /* AwesomeKoreanDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				36BD6BE32966990400DC6387 /* Info.plist */,
 				36BD6BD02966674800DC6387 /* GoogleService-Info (3).plist */,
 				6505FC2F2966633C0054591D /* AwesomeKoreanDictionaryApp.swift */,
 				6505FC312966633C0054591D /* ContentView.swift */,
@@ -132,6 +138,8 @@
 				36BD6BD3296667ED00DC6387 /* FirebaseAuth */,
 				36BD6BD5296667ED00DC6387 /* FirebaseFirestore */,
 				36BD6BD7296667ED00DC6387 /* FirebaseFirestoreSwift */,
+				36BD6BE5296699FC00DC6387 /* GoogleSignIn */,
+				36BD6BE7296699FC00DC6387 /* GoogleSignInSwift */,
 			);
 			productName = AwesomeKoreanDictionary;
 			productReference = 6505FC2C2966633C0054591D /* AwesomeKoreanDictionary.app */;
@@ -163,6 +171,7 @@
 			mainGroup = 6505FC232966633C0054591D;
 			packageReferences = (
 				36BD6BD2296667ED00DC6387 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				36BD6BE4296699FB00DC6387 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 6505FC2D2966633C0054591D /* Products */;
 			projectDirPath = "";
@@ -327,6 +336,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AwesomeKoreanDictionary/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AwesomeKoreanDictionary/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -355,6 +365,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AwesomeKoreanDictionary/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AwesomeKoreanDictionary/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -405,6 +416,14 @@
 				kind = branch;
 			};
 		};
+		36BD6BE4296699FB00DC6387 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -422,6 +441,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 36BD6BD2296667ED00DC6387 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		36BD6BE5296699FC00DC6387 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36BD6BE4296699FB00DC6387 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		36BD6BE7296699FC00DC6387 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36BD6BE4296699FB00DC6387 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
