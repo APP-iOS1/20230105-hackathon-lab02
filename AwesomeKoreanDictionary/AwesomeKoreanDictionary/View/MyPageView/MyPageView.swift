@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MyPageView: View {
     @EnvironmentObject var authManager: AuthManager
-    
+    @EnvironmentObject var userInfoManager: UserInfoManager
     var body: some View {
         if authManager.state == .signedIn {
             MyPageView_SignIn()
@@ -24,3 +24,4 @@ struct MyPageView1_Previews: PreviewProvider {
         MyPageView()
     }
 }
+
