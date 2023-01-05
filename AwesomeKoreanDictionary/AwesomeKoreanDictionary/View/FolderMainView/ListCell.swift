@@ -27,9 +27,10 @@ struct ListCell: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.bottom, -3)
+                        .foregroundColor(Color(hex: "292929"))
                     Text(vocabulary.pronunciation)
                         .font(.title3)
-                        .padding(.bottom, 5)
+                        .padding(.bottom, -5)
                 }
                 Spacer()
                 
@@ -49,7 +50,7 @@ struct ListCell: View {
                     isBookmark.toggle()
                 } label: {
                     Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
-                        .foregroundColor(Color.mint)
+                        .foregroundColor(Color(hex: "737DFE"))
                         .font(.title2)
                         .padding(.trailing, -5)
                 }
@@ -59,10 +60,10 @@ struct ListCell: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text("Definition")
                     .foregroundColor(.secondary)
-                    
                 Text(vocabulary.definition)
                     .lineSpacing(7)
             }
+            .padding(.bottom, -10)
             
             VStack(alignment: .leading, spacing: 5) {
                 Text("Example")
@@ -77,13 +78,14 @@ struct ListCell: View {
 //                    }
                 }
             }
-            .padding(.bottom, 10)
+          //  .padding(.bottom, 10)
             
             
             // 사용자 이름 / 날짜
             HStack {
                 Text("by \(vocabulary.creatorId)")
                     .fontWeight(.bold)
+                    .foregroundColor(Color(hex: "292929"))
                 Spacer()
                 //                Text("업로드 날짜")
             }
@@ -100,7 +102,7 @@ struct ListCell: View {
                     HStack(spacing: 5) {
                         Image(systemName: isLike ? "hand.thumbsup.fill" : "hand.thumbsup")
                             .font(.title2)
-                            .foregroundColor(.mint)
+                            .foregroundColor(Color(hex: "737DFE"))
                         Text("\(vocabulary.likes)")
                     }
                 }
@@ -111,7 +113,7 @@ struct ListCell: View {
                     HStack(spacing: 5) {
                         Image(systemName: isDislike ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                             .font(.title2)
-                            .foregroundColor(.mint)
+                            .foregroundColor(Color(hex: "737DFE"))
                         Text("\(vocabulary.dislikes)")
                     }
                 }

@@ -16,7 +16,8 @@ struct LoginView: View {
     
     var body: some View {
         ZStack {
-            Color.mint
+            LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]),
+                           startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 HStack {

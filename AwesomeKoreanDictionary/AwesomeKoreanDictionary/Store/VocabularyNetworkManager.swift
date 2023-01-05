@@ -45,24 +45,29 @@ final class VocabularyNetworkManager: ObservableObject {
 
     //MARK: - 단어 생성 폼 제출 시 불러올 함수
     @MainActor
-    public func createVoca(voca: Vocabulary) async -> Void {
-        let path = database.collection("vocabulary")
-        do {
-            try await path.document(voca.id).setData([
-                "id": voca.id,
-                "word": voca.word,
-                "pronunciation": voca.pronunciation,
-                "definition": voca.definition,
-                "example": voca.example,
-                "likes": voca.likes,
-                "dislikes": voca.dislikes,
-                "creatorId": voca.creatorId,
-                "isApproved": voca.isApproved
-                ])
-        } catch {
-            print(error.localizedDescription)
+        public func createVoca(voca: Vocabulary) async -> Void {
+            let path = database.collection("vocabulary")
+            do {
+                try await path.document(voca.id).setData([
+                    "id": voca.id,
+                    "word": voca.word,
+                    "pronunciation": voca.pronunciation,
+                    "definition": voca.definition,
+                    "example": voca.example,
+                    "likes": voca.likes,
+                    "dislikes": voca.dislikes,
+                    "creatorId": voca.creatorId,
+                    "isApproved": voca.isApproved
+                    ])
+                
+                try await database.collection("likes").document(voca.id).setData([
+                    "id": voca.id,
+                    "likeArray": []
+                    ])
+            } catch {
+                print(error.localizedDescription)
+            }
         }
-    }
 
 
     //MARK: - 등록 신청된 단어 승인 함수
@@ -100,9 +105,11 @@ final class VocabularyNetworkManager: ObservableObject {
 //                let likes = document["likes"] as? Int ?? 0
 //                let dislikes = document["dislikes"] as? Int ?? 0
 //                let creatorId = document["creatorId"] as? String ?? ""
-//                let isApproved = document["isApproved"] as? Bool ?? false
-                self.cards.append(Card(cardId: id, name: word, offset: 0, definition: definition))
-                count += 1
+                let isApproved = document["isApproved"] as? Bool ?? false
+                if isApproved {
+                    self.cards.append(Card(cardId: id, name: word, offset: 0, definition: definition))
+                    count += 1
+                }
             }
 //            try await
         } catch (let error) {
