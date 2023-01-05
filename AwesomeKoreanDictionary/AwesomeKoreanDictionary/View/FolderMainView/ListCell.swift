@@ -9,30 +9,32 @@ import SwiftUI
 
 struct ListCell: View {
     var vocabulary: Vocabulary
-    @Binding var isShowingPopover: Bool
-    
+    @State var selection: String = "ENG"
+    var languages = ["KOR", "ENG", "CHN", "JPN"]
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             
             // 이름
             HStack {
-                Text(vocabulary.word)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                Text(vocabulary.pronunciation)
-                    .font(.title3)
+                VStack(alignment: .leading) {
+                    Text(vocabulary.word)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    Text(vocabulary.pronunciation)
+                        .font(.title3)
+                }
                 Spacer()
-                Button {
-                    print("번역")
-                    isShowingPopover.toggle()
-                    print(isShowingPopover)
+               
+                Picker(selection: $selection) {
+                    ForEach(languages, id: \.self) { lang in
+                        Text(lang)
+                    }
                 } label: {
-                    Image(systemName: "globe")
+                    Text("언어 선택")
                 }
-                .popover(isPresented: $isShowingPopover) {
-                    Text("Popover Content")
-                        .padding()
-                }
+
+                
+                
                 Button {
                     print("북마크 버튼")
                 } label: {
@@ -105,6 +107,6 @@ struct ListCell: View {
 
 struct ListCell_Previews: PreviewProvider {
     static var previews: some View {
-        ListCell(vocabulary: dictionary[0], isShowingPopover: .constant(false))
+        ListCell(vocabulary: dictionary[0])
     }
 }

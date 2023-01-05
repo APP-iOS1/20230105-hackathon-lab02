@@ -2,9 +2,8 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State private var searchText = ""
+    @State private var searchText = "Search"
     @State var isShowingSheet = false
-    @State var isShowingPopover = false
 
     var body: some View {
         NavigationStack {
@@ -15,32 +14,48 @@ struct MainView: View {
                     Spacer(minLength: 10)
                     VStack(spacing: 15) {
                         ForEach(dictionary, id: \.self) { vocabulary in
-                            ListCell(vocabulary: vocabulary, isShowingPopover: $isShowingPopover)
+                            ListCell(vocabulary: vocabulary)
                         }
                     }
+                    NavigationLink {
+                        Text("")
+                    } label: {
+                        TextField(text: $searchText) {
+                            Text("hello")
+                        }
+                    }
+
 //                    .fullScreenCover(isPresented: $isShowingSheet) {
 //                    Text("hello")
 //                    }
                 }
-                
                 .scrollContentBackground(.hidden)
                 .toolbar {
                     HStack {
-                        SearchBar(searchText: $searchText, isShowingSheet: $isShowingSheet)
-                            .frame(width: 240)
-                        
+//                        SearchBar(searchText: $searchText, isShowingSheet: $isShowingSheet)
+//                            .frame(width: 240)
+//
+//                        Text("Awesome")
+//                            .font(.largeTitle)
+//                            .fontWeight(.bold)
+//                        
                         NavigationLink {
-                            Text("Quiz")
+                            SearchView()
+                        } label: {
+                            Image(systemName: "magnifyingglass")
+                        }
+                        NavigationLink {
+                            QuizCardView()
                         } label: {
                             Image(systemName: "trophy.fill")
                         }
                         NavigationLink {
-                            Text("추가")
+                            RegistrationView()
                         } label: {
                             Image(systemName: "plus.rectangle.portrait.fill")
                         }
                         NavigationLink {
-                            Text("마이페이지")
+                            MyPageView_SignOut()
                         } label: {
                             Image(systemName: "person.circle.fill")
                         }
@@ -58,5 +73,6 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environmentObject(CardModel())
     }
 }
