@@ -66,6 +66,7 @@ struct SearchBar: View {
                     EmptyView()
                 }
             }
+            .frame(height:30)
             .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
             .foregroundColor(.secondary)
             .background(Color(.secondarySystemBackground))
