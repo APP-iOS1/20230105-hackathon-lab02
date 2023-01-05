@@ -16,9 +16,9 @@ struct MyPageView_SignIn: View {
     @State var sheet2: Bool = false //이용약관
     var body: some View {
         
-        let firstMyPageList: [String] = ["My BookMark (내가 북마크한 단어들)", "My Definitions (내가 등록한 단어들)"]
-        let secondMyPageList: [String] = ["Language"]
-        let thirdMyPageList: [String] = ["Privacy Policy (개인정보 보호정책)", "Terms and Conditions (이용약관)"]
+        let firstMyPageList: [String] = ["내가 북마크한 단어들", "내가 등록한 단어들"]
+        let secondMyPageList: [String] = ["언어"]
+        let thirdMyPageList: [String] = ["개인정보 보호정책", "이용 약관"]
         
         
         NavigationStack{
@@ -26,7 +26,7 @@ struct MyPageView_SignIn: View {
                 VStack(alignment: .leading) {
 
                     HStack{
-                        Text("This is \(userNickName).")
+                        Text("\(userNickName) 입니다.")
                             .font(.title2)
                             .foregroundColor(.black)
                             .padding()
@@ -36,7 +36,7 @@ struct MyPageView_SignIn: View {
                         Button {
                             self.showEditViewModal.toggle()
                         } label: {
-                            Text("Edit")
+                            Text("수정하기")
                                 .padding(4)
                                 .padding(.horizontal,10)
                                 .font(.subheadline)
@@ -55,7 +55,7 @@ struct MyPageView_SignIn: View {
                     VStack {
 
                         List {
-                            Text("My Page")
+                            Text("마이 페이지")
                                 .font(.title3)
                                 .padding(.top)
                             
@@ -71,7 +71,7 @@ struct MyPageView_SignIn: View {
                                 Text("\(firstMyPageList[1])")
                                     .padding(.horizontal)
                             }
-                            Text("Settings")
+                            Text("세팅")
                                 .font(.title3)
                                 .padding(.top)
                             NavigationLink{
@@ -88,7 +88,7 @@ struct MyPageView_SignIn: View {
                                 
                             } // 첫번째 리스트 끄
                             
-                            Text("Help")
+                            Text("도움")
                                 .font(.title3)
                                 .padding(.top)
                             

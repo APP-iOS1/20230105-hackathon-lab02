@@ -30,13 +30,13 @@ struct WaitingApproveCell: View {
             
             // 내용
             VStack(alignment: .leading, spacing: 5) {
-                Text("Definition")
+                Text("정의")
                     .foregroundColor(.secondary)
                 Text(vocabulary.definition)
             }
             
             VStack(alignment: .leading, spacing: 5) {
-                Text("Example")
+                Text("예시")
                     .foregroundColor(.secondary)
                 VStack(alignment: .leading, spacing: 10) {
                     Text("• \(vocabulary.example)")

@@ -17,9 +17,9 @@ struct MyPageView_SignOut: View {
     @State var sheet2: Bool = false //이용약관
     var body: some View {
         
-        let firstMyPageList: [String] = ["Language"]
-        let secondMyPageList: [String] = ["Privacy Policy (개인정보 보호정책)", "Terms and Conditions (이용약관)"]
-        let thirdMyPageList: [String] = ["Master Login"]
+        let firstMyPageList: [String] = ["언어"]
+        let secondMyPageList: [String] = ["개인정보 보호정책", "이용 약관"]
+        let thirdMyPageList: [String] = ["관리자 로그인"]
         NavigationStack{
             
             
@@ -29,7 +29,7 @@ struct MyPageView_SignOut: View {
                 
                 VStack(alignment: .leading) {
         
-                        Text("Please sign in to vote \nand post new definitions")
+                        Text("새로운 단어를 정의하려면 로그인하세요")
                             .font(.title2)
                             .foregroundColor(.black)
                             .padding()
@@ -43,7 +43,7 @@ struct MyPageView_SignOut: View {
                                     .padding(.leading)
                                     .frame(width: 170, height: 50)
                                     .foregroundColor(.black)
-                                Text("Sign with Gmail")
+                                Text("구글 로그인하기")
                                     .foregroundColor(.white)
                             }
                         }
@@ -52,7 +52,7 @@ struct MyPageView_SignOut: View {
                     // 리스트 시작
                     VStack {
                         List {
-                            Text("Settings")
+                            Text("설정")
                                 .font(.title3)
                                 .padding(.top)
                             NavigationLink{
@@ -62,7 +62,7 @@ struct MyPageView_SignOut: View {
                                 .padding(.horizontal)
                                 
                             } // 첫번째 리스트
-                            Text("Help")
+                            Text("도움")
                                 .font(.title3)
                                 .padding(.top)
                             
@@ -94,7 +94,7 @@ struct MyPageView_SignOut: View {
                                 .padding(.horizontal)
                             } // 두번째 리스트
                             
-                            Text("Master")
+                            Text("관리자 로그인")
                                 .font(.title3)
                                 .padding(.top)
                             if userInfoManager.userInfo?.isAdmin == true {
