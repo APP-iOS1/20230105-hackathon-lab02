@@ -11,6 +11,7 @@
 		22D990B329671E070050913A /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990AF29671E070050913A /* Detail.swift */; };
 		22D990B429671E070050913A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990B029671E070050913A /* CardView.swift */; };
 		22D990B529671E070050913A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990B129671E070050913A /* Card.swift */; };
+		369A797B2967456F00B4DEA9 /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369A797A2967456F00B4DEA9 /* UserInfoManager.swift */; };
 		36BD6BD4296667ED00DC6387 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BD3296667ED00DC6387 /* FirebaseAuth */; };
 		36BD6BD6296667ED00DC6387 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BD5296667ED00DC6387 /* FirebaseFirestore */; };
 		36BD6BD8296667ED00DC6387 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 36BD6BD7296667ED00DC6387 /* FirebaseFirestoreSwift */; };
@@ -46,6 +47,7 @@
 		22D990AF29671E070050913A /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		22D990B029671E070050913A /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		22D990B129671E070050913A /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		369A797A2967456F00B4DEA9 /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 		36BD6BDB296686CA00DC6387 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
 		36BD6BDD296686D700DC6387 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		36BD6BDF2966875500DC6387 /* VocabularyNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyNetworkManager.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				36BD6BDF2966875500DC6387 /* VocabularyNetworkManager.swift */,
 				36BD6BE12966876300DC6387 /* AuthManager.swift */,
+				369A797A2967456F00B4DEA9 /* UserInfoManager.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				6505FC322966633C0054591D /* ContentView.swift in Sources */,
 				6505FC302966633C0054591D /* AwesomeKoreanDictionaryApp.swift in Sources */,
 				36BD6BDC296686CA00DC6387 /* Vocabulary.swift in Sources */,
+				369A797B2967456F00B4DEA9 /* UserInfoManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
