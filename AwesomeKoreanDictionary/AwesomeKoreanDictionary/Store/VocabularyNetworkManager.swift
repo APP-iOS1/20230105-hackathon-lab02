@@ -150,7 +150,7 @@ final class VocabularyNetworkManager: ObservableObject {
 //    }
 
     
-    
+
     //MARK: - 등록 신청된 단어 승인 함수
     @MainActor
     public func updateVocaApproved(voca: Vocabulary) async -> Void {
@@ -186,9 +186,11 @@ final class VocabularyNetworkManager: ObservableObject {
 //                let likes = document["likes"] as? Int ?? 0
 //                let dislikes = document["dislikes"] as? Int ?? 0
 //                let creatorId = document["creatorId"] as? String ?? ""
-//                let isApproved = document["isApproved"] as? Bool ?? false
-                self.cards.append(Card(cardId: id, name: word, offset: 0, definition: definition))
-                count += 1
+                let isApproved = document["isApproved"] as? Bool ?? false
+                if isApproved {
+                    self.cards.append(Card(cardId: id, name: word, offset: 0, definition: definition))
+                    count += 1
+                }
             }
 //            try await
         } catch (let error) {

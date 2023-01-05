@@ -19,11 +19,11 @@ struct SlangRegistrationView: View {
     @State private (set) var slangDescriptionTextField: String = "" //(필수) 속어 단어 설명
     @State private (set) var slangSituationUsedTextField: String = "" //(선택) 속어 상황 재연
     
-    var DescriptionExample: String = "‘농협은행 어디예요?’를 ‘너무 예쁘네요’로잘못 알아들은 썰에서 나온 신조어.‘너무 예쁘다’라는 뜻으로 쓰임"
+    var DescriptionExample: String = "외국인의 ‘농협은행 어디예요?’라는 발음을 한국 사람이 ‘너무 예쁘네요’로 잘못 알아들은 썰에서 나온 신조어.‘너무 예쁘다’라는 뜻으로 쓰임."
     var SituationUsedExample: String = """
-외쿡인 : 넘흐예쁘냉?
+외국인 : 넘흐예쁘냉?
 나 : 예? 아~(기대기대, 내가 쫌 예쁘지)
-외쿡인 : 농협은행 어디?
+외국인 : 농협은행 어디?
 나 : 아..ㅋㅋㅋㅋ..
 """
     //속어 입력 텍스트필드 공백체크
@@ -45,6 +45,7 @@ struct SlangRegistrationView: View {
     var body: some View {
         NavigationView {
             VStack {
+
                 if authManager.state == .signedIn {
                     //MARK: - 텍스트필드 3개 (필수2, 선택1) + 국적선택 피커 1개
                     Form {
@@ -62,6 +63,7 @@ struct SlangRegistrationView: View {
                             Text("예) 농협은행")
                                 .font(.caption)
                                 .foregroundColor(.gray)
+
                         }
                         //속어에 사용되는 단어 의미 설명 텍스트필드(필수)
                         Section {
@@ -170,21 +172,25 @@ extension SlangRegistrationView {
         VStack {
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("AwesomeKoreanDictionary 에서 자신만의 단어 뜻을 넣어서 공유해보세요!")
+                    Text("새로운 신조어/속어를 공유해주세요!")
                 }
-                .font(.subheadline)
+                .font(.title3)
+                .bold()
                 Spacer()
             }
+            .padding(5)
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("많은 사람들이 보기 좋게 써주세요.")
-                    Text("많은 사람들이 이 뜻을 읽고 궁금해할 수 있으니 작은 뒷 이야기도 함께 써주세요.")
-                    Text("일반적으로 사용되고있는 단어의 뜻만 써주세요.")
-                    Text("(개인적인 농담과 관련된 단어의 뜻은 거부 할 것입니다.)")
+                    Text("Awesome Korean Dictionary는 외국인을 위한 한국어 신조어/속어 사전입니다. 한글로 내용을 작성해 주시면, 번역 기능을 사용해 외국인이 쉽게 볼 수 있습니다.")
+                    Text("해당 단어의 의미와 유래, 예문을 함께 작성해 주시면 외국인의 단어 이해에 큰 도움이 됩니다!")
+
+                    Text("등록해 주신 단어는 관리자의 검수 및 승인 이후 노출되며,\n최종 등록까지 최대 3일이 소요될 수 있습니다.")
                         .font(.caption)
                         .foregroundColor(.blue)
+                        .padding(.vertical,5)
                 }
                 .font(.subheadline)
+                .padding(5)
                 Spacer()
             }
         }

@@ -20,33 +20,25 @@ struct MyPageView_SignOut: View {
         let secondMyPageList: [String] = ["Privacy Policy (개인정보 보호정책)", "Terms and Conditions (이용약관)"]
         let thirdMyPageList: [String] = ["Master Login"]
         NavigationStack{
-            
-            
-           
-            
             VStack {
-                
                 VStack(alignment: .leading) {
-        
-                        Text("Please sign in to vote \nand post new definitions")
-                            .font(.title2)
-                            .foregroundColor(.black)
-                            .padding()
-                            
+                    Text("Please sign in to vote \nand post new definitions")
+                        .font(.title2)
+                        .foregroundColor(.black)
+                        .padding()
                     
-                        Button {
-                            authManager.signIn()
-                        } label: {
-                            ZStack{
-                                Rectangle()
-                                    .padding(.leading)
-                                    .frame(width: 170, height: 50)
-                                    .foregroundColor(.black)
-                                Text("Sign with Gmail")
-                                    .foregroundColor(.white)
-                            }
+                    Button {
+                        authManager.signIn()
+                    } label: {
+                        ZStack{
+                            Rectangle()
+                                .padding(.leading)
+                                .frame(width: 170, height: 50)
+                                .foregroundColor(.black)
+                            Text("Sign with Gmail")
+                                .foregroundColor(.white)
                         }
-                    
+                    }
                     
                     // 리스트 시작
                     VStack {
@@ -57,8 +49,8 @@ struct MyPageView_SignOut: View {
                             NavigationLink{
                                 MyPageView_SelectingLanguageView()
                             } label: {
-                            Text(firstMyPageList[0])
-                                .padding(.horizontal)
+                                Text(firstMyPageList[0])
+                                    .padding(.horizontal)
                                 
                             } // 첫번째 리스트
                             Text("Help")
@@ -80,15 +72,14 @@ struct MyPageView_SignOut: View {
                                         Spacer()
                                         Image(systemName: "arrow.up.right")
                                     }
-                                    
                                 }
                                 //개인정보 보호정책 시트뷰
                                 .sheet(isPresented: $sheet1, content: {
-                                        PrivacyPolicyView(sheet1: $sheet1)
+                                    PrivacyPolicyView(sheet1: $sheet1)
                                 })
                                 // 이용약관 시트뷰
                                 .sheet(isPresented: $sheet2, content: {
-                                        TermsAndConditionsView(sheet2: $sheet2)
+                                    TermsAndConditionsView(sheet2: $sheet2)
                                 })
                                 .padding(.horizontal)
                             } // 두번째 리스트
@@ -100,8 +91,8 @@ struct MyPageView_SignOut: View {
                             NavigationLink{
                                 AdminMainView()
                             } label : {
-                            Text(thirdMyPageList[0])
-                                .padding(.horizontal)
+                                Text(thirdMyPageList[0])
+                                    .padding(.horizontal)
                             }
                         }
                         .foregroundColor(.black)
