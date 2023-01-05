@@ -29,18 +29,30 @@ struct MainView: View {
                     
                     VStack(spacing: 15) {
                         ForEach(filteredVoca, id: \.self) { vocabulary in
+                            
                             ListCell(vocabulary: vocabulary)
                         }
                     }
+                    
+                    NavigationLink {
+                        TestView()
+                    } label: {
+                        Text("테스트하러 가쟈")
+                    }
+ 
                 }
                 .refreshable {
-                    ProgressView()
+                    Task {
+                        await vocabularyNetworkManager.requestVocabularyList()
+                    }
                 }
                 .modifier(ToolbarModifier(searchText: $searchText))
             }
             .onAppear {
                 Task {
                     await vocabularyNetworkManager.requestVocabularyList()
+                    await vocabularyNetworkManager.countLikes()
+
                 }
             }
             
