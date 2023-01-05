@@ -40,7 +40,7 @@ struct MainView: View {
                             Image(systemName: "plus.rectangle.portrait.fill")
                         }
                         NavigationLink {
-                            Text("마이페이지")
+                            MyPageView()
                         } label: {
                             Image(systemName: "person.circle.fill")
                         }

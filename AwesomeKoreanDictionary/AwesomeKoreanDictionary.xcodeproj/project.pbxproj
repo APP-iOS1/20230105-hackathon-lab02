@@ -20,6 +20,7 @@
 		6505FC322966633C0054591D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6505FC312966633C0054591D /* ContentView.swift */; };
 		6505FC342966633D0054591D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6505FC332966633D0054591D /* Assets.xcassets */; };
 		6505FC372966633D0054591D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6505FC362966633D0054591D /* Preview Assets.xcassets */; };
+		65FB392D2966D0AA008756AA /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB392C2966D0AA008756AA /* MyPageView.swift */; };
 		7649454D2966B1620017D830 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649454C2966B1610017D830 /* MainView.swift */; };
 		7649454F2966B1670017D830 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649454E2966B1670017D830 /* SearchBar.swift */; };
 		764945512966B16D0017D830 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764945502966B16D0017D830 /* ListCell.swift */; };
@@ -50,6 +51,7 @@
 		6505FC312966633C0054591D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6505FC332966633D0054591D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6505FC362966633D0054591D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		65FB392C2966D0AA008756AA /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyPageView.swift; path = "../../../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/20230105-hackathon-lab02/AwesomeKoreanDictionary/AwesomeKoreanDictionary/View/MyPageView.swift"; sourceTree = "<group>"; };
 		7649454C2966B1610017D830 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		7649454E2966B1670017D830 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		764945502966B16D0017D830 /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				C5AB902A2966B704005A6CFF /* MyPageView_SelectingLanguageView.swift */,
 				C5AB90282966B700005A6CFF /* MyPageView_SignIn.swift */,
 				C5AB90262966B6FC005A6CFF /* MyPageView_SignOut.swift */,
+				65FB392C2966D0AA008756AA /* MyPageView.swift */,
 			);
 			path = MyPageView;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				C5AB90272966B6FC005A6CFF /* MyPageView_SignOut.swift in Sources */,
 				36BD6BE22966876300DC6387 /* AuthManager.swift in Sources */,
 				C5AB902D2966B70D005A6CFF /* MyPageView_EditUserInfoView.swift in Sources */,
+				65FB392D2966D0AA008756AA /* MyPageView.swift in Sources */,
 				36BD6BE02966875500DC6387 /* VocabularyNetworkManager.swift in Sources */,
 				C5AB902B2966B705005A6CFF /* MyPageView_SelectingLanguageView.swift in Sources */,
 				C5AB90352966B888005A6CFF /* QuizCardView.swift in Sources */,

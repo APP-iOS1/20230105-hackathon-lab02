@@ -7,23 +7,52 @@
 
 import SwiftUI
 
+enum Languages: String, CaseIterable{
+    case korean = "Korean"
+    case english = "English"
+    case japanese = "Japanese"
+    case chinese = "Chinese"
+    
+    func getLanguageCode() -> String{
+        switch self {
+        case .korean:
+            return "kr"
+        case .english:
+            return "en"
+        case .japanese:
+            return "jp"
+        case .chinese:
+            return "ch"
+        }
+    }
+}
+
 struct MyPageView_SelectingLanguageView: View {
     
     @State private var selectedLanguage: String = "English"
+    @State private var showingOptions: Bool = false
     
     var body: some View {
         
-        var languages: [String] = ["English(UK)","English(Australia",]
+        var languages: [String] = ["Korean", "English", "Chinese", "Japanese"]
         
         
         VStack{
             List{
-                Text("Current Languages")
+                Text("현재 설정된 언어")
+                Text(selectedLanguage)
+                    .padding(.horizontal)
                 
                 
+                Text("언어 선택")
+                ForEach(languages, id: \.self){ listString in
+                    Text("\(listString)")
+                }
                 
-                Text("s")
-            }.listStyle(.plain)
+                .padding(.horizontal)
+                
+                
+            }.listStyle(.plain) // 리스트 끝
         }
     }
 }
