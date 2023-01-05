@@ -9,7 +9,7 @@ import SwiftUI
 
 var dictionary: [Vocabulary] = [
     Vocabulary(
-        id: "1",
+        id: UUID().uuidString,
         word: "킹받네",
         pronunciation: "[ King-batne ]",
         definition: "'킹받다'는 '열 받다'를 강조하기 위해 킹(king·왕)을 접두어처럼 사용한 신조어다. 한 마디로 엄청 화났다는 뜻이다.",
@@ -20,10 +20,11 @@ var dictionary: [Vocabulary] = [
         ],
         likes: 150,
         dislikes: 10,
-        creatorId: "덕이"
+        creatorId: "덕이",
+        isApproved: true
     ),
     Vocabulary(
-        id: "2",
+        id: UUID().uuidString,
         word: "중꺾마",
         pronunciation: "[ Joongkkeokma ]",
         definition: "‘중요한 건 꺾이지 않는 마음’의 줄임말",
@@ -33,7 +34,8 @@ var dictionary: [Vocabulary] = [
         ],
         likes: 300,
         dislikes: 10,
-        creatorId: "종이"
+        creatorId: "종이",
+        isApproved: true
     )
 ]
 

@@ -26,6 +26,7 @@
 		7649454F2966B1670017D830 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649454E2966B1670017D830 /* SearchBar.swift */; };
 		764945512966B16D0017D830 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764945502966B16D0017D830 /* ListCell.swift */; };
 		765DF2D62966C63B004CF7D9 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DF2D52966C63B004CF7D9 /* SearchView.swift */; };
+		765DF2DC2966FCF6004CF7D9 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DF2DB2966FCF6004CF7D9 /* TestView.swift */; };
 		C5AB90272966B6FC005A6CFF /* MyPageView_SignOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB90262966B6FC005A6CFF /* MyPageView_SignOut.swift */; };
 		C5AB90292966B700005A6CFF /* MyPageView_SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB90282966B700005A6CFF /* MyPageView_SignIn.swift */; };
 		C5AB902B2966B705005A6CFF /* MyPageView_SelectingLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB902A2966B704005A6CFF /* MyPageView_SelectingLanguageView.swift */; };
@@ -59,6 +60,7 @@
 		7649454E2966B1670017D830 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		764945502966B16D0017D830 /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		765DF2D52966C63B004CF7D9 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		765DF2DB2966FCF6004CF7D9 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		C5AB90262966B6FC005A6CFF /* MyPageView_SignOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageView_SignOut.swift; sourceTree = "<group>"; };
 		C5AB90282966B700005A6CFF /* MyPageView_SignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageView_SignIn.swift; sourceTree = "<group>"; };
 		C5AB902A2966B704005A6CFF /* MyPageView_SelectingLanguageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageView_SelectingLanguageView.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				765DF2D52966C63B004CF7D9 /* SearchView.swift */,
 				7649454E2966B1670017D830 /* SearchBar.swift */,
 				764945502966B16D0017D830 /* ListCell.swift */,
+				765DF2DB2966FCF6004CF7D9 /* TestView.swift */,
 			);
 			path = FolderMainView;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				C5F90DA3296666CE00DE5024 /* LoginView.swift in Sources */,
 				36BD6BDE296686D700DC6387 /* User.swift in Sources */,
 				C5AB903D2966B8DB005A6CFF /* CardModeltemp.swift in Sources */,
+				765DF2DC2966FCF6004CF7D9 /* TestView.swift in Sources */,
 				C5AB90322966B7DF005A6CFF /* SlangRegistrationView.swift in Sources */,
 				C5AB903B2966B8D6005A6CFF /* Cardtemp.swift in Sources */,
 				C5AB90372966B88E005A6CFF /* QuizCardDetailView.swift in Sources */,
