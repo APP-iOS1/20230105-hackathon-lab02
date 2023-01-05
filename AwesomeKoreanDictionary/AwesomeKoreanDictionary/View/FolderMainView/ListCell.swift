@@ -5,6 +5,8 @@
 //  Created by TAEHYOUNG KIM on 2023/01/05.
 //
 
+
+
 import SwiftUI
 
 struct ListCell: View {
@@ -13,8 +15,8 @@ struct ListCell: View {
     @State private var isBookmark: Bool = false
     var vocabulary: Vocabulary
     var languages = ["KOR", "ENG", "CHN", "JPN"]
-    
-    @State var selection: String = ""
+    @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
+    @State var selection: String = "KOR"
     @State var sharedSheet: Bool = false
     
     var body: some View {
@@ -95,24 +97,45 @@ struct ListCell: View {
             HStack(spacing: 17) {
                 Button {
                     print("좋아요")
+                    Task {
+                        await vocabularyNetworkManager.addLikes(voca: vocabulary)
+                        await vocabularyNetworkManager.countLikes()
+
+                    }
                     isLike.toggle()
                 } label: {
                     HStack(spacing: 5) {
                         Image(systemName: isLike ? "hand.thumbsup.fill" : "hand.thumbsup")
                             .font(.title2)
                             .foregroundColor(.mint)
-                        Text("\(vocabulary.likes)")
+                        ForEach(vocabularyNetworkManager.likes) { like in
+                            if like.id == vocabulary.id {
+                                Text("\(like.likeCount)")
+                            }
+                        }
+//                        Text("\(vocabulary.likes)")
                     }
                 }
                 Button {
                     print("싫어요")
+                    
+                    Task {
+                        await vocabularyNetworkManager.addDisLikes(voca: vocabulary)
+                        await vocabularyNetworkManager.countLikes()
+
+                    }
                     isDislike.toggle()
                 } label: {
                     HStack(spacing: 5) {
                         Image(systemName: isDislike ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                             .font(.title2)
                             .foregroundColor(.mint)
-                        Text("\(vocabulary.dislikes)")
+                        ForEach(vocabularyNetworkManager.likes) { like in
+                            if like.id == vocabulary.id {
+                                Text("\(like.dislikeCount)")
+                            }
+                        }
+//                        Text("\(vocabulary.dislikes)")
                     }
                 }
                 
@@ -146,5 +169,6 @@ struct ListCell: View {
 struct ListCell_Previews: PreviewProvider {
     static var previews: some View {
         ListCell(vocabulary: dictionary[0])
+            .environmentObject(VocabularyNetworkManager())
     }
 }
