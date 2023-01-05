@@ -38,6 +38,7 @@ struct MyPageView_SelectingLanguageView: View {
         let languages: [String] = ["Korean", "English", "Chinese", "Japanese"]
         
         VStack{
+
             
             List{
                 Text("현재 설정된 언어")
@@ -51,6 +52,7 @@ struct MyPageView_SelectingLanguageView: View {
                     .padding(.top)
                 
                 ForEach(languages, id: \.self) { language in
+
                     Button {
                         self.selectedLanguage = language
                         showingOptions.toggle()
@@ -68,6 +70,7 @@ struct MyPageView_SelectingLanguageView: View {
                         }
                         .padding(.horizontal)
                     
+
                 }
                 
             }.listStyle(.plain)
@@ -75,28 +78,7 @@ struct MyPageView_SelectingLanguageView: View {
             
             
             
-            
-            
-            
-            //            List(languages, id: \.self, selection: $selectedLanguage) { language in
-            //                Button {
-            //                    self.selectedLanguage = language
-            //                    showingOptions.toggle()
-            //                } label: {
-            //                    Text("\(language)")
-            //                }.buttonStyle(.plain)
-            //                    .confirmationDialog("Select a language", isPresented: $showingOptions, titleVisibility: .visible) {
-            //                        Button(selectedLanguage ?? "") {
-            //                            defaultLanguage = selectedLanguage ?? ""
-            //                        }
-            //
-            //                        Button(defaultLanguage) {
-            //                            defaultLanguage = defaultLanguage
-            //                        } // 여기까지가 .confirmation 한 덩어리
-            //                    }
-            //                    .padding(.horizontal)
-            //
-            //            }.listStyle(.plain) // 리스트 끝
+
         }
     }
 }
