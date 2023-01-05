@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct SlangRegistrationView: View {
+    @ObservedObject var vocaManager: VocabularyNetworkManager = VocabularyNetworkManager()
+    @Environment(\.dismiss) private var dismiss
     
     //MARK: - 텍스트필드 작성시 사용되는 속성들
     @State private (set) var slangTextField: String = ""              //(필수) 속어
@@ -37,7 +40,7 @@ struct SlangRegistrationView: View {
     @State private (set) var selectednationality: String = ""   // 유저가 선택한 국적
     @State private var summitAlertToggle: Bool = false          // 공백문자 없으면 띄우는 얼럿
     @State private var summitAlertToggle2: Bool = false         // 공백문자만 있으면 띄우는 얼럿
-
+    
     var body: some View {
         NavigationView {
             
@@ -86,16 +89,16 @@ struct SlangRegistrationView: View {
                         
                     }
                     //국적 선택 피커
-                    Section{
-                        Picker("국적", selection: $selectednationalityIndex) {
-                            ForEach(0..<nationalityOptions.count, id:\.self) { option in
-                                Text("\(nationalityOptions[option])")
-                            }
-                            .onChange(of: selectednationalityIndex) { newValue in
-                                self.selectednationality = nationalityOptions[selectednationalityIndex]
-                            }
-                        }.pickerStyle(.menu)
-                    }
+                    //                    Section{
+                    //                        Picker("국적", selection: $selectednationalityIndex) {
+                    //                            ForEach(0..<nationalityOptions.count, id:\.self) { option in
+                    //                                Text("\(nationalityOptions[option])")
+                    //                            }
+                    //                            .onChange(of: selectednationalityIndex) { newValue in
+                    //                                self.selectednationality = nationalityOptions[selectednationalityIndex]
+                    //                            }
+                    //                        }.pickerStyle(.menu)
+                    //                    }
                     
                 }
                 .padding(.bottom)
@@ -103,26 +106,33 @@ struct SlangRegistrationView: View {
                 //MARK: - 제출하기 버튼
                 if trimslangTextField.count > 0 && trimslangDescriptionTextField.count > 0{
                     VStack{
-                        Button(action: {}) {
-                            NavigationLink(destination: ContentView()) {
-                                ZStack{
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.clear)
-                                        .frame(width: 350, height: 70)
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.green)
-                                        .frame(width: 350, height: 60)
-                                        .overlay {
-                                            Text("제출하기")
-                                                .foregroundColor(.white)
-                                                .fontWeight(.black)
-                                                .font(.title3)
-                                        }
-                                }
+                        Button {
+                            // TODO: createVoca 추가하기
+                            Task {
+                                await vocaManager.createVoca(voca: Vocabulary(id: UUID().uuidString, word: slangTextField, pronunciation: "", definition: slangDescriptionTextField, example: [slangSituationUsedTextField], likes: 0, dislikes: 0, creatorId: Auth.auth().currentUser?.uid ?? ""))
+                                
+                                summitAlertToggle.toggle()
+                                
+                                print(Vocabulary(id: UUID().uuidString, word: slangTextField, pronunciation: "", definition: slangDescriptionTextField, example: [slangSituationUsedTextField], likes: 0, dislikes: 0, creatorId: Auth.auth().currentUser?.uid ?? ""))
+                            }
+                        } label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.clear)
+                                    .frame(width: 350, height: 70)
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.green)
+                                    .frame(width: 350, height: 60)
+                                    .overlay {
+                                        Text("제출하기")
+                                            .foregroundColor(.white)
+                                            .fontWeight(.black)
+                                            .font(.title3)
+                                    }
                             }
                         }
                         .alert("공유해주셔서 감사합니다!", isPresented: $summitAlertToggle) {
-                            Button("Ok") {}
+                            Button("Ok") { dismiss() }
                         } message: {
                             Text(" 마이페이지에서 승인여부 확인 가능합니다. ")
                         }
@@ -131,7 +141,7 @@ struct SlangRegistrationView: View {
                     //공백문자만 입력시 얼럿창 띄우는 코드
                     VStack{
                         Button(action: {
-                            summitAlertToggle.toggle()
+                            summitAlertToggle2.toggle()
                         }) {
                             
                             ZStack{

@@ -35,7 +35,7 @@ struct MainView: View {
                             Image(systemName: "trophy.fill")
                         }
                         NavigationLink {
-                            Text("추가")
+                            RegistrationView()
                         } label: {
                             Image(systemName: "plus.rectangle.portrait.fill")
                         }
