@@ -18,6 +18,7 @@ struct SlangRegistrationView: View {
     @State private (set) var slangTextField: String = "" //(필수) 속어
     @State private (set) var slangDescriptionTextField: String = "" //(필수) 속어 단어 설명
     @State private (set) var slangSituationUsedTextField: String = "" //(선택) 속어 상황 재연
+    @State private (set) var slangPronunciationTextField: String = "" //(선택) 속어 발음
     
     var DescriptionExample: String = "외국인의 ‘농협은행 어디예요?’라는 발음을 한국 사람이 ‘너무 예쁘네요’로 잘못 알아들은 썰에서 나온 신조어.‘너무 예쁘다’라는 뜻으로 쓰임."
     var SituationUsedExample: String = """
@@ -38,14 +39,37 @@ struct SlangRegistrationView: View {
     private var trimslangSituationUsedTextField: String {
         slangSituationUsedTextField.trimmingCharacters(in: .whitespaces)
     }
+    //속어 발음 텍스트필드 공백체크
+    private var trimslangPronunciationTextField: String {
+        slangPronunciationTextField.trimmingCharacters(in: .whitespaces)
+    }
     
     @State private var summitAlertToggle: Bool = false // 공백문자 없으면 띄우는 얼럿
     @State private var summitAlertToggle2: Bool = false // 공백문자만 있으면 띄우는 얼럿
     
+    //정규식 사용해보려고했는데.. 아직 사용목했습니다.
+    private func nameValidation(text: String) -> Bool {
+        // String -> Array
+        let arr = Array(text)
+        // 정규식 pattern. 한글, 영어, 숫자, 밑줄(_)만 있어야함
+        let pattern = "^[ㄱ-ㅎㅏ-ㅣ가-힣]$"
+        if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
+            var index = 0
+            while index < arr.count { // string 내 각 문자 하나하나 마다 정규식 체크 후 충족하지 못한것은 제거.
+                let results = regex.matches(in: String(arr[index]), options: [], range: NSRange(location: 0, length: 1))
+                if results.count == 0 {
+                    return false
+                } else {
+                    index += 1
+                }
+            }
+        }
+        return true
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
-
                 if authManager.state == .signedIn {
                     //MARK: - 텍스트필드 3개 (필수2, 선택1) + 국적선택 피커 1개
                     Form {
@@ -64,6 +88,20 @@ struct SlangRegistrationView: View {
                                 .font(.caption)
                                 .foregroundColor(.gray)
 
+                        }
+                        //속어 발음 입력 텍스트필드(필수)
+                        Section {
+                            Text("*영어 필수 문항 (한글, 공백만 입력 불가능)")
+                                .font(.caption)
+                                .foregroundColor(.red)
+                            TextField("속어의 발음을 입력해주세요.", text: $slangPronunciationTextField)
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .lineLimit(1, reservesSpace: true)
+                                .frame(width: 320, height: 30, alignment: .top)
+                            Text("예) Nonghyupeunhaeng")
+                                .font(.caption)
+                                .foregroundColor(.gray)
                         }
                         //속어에 사용되는 단어 의미 설명 텍스트필드(필수)
                         Section {
@@ -100,7 +138,7 @@ struct SlangRegistrationView: View {
                     .padding(.bottom)
                     
                     //MARK: - 제출하기 버튼
-                    if trimslangTextField.count > 0 && trimslangDescriptionTextField.count > 0 && trimslangSituationUsedTextField.count > 0 {
+                    if trimslangTextField.count > 0 && trimslangDescriptionTextField.count > 0 && trimslangSituationUsedTextField.count > 0 && trimslangPronunciationTextField.count > 0 {
                         VStack {
                             Button {
                                 Task {
