@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct RegistrationView: View {
-    var loginTest: Bool = false
+    @EnvironmentObject var authManager: AuthManager
     
     var body: some View {
         VStack{
-            if loginTest {
+            if authManager.state == .signedOut {
                 //로그인이 안되어있다면 로그인뷰
-                ContentView()
+                LoginView()
             } else {
                 //로그인이 되어있다면 바로 속어 등록 뷰
                 SlangRegistrationView()

@@ -39,7 +39,7 @@ final class VocabularyNetworkManager: ObservableObject {
             print(error.localizedDescription)
         }
     }
-    
+    // Auth.auth().currentUser.uid
     //MARK: - 단어 생성 폼 제출 시 불러올 함수
     @MainActor
     public func createVoca(voca: Vocabulary) async -> Void {

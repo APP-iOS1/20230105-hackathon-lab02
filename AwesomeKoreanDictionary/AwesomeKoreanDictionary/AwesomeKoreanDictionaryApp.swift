@@ -20,14 +20,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct AwesomeKoreanDictionaryApp: App {
-    @StateObject var viewModel = AuthManager()
+    @StateObject var authManager = AuthManager()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            TestView()
-                .environmentObject(viewModel)
-                .environmentObject(CardModel())
-                .environmentObject(VocabularyNetworkManager())
+
+            MainView()
+            .environmentObject(VocabularyNetworkManager())
+            .environmentObject(authManager)
+
         }
     }
 }
