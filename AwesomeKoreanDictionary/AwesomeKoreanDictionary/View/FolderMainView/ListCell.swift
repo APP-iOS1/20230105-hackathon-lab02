@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ListCell: View {
+    @State private var isLike: Bool = false
+    @State private var isDislike: Bool = false
+    @State private var isBookmark: Bool = false
     var vocabulary: Vocabulary
     var languages = ["KOR", "ENG", "CHN", "JPN"]
     
@@ -23,8 +26,10 @@ struct ListCell: View {
                     Text(vocabulary.word)
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                        .padding(.bottom, -3)
                     Text(vocabulary.pronunciation)
                         .font(.title3)
+                        .padding(.bottom, 5)
                 }
                 Spacer()
                 
@@ -41,9 +46,12 @@ struct ListCell: View {
                 
                 Button {
                     print("북마크 버튼")
+                    isBookmark.toggle()
                 } label: {
-                    Image(systemName: "bookmark.fill")
-                        .font(.title)
+                    Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
+                        .foregroundColor(Color.mint)
+                        .font(.title2)
+                        .padding(.trailing, -5)
                 }
             }
             
@@ -51,7 +59,9 @@ struct ListCell: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text("Definition")
                     .foregroundColor(.secondary)
+                    
                 Text(vocabulary.definition)
+                    .lineSpacing(7)
             }
             
             VStack(alignment: .leading, spacing: 5) {
@@ -65,33 +75,41 @@ struct ListCell: View {
                     }
                 }
             }
+            .padding(.bottom, 10)
             
             
             // 사용자 이름 / 날짜
             HStack {
-                Text("from: \(vocabulary.creatorId)")
+                Text("by \(vocabulary.creatorId)")
                     .fontWeight(.bold)
                 Spacer()
                 //                Text("업로드 날짜")
             }
             
+            
+            Divider().padding(.vertical,-1)
+            
             // 좋아요 버튼
-            HStack(spacing: 20) {
+            HStack(spacing: 17) {
                 Button {
                     print("좋아요")
+                    isLike.toggle()
                 } label: {
                     HStack(spacing: 5) {
-                        Image(systemName: "hand.thumbsup.fill")
+                        Image(systemName: isLike ? "hand.thumbsup.fill" : "hand.thumbsup")
                             .font(.title2)
+                            .foregroundColor(.mint)
                         Text("\(vocabulary.likes)")
                     }
                 }
                 Button {
                     print("싫어요")
+                    isDislike.toggle()
                 } label: {
                     HStack(spacing: 5) {
-                        Image(systemName: "hand.thumbsdown.fill")
+                        Image(systemName: isDislike ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                             .font(.title2)
+                            .foregroundColor(.mint)
                         Text("\(vocabulary.dislikes)")
                     }
                 }
@@ -100,19 +118,24 @@ struct ListCell: View {
                 
                 Button {
                     print("공유")
-                    
                 } label: {
-                    
                     ShareLink(item: vocabulary.word) {
                         Image(systemName: "square.and.arrow.up")
                             .font(.title2)
                     }
                 }
             }
+            .padding(.top, -5)
+            .onChange(of: isLike) { val in
+              if val { isDislike = false }
+            }
+            .onChange(of: isDislike) { val in
+              if val { isLike = false }
+            }
         }
         .foregroundColor(.black)
-        .padding(20)
-        .frame(width: 365)
+        .padding(35)
+        .frame(width: 360)
         .background(Color.white)
         .cornerRadius(20)
     }

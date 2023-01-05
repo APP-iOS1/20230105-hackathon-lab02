@@ -17,7 +17,6 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                
                 Color.mint
                     .edgesIgnoringSafeArea(.all)
                 
