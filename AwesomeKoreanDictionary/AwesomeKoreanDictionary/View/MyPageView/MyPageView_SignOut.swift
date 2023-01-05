@@ -12,6 +12,7 @@ import SwiftUI
 struct MyPageView_SignOut: View {
     
     @EnvironmentObject var authManager: AuthManager
+    @EnvironmentObject var userManager: UserInfoManager
     
     var body: some View {
         
@@ -35,6 +36,7 @@ struct MyPageView_SignOut: View {
                     
                         Button {
                             authManager.signIn()
+                            userManager.fetchUserInfo()
                         } label: {
                             ZStack{
                                 Rectangle()

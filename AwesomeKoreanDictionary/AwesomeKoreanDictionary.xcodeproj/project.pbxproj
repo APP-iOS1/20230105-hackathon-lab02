@@ -39,6 +39,7 @@
 		C5AB90392966B8D1005A6CFF /* AnswerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB90382966B8D1005A6CFF /* AnswerCardView.swift */; };
 		C5AB903B2966B8D6005A6CFF /* Cardtemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB903A2966B8D6005A6CFF /* Cardtemp.swift */; };
 		C5AB903D2966B8DB005A6CFF /* CardModeltemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB903C2966B8DB005A6CFF /* CardModeltemp.swift */; };
+		C5AB903F29672EB8005A6CFF /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB903E29672EB8005A6CFF /* UserInfoManager.swift */; };
 		C5F90DA3296666CE00DE5024 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F90DA2296666CE00DE5024 /* LoginView.swift */; };
 		C5F90DA5296667CF00DE5024 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F90DA4296667CF00DE5024 /* SignUpView.swift */; };
 		C5F90DB12966A40D00DE5024 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5F90DB02966A40C00DE5024 /* GoogleService-Info.plist */; };
@@ -74,6 +75,7 @@
 		C5AB90382966B8D1005A6CFF /* AnswerCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerCardView.swift; sourceTree = "<group>"; };
 		C5AB903A2966B8D6005A6CFF /* Cardtemp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cardtemp.swift; sourceTree = "<group>"; };
 		C5AB903C2966B8DB005A6CFF /* CardModeltemp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardModeltemp.swift; sourceTree = "<group>"; };
+		C5AB903E29672EB8005A6CFF /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 		C5F90DA2296666CE00DE5024 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = AwesomeKoreanDictionary/View/LoginView.swift; sourceTree = SOURCE_ROOT; };
 		C5F90DA4296667CF00DE5024 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C5F90DB02966A40C00DE5024 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				36BD6BDF2966875500DC6387 /* VocabularyNetworkManager.swift */,
 				36BD6BE12966876300DC6387 /* AuthManager.swift */,
+				C5AB903E29672EB8005A6CFF /* UserInfoManager.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 			files = (
 				C5AB90392966B8D1005A6CFF /* AnswerCardView.swift in Sources */,
 				65FB3931296703BB008756AA /* MyPageView.swift in Sources */,
+				C5AB903F29672EB8005A6CFF /* UserInfoManager.swift in Sources */,
 				C5F90DA5296667CF00DE5024 /* SignUpView.swift in Sources */,
 				6505FC322966633C0054591D /* ContentView.swift in Sources */,
 				6505FC302966633C0054591D /* AwesomeKoreanDictionaryApp.swift in Sources */,

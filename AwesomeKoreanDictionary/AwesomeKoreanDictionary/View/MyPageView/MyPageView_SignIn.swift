@@ -10,6 +10,7 @@ import SwiftUI
 struct MyPageView_SignIn: View {
     
     @EnvironmentObject var authManager: AuthManager
+    @EnvironmentObject var userManager: UserInfoManager
     @State private var userNickName: String = "YOOJ"
     // User 모델, 스토어 주세요!
     @State private var showEditViewModal: Bool = false
@@ -23,15 +24,15 @@ struct MyPageView_SignIn: View {
         
         NavigationStack{
             VStack {
-                
                 VStack(alignment: .leading) {
-                    
-                    
                     HStack{
-                        Text("This is \(userNickName).")
+                        Text("This is \(userManager.userInfo?.userNickname ?? "").")
                             .font(.title2)
                             .foregroundColor(.black)
                             .padding()
+                            .onAppear {
+                                userManager.fetchUserInfo()
+                            }
                         Spacer()
                         
                         Button {
@@ -119,6 +120,9 @@ struct MyPageView_SignIn: View {
                     // 리스트 끝
                 }// 전체 한칸 안쪽 VStack 끝
             } // 전체 VStack 끝
+            .onAppear {
+                userManager.fetchUserInfo()
+            }
         } // NavigationStack 끝
     }
 }

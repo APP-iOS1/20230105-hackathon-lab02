@@ -14,7 +14,7 @@ struct RegistrationView: View {
         VStack{
             if authManager.state == .signedOut {
                 //로그인이 안되어있다면 로그인뷰
-                LoginView()
+//                LoginView(isShowingSheet: )
             } else {
                 //로그인이 되어있다면 바로 속어 등록 뷰
                 SlangRegistrationView()

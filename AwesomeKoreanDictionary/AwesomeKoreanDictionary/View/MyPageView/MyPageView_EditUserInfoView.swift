@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct MyPageView_EditUserInfoView: View {
 
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
+    @EnvironmentObject var authManager: AuthManager
     @State private var userNickName: String = "YOOJ"
-    @ObservedObject var userNickName2 : AuthManager = AuthManager()
+//    @ObservedObject var userNickName2 : AuthManager = AuthManager()
     // 닉네임 받아오는 프로퍼티 생성되면 변경할게요!
 
     var body: some View {
@@ -49,7 +52,7 @@ struct MyPageView_EditUserInfoView: View {
             }
             
             Button {
-                // 변경된 닉네임 저장하기
+//                vocabularyNetworkManager.updateUserNickName(userId: Auth.auth().currentUser.uid, nickname: userNickName)
             } label: {
                 Text("저장")
                     .frame(width: 300, height: 50)

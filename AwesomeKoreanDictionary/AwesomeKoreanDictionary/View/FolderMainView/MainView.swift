@@ -3,7 +3,7 @@ import SwiftUI
 struct MainView: View {
     
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
-
+    
     @State private var searchText = ""
     
     var filteredVoca: [Vocabulary] {
@@ -87,7 +87,7 @@ struct ToolbarModifier: ViewModifier {
                             }
                         }
                         .sheet(isPresented: $isShowingSheet) {
-                            LoginView()
+                            LoginView(isShowingSheet: $isShowingSheet)
                         }
                     NavigationLink {
                         MyPageView()
