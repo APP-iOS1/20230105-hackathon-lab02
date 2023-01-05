@@ -45,6 +45,9 @@ struct LoginView: View {
                     .frame(width: 320)
                     .onTapGesture {
                         viewModel.signIn()
+                        
+                        //  -----
+                        viewModel.checkSignUp()
                     }
                 
             }.frame(height: 100)

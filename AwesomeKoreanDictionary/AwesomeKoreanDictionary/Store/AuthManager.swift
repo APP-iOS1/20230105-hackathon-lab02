@@ -18,6 +18,9 @@ class AuthManager: ObservableObject {
     @Published var state: signInState = .signedOut
     @Published var currentUser = GIDSignIn.sharedInstance.currentUser
     
+    //  -----
+    @Published var user: User = User(isAdmin: false, userNickname: "", bookmarked: [], createdVoca: [], userId: "", email: "")
+    
     func signIn() {
         // You check if there’s a previous Sign-In. If yes, then restore it. Otherwise, move on to defining the sign-in process.
         if GIDSignIn.sharedInstance.hasPreviousSignIn() {
@@ -78,4 +81,49 @@ class AuthManager: ObservableObject {
         print(error.localizedDescription)
       }
     }
+    
+    //  -----
+    /*
+    func checkSignUp() -> Void {
+        
+        let db = Firestore.firestore()
+            
+        let user = Auth.auth().currentUser
+        
+        db.collection("user").document("\(user?.email ?? "")").setData([
+            
+            "isAdmin" : false,
+            "userNickname":  "\(convertNickname(id: user?.email ?? ""))",
+            "bookmarked": [],
+            "createdVoca": [],
+            "userId": "\(user?.email ?? "")",
+            "email" : "\(user?.email ?? "")"
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+    }
+     */
+    
+    //MARK: - ID 값을 받아 문자열 가공 후 nickname으로 설정
+    func convertNickname(id: String) -> String {
+        
+        //  var id: String = id
+        
+        user.userId = id
+        
+        return user.userId.components(separatedBy: "@")[0]
+    }
+    
+    /*
+    func getCurrentUser() -> String {
+        
+        let user = Auth.auth().currentUser
+        
+        return user?.email ?? "default@test.com"
+    }
+     */
 }
