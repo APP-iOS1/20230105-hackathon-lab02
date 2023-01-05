@@ -57,7 +57,7 @@ struct MyPageView_SelectingLanguageView: View {
                         
                         Button(defaultLanguage) {
                             defaultLanguage = defaultLanguage
-                        }
+                        } // 여기까지가 .confirmation 한 덩어리
                     }
                     .padding(.horizontal)
                 
