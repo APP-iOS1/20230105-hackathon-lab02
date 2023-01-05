@@ -9,34 +9,41 @@ import SwiftUI
 
 struct ListCell: View {
     var vocabulary: Vocabulary
-    @Binding var isShowingPopover: Bool
+    var languages = ["KOR", "ENG", "CHN", "JPN"]
+    
+    @State var selection: String = ""
+    @State var sharedSheet: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             
             // 이름
-            HStack {
-                Text(vocabulary.word)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                Text(vocabulary.pronunciation)
-                    .font(.title3)
+            HStack(alignment: .top) {
+                VStack(alignment: .leading) {
+                    Text(vocabulary.word)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    Text(vocabulary.pronunciation)
+                        .font(.title3)
+                }
                 Spacer()
-                Button {
-                    print("번역")
-                    isShowingPopover.toggle()
-                    print(isShowingPopover)
+               
+                Picker(selection: $selection) {
+                    ForEach(languages, id: \.self) { lang in
+                        Text(lang)
+                    }
                 } label: {
-                    Image(systemName: "globe")
+                    Text("언어 선택")
                 }
-                .popover(isPresented: $isShowingPopover) {
-                    Text("Popover Content")
-                        .padding()
-                }
+                .frame(height: 30)
+
+                
+                
                 Button {
                     print("북마크 버튼")
                 } label: {
                     Image(systemName: "bookmark.fill")
+                        .font(.title)
                 }
             }
             
@@ -75,6 +82,7 @@ struct ListCell: View {
                 } label: {
                     HStack(spacing: 5) {
                         Image(systemName: "hand.thumbsup.fill")
+                            .font(.title2)
                         Text("\(vocabulary.likes)")
                     }
                 }
@@ -83,6 +91,7 @@ struct ListCell: View {
                 } label: {
                     HStack(spacing: 5) {
                         Image(systemName: "hand.thumbsdown.fill")
+                            .font(.title2)
                         Text("\(vocabulary.dislikes)")
                     }
                 }
@@ -91,8 +100,13 @@ struct ListCell: View {
                 
                 Button {
                     print("공유")
+                    
                 } label: {
-                    Image(systemName: "square.and.arrow.up")
+                    
+                    ShareLink(item: vocabulary.word) {
+                        Image(systemName: "square.and.arrow.up")
+                            .font(.title2)
+                    }
                 }
             }
         }
@@ -105,6 +119,6 @@ struct ListCell: View {
 
 struct ListCell_Previews: PreviewProvider {
     static var previews: some View {
-        ListCell(vocabulary: dictionary[0], isShowingPopover: .constant(false))
+        ListCell(vocabulary: dictionary[0])
     }
 }

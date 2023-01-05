@@ -26,6 +26,7 @@ struct AwesomeKoreanDictionaryApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(authManager)
+
         }
     }
 }
