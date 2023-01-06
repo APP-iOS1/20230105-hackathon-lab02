@@ -55,7 +55,7 @@ class AuthManager: ObservableObject {
                             // 이미 저장된 유저 정보
                             userRef.updateData([
                                 "id": googleUser.userID ?? "",
-                                "isAdmin": false,
+//                                "isAdmin": false,
                                 "userEmail": googleUser.profile?.email as? String ?? "",
                                 "userNickname": googleUser.profile?.name as? String ?? ""
                             ])

@@ -12,7 +12,7 @@ struct MyPageView: View {
     @EnvironmentObject var userInfoManager: UserInfoManager
     var body: some View {
         if authManager.state == .signedIn {
-            MyPageView_SignIn()
+            MyPageView_SignIn().environmentObject(userInfoManager)
         } else {
             MyPageView_SignOut()
         }

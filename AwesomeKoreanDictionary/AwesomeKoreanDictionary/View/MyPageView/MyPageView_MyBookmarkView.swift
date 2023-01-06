@@ -68,7 +68,7 @@ struct MyPageView_MyBookmarkView: View {
                             VStack(alignment: .leading, spacing: 5) {
                                 Text("Definition")
                                     .foregroundColor(.secondary)
-                                Text(voca.definition!)
+                                Text("voca.definition!")
                                     .lineSpacing(7)
                             }
                             .padding(.bottom, -10)

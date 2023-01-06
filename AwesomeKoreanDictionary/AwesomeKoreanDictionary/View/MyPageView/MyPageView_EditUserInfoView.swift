@@ -8,22 +8,20 @@
 import SwiftUI
 
 struct MyPageView_EditUserInfoView: View {
-
+    
     @Environment(\.dismiss) var dismiss
-
-    @State private var userNickName: String = "YOOJ"
-  
+    
+    @Binding var userNickname: String
+    
     @EnvironmentObject var userInfoManager: UserInfoManager
-
-
+    
+    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]), startPoint: .top, endPoint: .bottom)
-            .edgesIgnoringSafeArea(.all)
+                .edgesIgnoringSafeArea(.all)
             
             VStack{
-                
-
                 Button {
                     dismiss()
                 } label: {
@@ -39,22 +37,23 @@ struct MyPageView_EditUserInfoView: View {
                     Text("닉네임")
                         .font(.title2)
                     
-                    TextField("닉네임을 입력하세요.", text: $userNickName)
+                    TextField("닉네임을 입력하세요.", text: $userNickname)
                         .scrollContentBackground(.hidden)
                         .padding()
                         .foregroundColor(.gray)
                         .background(Color.white)
                         .frame(width: 350, height: 65)
-                        
+                    
                 }
                 .padding(.bottom, 20)
                 
                 Button(action: {
-                                Task{
-                    await userInfoManager.updateUserNickName(nickname: userNickName)
-                    userInfoManager.fetchUserInfo()
-                }
-                
+                    Task{
+                        await userInfoManager.updateUserNickName(nickname: userNickname)
+                        userInfoManager.fetchUserInfo()
+                        dismiss()
+                    }
+                    
                 }) {
                     VStack {
                         RoundedRectangle(cornerRadius: 10)
@@ -69,18 +68,18 @@ struct MyPageView_EditUserInfoView: View {
                     }
                 }
                 Spacer()
-
+                
             }
         }
         .onAppear(){
             userInfoManager.fetchUserInfo()
-            userNickName = userInfoManager.userInfo?.userNickname ?? ""
+            userNickname = userInfoManager.userInfo?.userNickname ?? ""
         }
     }
 }
 
-struct MyPageView_EditUserInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyPageView_EditUserInfoView()
-    }
-}
+//struct MyPageView_EditUserInfoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MyPageView_EditUserInfoView()
+//    }
+//}

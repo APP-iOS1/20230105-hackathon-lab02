@@ -21,7 +21,6 @@ struct Detail: View {
     @State private var selectedLanguage: String = ""
 
     @State private var translate: String = ""
-    @State private var isPickerDisappeared: Bool = false
 
     var body: some View {
         ZStack {
@@ -46,6 +45,7 @@ struct Detail: View {
                 })
                 .padding(.leading, 20)
                 .padding([.top, .bottom, .trailing])
+
                 
                 // For smaller size phones
                 ScrollView(.vertical, showsIndicators: false, content: {
@@ -64,8 +64,10 @@ struct Detail: View {
                                 ForEach(0..<languages.count) { idx in
                                     Text(languages[idx]).tag(languageCodes[idx])
                                 }
+
                             }
                             .onChange(of: selectedLanguage, perform: { value in
+
                                 Task {
                                     self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: String(value))
                                 }
@@ -90,6 +92,7 @@ struct Detail: View {
                                 .lineSpacing(10)
                             
                             Spacer()
+
                         }
                     }
                     .padding(.horizontal, 20)

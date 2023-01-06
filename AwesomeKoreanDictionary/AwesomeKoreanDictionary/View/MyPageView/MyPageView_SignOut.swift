@@ -31,6 +31,7 @@ struct MyPageView_SignOut: View {
                     
                     Button {
                         authManager.signIn()
+                        userInfoManager.fetchUserInfo()
                     } label: {
                         ZStack{
                             Rectangle()

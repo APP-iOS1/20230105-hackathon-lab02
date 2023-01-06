@@ -11,13 +11,13 @@ import SwiftUI
 
 struct ListCell: View {
     @Environment(\.managedObjectContext) var managedObjContext
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.word)]) var voca: FetchedResults<BookmarkedVoca>
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
-
     @State private var isLike: Bool = false
     @State private var isDislike: Bool = false
     @State private var isBookmark: Bool = false
     @State private var sharedSheet: Bool = false
-    @State private var selection: String = ""
+    @State private var selection: String = "ko"
     @State private var translatedDefinition = ""
     @State private var translatedExample = ""
     
@@ -43,7 +43,7 @@ struct ListCell: View {
                 Spacer()
                 
                 Picker(selection: $selection) {
-                    Text("KOR")
+                    Text("KOR").tag("ko")
                     ForEach(languages.indices) { index in
                         Text(languages[index]).tag(languageCodes[index])
                     }
@@ -51,23 +51,35 @@ struct ListCell: View {
                     Text("언어 선택")
                 }
                 .onChange(of: selection, perform: { value in
-                    // 비동기로 파파고에게 번역 네트워킹 시도
-                    Task {
-                        translatedDefinition = try await PapagoNetworkManager.shared.requestTranslate(sourceString: vocabulary.definition, target: String(value))
-                        translatedExample = try await PapagoNetworkManager.shared.requestTranslate(sourceString: vocabulary.example, target: String(value))
+                    
+                    if String(value) == "ko" {
+                      
+                    } else {
+                        Task {
+                            translatedDefinition = try await PapagoNetworkManager.shared.requestTranslate(sourceString: vocabulary.definition, target: String(value))
+                            translatedExample = try await PapagoNetworkManager.shared.requestTranslate(sourceString: vocabulary.example, target: String(value))
+                        }
                     }
+                    
                     
                 })
                 .frame(height: 30)
                 .tint(.black)
                 
                 Button {
-                    print("북마크 버튼")
                     isBookmark.toggle()
+                    if !isBookmark {
+                        managedObjContext.delete(voca[0])
+                        
+                        do {
+                            try managedObjContext.save()
+                        } catch {
+                            print(error)
+                        }
+                    } else {
+                        DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, pronunciation: vocabulary.pronunciation, context: managedObjContext)
+                    }
                     
-                    //coreData에 저장
-                    DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, context: managedObjContext)
-
                 } label: {
                     Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
                         .foregroundColor(Color(hex: "737DFE"))
@@ -80,7 +92,7 @@ struct ListCell: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text("정의")
                     .foregroundColor(.secondary)
-                Text(selection != "" ? translatedDefinition : vocabulary.definition) // 이 내용을 번역본으로 변경
+                Text(selection == "ko" ? vocabulary.definition : translatedDefinition) // 이 내용을 번역본으로 변경
                     .lineSpacing(7)
             }
             .padding(.bottom, -10)
@@ -89,7 +101,7 @@ struct ListCell: View {
                 Text("예시")
                     .foregroundColor(.secondary)
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(selection != "" ? "• \(translatedExample)" : "• \(vocabulary.example)") // 이 내용을 번역본으로 변경
+                    Text(selection == "ko" ? "• \(vocabulary.example)" : "• \(translatedExample)") // 이 내용을 번역본으로 변경
                         .italic()
 //                    ForEach(vocabulary.example, id: \.self) { example in
 //
@@ -191,6 +203,19 @@ struct ListCell: View {
         .frame(width: 360)
         .background(Color.white)
         .cornerRadius(20)
+    }
+    
+    private func delete(at offsets: IndexSet) {
+        for index in offsets {
+            let item = voca[index]
+            managedObjContext.delete(item)
+        }
+        
+        do {
+            try managedObjContext.save()
+        } catch {
+            print(error)
+        }
     }
 }
 
