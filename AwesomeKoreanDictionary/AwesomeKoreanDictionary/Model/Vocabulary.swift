@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-struct Vocabulary: Identifiable, Hashable {
+struct Vocabulary: Identifiable, Hashable, Codable {
     var id: String
     var word: String
     var pronunciation: String
@@ -18,6 +18,7 @@ struct Vocabulary: Identifiable, Hashable {
     var dislikes: Int
     var creatorId: String
     var isApproved: Bool = false
+    var like: Bool
 }
 
 

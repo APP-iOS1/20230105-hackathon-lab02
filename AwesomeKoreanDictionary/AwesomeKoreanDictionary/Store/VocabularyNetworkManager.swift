@@ -55,8 +55,11 @@ final class VocabularyNetworkManager: ObservableObject {
                 let likes = document["likes"] as? Int ?? 0
                 let dislikes = document["dislikes"] as? Int ?? 0
                 let creatorId = document["creatorId"] as? String ?? ""
+                //cccc
+                let like = document["like"] as? Bool ?? false
+                //cccc
                 let isApproved = document["isApproved"] as? Bool ?? false
-                self.vocabularies.append(Vocabulary(id: id, word: word, pronunciation: pronunciation, definition: definition, example: example, likes: likes, dislikes: dislikes, creatorId: creatorId, isApproved: isApproved))
+                self.vocabularies.append(Vocabulary(id: id, word: word, pronunciation: pronunciation, definition: definition, example: example, likes: likes, dislikes: dislikes, creatorId: creatorId, like: like, isApproved: isApproved))
             }
             print("\(vocabularies)")
         } catch {
@@ -199,6 +202,11 @@ final class VocabularyNetworkManager: ObservableObject {
 
 
     }
-
+    //cccc
+    func addLike(id: String, like: Bool) {
+        let data: [String: Any] = ["id": id, "like": like]
+        database.collection("vocabulary")
+    }
+    //cccc
 
 }
