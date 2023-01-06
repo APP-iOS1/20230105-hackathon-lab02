@@ -22,13 +22,12 @@ struct MyPageView_SignOut: View {
         let thirdMyPageList: [String] = ["관리자 로그인"]
         NavigationStack{
             VStack {
-                VStack(alignment: .leading) {
+                VStack {
                     
                     Text("새로운 단어를 정의하려면 로그인하세요")
                         .font(.title2)
                         .foregroundColor(.black)
                         .padding()
-                    
                     
                     Button {
                         authManager.signIn()
@@ -37,20 +36,18 @@ struct MyPageView_SignOut: View {
                         ZStack{
                             Rectangle()
                                 .padding(.leading)
-                                .frame(width: 170, height: 50)
-                                .foregroundColor(.black)
+                                .frame(width: 230, height: 40)
+                                .foregroundColor(Color(hex: "737DFE"))
+                                .cornerRadius(10)
                             Text("구글 로그인하기")
                                 .foregroundColor(.white)
                         }
-                        
                     }
                 }
                 
                 // 리스트 시작
                 VStack {
                     List {
-                        
-                        
                         Text("마이 페이지")
                             .font(.title3)
                             .padding(.top)
