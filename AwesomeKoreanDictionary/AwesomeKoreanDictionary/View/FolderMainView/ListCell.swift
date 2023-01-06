@@ -10,6 +10,7 @@
 import SwiftUI
 
 struct ListCell: View {
+    @Environment(\.managedObjectContext) var managedObjContext
     @State private var isLike: Bool = false
     @State private var isDislike: Bool = false
     @State private var isBookmark: Bool = false
@@ -50,6 +51,12 @@ struct ListCell: View {
                 Button {
                     print("북마크 버튼")
                     isBookmark.toggle()
+                    
+                    //coreData에 저장
+                    DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, context: managedObjContext)
+                    
+                    
+                    
                 } label: {
                     Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
                         .foregroundColor(Color(hex: "737DFE"))

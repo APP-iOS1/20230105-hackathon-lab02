@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 struct Vocabulary: Identifiable, Hashable {
     var id: String

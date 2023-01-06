@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MainView: View {
-    
+    @Environment(\.managedObjectContext) var managedObjContext
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
     @EnvironmentObject var authManager: AuthManager
     
