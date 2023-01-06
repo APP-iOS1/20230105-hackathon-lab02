@@ -74,7 +74,7 @@ struct MyPageView_SignIn: View {
                                 Text("\(firstMyPageList[1])")
                                     .padding(.horizontal)
                             }
-                            Text("세팅")
+                            Text("설정")
                                 .font(.title3)
                                 .padding(.top)
                             NavigationLink{
@@ -161,4 +161,14 @@ struct MyPageView_SignIn: View {
             }
         } // NavigationStack 끝
     }
+}
+
+struct MyPage_SignIn_Previews: PreviewProvider {
+    static var previews: some View {
+        MyPageView_SignIn()
+            .environmentObject(AuthManager())
+            .environmentObject(UserInfoManager())
+    }
+}
+
 
