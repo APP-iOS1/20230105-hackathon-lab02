@@ -21,7 +21,6 @@ struct Detail: View {
     @State private var selectedLanguage: String = ""
 
     @State private var translate: String = ""
-    @State private var isPickerDisappeared: Bool = false
 
     var body: some View {
         VStack {
@@ -66,20 +65,18 @@ struct Detail: View {
                         Spacer(minLength: 0)
 
                         Picker("Select Language", selection: $selectedLanguage) {
-                            Text("Select Language")
+                            Text("Korean").tag("ko")
                             ForEach(0..<languages.count) { idx in
                                 Text(languages[idx]).tag(languageCodes[idx])
                             }
                         }
                             .onChange(of: selectedLanguage, perform: { value in
-                            Task {
-
-                                self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: String(value))
-
+                            if String(value) != "ko" {
+                                Task {
+                                    self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: "번역: \(card.definition)", target: String(value))
+                                }
                             }
                         })
-
-
                     }
                         .padding(.vertical)
 
@@ -92,12 +89,14 @@ struct Detail: View {
                                 .multilineTextAlignment(.leading)
                                 .padding(.top)
 
+                            if selectedLanguage != "ko" {
 
-                            Text("번역: \(translate)")
-                                .font(.system(size: 22))
-                                .foregroundColor(Color.black.opacity(0.7))
-                                .multilineTextAlignment(.leading)
-                                .padding(.top)
+                                Text(translate)
+                                    .font(.system(size: 22))
+                                    .foregroundColor(Color.black.opacity(0.7))
+                                    .multilineTextAlignment(.leading)
+                                    .padding(.top)
+                            }
                         }
 
                         Spacer()
