@@ -73,7 +73,7 @@ struct MyPageView_SignIn: View {
                                 Text("\(firstMyPageList[1])")
                                     .padding(.horizontal)
                             }
-                            Text("세팅")
+                            Text("설정")
                                 .font(.title3)
                                 .padding(.top)
                             NavigationLink{
