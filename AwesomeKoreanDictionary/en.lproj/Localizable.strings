@@ -6,4 +6,19 @@
   
 */
 
-"hello" = "Hello";
+// Main
+"Definition" = "정의";
+"Example" = "예시";
+
+// Quiz
+"Korean Slang Quiz Challenge!" = "Hello";
+"with a Awesome Korean Dictionary" = "";
+"What do you think it means?" = "";
+"Answer" = "";
+
+// Quiz Answer
+
+// Registration
+
+
+// MyPage

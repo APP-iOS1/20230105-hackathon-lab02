@@ -206,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				C5AB90332966B874005A6CFF /* QuizCardView */,
-				C5AB902E2966B7CA005A6CFF /* RegistraionView */,
+				C5AB902E2966B7CA005A6CFF /* RegistrationView */,
 				65487B362967384600D7AB0A /* AdminView */,
 				C5AB90252966B6E6005A6CFF /* MyPageView */,
 				7649454B2966B14A0017D830 /* FolderMainView */,
@@ -258,12 +258,12 @@
 			path = MyPageView;
 			sourceTree = "<group>";
 		};
-		C5AB902E2966B7CA005A6CFF /* RegistraionView */ = {
+		C5AB902E2966B7CA005A6CFF /* RegistrationView */ = {
 			isa = PBXGroup;
 			children = (
 				C5AB90312966B7DF005A6CFF /* SlangRegistrationView.swift */,
 			);
-			path = RegistraionView;
+			path = RegistrationView;
 			sourceTree = "<group>";
 		};
 		C5AB90332966B874005A6CFF /* QuizCardView */ = {
