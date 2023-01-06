@@ -57,6 +57,7 @@ struct MainView: View {
             .onAppear {
                 Task {
                     await vocabularyNetworkManager.requestVocabularyList()
+
                     await vocabularyNetworkManager.countLikes()
 
                 }
