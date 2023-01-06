@@ -18,10 +18,10 @@ struct Detail: View {
 
     var languageCodes: [String] = ["en", "zh-CN", "ja"]
     var languages: [String] = ["English", "Chinese", "Japanese"]
+    
     @State private var selectedLanguage: String = ""
-
     @State private var translate: String = ""
-    @State private var isPickerDisappeared: Bool = false
+
 
     var body: some View {
 
@@ -74,14 +74,15 @@ struct Detail: View {
                                     Text(languages[idx])
                                 }
                             }
+                            .onChange(of: selectedLanguage, perform: { value in
+                            Task {
+                                self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: String(value))
                             .onAppear(perform: {
                                 isPickerDisappeared = false
                             })
                             .onDisappear {
                                 isPickerDisappeared = true
-
-                            }
-                            
+                            } 
                         }
 
                         .padding(.vertical)
