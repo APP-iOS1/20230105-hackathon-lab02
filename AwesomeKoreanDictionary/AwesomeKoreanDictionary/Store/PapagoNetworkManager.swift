@@ -22,11 +22,11 @@ final class PapagoNetworkManager: ObservableObject {
     let baseURL: String = "https://openapi.naver.com/v1/papago/n2mt"
     
     // 한 -> 영 중 일
-    func requestTranslate(sourceString: String, target: TargetLanguage) async throws -> String {
+    func requestTranslate(sourceString: String, target: String) async throws -> String {
         
         let clientID = Bundle.main.CLIENT_ID
         let clinetSecret = Bundle.main.CLIENT_SECRET
-        let stringWithParameters = "source=ko&target=\(target.rawValue)&text=\(sourceString)"
+        let stringWithParameters = "source=ko&target=\(target)&text=\(sourceString)"
         let data = stringWithParameters.data(using: .utf8)!
         
         guard let url = URL(string: baseURL) else { return "" }
