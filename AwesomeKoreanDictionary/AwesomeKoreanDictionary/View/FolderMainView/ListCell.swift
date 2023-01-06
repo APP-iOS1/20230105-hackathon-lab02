@@ -11,14 +11,19 @@ import SwiftUI
 
 struct ListCell: View {
     @Environment(\.managedObjectContext) var managedObjContext
+    @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
+
     @State private var isLike: Bool = false
     @State private var isDislike: Bool = false
     @State private var isBookmark: Bool = false
+    @State private var sharedSheet: Bool = false
+    @State private var selection: String = ""
+    @State private var translatedDefinition = ""
+    @State private var translatedExample = ""
+    
     var vocabulary: Vocabulary
-    var languages = ["KOR", "ENG", "CHN", "JPN"]
-    @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
-    @State var selection: String = "KOR"
-    @State var sharedSheet: Bool = false
+    var languages = ["ENG", "CHN", "JPN"]
+    var languageCodes = ["en", "zh-CN", "ja"]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -38,13 +43,21 @@ struct ListCell: View {
                 Spacer()
                 
                 Picker(selection: $selection) {
-                    ForEach(languages, id: \.self) { lang in
-                        Text(lang)
+                    Text("KOR")
+                    ForEach(languages.indices) { index in
+                        Text(languages[index]).tag(languageCodes[index])
                     }
                 } label: {
                     Text("언어 선택")
-                    
                 }
+                .onChange(of: selection, perform: { value in
+                    // 비동기로 파파고에게 번역 네트워킹 시도
+                    Task {
+                        translatedDefinition = try await PapagoNetworkManager.shared.requestTranslate(sourceString: vocabulary.definition, target: String(value))
+                        translatedExample = try await PapagoNetworkManager.shared.requestTranslate(sourceString: vocabulary.example, target: String(value))
+                    }
+                    
+                })
                 .frame(height: 30)
                 .tint(.black)
                 
@@ -54,8 +67,6 @@ struct ListCell: View {
                     
                     //coreData에 저장
                     DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, context: managedObjContext)
-                    
-                    
                     
                 } label: {
                     Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
@@ -69,7 +80,7 @@ struct ListCell: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text("Definition")
                     .foregroundColor(.secondary)
-                Text(vocabulary.definition)
+                Text(selection != "" ? translatedDefinition : vocabulary.definition) // 이 내용을 번역본으로 변경
                     .lineSpacing(7)
             }
             .padding(.bottom, -10)
@@ -78,7 +89,7 @@ struct ListCell: View {
                 Text("Example")
                     .foregroundColor(.secondary)
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("• \(vocabulary.example)")
+                    Text(selection != "" ? "• \(translatedExample)" : "• \(vocabulary.example)") // 이 내용을 번역본으로 변경
                         .italic()
 //                    ForEach(vocabulary.example, id: \.self) { example in
 //
