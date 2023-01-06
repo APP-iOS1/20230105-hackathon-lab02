@@ -27,7 +27,7 @@ struct MyPageView_SignIn: View {
                 VStack(alignment: .leading) {
                     
                     HStack{
-                        Text("\(userNickName) 입니다.")
+                        Text("\(userInfoManager.userInfo?.userNickname ?? "") 입니다.")
 
                             .font(.title2)
                             .foregroundColor(.black)
@@ -145,5 +145,7 @@ struct MyPageView_SignIn: View {
 struct MyPage_SignIn_Previews: PreviewProvider {
     static var previews: some View {
         MyPageView_SignIn()
+            .environmentObject(AuthManager())
+            .environmentObject(UserInfoManager())
     }
 }
