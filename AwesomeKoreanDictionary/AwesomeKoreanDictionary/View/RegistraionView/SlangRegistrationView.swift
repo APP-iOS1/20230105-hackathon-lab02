@@ -46,37 +46,18 @@ struct SlangRegistrationView: View {
     
     @State private var summitAlertToggle: Bool = false // 공백문자 없으면 띄우는 얼럿
     @State private var summitAlertToggle2: Bool = false // 공백문자만 있으면 띄우는 얼럿
-    
-    //정규식 사용해보려고했는데.. 아직 사용목했습니다.
-    private func nameValidation(text: String) -> Bool {
-        // String -> Array
-        let arr = Array(text)
-        // 정규식 pattern. 한글, 영어, 숫자, 밑줄(_)만 있어야함
-        let pattern = "^[ㄱ-ㅎㅏ-ㅣ가-힣]$"
-        if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
-            var index = 0
-            while index < arr.count { // string 내 각 문자 하나하나 마다 정규식 체크 후 충족하지 못한것은 제거.
-                let results = regex.matches(in: String(arr[index]), options: [], range: NSRange(location: 0, length: 1))
-                if results.count == 0 {
-                    return false
-                } else {
-                    index += 1
-                }
-            }
-        }
-        return true
-    }
+    @State private var isKorean: Bool = false // 텍스트필드에서 한글 체크
     
     var body: some View {
         NavigationView {
             VStack {
                 if authManager.state == .signedIn {
-                    //MARK: - 텍스트필드 3개 (필수2, 선택1) + 국적선택 피커 1개
+                    //MARK: - 텍스트필드 4개
                     Form {
                         descriptionText
                         //속어 입력 텍스트필드(필수)
                         Section {
-                            Text("*필수 (공백만 입력 불가능)")
+                            Text("*한글 필수 문항 (영어, 공백만 입력 불가능)")
                                 .font(.caption)
                                 .foregroundColor(.red)
                             TextField("속어를 입력해주세요.", text: $slangTextField)
@@ -87,7 +68,7 @@ struct SlangRegistrationView: View {
                             Text("예) 농협은행")
                                 .font(.caption)
                                 .foregroundColor(.gray)
-
+                            
                         }
                         //속어 발음 입력 텍스트필드(필수)
                         Section {
@@ -105,7 +86,7 @@ struct SlangRegistrationView: View {
                         }
                         //속어에 사용되는 단어 의미 설명 텍스트필드(필수)
                         Section {
-                            Text("*필수 (공백만 입력 불가능)")
+                            Text("*한글 필수 문항 (영어, 공백만 입력 불가능)")
                                 .font(.caption)
                                 .foregroundColor(.red)
                             TextField("속어에 사용되는 단어의 의미를 설명해주세요.", text: $slangDescriptionTextField, axis: .vertical)
@@ -118,9 +99,9 @@ struct SlangRegistrationView: View {
                             
                                 .foregroundColor(.gray)
                         }
-                        //속어가 사용되는 상활 재연(선택)
+                        //속어가 사용되는 상활 재연(필수)
                         Section {
-                            Text("*필수 (공백만 입력 불가능)")
+                            Text("*한글 필수 문항 (영어, 공백만 입력 불가능)")
                                 .font(.caption)
                                 .foregroundColor(.red)
                             TextField("속어가 사용되는 상황을 재미있게 공유해보세요!", text: $slangSituationUsedTextField, axis: .vertical)
@@ -142,8 +123,15 @@ struct SlangRegistrationView: View {
                         VStack {
                             Button {
                                 Task {
-                                    await vocaManager.createVoca(voca: Vocabulary(id: UUID().uuidString, word: slangTextField, pronunciation: "", definition: slangDescriptionTextField, example: slangSituationUsedTextField, likes: 0, dislikes: 0, creatorId: Auth.auth().currentUser?.uid ?? ""))
-                                    
+
+                                    if KonameValidation(text: trimslangTextField) && KonameValidation(text: trimslangDescriptionTextField) && KonameValidation(text: trimslangSituationUsedTextField) && EnnameValidation(text: trimslangPronunciationTextField) {
+                                        await vocaManager.createVoca(voca: Vocabulary(id: UUID().uuidString, word: trimslangTextField, pronunciation: "", definition: trimslangDescriptionTextField, example: trimslangSituationUsedTextField, likes: 0, dislikes: 0, creatorId: Auth.auth().currentUser?.uid ?? ""))
+                                        
+                                        isKorean = true
+                                        
+                                    } else {
+                                        isKorean = false
+                                    }
                                     summitAlertToggle.toggle()
                                     
                                     print(Vocabulary(id: UUID().uuidString, word: slangTextField, pronunciation: "", definition: slangDescriptionTextField, example: slangSituationUsedTextField, likes: 0, dislikes: 0, creatorId: Auth.auth().currentUser?.uid ?? ""))
@@ -164,10 +152,14 @@ struct SlangRegistrationView: View {
                                         }
                                 }
                             }
-                            .alert("공유해주셔서 감사합니다!", isPresented: $summitAlertToggle) {
-                                Button("Ok") { dismiss() }
+                            .alert(isKorean ? "공유해주셔서 감사합니다!" : "필수항목을 다시한번 확인해주세요.", isPresented: $summitAlertToggle) {
+                                Button("Ok") {
+                                    if isKorean {
+                                        dismiss()
+                                    }
+                                }
                             } message: {
-                                Text(" 마이페이지에서 승인여부 확인 가능합니다. ")
+                                Text(isKorean ? " 마이페이지에서 승인여부 확인 가능합니다." : "")
                             }
                         }
                     } else {
@@ -202,6 +194,17 @@ struct SlangRegistrationView: View {
             }
         }
     }
+    func KonameValidation(text: String) -> Bool {
+                let pattern = "^[가-힣ㄱ-ㅎㅏ-ㅣ]*$"
+                let textTest = text.range(of: pattern, options: .regularExpression) != nil
+                return textTest
+            }
+        
+        func EnnameValidation(text: String) -> Bool {
+                let pattern = "^[a-zA-Z]*$"
+                let textTest = text.range(of: pattern, options: .regularExpression) != nil
+                return textTest
+            }
 }
 
 extension SlangRegistrationView {
@@ -221,7 +224,7 @@ extension SlangRegistrationView {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Awesome Korean Dictionary는 외국인을 위한 한국어 신조어/속어 사전입니다. 한글로 내용을 작성해 주시면, 번역 기능을 사용해 외국인이 쉽게 볼 수 있습니다.")
                     Text("해당 단어의 의미와 유래, 예문을 함께 작성해 주시면 외국인의 단어 이해에 큰 도움이 됩니다!")
-
+                    
                     Text("등록해 주신 단어는 관리자의 검수 및 승인 이후 노출되며,\n최종 등록까지 최대 3일이 소요될 수 있습니다.")
                         .font(.caption)
                         .foregroundColor(.blue)
