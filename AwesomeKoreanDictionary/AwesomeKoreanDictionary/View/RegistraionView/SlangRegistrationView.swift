@@ -57,10 +57,11 @@ struct SlangRegistrationView: View {
                         descriptionText
                         //속어 입력 텍스트필드(필수)
                         Section {
+
                             Text("*한글 필수 문항 (영어, 공백만 입력 불가능)")
                                 .font(.caption)
-                                .foregroundColor(.red)
-                            TextField("속어를 입력해주세요.", text: $slangTextField)
+                                .foregroundColor(Color(hex: "ff598e"))
+                            TextField("신조어/속어의 의미와 유래를 설명해주세요.", text: $slangTextField)
                                 .font(.title3)
                                 .fontWeight(.bold)
                                 .lineLimit(1, reservesSpace: true)
@@ -72,29 +73,30 @@ struct SlangRegistrationView: View {
                         }
                         //속어 발음 입력 텍스트필드(필수)
                         Section {
-                            Text("*영어 필수 문항 (한글, 공백만 입력 불가능)")
+                            Text("* 영어 필수 문항 (한글, 공백만 입력 불가능)")
                                 .font(.caption)
                                 .foregroundColor(.red)
-                            TextField("속어의 발음을 입력해주세요.", text: $slangPronunciationTextField)
+                            TextField("신조어/속어가 사용되는 상황을 \n'예문'으로 재미있게 공유해주세요!", text: $slangPronunciationTextField)
                                 .font(.title3)
                                 .fontWeight(.bold)
                                 .lineLimit(1, reservesSpace: true)
                                 .frame(width: 320, height: 30, alignment: .top)
-                            Text("예) Nonghyupeunhaeng")
+                            Text("예시) Nonghyupeunhaeng")
                                 .font(.caption)
                                 .foregroundColor(.gray)
                         }
                         //속어에 사용되는 단어 의미 설명 텍스트필드(필수)
                         Section {
+
                             Text("*한글 필수 문항 (영어, 공백만 입력 불가능)")
                                 .font(.caption)
                                 .foregroundColor(.red)
-                            TextField("속어에 사용되는 단어의 의미를 설명해주세요.", text: $slangDescriptionTextField, axis: .vertical)
+                            TextField("신조어/속어의 의미와 유래를 설명해주세요.", text: $slangDescriptionTextField, axis: .vertical)
                                 .font(.subheadline)
                                 .lineLimit(7, reservesSpace: true)
                                 .frame(width: 320, height: 150, alignment: .top)
                             
-                            Text("예) \(DescriptionExample)")
+                            Text("예시) \(DescriptionExample)")
                                 .font(.caption)
                             
                                 .foregroundColor(.gray)
@@ -104,11 +106,11 @@ struct SlangRegistrationView: View {
                             Text("*한글 필수 문항 (영어, 공백만 입력 불가능)")
                                 .font(.caption)
                                 .foregroundColor(.red)
-                            TextField("속어가 사용되는 상황을 재미있게 공유해보세요!", text: $slangSituationUsedTextField, axis: .vertical)
+                            TextField("신조어/속어가 사용되는 상황을 \n'예문'으로 재미있게 공유해주세요!", text: $slangSituationUsedTextField, axis: .vertical)
                                 .font(.subheadline)
                                 .lineLimit(7, reservesSpace: true)
                                 .frame(width: 320, height: 150, alignment: .top)
-                            Text("예) \(SituationUsedExample)")
+                            Text("예시) \(SituationUsedExample)")
                                 .font(.caption)
                             
                                 .foregroundColor(.gray)
@@ -142,7 +144,7 @@ struct SlangRegistrationView: View {
                                         .fill(Color.clear)
                                         .frame(width: 350, height: 70)
                                     RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.green)
+                                        .fill(Color(hex: "737DFE"))
                                         .frame(width: 350, height: 60)
                                         .overlay {
                                             Text("제출하기")
@@ -173,7 +175,7 @@ struct SlangRegistrationView: View {
                                         .fill(Color.clear)
                                         .frame(width: 350, height: 70)
                                     RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.red)
+                                        .fill(Color.gray)
                                         .frame(width: 350, height: 60)
                                         .overlay {
                                             Text("제출하기")
