@@ -24,6 +24,11 @@ struct WaitingApproveCell: View {
                     Text(vocabulary.word)
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                        .padding(.bottom, -3)
+                        .foregroundColor(Color(hex: "292929"))
+                    Text(vocabulary.pronunciation)
+                        .font(.title3)
+                        .padding(.bottom, -5)
                 }
                 Spacer()
             }
@@ -33,6 +38,7 @@ struct WaitingApproveCell: View {
                 Text("정의")
                     .foregroundColor(.secondary)
                 Text(vocabulary.definition)
+                    .lineSpacing(7)
             }
             
             VStack(alignment: .leading, spacing: 5) {
@@ -46,11 +52,11 @@ struct WaitingApproveCell: View {
                 }
             }
             
-            
             // 사용자 이름 / 날짜
             HStack {
-                
-                Text("\(vocabulary.creatorId)")
+                Text("by \(vocabulary.creatorId)")
+                    .fontWeight(.bold)
+                    .foregroundColor(Color(hex: "292929"))
                 Spacer()
                 
                 if vocabulary.isApproved == false {
@@ -62,9 +68,11 @@ struct WaitingApproveCell: View {
                     
                 } label: {
                     Text("승인하기")
+                        .frame(width: 100, height: 25)
                 }
                 .padding(5)
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color(.black)))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color(hex: "737DFE")))
+                
                 .foregroundColor(.white)
                 }
                
@@ -74,7 +82,7 @@ struct WaitingApproveCell: View {
  
         }
         .foregroundColor(.black)
-        .padding(20)
+        .padding(35)
         .frame(width: 365)
         .background(Color.white)
         .cornerRadius(20)

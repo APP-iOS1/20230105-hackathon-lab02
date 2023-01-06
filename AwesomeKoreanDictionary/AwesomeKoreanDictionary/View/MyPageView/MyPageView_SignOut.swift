@@ -22,32 +22,43 @@ struct MyPageView_SignOut: View {
         let thirdMyPageList: [String] = ["관리자 로그인"]
         NavigationStack{
             VStack {
-                VStack(alignment: .leading) {
+                VStack {
                     
                     Text("새로운 단어를 정의하려면 로그인하세요")
                         .font(.title2)
                         .foregroundColor(.black)
                         .padding()
                     
-                    
                     Button {
                         authManager.signIn()
+                        userInfoManager.fetchUserInfo()
                     } label: {
                         ZStack{
                             Rectangle()
-                                .padding(.leading)
-                                .frame(width: 170, height: 50)
-                                .foregroundColor(.black)
+                                .frame(width: 200, height: 40)
+                                .foregroundColor(Color(hex: "737DFE"))
+                                .cornerRadius(10)
                             Text("구글 로그인하기")
                                 .foregroundColor(.white)
                         }
-                        
                     }
                 }
                 
                 // 리스트 시작
                 VStack {
                     List {
+                        Text("마이 페이지")
+                            .font(.title3)
+                            .padding(.top)
+                        
+                        NavigationLink{
+                            MyPageView_MyBookmarkView()
+                        } label: {
+                            Text("내가 북마크한 단어들")
+                                .padding(.horizontal)
+                        }
+                        
+                        
                         Text("설정")
                             .font(.title3)
                             .padding(.top)
@@ -89,30 +100,18 @@ struct MyPageView_SignOut: View {
                             .padding(.horizontal)
                         } // 두번째 리스트
                         
-                        Text("관리자 로그인")
-                            .font(.title3)
-                            .padding(.top)
                         
-                        if userInfoManager.userInfo?.isAdmin == true {
-                            NavigationLink{
-                                AdminMainView()
-                            } label : {
-                                Text(thirdMyPageList[0])
-                                    .padding(.horizontal)
-                            }
-                            
-                        }
-                    }
-                    .foregroundColor(.black)
+                        .foregroundColor(.black)
+                    } // 리스트 끝
                     .listStyle(.plain)
-                } // 리스트 끝
-            }// 전체 한칸 안쪽 VStack 끝
-        }
-        .onAppear(){
-            userInfoManager.fetchUserInfo()
-        }
-        // 전체 VStack 끝
-    } // NavigationStack 끝
+                }// 전체 한칸 안쪽 VStack 끝
+            }
+            .onAppear(){
+                userInfoManager.fetchUserInfo()
+            }
+            // 전체 VStack 끝
+        } // NavigationStack 끝
+    }
 }
 
 

@@ -38,7 +38,7 @@ struct TermsAndConditionsView: View {
                          .fill(Color(hex: "737DFE"))
                          .frame(width: 350, height: 60)
                          .overlay {
-                             Text("모든 정보를 읽었고 동의합니다.")
+                             Text("확인")
                                  .foregroundColor(.white)
                                  .fontWeight(.black)
                                  .font(.title3)
@@ -49,7 +49,7 @@ struct TermsAndConditionsView: View {
      }
      
      let TermsOfServiceText: String = """
- Awesome Korean Dictionary("회사")는 아래 선언된 서비스 약관에 따라 Awesome Korean Dictionary("앱")을 제공합니다. 회사는 이 약관을 수시로 수정할 수 있는 권리를 보유합니다. 우리는 웹사이트에 중요한 수정 사항에 대한 통지를 게시할 것입니다. 귀하가 해당 앱을 계속 사용하면 이 약관에 동의하는 것으로 간주됩니다. 서비스 약관에 대한 질문은 아래 주소로 보낼 수 있습니다.
+ Awesome Korean Dictionary('회사')는 아래 선언된 서비스 약관에 따라 Awesome Korean Dictionary('앱')을 제공합니다. 회사는 이 약관을 수시로 수정할 수 있는 권리를 보유합니다. 우리는 웹사이트에 중요한 수정 사항에 대한 통지를 게시할 것입니다. 귀하가 해당 앱을 계속 사용하면 이 약관에 동의하는 것으로 간주됩니다. 서비스 약관에 대한 질문은 아래 주소로 보낼 수 있습니다.
  legal@awesomekoreandictionary.com
  """
      let termsAndConditionsText: String = """
@@ -63,7 +63,7 @@ struct TermsAndConditionsView: View {
 
  회사는 통지 여부에 관계없이 어떤 이유로든 이 앱을 수정, 중단 또는 중단할 권리를 보유합니다.
 
-  이 앱은 "있는 그대로" 그리고 "이용 가능한 상태로" 제공됩니다. 귀하는 앱 사용에 대한 전적인 책임과 위험을 감수합니다. 회사는 (i) 앱이 귀하의 요구 사항을 충족할 것, (ii) 귀하가 앱에 만족할 것, (iii) 귀하가 항상 앱을 사용할 수 있을 것, (iv) 앱이 오류, (v) 또는 모든 오류가 수정됩니다.
+  이 앱은 '있는 그대로' 그리고 '이용 가능한 상태로' 제공됩니다. 귀하는 앱 사용에 대한 전적인 책임과 위험을 감수합니다. 회사는 (i) 앱이 귀하의 요구 사항을 충족할 것, (ii) 귀하가 앱에 만족할 것, (iii) 귀하가 항상 앱을 사용할 수 있을 것, (iv) 앱이 오류, (v) 또는 모든 오류가 수정됩니다.
 
  회사는 귀하의 앱 사용으로 인한 손해 또는 손실에 대해 책임을 지지 않습니다.
 

@@ -8,64 +8,78 @@
 import SwiftUI
 
 struct MyPageView_EditUserInfoView: View {
-
+    
     @Environment(\.dismiss) var dismiss
-    @State private var userNickName: String = "YOOJ"
-    @ObservedObject var userNickName2 : AuthManager = AuthManager()
-    // 닉네임 받아오는 프로퍼티 생성되면 변경할게요!
-
+    
+    @Binding var userNickname: String
+    
+    @EnvironmentObject var userInfoManager: UserInfoManager
+    
+    
     var body: some View {
-        VStack{
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]), startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all)
             
-            Button {
-                dismiss()
-            } label: {
-                Image(systemName: "xmark")
-                    .font(.title2)
-            }
-            .padding(20)
-            .padding(.bottom, 45)
-
-            ZStack{
-            Rectangle()
-                .frame(width: .infinity, height: 70)
-                .foregroundColor(.black)
-            Text("이것은 당신의 정의가 사전에 게시될 때 \n 게시글 아래에 나타날 이름이다.")
-                .foregroundColor(.white)
-                .font(.callout)
-            }
-        
-            VStack(alignment: .leading){
-                Text("닉네임")
-                    .font(.title2)
+            VStack{
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(Color.white.opacity(0.7))
+                }
+                .padding(20)
+                .padding(.bottom, 45)
                 
-                TextEditor(text: $userNickName)
-                    .scrollContentBackground(.hidden)
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.gray)
-                    .frame(width: 300, height: 65)
-                    .cornerRadius(5)
+                VStack(alignment: .leading){
+                    Text("닉네임")
+                        .font(.title2)
+                    
+                    TextField("닉네임을 입력하세요.", text: $userNickname)
+                        .scrollContentBackground(.hidden)
+                        .padding()
+                        .foregroundColor(.gray)
+                        .background(Color.white)
+                        .frame(width: 350, height: 65)
+                    
+                }
+                .padding(.bottom, 20)
+                
+                Button(action: {
+                    Task{
+                        await userInfoManager.updateUserNickName(nickname: userNickname)
+                        userInfoManager.fetchUserInfo()
+                        dismiss()
+                    }
+                    
+                }) {
+                    VStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color(hex: "737DFE"))
+                            .frame(width: 350, height: 60)
+                            .overlay {
+                                Text("저장하기")
+                                    .foregroundColor(.white)
+                                    .fontWeight(.black)
+                                    .font(.title3)
+                            }
+                    }
+                }
+                Spacer()
+                
             }
-            
-            Button {
-                // 변경된 닉네임 저장하기
-            } label: {
-                Text("저장")
-                    .frame(width: 300, height: 50)
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .background(.black)
-            }
-            Spacer()
-
+        }
+        .onAppear(){
+            userInfoManager.fetchUserInfo()
+            userNickname = userInfoManager.userInfo?.userNickname ?? ""
         }
     }
 }
 
-struct MyPageView_EditUserInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyPageView_EditUserInfoView()
-    }
-}
+//struct MyPageView_EditUserInfoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MyPageView_EditUserInfoView()
+//    }
+//}
