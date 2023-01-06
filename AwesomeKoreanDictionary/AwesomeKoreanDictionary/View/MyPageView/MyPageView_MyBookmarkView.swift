@@ -6,10 +6,34 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct MyPageView_MyBookmarkView: View {
+    @Environment(\.managedObjectContext) var managedObjContext
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.word)]) var voca: FetchedResults<BookmarkedVoca>
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text("북마크한 단어들")
+            List {
+                ForEach(voca) { voca in
+                    Text("\(voca.word!)")
+                    Text("\(voca.definition!)")
+                }
+                .onDelete(perform: deleteVoca)
+            }.listStyle(.plain)
+        }
+        
+    }
+//     Deletes voca at the current offset
+    private func deleteVoca(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { voca[$0] }
+            .forEach(managedObjContext.delete)
+
+            // Saves to our database
+            DataController().save(context: managedObjContext)
+        }
     }
 }
 

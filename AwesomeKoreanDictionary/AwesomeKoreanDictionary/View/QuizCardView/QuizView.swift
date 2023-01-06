@@ -11,6 +11,7 @@ struct QuizView: View {
     
     // TODO: - Quiz로 보여줄 단어는 어떻게 정할건지? - likes수가 높은 상위 몇개의 단어?
     @ObservedObject var vocabularyNetworkManager = VocabularyNetworkManager()
+    @ObservedObject var papagoNetworkManager = PapagoNetworkManager()
     
     // To track which card is swiped
     @Namespace var name
@@ -24,17 +25,23 @@ struct QuizView: View {
                 HStack {
                     VStack(alignment: .leading, spacing: 12) {
                         // TODO: - QuizView 제목달기
-                        Text("Products")
+                        Text("Korean Slang Quiz Challenge!")
+                            .fontWeight(.heavy)
+                        //        .lineSpacing(-1)
+                            .kerning(-1)
                             .font(.system(size: 45))
                             .foregroundColor(.white)
+                        
                         // TODO: - 어떤 데이터를 보여줄지
-                        HStack(spacing: 15) {
-                            Text("Design tools")
-                                .font(.system(size: 30))
-                                .fontWeight(.bold)
+                        HStack(spacing: 5) {
+                            Text("with a Awesome Korean Dictionary")
+                                .kerning(-1)
+                                .font(.system(size: 25))
                                 .foregroundColor(Color.white.opacity(0.7))
                         }
+                        .padding(.leading,5)
                     }
+                    .padding(.vertical, 30)
                     
                     Spacer(minLength: 0)
                 }
@@ -78,7 +85,7 @@ struct QuizView: View {
                     }
                     .offset(y: -25)
                 }
-                .padding(.top, 50)
+                .padding(.top, 10)
             }
             
             if isShowing {
@@ -91,8 +98,9 @@ struct QuizView: View {
             }
         }
         .background(
-            Color.mint
-                .edgesIgnoringSafeArea(.all)
+            LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]),
+                           startPoint: .top, endPoint: .bottom)
+            .edgesIgnoringSafeArea(.all)
             // Disable bg color when its expanded
                 .opacity(isShowing ? 0 : 1)
         )
