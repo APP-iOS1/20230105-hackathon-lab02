@@ -7,6 +7,8 @@
 */
 
 // 퀴즈
+"정의" = "definition";
+"예시" = "example";
 "한국 신조어/속어 퀴즈 챌린지" = "Korean New Words/Slang Quiz Challenge";
 "당신의 한국어 능력을 테스트하세요!" = "Test your Korean skills!";
 "이 단어의 뜻은 무엇일까요?" = "What does this word mean?";
