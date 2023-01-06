@@ -58,7 +58,7 @@ struct MyPageView_SelectingLanguageView: View {
                         showingOptions.toggle()
                     } label: {
                         Text("\(language)")
-                    }.buttonStyle(.plain)
+                    }
                         .confirmationDialog("해당 언어로 설정을 변경합니다.", isPresented: $showingOptions, titleVisibility: .visible) {
                             Button(selectedLanguage ?? "") {
                                 defaultLanguage = selectedLanguage ?? ""

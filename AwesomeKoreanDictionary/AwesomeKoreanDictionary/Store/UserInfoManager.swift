@@ -68,7 +68,7 @@ final class UserInfoManager: ObservableObject {
 //        guard let currentUserId else { return }
         let path = database.collection("user")
         do {
-            try await path.document(currentUserId).setData(["nickname": nickname], merge: true)
+            try await path.document(currentUserId).setData(["userNickname": nickname], merge: true)
         } catch {
             print(error.localizedDescription)
         }

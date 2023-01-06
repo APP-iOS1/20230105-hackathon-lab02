@@ -10,9 +10,11 @@ import SwiftUI
 struct MyPageView_EditUserInfoView: View {
 
     @Environment(\.dismiss) var dismiss
-    @State private var userNickName: String = ""
-    @ObservedObject var userNickName2 : AuthManager = AuthManager()
-    // 닉네임 받아오는 프로퍼티 생성되면 변경할게요!
+
+    @State private var userNickName: String = "YOOJ"
+  
+    @EnvironmentObject var userInfoManager: UserInfoManager
+
 
     var body: some View {
         ZStack {
@@ -21,6 +23,7 @@ struct MyPageView_EditUserInfoView: View {
             
             VStack{
                 
+
                 Button {
                     dismiss()
                 } label: {
@@ -56,6 +59,11 @@ struct MyPageView_EditUserInfoView: View {
                 .padding(.bottom, 20)
                 
                 Button(action: {
+                                Task{
+                    await userInfoManager.updateUserNickName(nickname: userNickName)
+                    userInfoManager.fetchUserInfo()
+                }
+                
                 }) {
                     VStack {
                         RoundedRectangle(cornerRadius: 10)
@@ -70,7 +78,12 @@ struct MyPageView_EditUserInfoView: View {
                     }
                 }
                 Spacer()
+
             }
+        }
+        .onAppear(){
+            userInfoManager.fetchUserInfo()
+            userNickName = userInfoManager.userInfo?.userNickname ?? ""
         }
     }
 }
