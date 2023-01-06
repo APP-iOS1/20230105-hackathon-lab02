@@ -117,8 +117,8 @@ struct ListCell: View {
                         Image(systemName: isLike ? "hand.thumbsup.fill" : "hand.thumbsup")
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
-                        Text("\(vocabulary.likes)")
-                            .foregroundColor(.mint)
+//                        Text("\(vocabulary.likes)")
+//                            .foregroundColor(.mint)
                         ForEach(vocabularyNetworkManager.likes) { like in
                             if like.id == vocabulary.id {
                                 Text("\(like.likeCount)")
@@ -141,7 +141,7 @@ struct ListCell: View {
                         Image(systemName: isDislike ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
-                        Text("\(vocabulary.dislikes)")
+//                        Text("\(vocabulary.dislikes)")
 
                         ForEach(vocabularyNetworkManager.likes) { like in
                             if like.id == vocabulary.id {

@@ -63,6 +63,7 @@ struct MainView: View {
             }
             
         }
+        .tint(.white)
     }
 }
 
