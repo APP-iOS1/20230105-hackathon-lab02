@@ -58,6 +58,7 @@ struct MainView: View {
             }
             
         }
+        .tint(.black)
     }
 }
 
@@ -67,9 +68,7 @@ struct ToolbarModifier: ViewModifier {
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
     
     @Binding var searchText: String
-    @State var isSignedIn: Bool = false
-    @State var showingSignInAlert: Bool = false
-    @State var isShowingSheet = false
+
     
     func body(content: Content) -> some View {
         content
@@ -89,6 +88,7 @@ struct ToolbarModifier: ViewModifier {
                         Image(systemName: "plus.rectangle.portrait.fill")
                             .foregroundColor(Color(hex: "292929"))
                     }
+
                     //                    Button {
                     //                        isSignedIn = authManager.state == .signedOut ? false : true
                     //                        showingSignInAlert = !isSignedIn
@@ -113,6 +113,7 @@ struct ToolbarModifier: ViewModifier {
                     //                    .sheet(isPresented: $isShowingSheet) {
                     //                        LoginView(isShowingSheet: $isShowingSheet)
                     //                    }
+
                     NavigationLink {
                         MyPageView()
                     } label: {

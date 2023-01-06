@@ -19,18 +19,18 @@ struct LoginView: View {
                            startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                HStack {
-                    Spacer()
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                            .foregroundColor(Color.white.opacity(0.7))
-                    }.padding(.trailing, 30)
-                        .padding(.top, 30)
-                }
+//                HStack {
+//                    Spacer()
+//                    Button {
+//                        dismiss()
+//                    } label: {
+//                        Image(systemName: "xmark")
+//                            .resizable()
+//                            .frame(width: 25, height: 25)
+//                            .foregroundColor(Color.white.opacity(0.7))
+//                    }.padding(.trailing, 30)
+//                        .padding(.top, 30)
+//                }
 
                 Spacer()
 
@@ -71,13 +71,6 @@ struct LoginView: View {
                 
                 Spacer()
             }
-        }
-        .onAppear {
-            Task {
-                let string = try await PapagoNetworkManager.shared.requestTranslate(sourceString: "안녕하세요", target: .english)
-                print(string)
-            }
-            
         }
     }
 }

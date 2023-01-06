@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct Detail: View {
-    
+
     @Binding var isShowing: Bool
-    
+
     @EnvironmentObject var papagoNetworkManager: PapagoNetworkManager
-    
+
     var card: Card
     var name: Namespace.ID
-    
-    var languages: [String] = ["ENG", "CHN", "JPN"]
-    @State private var selectedLanguage: Int = 0
-    
+
+    var languageCodes: [String] = ["en", "zh-CN", "ja"]
+    var languages: [String] = ["English", "Chinese", "Japanese"]
+    @State private var selectedLanguage: String = ""
+
     @State private var translate: String = ""
     @State private var isPickerDisappeared: Bool = false
-    
+
     var body: some View {
+
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]),
                            startPoint: .top, endPoint: .bottom)
@@ -77,9 +79,11 @@ struct Detail: View {
                             })
                             .onDisappear {
                                 isPickerDisappeared = true
+
                             }
                             
                         }
+
                         .padding(.vertical)
                         
                         // TODO: - text alignment
@@ -129,6 +133,7 @@ struct Detail: View {
                         self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: PapagoNetworkManager.TargetLanguage.japanese)
                         
                         print("JP: \(translate)")
+
                     }
                 }
             }

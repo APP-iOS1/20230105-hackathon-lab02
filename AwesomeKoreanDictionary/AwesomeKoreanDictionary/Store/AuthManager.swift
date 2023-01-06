@@ -107,6 +107,7 @@ class AuthManager: ObservableObject {
             try Auth.auth().signOut()
             
             state = .signedOut
+            UserInfoManager().userInfo = nil
         } catch {
             print(error.localizedDescription)
         }

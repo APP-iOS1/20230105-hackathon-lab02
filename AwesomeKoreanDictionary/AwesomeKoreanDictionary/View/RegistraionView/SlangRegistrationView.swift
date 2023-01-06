@@ -238,5 +238,6 @@ extension SlangRegistrationView {
 struct SlangRegistrationView_Previews: PreviewProvider {
     static var previews: some View {
         SlangRegistrationView()
+            .environmentObject(AuthManager())
     }
 }
