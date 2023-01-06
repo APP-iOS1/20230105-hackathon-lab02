@@ -62,7 +62,7 @@ struct MyPageView_SignIn: View {
                                 .padding(.top)
                             
                             NavigationLink{
-                                // 내가 북마크한 단어들 리스트뷰 필요
+                                MyPageView_MyBookmarkView()
                             } label: {
                                 Text("\(firstMyPageList[0])")
                                     .padding(.horizontal)
@@ -139,11 +139,5 @@ struct MyPageView_SignIn: View {
                 userInfoManager.fetchUserInfo()
             }
         } // NavigationStack 끝
-    }
-}
-
-struct MyPage_SignIn_Previews: PreviewProvider {
-    static var previews: some View {
-        MyPageView_SignIn()
     }
 }
