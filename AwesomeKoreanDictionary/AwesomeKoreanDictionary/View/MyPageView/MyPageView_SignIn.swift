@@ -11,7 +11,7 @@ struct MyPageView_SignIn: View {
     
     @EnvironmentObject var userInfoManager: UserInfoManager
     @EnvironmentObject var authManager: AuthManager
-    @State private var userNickName: String = "YOOJ"
+    @State private var userNickname: String = "YOOJ"
     @State private var showEditViewModal: Bool = false
     @State var sheet1: Bool = false //개인정보 보호정책
     @State var sheet2: Bool = false //이용약관
@@ -28,8 +28,7 @@ struct MyPageView_SignIn: View {
                 VStack(alignment: .leading) {
                     
                     HStack{
-                        Text("\(userInfoManager.userInfo?.userNickname ?? "") 입니다.")
-                        
+                        Text("\(userNickname) 입니다.")
                             .font(.title2)
                             .foregroundColor(.black)
                             .padding()
@@ -50,7 +49,7 @@ struct MyPageView_SignIn: View {
                                 )
                         }.buttonStyle(.plain)
                             .fullScreenCover(isPresented: $showEditViewModal){
-                                MyPageView_EditUserInfoView()
+                                MyPageView_EditUserInfoView(userNickname: $userNickname)
                             }
                     } // 상단 내 닉네임 노출 및 개인 정보 수정 HStack 끝
                     
@@ -158,9 +157,11 @@ struct MyPageView_SignIn: View {
         } // 전체 VStack 끝
         .onAppear {
             userInfoManager.fetchUserInfo()
+            userNickname = userInfoManager.userInfo?.userNickname ?? ""
         }
     } // NavigationStack 끝
 }
+
 
 struct MyPage_SignIn_Previews: PreviewProvider {
     static var previews: some View {
