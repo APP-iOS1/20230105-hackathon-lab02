@@ -58,10 +58,10 @@ struct SlangRegistrationView: View {
                         //속어 입력 텍스트필드(필수)
                         Section {
 
-                            Text("*한글 필수 문항 (영어, 공백만 입력 불가능)")
+                            Text("* 한글 필수 문항 (영어, 공백만 입력 불가능)")
                                 .font(.caption)
                                 .foregroundColor(Color(hex: "ff598e"))
-                            TextField("신조어/속어의 의미와 유래를 설명해주세요.", text: $slangTextField)
+                            TextField("신조어/속어를 입력해주세요.", text: $slangTextField)
                                 .font(.title3)
                                 .fontWeight(.bold)
                                 .lineLimit(1, reservesSpace: true)
@@ -75,9 +75,9 @@ struct SlangRegistrationView: View {
                         Section {
                             Text("* 영어 필수 문항 (한글, 공백만 입력 불가능)")
                                 .font(.caption)
-                                .foregroundColor(.red)
-                            TextField("신조어/속어가 사용되는 상황을 \n'예문'으로 재미있게 공유해주세요!", text: $slangPronunciationTextField)
-                                .font(.title3)
+                                .foregroundColor(Color(hex: "ff598e"))
+                            TextField("신조어/속어의 발음(알파벳)을 입력해 주세요.", text: $slangPronunciationTextField)
+                                .font(.callout)
                                 .fontWeight(.bold)
                                 .lineLimit(1, reservesSpace: true)
                                 .frame(width: 320, height: 30, alignment: .top)
@@ -90,7 +90,7 @@ struct SlangRegistrationView: View {
 
                             Text("*한글 필수 문항 (영어, 공백만 입력 불가능)")
                                 .font(.caption)
-                                .foregroundColor(.red)
+                                .foregroundColor(Color(hex: "ff598e"))
                             TextField("신조어/속어의 의미와 유래를 설명해주세요.", text: $slangDescriptionTextField, axis: .vertical)
                                 .font(.subheadline)
                                 .lineLimit(7, reservesSpace: true)
@@ -105,7 +105,7 @@ struct SlangRegistrationView: View {
                         Section {
                             Text("*한글 필수 문항 (영어, 공백만 입력 불가능)")
                                 .font(.caption)
-                                .foregroundColor(.red)
+                                .foregroundColor(Color(hex: "ff598e"))
                             TextField("신조어/속어가 사용되는 상황을 \n'예문'으로 재미있게 공유해주세요!", text: $slangSituationUsedTextField, axis: .vertical)
                                 .font(.subheadline)
                                 .lineLimit(7, reservesSpace: true)
@@ -113,9 +113,7 @@ struct SlangRegistrationView: View {
                             Text("예시) \(SituationUsedExample)")
                                 .font(.caption)
                             
-                                .foregroundColor(.gray)
-                            
-                            
+                            .foregroundColor(.gray)
                         }
                     }
                     .padding(.bottom)
@@ -125,7 +123,6 @@ struct SlangRegistrationView: View {
                         VStack {
                             Button {
                                 Task {
-
                                     if KonameValidation(text: trimslangTextField) && KonameValidation(text: trimslangDescriptionTextField) && KonameValidation(text: trimslangSituationUsedTextField) && EnnameValidation(text: trimslangPronunciationTextField) {
                                         await vocaManager.createVoca(voca: Vocabulary(id: UUID().uuidString, word: trimslangTextField, pronunciation: "", definition: trimslangDescriptionTextField, example: trimslangSituationUsedTextField, likes: 0, dislikes: 0, creatorId: Auth.auth().currentUser?.uid ?? ""))
                                         

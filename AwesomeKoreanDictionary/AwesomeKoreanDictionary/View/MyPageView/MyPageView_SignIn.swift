@@ -22,7 +22,6 @@ struct MyPageView_SignIn: View {
         let secondMyPageList: [String] = ["언어"]
         let thirdMyPageList: [String] = ["개인정보 보호정책", "이용 약관"]
         
-        
         NavigationStack{
             VStack {
                 VStack(alignment: .leading) {
@@ -40,15 +39,17 @@ struct MyPageView_SignIn: View {
                             self.showEditViewModal.toggle()
                         } label: {
                             Text("수정하기")
-                                .padding(4)
+                                .foregroundColor(.white)
+                                .frame(width: 80, height: 30)
                                 .padding(.horizontal,10)
                                 .font(.subheadline)
                                 .fontWeight(.medium)
                                 .cornerRadius(15)
-                                .overlay(RoundedRectangle(cornerRadius: 15)
-                                    .stroke(Color(.black), lineWidth: 1)
+                                .background(RoundedRectangle(cornerRadius: 10).fill(Color(hex: "737DFE"))
                                 )
-                        }.buttonStyle(.plain)
+                        }
+                        .padding(.trailing, 25)
+                        .buttonStyle(.plain)
                             .fullScreenCover(isPresented: $showEditViewModal){
                                 MyPageView_EditUserInfoView()
                             }

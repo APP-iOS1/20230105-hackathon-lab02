@@ -35,15 +35,6 @@ struct MyPageView_EditUserInfoView: View {
                 .padding(20)
                 .padding(.bottom, 45)
                 
-//                ZStack{
-//                    Rectangle()
-//                        .frame(width: .infinity, height: 70)
-//                        .foregroundColor(.black)
-//                    Text("이것은 당신의 정의가 사전에 게시될 때 \n 게시글 아래에 나타날 이름이다.")
-//                        .foregroundColor(.white)
-//                        .font(.callout)
-//                }
-                
                 VStack(alignment: .leading){
                     Text("닉네임")
                         .font(.title2)

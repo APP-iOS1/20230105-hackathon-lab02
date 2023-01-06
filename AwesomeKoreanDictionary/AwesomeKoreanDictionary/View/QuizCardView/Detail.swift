@@ -24,90 +24,77 @@ struct Detail: View {
     @State private var isPickerDisappeared: Bool = false
 
     var body: some View {
-        VStack {
-            HStack(alignment: .top, spacing: 12, content: {
-                Button(action: {
-                    withAnimation(.spring()) {
-                        isShowing.toggle()
-                    }
-                }, label: {
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]),
+                           startPoint: .top, endPoint: .bottom)
+            .edgesIgnoringSafeArea(.all)
+            VStack {
+                HStack(alignment: .top, spacing: 12, content: {
+                    Button(action: {
+                        withAnimation(.spring()) {
+                            isShowing.toggle()
+                        }
+                    }, label: {
                         Image(systemName: "chevron.left")
-                            .font(.system(size: 30, weight: .bold))
-                            .foregroundColor(.black)
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                            .foregroundColor(Color.white.opacity(0.7))
                     })
-
-                Spacer(minLength: 0)
-
-            })
+                    
+                    Spacer(minLength: 0)
+                    
+                })
                 .padding(.leading, 20)
                 .padding([.top, .bottom, .trailing])
-
-            // For smaller size phones
-            ScrollView(.vertical, showsIndicators: false, content: {
-                VStack {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 12, content: {
-                            Text(card.name)
-                                .font(.system(size: 45, weight: .bold))
-                                .foregroundColor(.black)
-
-                            // TODO: - 어떤 데이터를 보여줄지
-                            Text("Design tools")
-                                .font(.system(size: 30))
-                                .foregroundColor(.black)
-                            // TODO: - 어떤 데이터를 보여줄지
-                            Text("Free")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .foregroundColor(.blue)
-                                .padding(.top, 10)
-                        })
-
-                        Spacer(minLength: 0)
-
-                        Picker("Select Language", selection: $selectedLanguage) {
-                            Text("Select Language")
-                            ForEach(0..<languages.count) { idx in
-                                Text(languages[idx]).tag(languageCodes[idx])
+                
+                // For smaller size phones
+                ScrollView(.vertical, showsIndicators: false, content: {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 12, content: {
+                                Text(card.name)
+                                    .font(.system(size: 45, weight: .heavy))
+                                    .foregroundColor(.white)
+                            })
+                            
+                            Spacer(minLength: 0)
+                            
+                            Picker("Select Language", selection: $selectedLanguage) {
+                                Text("한국어")
+                                ForEach(0..<languages.count) { idx in
+                                    Text(languages[idx]).tag(languageCodes[idx])
+                                }
                             }
-                        }
                             .onChange(of: selectedLanguage, perform: { value in
-                            Task {
-
-                                self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: String(value))
-
-                            }
-                        })
-
-
-                    }
-                        .padding(.vertical)
-
-                    // TODO: - text alignment
-                    HStack {
+                                Task {
+                                    self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: String(value))
+                                }
+                            })
+                        }
+                        .padding(.top, 20)
+                        .padding(.bottom, 50)
+                        
+                        // TODO: - text alignment
+                        
                         VStack(alignment: .leading) {
                             Text("정의: \(card.definition)")
-                                .font(.system(size: 22))
-                                .foregroundColor(Color.black.opacity(0.7))
-                                .multilineTextAlignment(.leading)
-                                .padding(.top)
-
-
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundColor(Color(hex: "424242"))
+                                .padding(.vertical, 5)
+                            
                             Text("번역: \(translate)")
-                                .font(.system(size: 22))
-                                .foregroundColor(Color.black.opacity(0.7))
+                                .font(.title2)
+                                .foregroundColor(Color(hex: "424242"))
                                 .multilineTextAlignment(.leading)
-                                .padding(.top)
+                                .lineSpacing(10)
+                            
+                            Spacer()
                         }
-
-                        Spacer()
                     }
-
-
-
-                }
                     .padding(.horizontal, 20)
-            })
+                })
+            }
         }
             .navigationBarBackButtonHidden(true)
             .background(Color.white)

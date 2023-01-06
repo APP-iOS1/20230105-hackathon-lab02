@@ -14,18 +14,14 @@ struct ApprovedView: View {
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]), startPoint: .top, endPoint: .bottom)
-            .edgesIgnoringSafeArea(.all)
-        VStack {
-            
-//            Color.mint
-//                .edgesIgnoringSafeArea(.all)
-//
-            ScrollView {
-                
-                Spacer(minLength: 10)
-                
-                VStack(spacing: 15) {
-                    ForEach(vocabularyNetworkManager.vocabularies, id: \.self) { vocabulary in
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                ScrollView {
+                    
+                    Spacer(minLength: 10)
+                    
+                    VStack(spacing: 15) {
+                        ForEach(vocabularyNetworkManager.vocabularies, id: \.self) { vocabulary in
                         
                         if vocabulary.isApproved == true {
                             WaitingApproveCell(vocabulary: vocabulary)

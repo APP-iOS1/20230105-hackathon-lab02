@@ -36,39 +36,37 @@ struct MyPageView_SelectingLanguageView: View {
     var body: some View {
         
         let languages: [String] = ["한국어", "영어", "중국어", "일본어"]
-        
-        VStack{
 
-            
-            List{
-                Text("현재 설정된 언어")
-                    .font(.title3)
-                    .padding(.top)
-                Text(defaultLanguage)
-                    .padding(.horizontal)
-                
-                Text("언어 선택")
-                    .font(.title3)
-                    .padding(.top)
-                
-                ForEach(languages, id: \.self) { language in
-
-                    Button {
-                        self.selectedLanguage = language
-                        showingOptions.toggle()
-                    } label: {
-                        Text("\(language)")
-                    }
+            VStack{
+                List{
+                    Text("현재 설정된 언어")
+                        .font(.title3)
+                        .padding(.top)
+                    Text(defaultLanguage)
+                        .padding(.horizontal)
+                    
+                    Text("언어 선택")
+                        .font(.title3)
+                        .padding(.top)
+                    
+                    ForEach(languages, id: \.self) { language in
+                        
+                        Button {
+                            self.selectedLanguage = language
+                            showingOptions.toggle()
+                        } label: {
+                            Text("\(language)")
+                        }
                         .confirmationDialog("해당 언어로 설정을 변경합니다.", isPresented: $showingOptions, titleVisibility: .visible) {
                             Button(selectedLanguage ?? "") {
                                 defaultLanguage = selectedLanguage ?? ""
                             }
                         }
                         .padding(.horizontal)
-                }
-                
-            }.listStyle(.plain)
-        }
+                    }
+                    
+                }.listStyle(.inset)
+            }
     }
 }
 
