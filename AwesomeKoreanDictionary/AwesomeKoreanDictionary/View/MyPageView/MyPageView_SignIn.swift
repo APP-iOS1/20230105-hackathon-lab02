@@ -29,7 +29,7 @@ struct MyPageView_SignIn: View {
                     
                     HStack{
                         Text("\(userInfoManager.userInfo?.userNickname ?? "") 입니다.")
-
+                        
                             .font(.title2)
                             .foregroundColor(.black)
                             .padding()
@@ -137,30 +137,29 @@ struct MyPageView_SignIn: View {
                                 
                             }
                         }
+                        
+                        
+                        Button {
+                            showingAlert = true
                             
-                            
-                            Button {
-                                showingAlert = true
-                               
-                            } label: {
-                                Text("로그아웃")
-//                                    .font(.title3)
-//                                    .padding(.top)
-                            }.buttonStyle(.plain)
-                                .alert(isPresented: $showingAlert){
-                                    Alert(title: Text("정말 로그아웃\n하시겠습니까?"), message: Text(""), primaryButton: .destructive(Text("로그아웃")){authManager.signOut()}, secondaryButton: .cancel())
-                                }
-                        }
+                        } label: {
+                            Text("로그아웃")
+                            //                                    .font(.title3)
+                            //                                    .padding(.top)
+                        }.buttonStyle(.plain)
+                            .alert(isPresented: $showingAlert){
+                                Alert(title: Text("정말 로그아웃\n하시겠습니까?"), message: Text(""), primaryButton: .destructive(Text("로그아웃")){authManager.signOut()}, secondaryButton: .cancel())
+                            }
                     }
-                    .listStyle(.plain)
-                    // 리스트 끝
-                }// 전체 한칸 안쪽 VStack 끝
-            } // 전체 VStack 끝
-            .onAppear {
-                userInfoManager.fetchUserInfo()
-            }
-        } // NavigationStack 끝
-    }
+                }
+                .listStyle(.plain)
+                // 리스트 끝
+            }// 전체 한칸 안쪽 VStack 끝
+        } // 전체 VStack 끝
+        .onAppear {
+            userInfoManager.fetchUserInfo()
+        }
+    } // NavigationStack 끝
 }
 
 struct MyPage_SignIn_Previews: PreviewProvider {
