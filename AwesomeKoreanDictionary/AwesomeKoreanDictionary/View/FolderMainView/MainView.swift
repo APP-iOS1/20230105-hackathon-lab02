@@ -22,14 +22,9 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]),
-                               startPoint: .top, endPoint: .bottom)
+                LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
-                //픽 [Color(hex: "FD80A8"), Color(hex: "FCCF42")]
-                //   [Color(hex: "6D678E"), Color(hex: "F6B5CC")]
-                // [Color(hex: "CCFBFF"), Color(hex: "EF96C5")]
-                // [Color(hex: "EAE5C9"), Color(hex: "6CC6CB")]
-                // [Color(hex: "737DFE"), Color(hex: "FFCAC9")]
+                
                 ScrollView {
                     Spacer(minLength: 10)
                     
@@ -39,13 +34,7 @@ struct MainView: View {
                             ListCell(vocabulary: vocabulary)
                         }
                     }
-                    
-                    NavigationLink {
-                        TestView()
-                    } label: {
-                        Text("테스트하러 가쟈")
-                    }
- 
+
                 }
                 .refreshable {
                     Task {
@@ -57,13 +46,14 @@ struct MainView: View {
             .onAppear {
                 Task {
                     await vocabularyNetworkManager.requestVocabularyList()
-                    await vocabularyNetworkManager.countLikes()
 
+                    await vocabularyNetworkManager.countLikes()
+                    
                 }
             }
             
         }
-        .tint(.white)
+        .tint(.black)
     }
 }
 
@@ -73,9 +63,7 @@ struct ToolbarModifier: ViewModifier {
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
     
     @Binding var searchText: String
-    @State var isSignedIn: Bool = false
-    @State var showingSignInAlert: Bool = false
-    @State var isShowingSheet = false
+
     
     func body(content: Content) -> some View {
         content
@@ -95,30 +83,32 @@ struct ToolbarModifier: ViewModifier {
                         Image(systemName: "plus.rectangle.portrait.fill")
                             .foregroundColor(Color(hex: "292929"))
                     }
-//                    Button {
-//                        isSignedIn = authManager.state == .signedOut ? false : true
-//                        showingSignInAlert = !isSignedIn
-//                    } label: {
-//                        Image(systemName: "plus.rectangle.portrait.fill")
-//                    }
-//                    .navigationDestination(isPresented: $isSignedIn) {
-//                        SlangRegistrationView()
-//                    }
-//                    .alert("로그인이 필요합니다", isPresented: $showingSignInAlert) {
-//                        Button {
-//                            print("취소")
-//                        } label: {
-//                            Text("취소")
-//                        }
-//                        Button {
-//                            isShowingSheet = true
-//                        } label: {
-//                            Text("로그인")
-//                        }
-//                    }
-//                    .sheet(isPresented: $isShowingSheet) {
-//                        LoginView(isShowingSheet: $isShowingSheet)
-//                    }
+
+                    //                    Button {
+                    //                        isSignedIn = authManager.state == .signedOut ? false : true
+                    //                        showingSignInAlert = !isSignedIn
+                    //                    } label: {
+                    //                        Image(systemName: "plus.rectangle.portrait.fill")
+                    //                    }
+                    //                    .navigationDestination(isPresented: $isSignedIn) {
+                    //                        SlangRegistrationView()
+                    //                    }
+                    //                    .alert("로그인이 필요합니다", isPresented: $showingSignInAlert) {
+                    //                        Button {
+                    //                            print("취소")
+                    //                        } label: {
+                    //                            Text("취소")
+                    //                        }
+                    //                        Button {
+                    //                            isShowingSheet = true
+                    //                        } label: {
+                    //                            Text("로그인")
+                    //                        }
+                    //                    }
+                    //                    .sheet(isPresented: $isShowingSheet) {
+                    //                        LoginView(isShowingSheet: $isShowingSheet)
+                    //                    }
+
                     NavigationLink {
                         MyPageView()
                     } label: {

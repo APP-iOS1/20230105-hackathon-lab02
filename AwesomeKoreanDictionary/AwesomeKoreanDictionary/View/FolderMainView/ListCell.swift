@@ -12,14 +12,18 @@ import SwiftUI
 struct ListCell: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.word)]) var voca: FetchedResults<BookmarkedVoca>
+    @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
     @State private var isLike: Bool = false
     @State private var isDislike: Bool = false
     @State private var isBookmark: Bool = false
+    @State private var sharedSheet: Bool = false
+    @State private var selection: String = ""
+    @State private var translatedDefinition = ""
+    @State private var translatedExample = ""
+    
     var vocabulary: Vocabulary
-    var languages = ["KOR", "ENG", "CHN", "JPN"]
-    @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
-    @State var selection: String = "KOR"
-    @State var sharedSheet: Bool = false
+    var languages = ["ENG", "CHN", "JPN"]
+    var languageCodes = ["en", "zh-CN", "ja"]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -39,13 +43,21 @@ struct ListCell: View {
                 Spacer()
                 
                 Picker(selection: $selection) {
-                    ForEach(languages, id: \.self) { lang in
-                        Text(lang)
+                    Text("KOR")
+                    ForEach(languages.indices) { index in
+                        Text(languages[index]).tag(languageCodes[index])
                     }
                 } label: {
                     Text("언어 선택")
-                    
                 }
+                .onChange(of: selection, perform: { value in
+                    // 비동기로 파파고에게 번역 네트워킹 시도
+                    Task {
+                        translatedDefinition = try await PapagoNetworkManager.shared.requestTranslate(sourceString: vocabulary.definition, target: String(value))
+                        translatedExample = try await PapagoNetworkManager.shared.requestTranslate(sourceString: vocabulary.example, target: String(value))
+                    }
+                    
+                })
                 .frame(height: 30)
                 .tint(.black)
                 
@@ -73,18 +85,18 @@ struct ListCell: View {
             
             // 내용
             VStack(alignment: .leading, spacing: 5) {
-                Text("Definition")
+                Text("정의")
                     .foregroundColor(.secondary)
-                Text(vocabulary.definition)
+                Text(selection != "" ? translatedDefinition : vocabulary.definition) // 이 내용을 번역본으로 변경
                     .lineSpacing(7)
             }
             .padding(.bottom, -10)
             
             VStack(alignment: .leading, spacing: 5) {
-                Text("Example")
+                Text("예시")
                     .foregroundColor(.secondary)
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("• \(vocabulary.example)")
+                    Text(selection != "" ? "• \(translatedExample)" : "• \(vocabulary.example)") // 이 내용을 번역본으로 변경
                         .italic()
 //                    ForEach(vocabulary.example, id: \.self) { example in
 //
@@ -123,8 +135,10 @@ struct ListCell: View {
                         Image(systemName: isLike ? "hand.thumbsup.fill" : "hand.thumbsup")
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
-//                        Text("\(vocabulary.likes)")
-//                            .foregroundColor(.mint)
+
+                        Text("\(vocabulary.likes)")
+                            .foregroundColor(.black)
+
                         ForEach(vocabularyNetworkManager.likes) { like in
                             if like.id == vocabulary.id {
                                 Text("\(like.likeCount)")
@@ -147,7 +161,9 @@ struct ListCell: View {
                         Image(systemName: isDislike ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
-//                        Text("\(vocabulary.dislikes)")
+
+                        Text("\(vocabulary.dislikes)")
+                            .foregroundColor(.black)
 
                         ForEach(vocabularyNetworkManager.likes) { like in
                             if like.id == vocabulary.id {

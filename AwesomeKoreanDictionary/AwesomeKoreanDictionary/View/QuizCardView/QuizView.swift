@@ -25,7 +25,7 @@ struct QuizView: View {
                 HStack {
                     VStack(alignment: .leading, spacing: 12) {
                         // TODO: - QuizView 제목달기
-                        Text("Korean Slang Quiz Challenge!")
+                        Text("한국 신조어/속어 퀴즈 챌린지")
                             .fontWeight(.heavy)
                         //        .lineSpacing(-1)
                             .kerning(-1)
@@ -34,7 +34,7 @@ struct QuizView: View {
                         
                         // TODO: - 어떤 데이터를 보여줄지
                         HStack(spacing: 5) {
-                            Text("with a Awesome Korean Dictionary")
+                            Text("당신의 한국어 능력을 테스트하세요!")
                                 .kerning(-1)
                                 .font(.system(size: 25))
                                 .foregroundColor(Color.white.opacity(0.7))

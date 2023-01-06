@@ -15,6 +15,7 @@ struct MyPageView_SignIn: View {
     @State private var showEditViewModal: Bool = false
     @State var sheet1: Bool = false //개인정보 보호정책
     @State var sheet2: Bool = false //이용약관
+    @State private var showingAlert = false
     var body: some View {
         
         let firstMyPageList: [String] = ["내가 북마크한 단어들", "내가 등록한 단어들"]
@@ -28,7 +29,7 @@ struct MyPageView_SignIn: View {
                     
                     HStack{
                         Text("\(userInfoManager.userInfo?.userNickname ?? "") 입니다.")
-
+                        
                             .font(.title2)
                             .foregroundColor(.black)
                             .padding()
@@ -73,7 +74,7 @@ struct MyPageView_SignIn: View {
                                 Text("\(firstMyPageList[1])")
                                     .padding(.horizontal)
                             }
-                            Text("세팅")
+                            Text("설정")
                                 .font(.title3)
                                 .padding(.top)
                             NavigationLink{
@@ -122,24 +123,43 @@ struct MyPageView_SignIn: View {
                                 .padding(.horizontal)
                             } // 두번째 리스트 끝
                             
-                            Button {
-                                authManager.signOut()
-                            } label: {
-                                Text("로그아웃")
-                                    .font(.title3)
-                                    .padding(.top)
-                            }.buttonStyle(.plain)
+                            Text("관리자 로그인")
+                                .font(.title3)
+                                .padding(.top)
+                            
+                            if userInfoManager.userInfo?.isAdmin == true {
+                                NavigationLink{
+                                    AdminMainView()
+                                } label : {
+                                    Text("관리자 로그인하기")
+                                        .padding(.horizontal)
+                                }
+                                
+                            }
                         }
+                        
+                        
+                        Button {
+                            showingAlert = true
+                            
+                        } label: {
+                            Text("로그아웃")
+                            //                                    .font(.title3)
+                            //                                    .padding(.top)
+                        }.buttonStyle(.plain)
+                            .alert(isPresented: $showingAlert){
+                                Alert(title: Text("정말 로그아웃\n하시겠습니까?"), message: Text(""), primaryButton: .destructive(Text("로그아웃")){authManager.signOut()}, secondaryButton: .cancel())
+                            }
                     }
-                    .listStyle(.plain)
-                    // 리스트 끝
-                }// 전체 한칸 안쪽 VStack 끝
-            } // 전체 VStack 끝
-            .onAppear {
-                userInfoManager.fetchUserInfo()
-            }
-        } // NavigationStack 끝
-    }
+                }
+                .listStyle(.plain)
+                // 리스트 끝
+            }// 전체 한칸 안쪽 VStack 끝
+        } // 전체 VStack 끝
+        .onAppear {
+            userInfoManager.fetchUserInfo()
+        }
+    } // NavigationStack 끝
 }
 
 struct MyPage_SignIn_Previews: PreviewProvider {
@@ -149,4 +169,5 @@ struct MyPage_SignIn_Previews: PreviewProvider {
             .environmentObject(UserInfoManager())
     }
 }
+
 

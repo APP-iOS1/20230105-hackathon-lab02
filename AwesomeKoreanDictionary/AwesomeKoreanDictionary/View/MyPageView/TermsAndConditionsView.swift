@@ -38,7 +38,7 @@ struct TermsAndConditionsView: View {
                          .fill(Color(hex: "737DFE"))
                          .frame(width: 350, height: 60)
                          .overlay {
-                             Text("모든 정보를 읽었고 동의합니다.")
+                             Text("확인")
                                  .foregroundColor(.white)
                                  .fontWeight(.black)
                                  .font(.title3)
