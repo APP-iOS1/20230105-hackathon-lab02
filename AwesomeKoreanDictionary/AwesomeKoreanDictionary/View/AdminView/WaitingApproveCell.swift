@@ -52,10 +52,8 @@ struct WaitingApproveCell: View {
                 }
             }
             
-            
             // 사용자 이름 / 날짜
             HStack {
-                
                 Text("by \(vocabulary.creatorId)")
                     .fontWeight(.bold)
                     .foregroundColor(Color(hex: "292929"))
@@ -70,9 +68,11 @@ struct WaitingApproveCell: View {
                     
                 } label: {
                     Text("승인하기")
+                        .frame(width: 100, height: 25)
                 }
                 .padding(5)
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color(.black)))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color(hex: "737DFE")))
+                
                 .foregroundColor(.white)
                 }
                

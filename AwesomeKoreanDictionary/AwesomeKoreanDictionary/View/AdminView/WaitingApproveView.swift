@@ -14,26 +14,27 @@ struct WaitingApproveView: View {
     
     
     var body: some View {
-        VStack {
-            
-//            Color.mint
-//                .edgesIgnoringSafeArea(.all)
-//            
-            ScrollView {
-                
-                Spacer(minLength: 10)
-                
-                VStack(spacing: 15) {
-                    ForEach(vocabularyNetworkManager.vocabularies, id: \.self) { vocabulary in
-                        
-                        if vocabulary.isApproved == false {
-                            WaitingApproveCell(vocabulary: vocabulary)
-                        }
-                    }
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]),
+                           startPoint: .top, endPoint: .bottom)
+            .edgesIgnoringSafeArea(.all)
+            VStack {   
+                ScrollView {
                     
+                    Spacer(minLength: 10)
+                    
+                    VStack(spacing: 15) {
+                        ForEach(vocabularyNetworkManager.vocabularies, id: \.self) { vocabulary in
+                            
+                            if vocabulary.isApproved == false {
+                                WaitingApproveCell(vocabulary: vocabulary)
+                            }
+                        }
+                        
+                    }
                 }
             }
-            }
+        }
             .onAppear(){
                 Task{
                     await vocabularyNetworkManager.requestVocabularyList()

@@ -149,7 +149,6 @@ struct ListCell: View {
                                 Text("\(like.likeCount)")
                             }
                         }
-//                        Text("\(vocabulary.likes)")
                     }
                 }
                 Button {
