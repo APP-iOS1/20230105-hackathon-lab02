@@ -30,7 +30,7 @@ struct CardView: View {
                                 .foregroundColor(Color(hex: "737DFE"))
                             
                             // TODO: - 넣을 데이터 생각해보기
-                            Text("What do you think it means?")
+                            Text("이 단어의 뜻은 무엇일까요?")
                                 .font(.system(size: 20))
                                 .kerning(-1)
                                 .foregroundColor(Color(hex: "606366"))
@@ -43,7 +43,7 @@ struct CardView: View {
                                         isShowing.toggle()
                                     }
                                 }, label: {
-                                    Text("Answer >")
+                                    Text("정답 보기 >")
                                         .font(.system(size: 20))
                                         .fontWeight(.bold)
                                         .foregroundColor(Color.orange)
