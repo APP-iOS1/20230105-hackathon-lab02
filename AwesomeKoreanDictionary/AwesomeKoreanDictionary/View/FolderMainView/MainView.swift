@@ -39,13 +39,6 @@ struct MainView: View {
                             ListCell(vocabulary: vocabulary)
                         }
                     }
-                    
-                    NavigationLink {
-                        TestView()
-                    } label: {
-                        Text("테스트하러 가쟈")
-                    }
- 
                 }
                 .refreshable {
                     Task {
