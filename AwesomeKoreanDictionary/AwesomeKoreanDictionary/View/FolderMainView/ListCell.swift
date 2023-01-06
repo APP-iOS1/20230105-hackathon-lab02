@@ -67,7 +67,7 @@ struct ListCell: View {
                     
                     //coreData에 저장
                     DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, context: managedObjContext)
-                    
+
                 } label: {
                     Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
                         .foregroundColor(Color(hex: "737DFE"))
@@ -78,7 +78,7 @@ struct ListCell: View {
             
             // 내용
             VStack(alignment: .leading, spacing: 5) {
-                Text("Definition")
+                Text("정의")
                     .foregroundColor(.secondary)
                 Text(selection != "" ? translatedDefinition : vocabulary.definition) // 이 내용을 번역본으로 변경
                     .lineSpacing(7)
@@ -86,7 +86,7 @@ struct ListCell: View {
             .padding(.bottom, -10)
             
             VStack(alignment: .leading, spacing: 5) {
-                Text("Example")
+                Text("예시")
                     .foregroundColor(.secondary)
                 VStack(alignment: .leading, spacing: 10) {
                     Text(selection != "" ? "• \(translatedExample)" : "• \(vocabulary.example)") // 이 내용을 번역본으로 변경
@@ -128,8 +128,10 @@ struct ListCell: View {
                         Image(systemName: isLike ? "hand.thumbsup.fill" : "hand.thumbsup")
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
-//                        Text("\(vocabulary.likes)")
-//                            .foregroundColor(.mint)
+
+                        Text("\(vocabulary.likes)")
+                            .foregroundColor(.black)
+
                         ForEach(vocabularyNetworkManager.likes) { like in
                             if like.id == vocabulary.id {
                                 Text("\(like.likeCount)")
@@ -152,7 +154,9 @@ struct ListCell: View {
                         Image(systemName: isDislike ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
-//                        Text("\(vocabulary.dislikes)")
+
+                        Text("\(vocabulary.dislikes)")
+                            .foregroundColor(.black)
 
                         ForEach(vocabularyNetworkManager.likes) { like in
                             if like.id == vocabulary.id {
