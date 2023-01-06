@@ -17,7 +17,7 @@ struct ListCell: View {
     @State private var isDislike: Bool = false
     @State private var isBookmark: Bool = false
     @State private var sharedSheet: Bool = false
-    @State private var selection: String = ""
+    @State private var selection: String = "ko"
     @State private var translatedDefinition = ""
     @State private var translatedExample = ""
     
@@ -43,7 +43,7 @@ struct ListCell: View {
                 Spacer()
                 
                 Picker(selection: $selection) {
-                    Text("KOR")
+                    Text("KOR").tag("ko")
                     ForEach(languages.indices) { index in
                         Text(languages[index]).tag(languageCodes[index])
                     }
@@ -51,11 +51,16 @@ struct ListCell: View {
                     Text("언어 선택")
                 }
                 .onChange(of: selection, perform: { value in
-                    // 비동기로 파파고에게 번역 네트워킹 시도
-                    Task {
-                        translatedDefinition = try await PapagoNetworkManager.shared.requestTranslate(sourceString: vocabulary.definition, target: String(value))
-                        translatedExample = try await PapagoNetworkManager.shared.requestTranslate(sourceString: vocabulary.example, target: String(value))
+                    
+                    if String(value) == "ko" {
+                      
+                    } else {
+                        Task {
+                            translatedDefinition = try await PapagoNetworkManager.shared.requestTranslate(sourceString: vocabulary.definition, target: String(value))
+                            translatedExample = try await PapagoNetworkManager.shared.requestTranslate(sourceString: vocabulary.example, target: String(value))
+                        }
                     }
+                    
                     
                 })
                 .frame(height: 30)
@@ -72,7 +77,7 @@ struct ListCell: View {
                             print(error)
                         }
                     } else {
-                        DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, context: managedObjContext)
+                        DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, pronunciation: vocabulary.pronunciation, context: managedObjContext)
                     }
                     
                 } label: {
@@ -87,7 +92,7 @@ struct ListCell: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text("정의")
                     .foregroundColor(.secondary)
-                Text(selection != "" ? translatedDefinition : vocabulary.definition) // 이 내용을 번역본으로 변경
+                Text(selection == "ko" ? vocabulary.definition : translatedDefinition) // 이 내용을 번역본으로 변경
                     .lineSpacing(7)
             }
             .padding(.bottom, -10)
@@ -96,7 +101,7 @@ struct ListCell: View {
                 Text("예시")
                     .foregroundColor(.secondary)
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(selection != "" ? "• \(translatedExample)" : "• \(vocabulary.example)") // 이 내용을 번역본으로 변경
+                    Text(selection == "ko" ? "• \(vocabulary.example)" : "• \(translatedExample)") // 이 내용을 번역본으로 변경
                         .italic()
 //                    ForEach(vocabulary.example, id: \.self) { example in
 //

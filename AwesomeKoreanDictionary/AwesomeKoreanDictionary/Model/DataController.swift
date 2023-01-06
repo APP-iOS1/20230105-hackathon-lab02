@@ -29,7 +29,7 @@ class DataController: ObservableObject {
         }
     }
     
-    func addVoca(word: String, definition: String, pronunciation: String context: NSManagedObjectContext) {
+    func addVoca(word: String, definition: String, pronunciation: String, context: NSManagedObjectContext) {
         let voca = BookmarkedVoca(context: context)
         voca.id = UUID()
         voca.word = word
