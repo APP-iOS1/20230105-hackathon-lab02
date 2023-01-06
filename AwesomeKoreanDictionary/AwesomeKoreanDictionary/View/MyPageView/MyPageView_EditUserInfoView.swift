@@ -11,8 +11,8 @@ struct MyPageView_EditUserInfoView: View {
 
     @Environment(\.dismiss) var dismiss
     @State private var userNickName: String = "YOOJ"
-    @ObservedObject var userNickName2 : AuthManager = AuthManager()
-    // 닉네임 받아오는 프로퍼티 생성되면 변경할게요!
+  
+    @EnvironmentObject var userInfoManager: UserInfoManager
 
     var body: some View {
         VStack{
@@ -49,7 +49,11 @@ struct MyPageView_EditUserInfoView: View {
             }
             
             Button {
-                // 변경된 닉네임 저장하기
+                Task{
+                    await userInfoManager.updateUserNickName(nickname: userNickName)
+                    userInfoManager.fetchUserInfo()
+                }
+                dismiss()
             } label: {
                 Text("저장")
                     .frame(width: 300, height: 50)
@@ -60,6 +64,10 @@ struct MyPageView_EditUserInfoView: View {
             }
             Spacer()
 
+        }
+        .onAppear(){
+            userInfoManager.fetchUserInfo()
+            userNickName = userInfoManager.userInfo?.userNickname ?? ""
         }
     }
 }
