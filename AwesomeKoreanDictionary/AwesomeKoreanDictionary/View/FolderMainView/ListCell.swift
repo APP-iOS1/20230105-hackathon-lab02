@@ -54,9 +54,7 @@ struct ListCell: View {
                     
                     //coreData에 저장
                     DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, context: managedObjContext)
-                    
-                    
-                    
+              
                 } label: {
                     Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
                         .foregroundColor(Color(hex: "737DFE"))
@@ -67,7 +65,7 @@ struct ListCell: View {
             
             // 내용
             VStack(alignment: .leading, spacing: 5) {
-                Text("Definition")
+                Text("정의")
                     .foregroundColor(.secondary)
                 Text(vocabulary.definition)
                     .lineSpacing(7)
@@ -75,7 +73,7 @@ struct ListCell: View {
             .padding(.bottom, -10)
             
             VStack(alignment: .leading, spacing: 5) {
-                Text("Example")
+                Text("예시")
                     .foregroundColor(.secondary)
                 VStack(alignment: .leading, spacing: 10) {
                     Text("• \(vocabulary.example)")
@@ -118,7 +116,7 @@ struct ListCell: View {
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
                         Text("\(vocabulary.likes)")
-                            .foregroundColor(.mint)
+                            .foregroundColor(.black)
                         ForEach(vocabularyNetworkManager.likes) { like in
                             if like.id == vocabulary.id {
                                 Text("\(like.likeCount)")
@@ -142,7 +140,7 @@ struct ListCell: View {
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
                         Text("\(vocabulary.dislikes)")
-
+                            .foregroundColor(.black)
                         ForEach(vocabularyNetworkManager.likes) { like in
                             if like.id == vocabulary.id {
                                 Text("\(like.dislikeCount)")
