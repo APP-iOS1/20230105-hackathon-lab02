@@ -30,6 +30,11 @@ struct MyPageView_MyRegisterCell: View {
                     Text(vocabulary.word)
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                        .padding(.bottom, -3)
+                        .foregroundColor(Color(hex: "292929"))
+                    Text(vocabulary.pronunciation)
+                        .font(.title3)
+                        .padding(.bottom, -5)
                 }
                 Spacer()
             }
@@ -39,6 +44,7 @@ struct MyPageView_MyRegisterCell: View {
                 Text("정의")
                     .foregroundColor(.secondary)
                 Text(vocabulary.definition)
+                    .lineSpacing(7)
             }
             
             VStack(alignment: .leading, spacing: 5) {
