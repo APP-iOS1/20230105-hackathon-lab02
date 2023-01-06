@@ -11,6 +11,7 @@ import SwiftUI
 
 struct ListCell: View {
     @Environment(\.managedObjectContext) var managedObjContext
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.word)]) var voca: FetchedResults<BookmarkedVoca>
     @State private var isLike: Bool = false
     @State private var isDislike: Bool = false
     @State private var isBookmark: Bool = false
@@ -49,13 +50,18 @@ struct ListCell: View {
                 .tint(.black)
                 
                 Button {
-                    print("북마크 버튼")
                     isBookmark.toggle()
-                    
-                    //coreData에 저장
-                    DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, context: managedObjContext)
-                    
-                    
+                    if !isBookmark {
+                        managedObjContext.delete(voca[0])
+                        
+                        do {
+                            try managedObjContext.save()
+                        } catch {
+                            print(error)
+                        }
+                    } else {
+                        DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, context: managedObjContext)
+                    }
                     
                 } label: {
                     Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
@@ -177,6 +183,19 @@ struct ListCell: View {
         .frame(width: 360)
         .background(Color.white)
         .cornerRadius(20)
+    }
+    
+    private func delete(at offsets: IndexSet) {
+        for index in offsets {
+            let item = voca[index]
+            managedObjContext.delete(item)
+        }
+        
+        do {
+            try managedObjContext.save()
+        } catch {
+            print(error)
+        }
     }
 }
 
