@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct Detail: View {
-    
+
     @Binding var isShowing: Bool
-    
+
+    @EnvironmentObject var papagoNetworkManager: PapagoNetworkManager
+
     var card: Card
     var name: Namespace.ID
+
+    var languageCodes: [String] = ["en", "zh-CN", "ja"]
+    var languages: [String] = ["English", "Chinese", "Japanese"]
+    
+    @State private var selectedLanguage: String = ""
+    @State private var translate: String = ""
+
 
     var body: some View {
         VStack {
@@ -22,16 +31,16 @@ struct Detail: View {
                         isShowing.toggle()
                     }
                 }, label: {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 30, weight: .bold))
-                        .foregroundColor(.black)
-                })
+                        Image(systemName: "chevron.left")
+                            .font(.system(size: 30, weight: .bold))
+                            .foregroundColor(.black)
+                    })
 
                 Spacer(minLength: 0)
 
             })
-            .padding(.leading, 20)
-            .padding([.top, .bottom, .trailing])
+                .padding(.leading, 20)
+                .padding([.top, .bottom, .trailing])
 
             // For smaller size phones
             ScrollView(.vertical, showsIndicators: false, content: {
@@ -41,7 +50,7 @@ struct Detail: View {
                             Text(card.name)
                                 .font(.system(size: 45, weight: .bold))
                                 .foregroundColor(.black)
-                            
+
                             // TODO: - 어떤 데이터를 보여줄지
                             Text("Design tools")
                                 .font(.system(size: 30))
@@ -56,22 +65,72 @@ struct Detail: View {
 
                         Spacer(minLength: 0)
 
-                        
+                        Picker("Select Language", selection: $selectedLanguage) {
+                            Text("Select Language")
+                            ForEach(0..<languages.count) { idx in
+                                Text(languages[idx]).tag(languageCodes[idx])
+                            }
+                        }
+                            .onChange(of: selectedLanguage, perform: { value in
+                            Task {
+                                self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: String(value))
+                            }
+                        })
+
+
                     }
-                    .padding(.vertical)
+                        .padding(.vertical)
 
                     // TODO: - text alignment
-                    Text("정의: \(card.definition).")
-                        .font(.system(size: 22))
-                        .foregroundColor(Color.black.opacity(0.7))
-                        .multilineTextAlignment(.leading)
-                        .padding(.top)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("정의: \(card.definition)")
+                                .font(.system(size: 22))
+                                .foregroundColor(Color.black.opacity(0.7))
+                                .multilineTextAlignment(.leading)
+                                .padding(.top)
+
+
+                            Text("번역: \(translate)")
+                                .font(.system(size: 22))
+                                .foregroundColor(Color.black.opacity(0.7))
+                                .multilineTextAlignment(.leading)
+                                .padding(.top)
+                        }
+
+                        Spacer()
+                    }
+
+
+
                 }
-                .padding(.horizontal, 20)
+                    .padding(.horizontal, 20)
             })
         }
-        .navigationBarBackButtonHidden(true)
-        .background(Color.white)
+            .navigationBarBackButtonHidden(true)
+            .background(Color.white)
+//        .onAppear { //  (Void) return
+////            "en","zh-CN","ja"
+//            if (selectedLanguage == "en") {
+//                Task {
+//                    self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: PapagoNetworkManager.TargetLanguage.english)
+//
+//                    print("EN: \(translate)")
+//                }
+//            } else if (selectedLanguage == "zh-CN") {
+//                Task {
+//                    self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: PapagoNetworkManager.TargetLanguage.chinese)
+//
+//                    print("CN: \(translate)")
+//                }
+//            } else if (selectedLanguage == "ja") {
+//                Task {
+//                    self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: PapagoNetworkManager.TargetLanguage.japanese)
+//
+//                    print("JP: \(translate)")
+//                }
+//            }
+//        }
     }
 }
 

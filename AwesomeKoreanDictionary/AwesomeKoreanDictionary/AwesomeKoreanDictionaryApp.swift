@@ -21,6 +21,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct AwesomeKoreanDictionaryApp: App {
     // TODO: - auth+userInfo
+    @StateObject private var dataController = DataController()
     @StateObject var authManager = AuthManager()
     @StateObject var userInfoManager = UserInfoManager()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
@@ -30,6 +31,7 @@ struct AwesomeKoreanDictionaryApp: App {
             .environmentObject(VocabularyNetworkManager())
             .environmentObject(authManager)
             .environmentObject(userInfoManager)
+            .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }

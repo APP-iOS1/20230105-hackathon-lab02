@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CardView: View {
-    
     @Binding var swipedIndex: Int
     @Binding var isShowing: Bool
     @Binding var selectedCard: Card
@@ -22,40 +21,41 @@ struct CardView: View {
             Spacer(minLength: 0)
 
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom), content: {
-                
                 VStack {
-
                     HStack {
                         VStack(alignment: .leading, spacing: 12, content: {
                             Text(card.name)
-                                .font(.system(size: 40))
-                                .fontWeight(.bold)
-                                .foregroundColor(.black)
-
+                                .font(.system(size: 38))
+                                .fontWeight(.heavy)
+                                .foregroundColor(Color(hex: "737DFE"))
+                            
                             // TODO: - 넣을 데이터 생각해보기
-                            Text("Design tool")
+                            Text("What do you think it means?")
                                 .font(.system(size: 20))
-                                .foregroundColor(.black)
-
-                            Button(action: {
-                                withAnimation(.spring()) {
-                                    selectedCard = card
-                                    isShowing.toggle()
-                                }
-                            }, label: {
-                                Text("정답 보기 >")
-                                    .font(.system(size: 20))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(Color.orange)
-                            })
-                            .padding(.top)
-                        })
+                                .kerning(-1)
+                                .foregroundColor(Color(hex: "606366"))
+                                .padding(.bottom, 10)
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    withAnimation(.spring()) {
+                                        selectedCard = card
+                                        isShowing.toggle()
+                                    }
+                                }, label: {
+                                    Text("Answer >")
+                                        .font(.system(size: 20))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color.orange)
+                                })
+                                .padding(.top)
+                            }})
 
                         Spacer(minLength: 0)
                     }
                     .padding(.horizontal, 30)
                     .padding(.bottom, 15)
-                    .padding(.top, 25)
+                    .padding(.top, 15)
                 }
 
             })

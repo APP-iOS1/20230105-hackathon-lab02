@@ -32,19 +32,10 @@ class DataController: ObservableObject {
     func addVoca(word: String, definition: String, context: NSManagedObjectContext) {
         let voca = BookmarkedVoca(context: context)
         voca.id = UUID()
+        voca.word = word
         voca.definition = definition
         
         save(context: context)
     }
     
-    // Deletes food at the current offset
-//    private func deleteVoca(offsets: IndexSet) {
-//        withAnimation {
-//            offsets.map { voca[$0] }
-//            .forEach(managedObjContext.delete)
-//
-//            // Saves to our database
-//            DataController().save(context: managedObjContext)
-//        }
-//    }
 }
