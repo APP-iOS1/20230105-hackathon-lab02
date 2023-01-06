@@ -113,16 +113,7 @@ struct ListCell: View {
           //  .padding(.bottom, 10)
             
             
-            // 사용자 이름 / 날짜
-            HStack {
-                Text("by \(vocabulary.creatorId)")
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(hex: "292929"))
-                Spacer()
-                //                Text("업로드 날짜")
-            }
-            
-            
+
             Divider().padding(.vertical,-1)
             
             // 좋아요 버튼
@@ -140,9 +131,6 @@ struct ListCell: View {
                         Image(systemName: isLike ? "hand.thumbsup.fill" : "hand.thumbsup")
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
-
-                        Text("\(vocabulary.likes)")
-                            .foregroundColor(.black)
 
                         ForEach(vocabularyNetworkManager.likes) { like in
                             if like.id == vocabulary.id {
@@ -165,9 +153,6 @@ struct ListCell: View {
                         Image(systemName: isDislike ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
-
-                        Text("\(vocabulary.dislikes)")
-                            .foregroundColor(.black)
 
                         ForEach(vocabularyNetworkManager.likes) { like in
                             if like.id == vocabulary.id {

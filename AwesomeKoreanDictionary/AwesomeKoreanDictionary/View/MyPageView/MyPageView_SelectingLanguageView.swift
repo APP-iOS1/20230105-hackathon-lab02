@@ -28,14 +28,15 @@ enum Languages: String, CaseIterable{
 }
 
 struct MyPageView_SelectingLanguageView: View {
+    @AppStorage("selectedLanguage") private var selectedLanguage: String?
+        
+    private let languages = ["Korean", "English", "Japanese","Chinese"]
     
-    @State private var defaultLanguage: String = "영어"
-    @State private var selectedLanguage: String?
+    @State private var defaultLanguage: String = "한국어"
+//    @State private var selectedLanguage: String?
     @State private var showingOptions: Bool = false
     
     var body: some View {
-        
-        let languages: [String] = ["한국어", "영어", "중국어", "일본어"]
 
             VStack{
                 List{
@@ -57,9 +58,11 @@ struct MyPageView_SelectingLanguageView: View {
                         } label: {
                             Text("\(language)")
                         }
-                        .confirmationDialog("해당 언어로 설정을 변경합니다.", isPresented: $showingOptions, titleVisibility: .visible) {
+                        .confirmationDialog("해당 언어로 설정을 변경합니다. 껐다 키세요!", isPresented: $showingOptions, titleVisibility: .visible) {
                             Button(selectedLanguage ?? "") {
                                 defaultLanguage = selectedLanguage ?? ""
+                                UserDefaults.standard.set([defaultLanguage], forKey: "AppleLanguages")
+                                UIApplication.shared.requestSceneSessionActivation(nil, userActivity: nil, options: nil, errorHandler: nil)
                             }
                         }
                         .padding(.horizontal)

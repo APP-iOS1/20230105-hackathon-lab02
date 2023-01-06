@@ -35,8 +35,7 @@ struct MyPageView_SignOut: View {
                     } label: {
                         ZStack{
                             Rectangle()
-                                .padding(.leading)
-                                .frame(width: 230, height: 40)
+                                .frame(width: 200, height: 40)
                                 .foregroundColor(Color(hex: "737DFE"))
                                 .cornerRadius(10)
                             Text("구글 로그인하기")
