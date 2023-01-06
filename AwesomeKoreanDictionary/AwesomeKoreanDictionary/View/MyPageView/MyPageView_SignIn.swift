@@ -162,6 +162,7 @@ struct MyPageView_SignIn: View {
     } // NavigationStack 끝
 }
 
+
 struct MyPage_SignIn_Previews: PreviewProvider {
     static var previews: some View {
         MyPageView_SignIn()
