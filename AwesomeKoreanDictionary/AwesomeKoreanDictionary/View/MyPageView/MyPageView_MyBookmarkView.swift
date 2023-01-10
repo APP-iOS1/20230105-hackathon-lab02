@@ -34,7 +34,7 @@ struct MyPageView_MyBookmarkView: View {
                                         .fontWeight(.bold)
                                         .padding(.bottom, -3)
                                         .foregroundColor(Color(hex: "292929"))
-                                    Text("voca.pronunciation!")
+                                    Text(voca.pronunciation!)
                                         .font(.title3)
                                         .padding(.bottom, -5)
                                 }
@@ -68,7 +68,7 @@ struct MyPageView_MyBookmarkView: View {
                             VStack(alignment: .leading, spacing: 5) {
                                 Text("Definition")
                                     .foregroundColor(.secondary)
-                                Text("voca.definition!")
+                                Text(voca.definition!)
                                     .lineSpacing(7)
                             }
                             .padding(.bottom, -10)
