@@ -4,7 +4,7 @@
         <attribute name="creatorId" optional="YES" attributeType="String"/>
         <attribute name="definition" optional="YES" attributeType="String"/>
         <attribute name="dislikes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="example" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="example" optional="YES" attributeType="String" customClassName="[String]"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="likes" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="pronunciation" optional="YES" attributeType="String"/>

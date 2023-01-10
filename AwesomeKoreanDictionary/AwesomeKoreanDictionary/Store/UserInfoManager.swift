@@ -63,14 +63,14 @@ final class UserInfoManager: ObservableObject {
     //    }
     
     // MARK: - 유저 닉네임 변경 업데이트 함수
-    @MainActor
     public func updateUserNickName(nickname: String) async -> Void {
-//        guard let currentUserId else { return }
-        let path = database.collection("user")
-        do {
-            try await path.document(currentUserId).setData(["userNickname": nickname], merge: true)
-        } catch {
-            print(error.localizedDescription)
+    //        guard let currentUserId else { return }
+            let path = database.collection("user")
+            do {
+                try await path.document(currentUserId).updateData(["userNickname": nickname])
+            } catch {
+                print(error.localizedDescription)
+            }
         }
-    }
+    
 }
