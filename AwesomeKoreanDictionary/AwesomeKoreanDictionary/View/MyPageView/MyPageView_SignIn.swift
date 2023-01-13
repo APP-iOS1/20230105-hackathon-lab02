@@ -161,7 +161,6 @@ struct MyPageView_SignIn: View {
         .onAppear {
             Task {
                 await userInfoManager.fetchUserInfo(userId: authManager.currentUserInfo.id)
-                print(userInfoManager.userInfo)
                 // FIXME: user
                 userNickname = userInfoManager.userInfo?.userNickname ?? ""
                 isAdmin = userInfoManager.userInfo?.isAdmin ?? false
