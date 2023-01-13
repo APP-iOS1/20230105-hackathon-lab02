@@ -132,8 +132,7 @@ struct SlangRegistrationView: View {
                                         isKorean = false
                                     }
                                     summitAlertToggle.toggle()
-                                    
-                                    print(Vocabulary(id: UUID().uuidString, word: slangTextField, pronunciation: "", definition: slangDescriptionTextField, example: slangSituationUsedTextField, likes: 0, dislikes: 0, creatorId: Auth.auth().currentUser?.uid ?? ""))
+                                
                                 }
                             } label: {
                                 ZStack {

@@ -31,7 +31,6 @@ struct MyPageView_SignOut: View {
                     
                     Button {
                         authManager.signIn()
-                        userInfoManager.fetchUserInfo()
                     } label: {
                         ZStack{
                             Rectangle()
@@ -105,9 +104,6 @@ struct MyPageView_SignOut: View {
                     } // 리스트 끝
                     .listStyle(.plain)
                 }// 전체 한칸 안쪽 VStack 끝
-            }
-            .onAppear(){
-                userInfoManager.fetchUserInfo()
             }
             // 전체 VStack 끝
         } // NavigationStack 끝

@@ -7,6 +7,7 @@
 
 import Firebase
 import FirebaseFirestore
+import FirebaseAuth
 import GoogleSignIn
 
 class AuthManager: ObservableObject {
@@ -18,59 +19,101 @@ class AuthManager: ObservableObject {
     var googleUser: GIDGoogleUser?
     @Published var state: signInState = .signedOut
     @Published var currentUser = GIDSignIn.sharedInstance.currentUser
-    
     //  -----
     @Published var user: User = User(id: "", isAdmin: false, userNickname: "", userEmail: "")
-    //    User(isAdmin: false, userNickname: "", bookmarked: [], createdVoca: [], userId: "", email: "")
+    // 로그인시 여기에 currentUser 정보를 저장한다
+    @Published var currentUserInfo: User = User(id: "", isAdmin: false, userNickname: "", userEmail: "")
     
     func signIn() {
-        // You check if there’s a previous Sign-In. If yes, then restore it. Otherwise, move on to defining the sign-in process.
+        
         if GIDSignIn.sharedInstance.hasPreviousSignIn() {
             GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
+                
+                let db = Firestore.firestore()
+                let currentUserID = user?.userID ?? ""
+                let userRef = db.collection("user").document(currentUserID)
+                
+                userRef.getDocument {
+                    (document, error) in
+                    if document!.exists {
+                        let docData = document!.data()
+                        let id: String = docData?["id"] as? String ?? ""
+                        let isAdmin: Bool = docData?["isAdmin"] as? Bool ?? false
+                        let userEmail: String = docData?["userEmail"] as? String ?? ""
+                        let userNickname: String = docData?["userNickname"] as? String ?? ""
+                        
+                        self.currentUserInfo.id = id
+                        self.currentUserInfo.isAdmin = isAdmin
+                        self.currentUserInfo.userEmail = userEmail
+                        self.currentUserInfo.userNickname = userNickname
+                        print("로그인 완료 1")
+                    } else {
+                        userRef.setData([
+                            "id": currentUserID,
+                            "isAdmin": false,
+                            "userEmail": user?.profile?.email ?? "",
+                            "userNickname": user?.profile?.name ?? ""
+                        ], merge: true)
+                        
+                        self.currentUserInfo.id = currentUserID
+                        self.currentUserInfo.isAdmin = false
+                        self.currentUserInfo.userEmail = user?.profile?.email ?? ""
+                        self.currentUserInfo.userNickname = user?.profile?.name ?? ""
+                        print("가입 완료 1")
+                    }
+                }
+
                 authenticateUser(for: user, with: error)
             }
         } else {
-            // Get the clientID from Firebase App. It fetches the clientID from the GoogleService-Info.plist added to the project earlier.
-            guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-            
-            // Create a Google Sign-In configuration object with the clientID.
-            
-            //            let configuration = GIDConfiguration(clientID: clientID)
-            
-            // As you’re not using view controllers to retrieve the presentingViewController, access it through the shared instance of the UIApplication. Note that directly using the UIWindow is now deprecated, and you should use the scene instead.
+//            guard let clientID = FirebaseApp.app()?.options.clientID else { return }
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
             guard let rootViewController = windowScene.windows.first?.rootViewController else { return }
             
-            // Then, call signIn() from the shared instance of the GIDSignIn class to start the sign-in process. You pass the configuration object and the presenting controller.
             GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController) { result, error in
                 if let googleUser = result?.user {
-                    self.googleUser = googleUser
                     
                     let db = Firestore.firestore()
-                    let userRef = db.collection("user").document(googleUser.userID ?? "")
+                    let currentUserID = googleUser.userID ?? ""
+                    let userRef = db.collection("user").document(currentUserID)
+                    print(currentUserID)
                     
+                    // 저장되지 않은 유저 정보
                     userRef.getDocument {
                         (document, error) in
-                        if let document = document, document.exists {
-                            // 이미 저장된 유저 정보
-                            userRef.updateData([
-                                "id": googleUser.userID ?? "",
-//                                "isAdmin": false,
-                                "userEmail": googleUser.profile?.email as? String ?? "",
-                                "userNickname": googleUser.profile?.name as? String ?? ""
-                            ])
+                        if document!.exists {
+                            let docData = document!.data()
+                            let id: String = docData?["id"] as? String ?? ""
+                            let isAdmin: Bool = docData?["isAdmin"] as? Bool ?? false
+                            let userEmail: String = docData?["userEmail"] as? String ?? ""
+                            let userNickname: String = docData?["userNickname"] as? String ?? ""
+                            
+                            self.currentUserInfo.id = id
+                            self.currentUserInfo.isAdmin = isAdmin
+                            self.currentUserInfo.userEmail = userEmail
+                            self.currentUserInfo.userNickname = userNickname
+                            print("로그인 완료 2")
                         } else {
-                            // 저장되지 않은 유저 정보
                             userRef.setData([
-                                "id": googleUser.userID ?? "",
+                                "id": currentUserID,
                                 "isAdmin": false,
                                 "userEmail": googleUser.profile?.email ?? "",
                                 "userNickname": googleUser.profile?.name ?? ""
                             ], merge: true)
+                            
+                            self.currentUserInfo.id = currentUserID
+                            self.currentUserInfo.isAdmin = false
+                            self.currentUserInfo.userEmail = googleUser.profile?.email ?? ""
+                            self.currentUserInfo.userNickname = googleUser.profile?.name ?? ""
+                            print("가입 완료 2")
                         }
                     }
+                    
+                    self.currentUserInfo.id = currentUserID
+                    self.currentUserInfo.isAdmin = false
+                    self.currentUserInfo.userEmail = googleUser.profile?.email ?? ""
+                    self.currentUserInfo.userNickname = googleUser.profile?.name ?? ""
                 }
-                
                 self.authenticateUser(for: result?.user, with: error)
             }
         }
@@ -98,64 +141,15 @@ class AuthManager: ObservableObject {
         }
     }
     
+    // MARK: SIGN OUT
     func signOut() {
-        // 1
         GIDSignIn.sharedInstance.signOut()
-        
         do {
-            // 2
             try Auth.auth().signOut()
-            
             state = .signedOut
             UserInfoManager().userInfo = nil
         } catch {
             print(error.localizedDescription)
         }
     }
-    
-    //  -----
-    /*
-     func checkSignUp() -> Void {
-     
-     let db = Firestore.firestore()
-     
-     let user = Auth.auth().currentUser
-     
-     db.collection("user").document("\(user?.email ?? "")").setData([
-     
-     "isAdmin" : false,
-     "userNickname":  "\(convertNickname(id: user?.email ?? ""))",
-     "bookmarked": [],
-     "createdVoca": [],
-     "userId": "\(user?.email ?? "")",
-     "email" : "\(user?.email ?? "")"
-     ]) { err in
-     if let err = err {
-     print("Error writing document: \(err)")
-     } else {
-     print("Document successfully written!")
-     }
-     }
-     }
-     */
-    
-    //MARK: - ID 값을 받아 문자열 가공 후 nickname으로 설정
-    func convertNickname(id: String) -> String {
-        
-        //  var id: String = id
-        
-        //        user.userId = id
-        //
-        //        return user.userId.components(separatedBy: "@")[0]
-        return ""
-    }
-    
-    /*
-     func getCurrentUser() -> String {
-     
-     let user = Auth.auth().currentUser
-     
-     return user?.email ?? "default@test.com"
-     }
-     */
 }
