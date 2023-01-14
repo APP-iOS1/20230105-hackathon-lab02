@@ -14,8 +14,8 @@ struct MainLoadingView: View {
     @State private var isActive = false
     var body: some View {
         if isActive {
-//            LoginView()
-            ContentView()
+           LoginView()
+         //   AddSlangView()
         } else {
             ZStack {
                 Color("logoColor")
