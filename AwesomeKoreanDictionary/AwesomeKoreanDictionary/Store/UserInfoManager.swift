@@ -46,6 +46,7 @@ final class UserInfoManager: ObservableObject {
     }
     
     // MARK: - 유저 닉네임 변경 업데이트 함수
+
     @MainActor
     
     public func updateUserNickName(id: String, nickname: String) async -> Void {
@@ -57,6 +58,7 @@ final class UserInfoManager: ObservableObject {
             print(error.localizedDescription)
         }
     }
+
     
 }
 
