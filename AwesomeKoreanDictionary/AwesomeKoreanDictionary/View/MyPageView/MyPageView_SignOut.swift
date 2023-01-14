@@ -18,7 +18,7 @@ struct MyPageView_SignOut: View {
     var body: some View {
         
         let firstMyPageList: [String] = ["언어"]
-        let secondMyPageList: [String] = ["개인정보 보호정책", "이용 약관"]
+        let secondMyPageList: [String] = ["개인정보 보호정책", "크레딧"]
         let thirdMyPageList: [String] = ["관리자 로그인"]
         NavigationStack{
             VStack {

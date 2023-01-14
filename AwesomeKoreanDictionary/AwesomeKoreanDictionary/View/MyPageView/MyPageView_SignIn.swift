@@ -21,7 +21,7 @@ struct MyPageView_SignIn: View {
         
         let firstMyPageList: [String] = ["내가 북마크한 단어들", "내가 등록한 단어들"]
         let secondMyPageList: [String] = ["언어"]
-        let thirdMyPageList: [String] = ["개인정보 보호정책", "이용 약관"]
+        let thirdMyPageList: [String] = ["개인정보 보호정책", "크레딧"]
         
         NavigationStack{
             VStack {
