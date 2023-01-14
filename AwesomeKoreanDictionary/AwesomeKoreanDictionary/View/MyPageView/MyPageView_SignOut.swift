@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-
-
+import AuthenticationServices
+import _AuthenticationServices_SwiftUI
 
 struct MyPageView_SignOut: View {
     
@@ -28,6 +28,27 @@ struct MyPageView_SignOut: View {
                         .font(.title2)
                         .foregroundColor(.black)
                         .padding()
+                    
+                    SignInWithAppleButton { (request) in
+                        authManager.nonce = randomNonceString()
+                        request.requestedScopes = [.email, .fullName]
+                        request.nonce = sha256(authManager.nonce)
+                    } onCompletion: { (result) in
+                        switch result{
+                        case .success(let user):
+                            print("success")
+                            guard let credential = user.credential as? ASAuthorizationAppleIDCredential else {
+                                print("error with firebase")
+                                return
+                            }
+                            authManager.authenticate(credential: credential)
+                            authManager.state = .signedIn
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                    .signInWithAppleButtonStyle(.black)
+                    .frame(width: 200, height: 40)
                     
                     Button {
                         authManager.signIn()
