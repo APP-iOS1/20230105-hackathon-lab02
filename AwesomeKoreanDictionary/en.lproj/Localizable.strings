@@ -5,16 +5,16 @@
   Created by 추현호 on 2023/01/06.
   
 */
-
-// 퀴즈
+"번역:" = "T/L:";
 "번역" = "T/L";
-"정답 보기" = "Answer";
+"정답 보기 >" = "Answer >";
 "언어" = "Language";
 "구글 로그인하기" = "Google Sign in";
 "크레딧" = "Credit";
-"내가 북마크한 단어들" = "Bookmarked";
-"내가 등록한 단어들" = "Words I submitted";
+"내가 등록한 단어들" = "submitted Words";
 "입니다." = "Annyeong!";
+// 퀴즈
+
 "정의" = "definition";
 "예시" = "example";
 "한국 신조어/속어 퀴즈 챌린지" = "Korean New Words/Slang Quiz Challenge";
@@ -52,8 +52,8 @@
 // 마이페이지 - 로그인
 "수정하기" = "To modify";
 "마이 페이지" = "My Page";
-"내가 북마크한 단어들" = "The words I bookmarked.";
-"내가 등록한 단어들" = "The words I registered.";
+"내가 북마크한 단어들" = "bookmarked words";
+"내가 등록한 단어들" = "registered words";
 "설정" = "Settings";
 "언어" = "Language";
 "도움" = "Support";
