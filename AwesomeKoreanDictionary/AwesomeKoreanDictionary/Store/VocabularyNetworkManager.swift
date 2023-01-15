@@ -166,22 +166,28 @@ final class VocabularyNetworkManager: ObservableObject {
         
         do {
 
-            let documents = try await database.collection("vocabulary").getDocuments()
+            let documents = try await database.collection("vocabulary")
+                .whereField("isApproved", isEqualTo: true)
+                .getDocuments()
+            
             self.cards.removeAll()
+
             var count = 0
             
-            for document in documents.documents.shuffled() {
-
-                let id = count
-                let word = document["word"] as? String ?? ""
-//                let pronunciation = document["pronunciation"] as? String ?? ""
-                let definition = document["definition"] as? String ?? ""
-//                let example = document["example"] as? String ?? []
-//                let likes = document["likes"] as? Int ?? 0
-//                let dislikes = document["dislikes"] as? Int ?? 0
-//                let creatorId = document["creatorId"] as? String ?? ""
-                let isApproved = document["isApproved"] as? Bool ?? false
-                if isApproved {
+            let shuffledDoc = documents.documents.shuffled()
+            
+            for (idx, document) in shuffledDoc.enumerated() {
+                if idx < 7 {
+                    let id = count
+                    let word = document["word"] as? String ?? ""
+                    //                let pronunciation = document["pronunciation"] as? String ?? ""
+                    let definition = document["definition"] as? String ?? ""
+                    //                let example = document["example"] as? String ?? []
+                    //                let likes = document["likes"] as? Int ?? 0
+                    //                let dislikes = document["dislikes"] as? Int ?? 0
+                    //                let creatorId = document["creatorId"] as? String ?? ""
+                    let isApproved = document["isApproved"] as? Bool ?? false
+                    
                     self.cards.append(Card(cardId: id, name: word, offset: 0, definition: definition))
                     count += 1
                 }
