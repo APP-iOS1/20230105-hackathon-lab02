@@ -41,9 +41,7 @@ struct ListCell: View {
                             .padding(.bottom, -3)
                             .foregroundColor(Color(hex: "292929"))
                         Button {
-                            let utterance = AVSpeechUtterance(string: vocabulary.word)
-                            utterance.voice = AVSpeechSynthesisVoice(language: "ko")
-                            synthesizer.speak(utterance)
+                            wordSpeech(word: vocabulary.word)
                         } label: {
                             Image(systemName: "speaker.wave.2")
                         }
@@ -205,6 +203,12 @@ struct ListCell: View {
             managedObjContext
             //            managedObjContext.delete(voca[index])
         }
+    }
+    
+    private func wordSpeech(word: String) {
+        let utterance = AVSpeechUtterance(string: word)
+        utterance.voice = AVSpeechSynthesisVoice(language: "ko")
+        synthesizer.speak(utterance)
     }
 }
 

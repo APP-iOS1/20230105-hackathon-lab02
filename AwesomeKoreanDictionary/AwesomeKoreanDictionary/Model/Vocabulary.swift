@@ -19,7 +19,3 @@ struct Vocabulary: Identifiable, Hashable {
     var creatorId: String
     var isApproved: Bool = false
 }
-
-
-
-

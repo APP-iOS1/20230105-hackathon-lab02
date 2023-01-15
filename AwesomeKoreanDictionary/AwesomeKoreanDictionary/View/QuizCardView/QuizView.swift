@@ -10,7 +10,7 @@ import SwiftUI
 struct QuizView: View {
     
     // TODO: - Quiz로 보여줄 단어는 어떻게 정할건지? - likes수가 높은 상위 몇개의 단어?
-    @ObservedObject var vocabularyNetworkManager = VocabularyNetworkManager()
+    @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
     @ObservedObject var papagoNetworkManager = PapagoNetworkManager()
     
     // To track which card is swiped
@@ -18,7 +18,9 @@ struct QuizView: View {
     @State private var swipedIndex = 0
     @State private var selectedCard = Card(cardId: 0, name: "Sketch", offset: 0, definition: "1")
     @State var isShowing = false
+    @State var quizResetButtonShowing = false
     
+    @State var test: String = ""
     var body: some View {
         ZStack {
             VStack {
@@ -50,6 +52,25 @@ struct QuizView: View {
                 // Stacked Elements
                 GeometryReader { reader in
                     ZStack {
+                        if quizResetButtonShowing {
+                            HStack {
+                                Button {
+                                    Task {
+                                        await vocabularyNetworkManager.vocabularyToCard()
+                                    }
+                                    swipedIndex = 0
+                                    quizResetButtonShowing = false
+                                } label: {
+                                    Image(systemName: "arrow.counterclockwise")
+                                    Text(("퀴즈 새로 불러오기"))
+                                }
+                                Text(test)
+                            }
+                            .font(.title)
+                            .foregroundColor(.white)
+                            .offset(x: 0)
+                        }
+                        
                         // ZStack will overlay on one another so revesing
                         ForEach(vocabularyNetworkManager.cards.reversed()) { card in
                             CardView(swipedIndex: $swipedIndex, isShowing: $isShowing, selectedCard: $selectedCard, card: card, reader: reader, name: name)
@@ -66,6 +87,7 @@ struct QuizView: View {
                                                 }
                                             }
                                         })
+                                    
                                         .onEnded({ value in
                                             withAnimation {
                                                 if value.translation.width < 150 {
@@ -73,21 +95,33 @@ struct QuizView: View {
                                                     // Update swipe id
                                                     // Since its starting from 0
                                                     swipedIndex = card.cardId + 1
-                                                    
-                                                    restoreCard(id: card.cardId)
+                                                    //                                                    restoreCard(id: card.cardId)
+                                                    print("value: \(value)")
                                                 } else {
                                                     vocabularyNetworkManager.cards[card.cardId].offset = 0
                                                 }
+                                                
                                             }
+                                            //                                            if 카드가 마지막일 때 토글을 켜서 버튼을 보여준다
+                                            if card.cardId == 6 {
+                                                quizResetButtonShowing = true
+                                            } else {
+                                                quizResetButtonShowing = false
+                                            }
+                                            
                                         })
                                 )
                         }
+                        
+                        
                     }
                     .offset(y: -25)
+                    
                 }
                 .padding(.top, 10)
+                
+                
             }
-            
             if isShowing {
                 Detail(isShowing: $isShowing, card: selectedCard, name: name)
             }
@@ -109,10 +143,10 @@ struct QuizView: View {
     // Add card to list
     func restoreCard(id: Int) {
         
-        var currentCard = vocabularyNetworkManager.cards[id]
-        // append last
-        currentCard.cardId = vocabularyNetworkManager.cards.count
-        vocabularyNetworkManager.cards.append(currentCard)
+        //        var currentCard = vocabularyNetworkManager.cards[id]
+        //        // append last
+        //        currentCard.cardId = vocabularyNetworkManager.cards.count
+        //        vocabularyNetworkManager.cards.append(currentCard)
         
         // Go back effect
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -139,5 +173,6 @@ struct QuizView: View {
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         QuizView()
+            .environmentObject(VocabularyNetworkManager())
     }
 }
