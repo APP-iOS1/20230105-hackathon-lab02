@@ -10,6 +10,7 @@
 import SwiftUI
 
 struct ListCell: View {
+    
     @Environment(\.managedObjectContext) var managedObjContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.word)]) var voca: FetchedResults<BookmarkedVoca>
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
@@ -40,6 +41,7 @@ struct ListCell: View {
                         .font(.title3)
                         .padding(.bottom, -5)
                 }
+                
                 Spacer()
                 
                 Picker(selection: $selection) {
@@ -67,24 +69,36 @@ struct ListCell: View {
                 .tint(.black)
                 
                 Button {
-                    isBookmark.toggle()
-                    if !isBookmark {
-                        managedObjContext.delete(voca[0])
-                        
-                        do {
-                            try managedObjContext.save()
-                        } catch {
-                            print(error)
-                        }
+                    if let index = voca.firstIndex(where: { $0.word == vocabulary.word }) {
+                        let isBookmarked = managedObjContext.registeredObjects.contains(voca[index])
+                        if isBookmarked {
+                            if let index = voca.firstIndex(where: { $0.word == vocabulary.word }) {
+                                managedObjContext.delete(voca[index])
+                            }
+                            
+                            do {
+                                try managedObjContext.save()
+                            } catch {
+                                print(error)
+                            }
+                        } 
                     } else {
                         DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, pronunciation: vocabulary.pronunciation, context: managedObjContext)
                     }
+//                    isBookmark.toggle()
                     
                 } label: {
-                    Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
-                        .foregroundColor(Color(hex: "737DFE"))
-                        .font(.title2)
-                        .padding(.trailing, -5)
+                    if let index = voca.firstIndex(where: { $0.word == vocabulary.word }) {
+                        Image(systemName: managedObjContext.registeredObjects.contains(voca[index]) ? "bookmark.fill" : "bookmark")
+                            .foregroundColor(Color(hex: "737DFE"))
+                            .font(.title2)
+                            .padding(.trailing, -5)
+                    } else {
+                        Image(systemName: "bookmark")
+                            .foregroundColor(Color(hex: "737DFE"))
+                            .font(.title2)
+                            .padding(.trailing, -5)
+                    }
                 }
             }
             
@@ -103,27 +117,17 @@ struct ListCell: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(selection == "ko" ? "• \(vocabulary.example)" : "• \(translatedExample)") // 이 내용을 번역본으로 변경
                         .italic()
-//                    ForEach(vocabulary.example, id: \.self) { example in
-//
-//                        Text("• \(example)")
-//                            .italic()
-//                    }
                 }
             }
-          //  .padding(.bottom, 10)
-            
-            
 
             Divider().padding(.vertical,-1)
             
             // 좋아요 버튼
             HStack(spacing: 17) {
                 Button {
-                    print("좋아요")
                     Task {
                         await vocabularyNetworkManager.addLikes(voca: vocabulary)
                         await vocabularyNetworkManager.countLikes()
-
                     }
                     isLike.toggle()
                 } label: {
@@ -140,12 +144,9 @@ struct ListCell: View {
                     }
                 }
                 Button {
-                    print("싫어요")
-                    
                     Task {
                         await vocabularyNetworkManager.addDisLikes(voca: vocabulary)
                         await vocabularyNetworkManager.countLikes()
-
                     }
                     isDislike.toggle()
                 } label: {
@@ -159,15 +160,12 @@ struct ListCell: View {
                                 Text("\(like.dislikeCount)")
                             }
                         }
-//                        Text("\(vocabulary.dislikes)")
-
                     }
                 }
                 
                 Spacer()
                 
                 Button {
-                    print("공유")
                 } label: {
                     ShareLink(item: vocabulary.word) {
                         Image(systemName: "square.and.arrow.up")
@@ -190,16 +188,10 @@ struct ListCell: View {
         .cornerRadius(20)
     }
     
-    private func delete(at offsets: IndexSet) {
-        for index in offsets {
-            let item = voca[index]
-            managedObjContext.delete(item)
-        }
-        
-        do {
-            try managedObjContext.save()
-        } catch {
-            print(error)
+    private func isBookmarked() {
+        if let index = voca.firstIndex(where: { $0.word == vocabulary.word }) {
+            managedObjContext
+//            managedObjContext.delete(voca[index])
         }
     }
 }
