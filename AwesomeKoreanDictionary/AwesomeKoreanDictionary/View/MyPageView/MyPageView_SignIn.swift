@@ -30,7 +30,6 @@ struct MyPageView_SignIn: View {
                     HStack{
                         Text("\(userNickname) 입니다.")
                             .font(.title2)
-                            .foregroundColor(.black)
                             .padding()
                         
                         Spacer()
