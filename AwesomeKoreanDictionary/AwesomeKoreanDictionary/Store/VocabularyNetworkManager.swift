@@ -37,7 +37,7 @@ final class VocabularyNetworkManager: ObservableObject {
     
     let database = Firestore.firestore()
     let currentUserId = Auth.auth().currentUser?.uid ?? ""
-
+    
     //MARK: - 단어 리스트 불러오기(승인 된거 안된거 다 불러옴)
     @MainActor
     func requestVocabularyList() async -> Void {
@@ -58,7 +58,6 @@ final class VocabularyNetworkManager: ObservableObject {
                 let isApproved = document["isApproved"] as? Bool ?? false
                 self.vocabularies.append(Vocabulary(id: id, word: word, pronunciation: pronunciation, definition: definition, example: example, likes: likes, dislikes: dislikes, creatorId: creatorId, isApproved: isApproved))
             }
-            print("\(vocabularies)")
         } catch {
             print(error.localizedDescription)
         }
@@ -77,7 +76,6 @@ final class VocabularyNetworkManager: ObservableObject {
 
                 self.likes.append(Likes(id: id, likeCount: likeArray.count, dislikeCount: dislikeArray.count))
             }
-            print("likes: \(likes)")
             
         } catch {
             print(error.localizedDescription)
@@ -119,7 +117,6 @@ final class VocabularyNetworkManager: ObservableObject {
             try await path.document(voca.id).updateData([
                 "likeArray": FieldValue.arrayUnion(["\(currentUserId)"])
                 ])
-            print("좋아요 메소드")
         } catch {
             print(error.localizedDescription)
         }
@@ -130,7 +127,6 @@ final class VocabularyNetworkManager: ObservableObject {
             try await path.document(voca.id).updateData([
                 "dislikeArray": FieldValue.arrayUnion(["\(currentUserId)"])
                 ])
-            print("싫어요 메소드")
         } catch {
             print(error.localizedDescription)
         }
@@ -174,7 +170,7 @@ final class VocabularyNetworkManager: ObservableObject {
             self.cards.removeAll()
             var count = 0
             
-            for document in documents.documents {
+            for document in documents.documents.shuffled() {
 
                 let id = count
                 let word = document["word"] as? String ?? ""
