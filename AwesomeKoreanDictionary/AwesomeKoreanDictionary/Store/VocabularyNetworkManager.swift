@@ -37,7 +37,7 @@ final class VocabularyNetworkManager: ObservableObject {
     
     let database = Firestore.firestore()
     let currentUserId = Auth.auth().currentUser?.uid ?? ""
-
+    
     //MARK: - 단어 리스트 불러오기(승인 된거 안된거 다 불러옴)
     @MainActor
     func requestVocabularyList() async -> Void {
@@ -170,7 +170,7 @@ final class VocabularyNetworkManager: ObservableObject {
             self.cards.removeAll()
             var count = 0
             
-            for document in documents.documents {
+            for document in documents.documents.shuffled() {
 
                 let id = count
                 let word = document["word"] as? String ?? ""
