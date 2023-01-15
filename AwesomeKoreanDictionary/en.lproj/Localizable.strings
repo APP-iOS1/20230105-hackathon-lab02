@@ -7,6 +7,14 @@
 */
 
 // 퀴즈
+"번역" = "T/L";
+"정답 보기" = "Answer";
+"언어" = "Language";
+"구글 로그인하기" = "Google Sign in";
+"크레딧" = "Credit";
+"내가 북마크한 단어들" = "Bookmarked";
+"내가 등록한 단어들" = "Words I submitted";
+"입니다." = "Annyeong!";
 "정의" = "definition";
 "예시" = "example";
 "한국 신조어/속어 퀴즈 챌린지" = "Korean New Words/Slang Quiz Challenge";

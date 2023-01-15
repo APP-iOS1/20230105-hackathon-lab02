@@ -40,12 +40,6 @@ struct MyPageView_SelectingLanguageView: View {
 
             VStack{
                 List{
-                    Text("현재 설정된 언어")
-                        .font(.title3)
-                        .padding(.top)
-                    Text(defaultLanguage)
-                        .padding(.horizontal)
-                    
                     Text("언어 선택")
                         .font(.title3)
                         .padding(.top)
