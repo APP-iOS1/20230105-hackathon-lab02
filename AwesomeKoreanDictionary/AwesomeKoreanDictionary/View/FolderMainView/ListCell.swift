@@ -91,7 +91,7 @@ struct ListCell: View {
             // 내용
             VStack(alignment: .leading, spacing: 5) {
                 Text("정의")
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.gray)
                 Text(selection == "ko" ? vocabulary.definition : translatedDefinition) // 이 내용을 번역본으로 변경
                     .lineSpacing(7)
             }
@@ -99,7 +99,7 @@ struct ListCell: View {
             
             VStack(alignment: .leading, spacing: 5) {
                 Text("예시")
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.gray)
                 VStack(alignment: .leading, spacing: 10) {
                     Text(selection == "ko" ? "• \(vocabulary.example)" : "• \(translatedExample)") // 이 내용을 번역본으로 변경
                         .italic()
