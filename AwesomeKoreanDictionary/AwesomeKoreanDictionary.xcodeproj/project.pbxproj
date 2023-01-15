@@ -553,7 +553,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AwesomeKoreanDictionary/Preview Content\"";
-				DEVELOPMENT_TEAM = AU882HP6MX;
+				DEVELOPMENT_TEAM = 54ZG4WU22U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AwesomeKoreanDictionary/Info.plist;
@@ -587,7 +587,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AwesomeKoreanDictionary/Preview Content\"";
-				DEVELOPMENT_TEAM = AU882HP6MX;
+				DEVELOPMENT_TEAM = 54ZG4WU22U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AwesomeKoreanDictionary/Info.plist;
