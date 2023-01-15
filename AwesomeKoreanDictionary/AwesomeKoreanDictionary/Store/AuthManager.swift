@@ -7,15 +7,9 @@
 
 import Firebase
 import FirebaseFirestore
-import FirebaseAuth
 import GoogleSignIn
-import CryptoKit
-import AuthenticationServices
-import SwiftUI
-
 
 class AuthManager: ObservableObject {
-    @Published var nonce = ""
     
     enum signInState {
         case signedIn
@@ -24,101 +18,59 @@ class AuthManager: ObservableObject {
     var googleUser: GIDGoogleUser?
     @Published var state: signInState = .signedOut
     @Published var currentUser = GIDSignIn.sharedInstance.currentUser
+    
     //  -----
     @Published var user: User = User(id: "", isAdmin: false, userNickname: "", userEmail: "")
-    // 로그인시 여기에 currentUser 정보를 저장한다
-    @Published var currentUserInfo: User = User(id: "", isAdmin: false, userNickname: "", userEmail: "")
+    //    User(isAdmin: false, userNickname: "", bookmarked: [], createdVoca: [], userId: "", email: "")
     
     func signIn() {
-        
+        // You check if there’s a previous Sign-In. If yes, then restore it. Otherwise, move on to defining the sign-in process.
         if GIDSignIn.sharedInstance.hasPreviousSignIn() {
             GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
-                
-                let db = Firestore.firestore()
-                let currentUserID = user?.userID ?? ""
-                let userRef = db.collection("user").document(currentUserID)
-                
-                userRef.getDocument {
-                    (document, error) in
-                    if document!.exists {
-                        let docData = document!.data()
-                        let id: String = docData?["id"] as? String ?? ""
-                        let isAdmin: Bool = docData?["isAdmin"] as? Bool ?? false
-                        let userEmail: String = docData?["userEmail"] as? String ?? ""
-                        let userNickname: String = docData?["userNickname"] as? String ?? ""
-                        
-                        self.currentUserInfo.id = id
-                        self.currentUserInfo.isAdmin = isAdmin
-                        self.currentUserInfo.userEmail = userEmail
-                        self.currentUserInfo.userNickname = userNickname
-                        print("로그인 완료 1")
-                    } else {
-                        userRef.setData([
-                            "id": currentUserID,
-                            "isAdmin": false,
-                            "userEmail": user?.profile?.email ?? "",
-                            "userNickname": user?.profile?.name ?? ""
-                        ], merge: true)
-                        
-                        self.currentUserInfo.id = currentUserID
-                        self.currentUserInfo.isAdmin = false
-                        self.currentUserInfo.userEmail = user?.profile?.email ?? ""
-                        self.currentUserInfo.userNickname = user?.profile?.name ?? ""
-                        print("가입 완료 1")
-                    }
-                }
-
                 authenticateUser(for: user, with: error)
             }
         } else {
-//            guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+            // Get the clientID from Firebase App. It fetches the clientID from the GoogleService-Info.plist added to the project earlier.
+            guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+            
+            // Create a Google Sign-In configuration object with the clientID.
+            
+            //            let configuration = GIDConfiguration(clientID: clientID)
+            
+            // As you’re not using view controllers to retrieve the presentingViewController, access it through the shared instance of the UIApplication. Note that directly using the UIWindow is now deprecated, and you should use the scene instead.
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
             guard let rootViewController = windowScene.windows.first?.rootViewController else { return }
             
+            // Then, call signIn() from the shared instance of the GIDSignIn class to start the sign-in process. You pass the configuration object and the presenting controller.
             GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController) { result, error in
                 if let googleUser = result?.user {
+                    self.googleUser = googleUser
                     
                     let db = Firestore.firestore()
-                    let currentUserID = googleUser.userID ?? ""
-                    let userRef = db.collection("user").document(currentUserID)
-                    print(currentUserID)
+                    let userRef = db.collection("user").document(googleUser.userID ?? "")
                     
-                    // 저장되지 않은 유저 정보
                     userRef.getDocument {
                         (document, error) in
-                        if document!.exists {
-                            let docData = document!.data()
-                            let id: String = docData?["id"] as? String ?? ""
-                            let isAdmin: Bool = docData?["isAdmin"] as? Bool ?? false
-                            let userEmail: String = docData?["userEmail"] as? String ?? ""
-                            let userNickname: String = docData?["userNickname"] as? String ?? ""
-                            
-                            self.currentUserInfo.id = id
-                            self.currentUserInfo.isAdmin = isAdmin
-                            self.currentUserInfo.userEmail = userEmail
-                            self.currentUserInfo.userNickname = userNickname
-                            print("로그인 완료 2")
+                        if let document = document, document.exists {
+                            // 이미 저장된 유저 정보
+                            userRef.updateData([
+                                "id": googleUser.userID ?? "",
+//                                "isAdmin": false,
+                                "userEmail": googleUser.profile?.email as? String ?? "",
+                                "userNickname": googleUser.profile?.name as? String ?? ""
+                            ])
                         } else {
+                            // 저장되지 않은 유저 정보
                             userRef.setData([
-                                "id": currentUserID,
+                                "id": googleUser.userID ?? "",
                                 "isAdmin": false,
                                 "userEmail": googleUser.profile?.email ?? "",
                                 "userNickname": googleUser.profile?.name ?? ""
                             ], merge: true)
-                            
-                            self.currentUserInfo.id = currentUserID
-                            self.currentUserInfo.isAdmin = false
-                            self.currentUserInfo.userEmail = googleUser.profile?.email ?? ""
-                            self.currentUserInfo.userNickname = googleUser.profile?.name ?? ""
-                            print("가입 완료 2")
                         }
                     }
-                    
-                    self.currentUserInfo.id = currentUserID
-                    self.currentUserInfo.isAdmin = false
-                    self.currentUserInfo.userEmail = googleUser.profile?.email ?? ""
-                    self.currentUserInfo.userNickname = googleUser.profile?.name ?? ""
                 }
+                
                 self.authenticateUser(for: result?.user, with: error)
             }
         }
@@ -146,11 +98,14 @@ class AuthManager: ObservableObject {
         }
     }
     
-    // MARK: SIGN OUT
     func signOut() {
+        // 1
         GIDSignIn.sharedInstance.signOut()
+        
         do {
+            // 2
             try Auth.auth().signOut()
+            
             state = .signedOut
             UserInfoManager().userInfo = nil
         } catch {
@@ -203,76 +158,4 @@ class AuthManager: ObservableObject {
      return user?.email ?? "default@test.com"
      }
      */
-    func authenticate(credential: ASAuthorizationAppleIDCredential){
-        
-        guard let token = credential.identityToken else{
-            print("error with firebase")
-            
-            return
-        }
-        
-        guard let tokenString = String(data: token, encoding: .utf8) else{
-            print("error with Token")
-            return
-        }
-        
-        let firebaseCredential = OAuthProvider.credential(withProviderID: "apple.com", idToken: tokenString, rawNonce: nonce)
-        
-        Auth.auth().signIn(with: firebaseCredential) { (result, err) in
-            if let error = err{
-                print(error.localizedDescription)
-                return
-            }
-        }
-        
-        print("Logged In")
-        
-        withAnimation(.easeInOut){
-            self.state = .signedIn
-        }
-    }
 }
-
-func sha256(_ input: String) -> String {
-    let inputData = Data(input.utf8)
-    let hashedData = SHA256.hash(data: inputData)
-    let hashString = hashedData.compactMap {
-        return String(format: "%02x", $0)
-    }.joined()
-    
-    return hashString
-}
-
-    func randomNonceString(length: Int = 32) -> String {
-        precondition(length > 0)
-        let charset: [Character] =
-        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-        var result = ""
-        var remainingLength = length
-        
-        while remainingLength > 0 {
-            let randoms: [UInt8] = (0 ..< 16).map { _ in
-                var random: UInt8 = 0
-                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-                if errorCode != errSecSuccess {
-                    fatalError(
-                        "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
-                    )
-                }
-                return random
-            }
-            
-            randoms.forEach { random in
-                if remainingLength == 0 {
-                    return
-                }
-                
-                if random < charset.count {
-                    result.append(charset[Int(random)])
-                    remainingLength -= 1
-                }
-            }
-        }
-        
-        return result
-    }

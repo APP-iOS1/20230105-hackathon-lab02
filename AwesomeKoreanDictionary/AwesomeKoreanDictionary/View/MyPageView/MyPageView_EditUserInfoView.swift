@@ -14,7 +14,7 @@ struct MyPageView_EditUserInfoView: View {
     @Binding var userNickname: String
     
     @EnvironmentObject var userInfoManager: UserInfoManager
-    @EnvironmentObject var authManager: AuthManager
+    
     
     var body: some View {
         ZStack {
@@ -49,8 +49,8 @@ struct MyPageView_EditUserInfoView: View {
                 
                 Button(action: {
                     Task{
-                        await userInfoManager.updateUserNickName(id: authManager.currentUserInfo.id, nickname: userNickname)
-                        await userInfoManager.fetchUserInfo(userId: authManager.currentUserInfo.id)
+                        await userInfoManager.updateUserNickName(nickname: userNickname)
+                        userInfoManager.fetchUserInfo()
                         dismiss()
                     }
                     
@@ -72,7 +72,8 @@ struct MyPageView_EditUserInfoView: View {
             }
         }
         .onAppear(){
-            userNickname = userInfoManager.userInfo!.userNickname
+            userInfoManager.fetchUserInfo()
+            userNickname = userInfoManager.userInfo?.userNickname ?? ""
         }
     }
 }

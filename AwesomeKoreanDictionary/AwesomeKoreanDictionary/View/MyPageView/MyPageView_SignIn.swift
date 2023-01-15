@@ -11,17 +11,16 @@ struct MyPageView_SignIn: View {
     
     @EnvironmentObject var userInfoManager: UserInfoManager
     @EnvironmentObject var authManager: AuthManager
-    @State private var userNickname: String = ""
+    @State private var userNickname: String = "YOOJ"
     @State private var showEditViewModal: Bool = false
     @State var sheet1: Bool = false //개인정보 보호정책
     @State var sheet2: Bool = false //이용약관
     @State private var showingAlert = false
-    @State private var isAdmin = false
     var body: some View {
         
         let firstMyPageList: [String] = ["내가 북마크한 단어들", "내가 등록한 단어들"]
         let secondMyPageList: [String] = ["언어"]
-        let thirdMyPageList: [String] = ["개인정보 보호정책", "크레딧"]
+        let thirdMyPageList: [String] = ["개인정보 보호정책", "이용 약관"]
         
         NavigationStack{
             VStack {
@@ -30,6 +29,7 @@ struct MyPageView_SignIn: View {
                     HStack{
                         Text("\(userNickname) 입니다.")
                             .font(.title2)
+                            .foregroundColor(.black)
                             .padding()
                         
                         Spacer()
@@ -89,7 +89,7 @@ struct MyPageView_SignIn: View {
                                 }
                                 .padding(.horizontal)
                                 
-                            } // 첫번째 리스트 끝
+                            } // 첫번째 리스트 끄
                             
                             Text("도움")
                                 .font(.title3)
@@ -130,7 +130,6 @@ struct MyPageView_SignIn: View {
                             if userInfoManager.userInfo?.isAdmin == true {
                                 NavigationLink{
                                     AdminMainView()
-                                        .onAppear{print("\(isAdmin)")}
                                 } label : {
                                     Text("관리자 로그인하기")
                                         .padding(.horizontal)
@@ -158,12 +157,8 @@ struct MyPageView_SignIn: View {
             }// 전체 한칸 안쪽 VStack 끝
         } // 전체 VStack 끝
         .onAppear {
-            Task {
-                await userInfoManager.fetchUserInfo(userId: authManager.currentUserInfo.id)
-                // FIXME: user
-                userNickname = userInfoManager.userInfo?.userNickname ?? ""
-                isAdmin = userInfoManager.userInfo?.isAdmin ?? false
-            }
+            userInfoManager.fetchUserInfo()
+            userNickname = userInfoManager.userInfo?.userNickname ?? ""
         }
     } // NavigationStack 끝
 }

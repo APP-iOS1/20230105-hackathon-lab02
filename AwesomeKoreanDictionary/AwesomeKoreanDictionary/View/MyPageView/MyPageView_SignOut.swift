@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import AuthenticationServices
-import _AuthenticationServices_SwiftUI
+
+
 
 struct MyPageView_SignOut: View {
     
@@ -18,7 +18,7 @@ struct MyPageView_SignOut: View {
     var body: some View {
         
         let firstMyPageList: [String] = ["언어"]
-        let secondMyPageList: [String] = ["개인정보 보호정책", "크레딧"]
+        let secondMyPageList: [String] = ["개인정보 보호정책", "이용 약관"]
         let thirdMyPageList: [String] = ["관리자 로그인"]
         NavigationStack{
             VStack {
@@ -29,29 +29,9 @@ struct MyPageView_SignOut: View {
                         .foregroundColor(.black)
                         .padding()
                     
-                    SignInWithAppleButton { (request) in
-                        authManager.nonce = randomNonceString()
-                        request.requestedScopes = [.email, .fullName]
-                        request.nonce = sha256(authManager.nonce)
-                    } onCompletion: { (result) in
-                        switch result{
-                        case .success(let user):
-                            print("success")
-                            guard let credential = user.credential as? ASAuthorizationAppleIDCredential else {
-                                print("error with firebase")
-                                return
-                            }
-                            authManager.authenticate(credential: credential)
-                            authManager.state = .signedIn
-                        case .failure(let error):
-                            print(error.localizedDescription)
-                        }
-                    }
-                    .signInWithAppleButtonStyle(.black)
-                    .frame(width: 200, height: 40)
-                    
                     Button {
                         authManager.signIn()
+                        userInfoManager.fetchUserInfo()
                     } label: {
                         ZStack{
                             Rectangle()
@@ -125,6 +105,9 @@ struct MyPageView_SignOut: View {
                     } // 리스트 끝
                     .listStyle(.plain)
                 }// 전체 한칸 안쪽 VStack 끝
+            }
+            .onAppear(){
+                userInfoManager.fetchUserInfo()
             }
             // 전체 VStack 끝
         } // NavigationStack 끝

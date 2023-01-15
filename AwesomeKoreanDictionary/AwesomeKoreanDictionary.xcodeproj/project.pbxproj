@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22C832D629731C2D00AF995C /* AwesomeKoreanDictionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6505FC2F2966633C0054591D /* AwesomeKoreanDictionaryApp.swift */; };
-		22C832D829731CC600AF995C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C832D729731CC600AF995C /* ContentView.swift */; };
-		22C832D929731CDB00AF995C /* SlangRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB90312966B7DF005A6CFF /* SlangRegistrationView.swift */; };
-		22C832DB2973260A00AF995C /* BookmarkedWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C832DA2973260A00AF995C /* BookmarkedWordCell.swift */; };
 		22D990A42966EFCF0050913A /* PapagoNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990A32966EFCF0050913A /* PapagoNetworkManager.swift */; };
 		22D990A62966F20A0050913A /* APIInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22D990A52966F20A0050913A /* APIInfo.plist */; };
 		22D990AB2966F2EA0050913A /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D990AA2966F2EA0050913A /* BundleExtension.swift */; };
@@ -34,6 +30,8 @@
 		36BD6BED2966BBC000DC6387 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD6BEC2966BBC000DC6387 /* DataController.swift */; };
 		4CE1621729673B4E00533369 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1621629673B4E00533369 /* PrivacyPolicyView.swift */; };
 		4CE1621929673B5D00533369 /* TermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1621829673B5D00533369 /* TermsAndConditionsView.swift */; };
+		6505FC302966633C0054591D /* AwesomeKoreanDictionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6505FC2F2966633C0054591D /* AwesomeKoreanDictionaryApp.swift */; };
+		6505FC322966633C0054591D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6505FC312966633C0054591D /* ContentView.swift */; };
 		6505FC342966633D0054591D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6505FC332966633D0054591D /* Assets.xcassets */; };
 		6505FC372966633D0054591D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6505FC362966633D0054591D /* Preview Assets.xcassets */; };
 		65229B3C2967637700417654 /* WaitingApproveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65229B3B2967637700417654 /* WaitingApproveView.swift */; };
@@ -54,14 +52,13 @@
 		C5AB90292966B700005A6CFF /* MyPageView_SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB90282966B700005A6CFF /* MyPageView_SignIn.swift */; };
 		C5AB902B2966B705005A6CFF /* MyPageView_SelectingLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB902A2966B704005A6CFF /* MyPageView_SelectingLanguageView.swift */; };
 		C5AB902D2966B70D005A6CFF /* MyPageView_EditUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB902C2966B70D005A6CFF /* MyPageView_EditUserInfoView.swift */; };
+		C5AB90322966B7DF005A6CFF /* SlangRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB90312966B7DF005A6CFF /* SlangRegistrationView.swift */; };
 		C5F90DA3296666CE00DE5024 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F90DA2296666CE00DE5024 /* LoginView.swift */; };
 		C5F90DA5296667CF00DE5024 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F90DA4296667CF00DE5024 /* SignUpView.swift */; };
 		C5F90DB12966A40D00DE5024 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5F90DB02966A40C00DE5024 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		22C832D729731CC600AF995C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = AwesomeKoreanDictionary/ContentView.swift; sourceTree = "<group>"; };
-		22C832DA2973260A00AF995C /* BookmarkedWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedWordCell.swift; sourceTree = "<group>"; };
 		22D990A32966EFCF0050913A /* PapagoNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoNetworkManager.swift; sourceTree = "<group>"; };
 		22D990A52966F20A0050913A /* APIInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIInfo.plist; sourceTree = "<group>"; };
 		22D990AA2966F2EA0050913A /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
@@ -70,7 +67,6 @@
 		22D990AF29671E070050913A /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		22D990B029671E070050913A /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		22D990B129671E070050913A /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		3625FB652972F0FB0006478B /* AwesomeKoreanDictionary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AwesomeKoreanDictionary.entitlements; sourceTree = "<group>"; };
 		367301A729675FE70032B659 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		367301A9296763400032B659 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		367301AA296763500032B659 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -141,7 +137,6 @@
 		6505FC232966633C0054591D = {
 			isa = PBXGroup;
 			children = (
-				22C832D729731CC600AF995C /* ContentView.swift */,
 				367301A829675FE70032B659 /* Localizable.strings */,
 				6505FC2E2966633C0054591D /* AwesomeKoreanDictionary */,
 				6505FC2D2966633C0054591D /* Products */,
@@ -159,7 +154,6 @@
 		6505FC2E2966633C0054591D /* AwesomeKoreanDictionary */ = {
 			isa = PBXGroup;
 			children = (
-				3625FB652972F0FB0006478B /* AwesomeKoreanDictionary.entitlements */,
 				22D990A72966F2CA0050913A /* Extension */,
 				22D990A52966F20A0050913A /* APIInfo.plist */,
 				36BD6BE32966990400DC6387 /* Info.plist */,
@@ -257,7 +251,6 @@
 				65487B3029671E5A00D7AB0A /* MyPageView_MyBookmarkView.swift */,
 				4CE1621629673B4E00533369 /* PrivacyPolicyView.swift */,
 				4CE1621829673B5D00533369 /* TermsAndConditionsView.swift */,
-				22C832DA2973260A00AF995C /* BookmarkedWordCell.swift */,
 			);
 			path = MyPageView;
 			sourceTree = "<group>";
@@ -368,9 +361,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22C832D929731CDB00AF995C /* SlangRegistrationView.swift in Sources */,
-				22C832D829731CC600AF995C /* ContentView.swift in Sources */,
-				22C832D629731C2D00AF995C /* AwesomeKoreanDictionaryApp.swift in Sources */,
 				65FB3931296703BB008756AA /* MyPageView.swift in Sources */,
 				4CE1621929673B5D00533369 /* TermsAndConditionsView.swift in Sources */,
 				65229B3E2967638C00417654 /* ApprovedView.swift in Sources */,
@@ -378,15 +368,18 @@
 				65487B2D29671D4700D7AB0A /* MyPageView_MyRegisterCell.swift in Sources */,
 				65229B4029676BEB00417654 /* WaitingApproveCell.swift in Sources */,
 				4CE1621729673B4E00533369 /* PrivacyPolicyView.swift in Sources */,
+				6505FC322966633C0054591D /* ContentView.swift in Sources */,
 				65229B3C2967637700417654 /* WaitingApproveView.swift in Sources */,
 				22D990B329671E070050913A /* Detail.swift in Sources */,
 				65229B422967BAA000417654 /* MainLoadingView.swift in Sources */,
 				22D990AB2966F2EA0050913A /* BundleExtension.swift in Sources */,
-				22C832DB2973260A00AF995C /* BookmarkedWordCell.swift in Sources */,
 				22D990A42966EFCF0050913A /* PapagoNetworkManager.swift in Sources */,
+				6505FC302966633C0054591D /* AwesomeKoreanDictionaryApp.swift in Sources */,
 				C5F90DA3296666CE00DE5024 /* LoginView.swift in Sources */,
 				36BD6BDE296686D700DC6387 /* User.swift in Sources */,
 				22D990B529671E070050913A /* Card.swift in Sources */,
+				C5AB90322966B7DF005A6CFF /* SlangRegistrationView.swift in Sources */,
+				C5AB90322966B7DF005A6CFF /* SlangRegistrationView.swift in Sources */,
 				65487B3829673BA500D7AB0A /* AdminView_SignInView.swift in Sources */,
 				36BD6BED2966BBC000DC6387 /* DataController.swift in Sources */,
 				C5AB90292966B700005A6CFF /* MyPageView_SignIn.swift in Sources */,
@@ -406,6 +399,8 @@
 				65487B332967238F00D7AB0A /* MyPageView_MyRegisterView.swift in Sources */,
 				65487B352967382E00D7AB0A /* AdminMainView.swift in Sources */,
 				7649454D2966B1620017D830 /* MainView.swift in Sources */,
+				6505FC322966633C0054591D /* ContentView.swift in Sources */,
+				6505FC302966633C0054591D /* AwesomeKoreanDictionaryApp.swift in Sources */,
 				36BD6BDC296686CA00DC6387 /* Vocabulary.swift in Sources */,
 				369A797B2967456F00B4DEA9 /* UserInfoManager.swift in Sources */,
 			);
@@ -549,11 +544,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = AwesomeKoreanDictionary/AwesomeKoreanDictionary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AwesomeKoreanDictionary/Preview Content\"";
-				DEVELOPMENT_TEAM = 54ZG4WU22U;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AwesomeKoreanDictionary/Info.plist;
@@ -569,12 +563,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codelion.AwesomeKoreanDictionary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -583,11 +574,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = AwesomeKoreanDictionary/AwesomeKoreanDictionary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AwesomeKoreanDictionary/Preview Content\"";
-				DEVELOPMENT_TEAM = 54ZG4WU22U;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AwesomeKoreanDictionary/Info.plist;
@@ -603,12 +593,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codelion.AwesomeKoreanDictionary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

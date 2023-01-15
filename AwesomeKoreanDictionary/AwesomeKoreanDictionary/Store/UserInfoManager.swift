@@ -14,17 +14,18 @@ import FirebaseAuth
 final class UserInfoManager: ObservableObject {
     @Published var userInfo: User?
     let database = Firestore.firestore()
+    let currentUserId = Auth.auth().currentUser?.uid ?? ""
     
     @MainActor
-    public func fetchUserInfo(userId: String) async -> Void {
-        let path = database.collection("user")
-        await withCheckedContinuation({ continuation in
-            path.getDocuments { (snapshot, error) in
+    public func fetchUserInfo() {
+        database.collection("user").getDocuments { snapshot, error in
             if let snapshot {
+                
                 for document in snapshot.documents {
                     let id : String = document.documentID
                     let docData = document.data()
-                    if id == userId {
+                    
+                    if id == self.currentUserId {
                         
                         let id = document.documentID
                         let isAdmin = docData["isAdmin"] as? Bool ?? false
@@ -34,32 +35,42 @@ final class UserInfoManager: ObservableObject {
                         self.userInfo =
                         User(id: id, isAdmin: isAdmin, userNickname: userNickname, userEmail: userEmail)
                         
-                        continuation.resume()
                         print(self.userInfo!)
                     }
                 }
-            } else {
-                continuation.resume(throwing: error as! Never)
+                
             }
         }
-        })
     }
+    
+    //    @MainActor
+    //    public func requestCurrentUserInfo() async -> Void {
+    //        do{
+    //            let document = try await
+    //            database.collection("user").getDocument(currentUserId)
+    //
+    //            let id = document.documentID
+    //            let isAdmin = document.isAdmin as? Bool ?? false
+    //            let userNickname = document.userNickname as? String ?? ""
+    //            let userEmail = document.userEmail as? String ?? ""
+    //
+    //            userInfo = document
+    //
+    //            print("\(userInfo)")
+    //        } catch {
+    //            print(error.localizedDescription)
+    //        }
+    //    }
     
     // MARK: - 유저 닉네임 변경 업데이트 함수
-
-    @MainActor
-    
-    public func updateUserNickName(id: String, nickname: String) async -> Void {
-        //        guard let currentUserId else { return }
-        let path = database.collection("user")
-        do {
-            try await path.document(id).updateData(["userNickname": nickname])
-        } catch {
-            print(error.localizedDescription)
+    public func updateUserNickName(nickname: String) async -> Void {
+    //        guard let currentUserId else { return }
+            let path = database.collection("user")
+            do {
+                try await path.document(currentUserId).updateData(["userNickname": nickname])
+            } catch {
+                print(error.localizedDescription)
+            }
         }
-    }
-
     
 }
-
-

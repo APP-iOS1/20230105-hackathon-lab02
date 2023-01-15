@@ -10,6 +10,9 @@ struct MainView: View {
         if searchText.isEmpty {
             return vocabularyNetworkManager.vocabularies.filter { $0.isApproved }
         } else {
+            //            return dictionary.filter { $0.word.localizedStandardContains(searchText) }
+            //            return dictionary.filter {
+            //                $0.word.contains(searchText) }
             return vocabularyNetworkManager.vocabularies.filter {
                 $0.word.contains(searchText) && $0.isApproved }
         }
@@ -24,12 +27,13 @@ struct MainView: View {
                 ScrollView {
                     Spacer(minLength: 10)
                     
-                    LazyVStack(spacing: 15) {
-                        ForEach(filteredVoca.shuffled(), id: \.self) { vocabulary in
+                    VStack(spacing: 15) {
+                        ForEach(filteredVoca, id: \.self) { vocabulary in
                             
                             ListCell(vocabulary: vocabulary)
                         }
                     }
+
                 }
                 .refreshable {
                     Task {
@@ -43,8 +47,10 @@ struct MainView: View {
                     await vocabularyNetworkManager.requestVocabularyList()
 
                     await vocabularyNetworkManager.countLikes()
+                    
                 }
             }
+            
         }
         .tint(.black)
     }
