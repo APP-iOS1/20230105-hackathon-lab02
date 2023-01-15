@@ -8,6 +8,7 @@
 
 
 import SwiftUI
+import AVFoundation
 
 struct ListCell: View {
     
@@ -21,6 +22,7 @@ struct ListCell: View {
     @State private var selection: String = "ko"
     @State private var translatedDefinition = ""
     @State private var translatedExample = ""
+    @State private var synthesizer = AVSpeechSynthesizer()
     
     var vocabulary: Vocabulary
     var languages = ["ENG", "CHN", "JPN"]
@@ -32,11 +34,21 @@ struct ListCell: View {
             // 단어의 이름
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
-                    Text(vocabulary.word)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding(.bottom, -3)
-                        .foregroundColor(Color(hex: "292929"))
+                    HStack {
+                        Text(vocabulary.word)
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .padding(.bottom, -3)
+                            .foregroundColor(Color(hex: "292929"))
+                        Button {
+                            let utterance = AVSpeechUtterance(string: vocabulary.word)
+                            utterance.voice = AVSpeechSynthesisVoice(language: "ko")
+                            synthesizer.speak(utterance)
+                        } label: {
+                            Image(systemName: "speaker.wave.2")
+                        }
+                        
+                    }
                     Text(vocabulary.pronunciation)
                         .font(.title3)
                         .padding(.bottom, -5)
@@ -55,7 +67,7 @@ struct ListCell: View {
                 .onChange(of: selection, perform: { value in
                     
                     if String(value) == "ko" {
-                      
+                        
                     } else {
                         Task {
                             translatedDefinition = try await PapagoNetworkManager.shared.requestTranslate(sourceString: vocabulary.definition, target: String(value))
@@ -81,11 +93,11 @@ struct ListCell: View {
                             } catch {
                                 print(error)
                             }
-                        } 
+                        }
                     } else {
                         DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, pronunciation: vocabulary.pronunciation, context: managedObjContext)
                     }
-//                    isBookmark.toggle()
+                    //                    isBookmark.toggle()
                     
                 } label: {
                     if let index = voca.firstIndex(where: { $0.word == vocabulary.word }) {
@@ -119,7 +131,7 @@ struct ListCell: View {
                         .italic()
                 }
             }
-
+            
             Divider().padding(.vertical,-1)
             
             // 좋아요 버튼
@@ -135,7 +147,7 @@ struct ListCell: View {
                         Image(systemName: isLike ? "hand.thumbsup.fill" : "hand.thumbsup")
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
-
+                        
                         ForEach(vocabularyNetworkManager.likes) { like in
                             if like.id == vocabulary.id {
                                 Text("\(like.likeCount)")
@@ -154,7 +166,7 @@ struct ListCell: View {
                         Image(systemName: isDislike ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
-
+                        
                         ForEach(vocabularyNetworkManager.likes) { like in
                             if like.id == vocabulary.id {
                                 Text("\(like.dislikeCount)")
@@ -175,10 +187,10 @@ struct ListCell: View {
             }
             .padding(.top, -5)
             .onChange(of: isLike) { val in
-              if val { isDislike = false }
+                if val { isDislike = false }
             }
             .onChange(of: isDislike) { val in
-              if val { isLike = false }
+                if val { isLike = false }
             }
         }
         .foregroundColor(.black)
@@ -191,7 +203,7 @@ struct ListCell: View {
     private func isBookmarked() {
         if let index = voca.firstIndex(where: { $0.word == vocabulary.word }) {
             managedObjContext
-//            managedObjContext.delete(voca[index])
+            //            managedObjContext.delete(voca[index])
         }
     }
 }
