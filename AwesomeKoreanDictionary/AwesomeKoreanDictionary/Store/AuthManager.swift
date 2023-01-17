@@ -150,12 +150,7 @@ final class AuthManager: ObservableObject {
         }
     }
     
-    //MARK: - ID 값을 받아 문자열 가공 후 nickname으로 설정
-    func convertNickname(id: String) -> String {
-        //이거 쓰는지 물어보기
-        return ""
-    }
-    
+    //MARK: - Apple log-in
     func authenticate(credential: ASAuthorizationAppleIDCredential){
         
         guard let token = credential.identityToken else{

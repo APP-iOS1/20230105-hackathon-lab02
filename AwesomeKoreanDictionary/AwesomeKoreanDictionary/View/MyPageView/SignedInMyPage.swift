@@ -49,9 +49,9 @@ struct SignedInMyPage: View {
                         }
                         .padding(.trailing, 25)
                         .buttonStyle(.plain)
-                            .fullScreenCover(isPresented: $showEditViewModal){
-                                EditUserInfoView(userNickname: $userNickname)
-                            }
+                        .fullScreenCover(isPresented: $showEditViewModal){
+                            EditUserInfoView(userNickname: $userNickname)
+                        }
                     } // 상단 내 닉네임 노출 및 개인 정보 수정 HStack 끝
                     
                     // 리스트 시작
@@ -116,7 +116,7 @@ struct SignedInMyPage: View {
                                 .sheet(isPresented: $sheet1, content: {
                                     PrivacyPolicyView(sheet1: $sheet1)
                                 })
-                                // 이용약관 시트뷰
+                                // 크레딧 시트뷰
                                 .sheet(isPresented: $sheet2, content: {
                                     CreditsView(isSheetOn: $sheet2)
                                 })
@@ -154,13 +154,11 @@ struct SignedInMyPage: View {
                 .listStyle(.plain)
             }
         }
-        .onAppear {
-            Task {
-                await userInfoManager.fetchUserInfo(userId: authManager.currentUserInfo.id)
-                // FIXME: user
-                userNickname = userInfoManager.userInfo?.userNickname ?? ""
-                isAdmin = userInfoManager.userInfo?.isAdmin ?? false
-            }
+        .task{
+            await userInfoManager.fetchUserInfo(userId: authManager.currentUserInfo.id)
+            // FIXME: user
+            userNickname = userInfoManager.userInfo?.userNickname ?? ""
+            isAdmin = userInfoManager.userInfo?.isAdmin ?? false
         }
     } // NavigationStack 끝
 }

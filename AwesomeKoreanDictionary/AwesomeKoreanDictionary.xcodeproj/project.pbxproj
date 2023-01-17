@@ -55,7 +55,6 @@
 		C5AB902B2966B705005A6CFF /* SelectingLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB902A2966B704005A6CFF /* SelectingLanguageView.swift */; };
 		C5AB902D2966B70D005A6CFF /* EditUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB902C2966B70D005A6CFF /* EditUserInfoView.swift */; };
 		C5F90DA3296666CE00DE5024 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F90DA2296666CE00DE5024 /* LoginView.swift */; };
-		C5F90DA5296667CF00DE5024 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F90DA4296667CF00DE5024 /* SignUpView.swift */; };
 		C5F90DB12966A40D00DE5024 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5F90DB02966A40C00DE5024 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -110,7 +109,6 @@
 		C5AB902C2966B70D005A6CFF /* EditUserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserInfoView.swift; sourceTree = "<group>"; };
 		C5AB90312966B7DF005A6CFF /* SlangRegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlangRegistrationView.swift; sourceTree = "<group>"; };
 		C5F90DA2296666CE00DE5024 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = AwesomeKoreanDictionary/View/LoginView.swift; sourceTree = SOURCE_ROOT; };
-		C5F90DA4296667CF00DE5024 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C5F90DB02966A40C00DE5024 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,7 +213,6 @@
 				C5AB90252966B6E6005A6CFF /* MyPageView */,
 				7649454B2966B14A0017D830 /* FolderMainView */,
 				C5F90DA2296666CE00DE5024 /* LoginView.swift */,
-				C5F90DA4296667CF00DE5024 /* SignUpView.swift */,
 				6ED4CFBA2967587400F568DE /* ColorExtension.swift */,
 				65229B412967BAA000417654 /* MainLoadingView.swift */,
 			);
@@ -374,7 +371,6 @@
 				65FB3931296703BB008756AA /* MyPageView.swift in Sources */,
 				4CE1621929673B5D00533369 /* CreditsView.swift in Sources */,
 				65229B3E2967638C00417654 /* ApprovedView.swift in Sources */,
-				C5F90DA5296667CF00DE5024 /* SignUpView.swift in Sources */,
 				65487B2D29671D4700D7AB0A /* MyRegisterCell.swift in Sources */,
 				65229B4029676BEB00417654 /* WaitingApproveCell.swift in Sources */,
 				4CE1621729673B4E00533369 /* PrivacyPolicyView.swift in Sources */,

@@ -25,7 +25,7 @@ struct SlangRegistrationView: View {
     @State private (set) var slangPronunciationTextField: String = ""
     
     var descriptionExample: String = "외국인의 ‘농협은행 어디예요?’라는 발음을 한국 사람이 ‘너무 예쁘네요’로 잘못 알아들은 썰에서 나온 신조어.‘너무 예쁘다’라는 뜻으로 쓰임."
-    var SituationUsedExample: String = """
+    var situationUsedExample: String = """
 외국인 : 넘흐예쁘냉?
 나 : 예? 아~(기대기대, 내가 쫌 예쁘지)
 외국인 : 농협은행 어디?
@@ -62,7 +62,7 @@ struct SlangRegistrationView: View {
                         descriptionText
                         //속어 입력 텍스트필드(필수)
                         Section {
-
+                            
                             Text("* 한글 필수 문항 (영어, 공백만 입력 불가능)")
                                 .font(.caption)
                                 .foregroundColor(Color(hex: "ff598e"))
@@ -92,7 +92,7 @@ struct SlangRegistrationView: View {
                         }
                         //속어에 사용되는 단어 의미 설명 텍스트필드(필수)
                         Section {
-
+                            
                             Text("*한글 필수 문항 (영어, 공백만 입력 불가능)")
                                 .font(.caption)
                                 .foregroundColor(Color(hex: "ff598e"))
@@ -115,21 +115,35 @@ struct SlangRegistrationView: View {
                                 .font(.subheadline)
                                 .lineLimit(7, reservesSpace: true)
                                 .frame(width: 320, height: 150, alignment: .top)
-                            Text("예시) \(SituationUsedExample)")
+                            Text("예시) \(situationUsedExample)")
                                 .font(.caption)
                             
-                            .foregroundColor(.gray)
+                                .foregroundColor(.gray)
                         }
                     }
                     .padding(.bottom)
                     
                     //MARK: - 제출하기 버튼
-                    if trimslangTextField.count > 0 && trimslangDescriptionTextField.count > 0 && trimslangSituationUsedTextField.count > 0 && trimslangPronunciationTextField.count > 0 {
+                    if trimslangTextField.count > 0 &&
+                        trimslangDescriptionTextField.count > 0 &&
+                        trimslangSituationUsedTextField.count > 0 &&
+                        trimslangPronunciationTextField.count > 0 {
                         VStack {
                             Button {
                                 Task {
-                                    if KonameValidation(text: trimslangTextField) && KonameValidation(text: trimslangDescriptionTextField) && KonameValidation(text: trimslangSituationUsedTextField) && EnnameValidation(text: trimslangPronunciationTextField) {
-                                        await vocaManager.createVoca(voca: Vocabulary(id: UUID().uuidString, word: trimslangTextField, pronunciation: slangPronunciationTextField, definition: trimslangDescriptionTextField, example: trimslangSituationUsedTextField, likes: 0, dislikes: 0, creatorId: authManager.currentUserInfo.id))
+                                    if KonameValidation(text: trimslangTextField) &&
+                                        KonameValidation(text: trimslangDescriptionTextField) &&
+                                        KonameValidation(text: trimslangSituationUsedTextField) &&
+                                        EnnameValidation(text: trimslangPronunciationTextField) {
+                                        await vocaManager.createVoca(voca:
+                                                                        Vocabulary(
+                                                                            id: UUID().uuidString, word: trimslangTextField,
+                                                                            pronunciation: slangPronunciationTextField,
+                                                                            definition: trimslangDescriptionTextField,
+                                                                            example: trimslangSituationUsedTextField,
+                                                                            likes: 0,
+                                                                            dislikes: 0,
+                                                                            creatorId: authManager.currentUserInfo.id))
                                         
                                         isKorean = true
                                         
@@ -137,7 +151,7 @@ struct SlangRegistrationView: View {
                                         isKorean = false
                                     }
                                     haveNoBlank.toggle()
-                                
+                                    
                                 }
                             } label: {
                                 ZStack {
@@ -197,16 +211,16 @@ struct SlangRegistrationView: View {
         }
     }
     func KonameValidation(text: String) -> Bool {
-                let pattern = "^[가-힣ㄱ-ㅎㅏ-ㅣ\\t\\n\\r\\f\\v\\s]*$"
-                let textTest = text.range(of: pattern, options: .regularExpression) != nil
-                return textTest
-            }
-        
-        func EnnameValidation(text: String) -> Bool {
-                let pattern = "^[a-zA-Z\\t\\n\\r\\f\\v\\s]*$"
-                let textTest = text.range(of: pattern, options: .regularExpression) != nil
-                return textTest
-            }
+        let pattern = "^[가-힣ㄱ-ㅎㅏ-ㅣ\\t\\n\\r\\f\\v\\s]*$"
+        let textTest = text.range(of: pattern, options: .regularExpression) != nil
+        return textTest
+    }
+    
+    func EnnameValidation(text: String) -> Bool {
+        let pattern = "^[a-zA-Z\\t\\n\\r\\f\\v\\s]*$"
+        let textTest = text.range(of: pattern, options: .regularExpression) != nil
+        return textTest
+    }
 }
 
 extension SlangRegistrationView {
