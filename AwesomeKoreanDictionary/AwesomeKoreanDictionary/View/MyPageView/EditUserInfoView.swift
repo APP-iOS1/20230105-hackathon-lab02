@@ -41,6 +41,7 @@ struct EditUserInfoView: View {
                         .foregroundColor(.gray)
                         .background(Color.white)
                         .frame(width: 350, height: 65)
+                        .cornerRadius(10)
                     
                 }
                 .padding(.bottom, 20)
