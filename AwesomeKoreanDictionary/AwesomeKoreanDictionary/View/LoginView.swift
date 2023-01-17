@@ -7,6 +7,8 @@
 
 import SwiftUI
 import GoogleSignIn
+import AuthenticationServices
+import _AuthenticationServices_SwiftUI
 
 struct LoginView: View {
     @Environment(\.dismiss) private var dismiss
@@ -34,6 +36,29 @@ struct LoginView: View {
                         .foregroundColor(.white)
                         .padding(.top, 10)
 
+                    SignInWithAppleButton { (request) in
+                        authManager.nonce = randomNonceString()
+                        request.requestedScopes = [.email, .fullName]
+                        request.nonce = sha256(authManager.nonce)
+                    } onCompletion: { (result) in
+                        switch result{
+                        case .success(let user):
+                            print("success")
+                            guard let credential = user.credential as? ASAuthorizationAppleIDCredential else {
+                                print("error with firebase")
+                                return
+                            }
+                            authManager.authenticate(credential: credential)
+                            authManager.state = .signedIn
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                    .signInWithAppleButtonStyle(.black)
+                    .frame(width: 313, height: 40)
+
+                    
+                    
                     GoogleSignInButton()
                         .frame(width: 320)
                         .onTapGesture {

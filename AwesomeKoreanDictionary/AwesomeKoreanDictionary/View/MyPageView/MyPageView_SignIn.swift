@@ -43,7 +43,7 @@ struct MyPageView_SignIn: View {
                                 .padding(.horizontal,10)
                                 .font(.subheadline)
                                 .fontWeight(.medium)
-                                .cornerRadius(15)
+                                .cornerRadius(10)
                                 .background(RoundedRectangle(cornerRadius: 10).fill(Color(hex: "737DFE"))
                                 )
                         }

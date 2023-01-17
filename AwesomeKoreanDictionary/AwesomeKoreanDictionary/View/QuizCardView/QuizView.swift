@@ -22,7 +22,7 @@ struct QuizView: View {
             VStack {
                 HStack {
                     VStack(alignment: .leading, spacing: 12) {
-                        Text("한국 신조어/속어 퀴즈 챌린지")
+                        Text("한국 신조어&속어 퀴즈 챌린지")
                             .fontWeight(.heavy)
                             .kerning(-1)
                             .font(.system(size: 45))
@@ -55,7 +55,11 @@ struct QuizView: View {
                                 } label: {
                                     Image(systemName: "arrow.counterclockwise")
                                     Text(("퀴즈 새로 불러오기"))
-                                }
+                                        .font(.title2)
+                                        .bold()
+                                        .kerning(-1)
+                                        
+                                }.padding(.top, 30)
                                 Text(test)
                             }
                             .font(.title)
@@ -97,10 +101,17 @@ struct QuizView: View {
                                         })
                                 )
                         }
+
                     }
                     .offset(y: -25)
                 }
                 .padding(.top, 10)
+                Text(("카드를 왼쪽으로 스와이프하세요."))
+                    .foregroundColor(.white)
+                    .font(.title3)
+                    .bold()
+                    .kerning(-1)
+                    .padding(.bottom, 30)
             }
             if isShowing {
                 Detail(isShowing: $isShowing, card: selectedCard, name: name)

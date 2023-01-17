@@ -23,22 +23,23 @@ struct MyPageView_MyBookmarkView: View {
             LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]),
                            startPoint: .top, endPoint: .bottom)
             .edgesIgnoringSafeArea(.all)
-            
-            VStack {
+            ScrollView {
+                Spacer(minLength: 10)
                 
-                Text("북마크한 단어들")
-                
-                if !vocabularies.isEmpty {
-                    
-                    List {
+                VStack {
+                    if !vocabularies.isEmpty {
+                        
                         ForEach(vocabularies) { voca in
                             BookmarkedWordCell(vocabulary: voca)
                         }
-                        
+                    } else {
+                        ZStack {
+                            Text("북마크한 단어가 없습니다!")
+                                .font(.title2)
+                                .kerning(-1)
+                                .padding(.top, 80)
+                        }
                     }
-                    .listStyle(.plain)
-                } else {
-                    Text("찜한 단어가 없습니다!")
                 }
             }
         }

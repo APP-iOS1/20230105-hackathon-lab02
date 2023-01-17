@@ -49,6 +49,7 @@ struct MyPageView_SignOut: View {
                     }
                     .signInWithAppleButtonStyle(.black)
                     .frame(width: 200, height: 40)
+                    .cornerRadius(10)
                     
                     Button {
                         authManager.signIn()
