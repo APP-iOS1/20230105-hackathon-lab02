@@ -23,8 +23,6 @@ struct MyPageView_MyRegisterCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            
-            // 단어의 이름
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     Text(vocabulary.word)
@@ -38,8 +36,6 @@ struct MyPageView_MyRegisterCell: View {
                 }
                 Spacer()
             }
-            
-            // 내용
             VStack(alignment: .leading, spacing: 5) {
                 Text("정의")
                     .foregroundColor(.secondary)
@@ -53,18 +49,12 @@ struct MyPageView_MyRegisterCell: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("• \(vocabulary.example)")
                         .italic()
-//                    ForEach(vocabulary.example, id: \.self) { example in
-//                    }
                 }
             }
-            
-            
-            // 사용자 이름 / 날짜
             HStack {
                 Text("승인여부 \(vocabulary.isApproved.description)")
                     .fontWeight(.bold)
                 Spacer()
-                //                Text("업로드 날짜")
             }
  
         }

@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-// Hex Color를 사용하기 위한 Extenstion
 extension Color {
   init(hex: String) {
     let scanner = Scanner(string: hex)

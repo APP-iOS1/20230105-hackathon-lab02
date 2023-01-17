@@ -8,33 +8,26 @@
 import SwiftUI
 
 struct QuizView: View {
-    
-    // TODO: - Quiz로 보여줄 단어는 어떻게 정할건지? - likes수가 높은 상위 몇개의 단어?
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
     @ObservedObject var papagoNetworkManager = PapagoNetworkManager()
-    
-    // To track which card is swiped
     @Namespace var name
     @State private var swipedIndex = 0
     @State private var selectedCard = Card(cardId: 0, name: "Sketch", offset: 0, definition: "1")
     @State var isShowing = false
     @State var quizResetButtonShowing = false
-    
     @State var test: String = ""
+    
     var body: some View {
         ZStack {
             VStack {
                 HStack {
                     VStack(alignment: .leading, spacing: 12) {
-                        // TODO: - QuizView 제목달기
                         Text("한국 신조어/속어 퀴즈 챌린지")
                             .fontWeight(.heavy)
-                        //        .lineSpacing(-1)
                             .kerning(-1)
                             .font(.system(size: 45))
                             .foregroundColor(.white)
                         
-                        // TODO: - 어떤 데이터를 보여줄지
                         HStack(spacing: 5) {
                             Text("당신의 한국어 능력을 테스트하세요!")
                                 .kerning(-1)
@@ -49,7 +42,6 @@ struct QuizView: View {
                 }
                 .padding()
                 
-                // Stacked Elements
                 GeometryReader { reader in
                     ZStack {
                         if quizResetButtonShowing {
@@ -71,7 +63,7 @@ struct QuizView: View {
                             .offset(x: 0)
                         }
                         
-                        // ZStack will overlay on one another so revesing
+                        
                         ForEach(vocabularyNetworkManager.cards.reversed()) { card in
                             CardView(swipedIndex: $swipedIndex, isShowing: $isShowing, selectedCard: $selectedCard, card: card, reader: reader, name: name)
                                 .offset(x: card.offset)
@@ -79,9 +71,7 @@ struct QuizView: View {
                                 .gesture(
                                     DragGesture()
                                         .onChanged({ value in
-                                            // Update position
                                             withAnimation {
-                                                // Only left swipe
                                                 if value.translation.width < 0 {
                                                     vocabularyNetworkManager.cards[card.cardId].offset = value.translation.width
                                                 }
@@ -92,17 +82,12 @@ struct QuizView: View {
                                             withAnimation {
                                                 if value.translation.width < 150 {
                                                     vocabularyNetworkManager.cards[card.cardId].offset = -1000
-                                                    // Update swipe id
-                                                    // Since its starting from 0
                                                     swipedIndex = card.cardId + 1
-                                                    //                                                    restoreCard(id: card.cardId)
-                                                    print("value: \(value)")
                                                 } else {
                                                     vocabularyNetworkManager.cards[card.cardId].offset = 0
                                                 }
                                                 
                                             }
-                                            //                                            if 카드가 마지막일 때 토글을 켜서 버튼을 보여준다
                                             if card.cardId == 6 {
                                                 quizResetButtonShowing = true
                                             } else {
@@ -112,58 +97,37 @@ struct QuizView: View {
                                         })
                                 )
                         }
-                        
-                        
                     }
                     .offset(y: -25)
-                    
                 }
                 .padding(.top, 10)
-                
-                
             }
             if isShowing {
                 Detail(isShowing: $isShowing, card: selectedCard, name: name)
             }
         }
-        .onAppear {
-            Task {
-                await vocabularyNetworkManager.vocabularyToCard()
-            }
+        .task{
+            await vocabularyNetworkManager.vocabularyToCard()
         }
         .background(
             LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]),
                            startPoint: .top, endPoint: .bottom)
             .edgesIgnoringSafeArea(.all)
-            // Disable bg color when its expanded
-                .opacity(isShowing ? 0 : 1)
+            .opacity(isShowing ? 0 : 1)
         )
     }
     
-    // Add card to list
     func restoreCard(id: Int) {
-        
-        //        var currentCard = vocabularyNetworkManager.cards[id]
-        //        // append last
-        //        currentCard.cardId = vocabularyNetworkManager.cards.count
-        //        vocabularyNetworkManager.cards.append(currentCard)
-        
-        // Go back effect
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             withAnimation {
-                // last one we append
                 vocabularyNetworkManager.cards[vocabularyNetworkManager.cards.count - 1].offset = 0
             }
         }
     }
     
-    // Rotation
     func getRotation(offset: CGFloat) -> Double {
         let value = offset / 150
-        
-        // You can give your own angle here
         let angle: CGFloat = 5
-        
         let degree = Double(value * angle)
         
         return degree

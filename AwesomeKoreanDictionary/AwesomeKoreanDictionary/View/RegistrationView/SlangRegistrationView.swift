@@ -15,10 +15,14 @@ struct SlangRegistrationView: View {
     @Environment(\.dismiss) private var dismiss
     
     //MARK: - 텍스트필드 작성시 사용되는 속성들
-    @State private (set) var slangTextField: String = "" //(필수) 속어
-    @State private (set) var slangDescriptionTextField: String = "" //(필수) 속어 단어 설명
-    @State private (set) var slangSituationUsedTextField: String = "" //(선택) 속어 상황 재연
-    @State private (set) var slangPronunciationTextField: String = "" //(선택) 속어 발음
+    //(필수) 속어
+    @State private (set) var slangTextField: String = ""
+    //(필수) 속어 단어 설명
+    @State private (set) var slangDescriptionTextField: String = ""
+    //(선택) 속어 상황 재연
+    @State private (set) var slangSituationUsedTextField: String = ""
+    //(선택) 속어 발음
+    @State private (set) var slangPronunciationTextField: String = ""
     
     var DescriptionExample: String = "외국인의 ‘농협은행 어디예요?’라는 발음을 한국 사람이 ‘너무 예쁘네요’로 잘못 알아들은 썰에서 나온 신조어.‘너무 예쁘다’라는 뜻으로 쓰임."
     var SituationUsedExample: String = """
@@ -43,10 +47,11 @@ struct SlangRegistrationView: View {
     private var trimslangPronunciationTextField: String {
         slangPronunciationTextField.trimmingCharacters(in: .whitespaces)
     }
-    
-    @State private var summitAlertToggle: Bool = false // 공백문자 없으면 띄우는 얼럿
-    @State private var summitAlertToggle2: Bool = false // 공백문자만 있으면 띄우는 얼럿
-    @State private var isKorean: Bool = false // 텍스트필드에서 한글 체크
+    // 공백문자 없으면 띄우는 얼럿
+    @State private var haveNoBlank: Bool = false
+    // 공백문자만 있으면 띄우는 얼럿
+    @State private var isOnlyWithBlank: Bool = false
+    @State private var isKorean: Bool = false
     
     var body: some View {
         NavigationView {
@@ -131,7 +136,7 @@ struct SlangRegistrationView: View {
                                     } else {
                                         isKorean = false
                                     }
-                                    summitAlertToggle.toggle()
+                                    haveNoBlank.toggle()
                                 
                                 }
                             } label: {
@@ -150,7 +155,7 @@ struct SlangRegistrationView: View {
                                         }
                                 }
                             }
-                            .alert(isKorean ? "공유해주셔서 감사합니다!" : "필수항목을 다시한번 확인해주세요.", isPresented: $summitAlertToggle) {
+                            .alert(isKorean ? "공유해주셔서 감사합니다!" : "필수항목을 다시한번 확인해주세요.", isPresented: $haveNoBlank) {
                                 Button("Ok") {
                                     if isKorean {
                                         dismiss()
@@ -161,10 +166,9 @@ struct SlangRegistrationView: View {
                             }
                         }
                     } else {
-                        //공백문자만 입력시 얼럿창 띄우는 코드
                         VStack {
                             Button(action: {
-                                summitAlertToggle2.toggle()
+                                isOnlyWithBlank.toggle()
                             }) {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 10)
@@ -181,7 +185,7 @@ struct SlangRegistrationView: View {
                                         }
                                 }
                             }
-                            .alert("필수문항을 모두 입력해주세요.", isPresented: $summitAlertToggle2) {
+                            .alert("필수문항을 모두 입력해주세요.", isPresented: $isOnlyWithBlank) {
                                 Button("Ok") { }
                             }
                         }
@@ -206,7 +210,6 @@ struct SlangRegistrationView: View {
 }
 
 extension SlangRegistrationView {
-    //간단한 등록 설명 텍스트 (프리뷰 맨 위에 사용 됨)
     private var descriptionText: some View {
         VStack {
             HStack {

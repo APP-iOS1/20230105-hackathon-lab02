@@ -8,17 +8,13 @@
 import SwiftUI
 
 struct WaitingApproveCell: View {
-    
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
-    var vocabulary: Vocabulary
-    
     @State var selection: String = ""
     @State var sharedSheet: Bool = false
+    var vocabulary: Vocabulary
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            
-            // 단어의 이름
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     Text(vocabulary.word)
@@ -32,8 +28,6 @@ struct WaitingApproveCell: View {
                 }
                 Spacer()
             }
-            
-            // 내용
             VStack(alignment: .leading, spacing: 5) {
                 Text("정의")
                     .foregroundColor(.secondary)
@@ -47,12 +41,8 @@ struct WaitingApproveCell: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("• \(vocabulary.example)")
                         .italic()
-//                    ForEach(vocabulary.example, id: \.self) { example in
-//                    }
                 }
             }
-            
-            // 사용자 이름 / 날짜
             HStack {
                 Text("by \(vocabulary.creatorId)")
                     .fontWeight(.bold)
@@ -75,11 +65,7 @@ struct WaitingApproveCell: View {
                 
                 .foregroundColor(.white)
                 }
-               
-                //                Text("업로드 날짜")
             }
-            
- 
         }
         .foregroundColor(.black)
         .padding(35)

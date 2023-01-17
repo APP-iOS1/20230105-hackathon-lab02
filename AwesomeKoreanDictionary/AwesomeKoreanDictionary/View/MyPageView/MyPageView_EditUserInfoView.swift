@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct MyPageView_EditUserInfoView: View {
-    
     @Environment(\.dismiss) var dismiss
-    
     @Binding var userNickname: String
-    
     @EnvironmentObject var userInfoManager: UserInfoManager
     @EnvironmentObject var authManager: AuthManager
     
@@ -68,7 +65,6 @@ struct MyPageView_EditUserInfoView: View {
                     }
                 }
                 Spacer()
-                
             }
         }
         .onAppear(){
@@ -76,6 +72,8 @@ struct MyPageView_EditUserInfoView: View {
         }
     }
 }
+
+//프리뷰 하나 추가
 
 //struct MyPageView_EditUserInfoView_Previews: PreviewProvider {
 //    static var previews: some View {

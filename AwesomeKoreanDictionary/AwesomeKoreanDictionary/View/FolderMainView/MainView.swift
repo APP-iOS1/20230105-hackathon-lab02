@@ -19,7 +19,7 @@ struct MainView: View {
         NavigationStack {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]), startPoint: .top, endPoint: .bottom)
-                .edgesIgnoringSafeArea(.all)
+                    .edgesIgnoringSafeArea(.all)
                 
                 ScrollView {
                     Spacer(minLength: 10)
@@ -38,12 +38,10 @@ struct MainView: View {
                 }
                 .modifier(ToolbarModifier(searchText: $searchText))
             }
-            .onAppear {
-                Task {
-                    await vocabularyNetworkManager.requestVocabularyList()
-
-                    await vocabularyNetworkManager.countLikes()
-                }
+            .task {
+                await vocabularyNetworkManager.requestVocabularyList()
+                
+                await vocabularyNetworkManager.countLikes()
             }
         }
         .tint(.black)
@@ -56,7 +54,7 @@ struct ToolbarModifier: ViewModifier {
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
     
     @Binding var searchText: String
-
+    
     
     func body(content: Content) -> some View {
         content
@@ -76,32 +74,6 @@ struct ToolbarModifier: ViewModifier {
                         Image(systemName: "plus.rectangle.portrait.fill")
                             .foregroundColor(Color(hex: "292929"))
                     }
-
-                    //                    Button {
-                    //                        isSignedIn = authManager.state == .signedOut ? false : true
-                    //                        showingSignInAlert = !isSignedIn
-                    //                    } label: {
-                    //                        Image(systemName: "plus.rectangle.portrait.fill")
-                    //                    }
-                    //                    .navigationDestination(isPresented: $isSignedIn) {
-                    //                        SlangRegistrationView()
-                    //                    }
-                    //                    .alert("로그인이 필요합니다", isPresented: $showingSignInAlert) {
-                    //                        Button {
-                    //                            print("취소")
-                    //                        } label: {
-                    //                            Text("취소")
-                    //                        }
-                    //                        Button {
-                    //                            isShowingSheet = true
-                    //                        } label: {
-                    //                            Text("로그인")
-                    //                        }
-                    //                    }
-                    //                    .sheet(isPresented: $isShowingSheet) {
-                    //                        LoginView(isShowingSheet: $isShowingSheet)
-                    //                    }
-
                     NavigationLink {
                         MyPageView()
                     } label: {

@@ -11,7 +11,6 @@ import SwiftUI
 import AVFoundation
 
 struct ListCell: View {
-    
     @Environment(\.managedObjectContext) var managedObjContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.word)]) var voca: FetchedResults<BookmarkedVoca>
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
@@ -30,8 +29,6 @@ struct ListCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            
-            // 단어의 이름
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     HStack {
@@ -95,8 +92,6 @@ struct ListCell: View {
                     } else {
                         DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, pronunciation: vocabulary.pronunciation, context: managedObjContext)
                     }
-                    //                    isBookmark.toggle()
-                    
                 } label: {
                     if let index = voca.firstIndex(where: { $0.word == vocabulary.word }) {
                         Image(systemName: managedObjContext.registeredObjects.contains(voca[index]) ? "bookmark.fill" : "bookmark")
@@ -112,11 +107,10 @@ struct ListCell: View {
                 }
             }
             
-            // 내용
             VStack(alignment: .leading, spacing: 5) {
                 Text("정의")
                     .foregroundColor(.gray)
-                Text(selection == "ko" ? vocabulary.definition : translatedDefinition) // 이 내용을 번역본으로 변경
+                Text(selection == "ko" ? vocabulary.definition : translatedDefinition)
                     .lineSpacing(7)
             }
             .padding(.bottom, -10)
@@ -125,14 +119,13 @@ struct ListCell: View {
                 Text("예시")
                     .foregroundColor(.gray)
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(selection == "ko" ? "• \(vocabulary.example)" : "• \(translatedExample)") // 이 내용을 번역본으로 변경
+                    Text(selection == "ko" ? "• \(vocabulary.example)" : "• \(translatedExample)")
                         .italic()
                 }
             }
             
             Divider().padding(.vertical,-1)
             
-            // 좋아요 버튼
             HStack(spacing: 17) {
                 Button {
                     Task {
@@ -201,7 +194,6 @@ struct ListCell: View {
     private func isBookmarked() {
         if let index = voca.firstIndex(where: { $0.word == vocabulary.word }) {
             managedObjContext
-            //            managedObjContext.delete(voca[index])
         }
     }
     

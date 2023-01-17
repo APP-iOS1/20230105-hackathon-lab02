@@ -7,13 +7,15 @@
 
 import CoreData
 
-class DataController: ObservableObject {
+final class DataController: ObservableObject {
     let container = NSPersistentContainer(name: "BookmarkedVocaModel")
     
     init() {
         container.loadPersistentStores { desc, error in
             if let error = error {
-                print("Failed to load the data \(error.localizedDescription)")
+#if DEBUG
+                print("\(error.localizedDescription)")
+#endif
             }
         }
     }
@@ -21,11 +23,11 @@ class DataController: ObservableObject {
     func save(context: NSManagedObjectContext) {
         do {
             try context.save()
-            print("Data saved successfully. WUHU!!!")
         } catch {
-            // Handle errors in our database
             let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+#if DEBUG
+            print("\(error.localizedDescription)")
+#endif
         }
     }
     
@@ -38,5 +40,4 @@ class DataController: ObservableObject {
         
         save(context: context)
     }
-    
 }

@@ -33,7 +33,6 @@ struct MyPageView_SelectingLanguageView: View {
     private let languages = ["Korean", "English", "Japanese","Chinese"]
     
     @State private var defaultLanguage: String = "한국어"
-//    @State private var selectedLanguage: String?
     @State private var showingOptions: Bool = false
     
     var body: some View {

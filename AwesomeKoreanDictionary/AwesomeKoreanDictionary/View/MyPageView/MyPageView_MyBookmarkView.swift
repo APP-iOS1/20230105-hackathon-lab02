@@ -9,7 +9,6 @@ import SwiftUI
 import CoreData
 
 struct MyPageView_MyBookmarkView: View {
-    
     @Environment(\.managedObjectContext) var managedObjContext
     @Environment(\.editMode) var editMode
     @FetchRequest(sortDescriptors: [SortDescriptor(\.word)]) var vocabularies: FetchedResults<BookmarkedVoca>
@@ -58,16 +57,11 @@ struct MyPageView_MyBookmarkView: View {
         }
     }
     
-    //     Deletes voca at the current offset
     private func deleteVoca(offsets: IndexSet) {
         withAnimation {
-//            if let index = voca.firstIndex(where: { $0.word == voca.word }) {
-//                managedObjContext.delete(voca[index])
-//            }
             offsets.map { vocabularies[$0] }
                 .forEach(managedObjContext.delete)
             
-            // Saves to our database
             DataController().save(context: managedObjContext)
         }
     }

@@ -55,11 +55,11 @@ final class UserInfoManager: ObservableObject {
         do {
             try await path.document(id).updateData(["userNickname": nickname])
         } catch {
-            print(error.localizedDescription)
+#if DEBUG
+            print("\(error.localizedDescription)")
+#endif
         }
-    }
-
-    
+    } 
 }
 
 

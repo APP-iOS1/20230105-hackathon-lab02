@@ -42,9 +42,6 @@ struct SearchBar: View {
                 
                 TextField("Search", text: $searchText)
                     .foregroundColor(.primary)
-//                    .onSubmit(of: .search) {
-//                        print("검색 완료: \(searchText)")
-//                    }
                     .onChange(of: searchText) { newValue in
                         print("검색 입력: \(newValue)")
                     }

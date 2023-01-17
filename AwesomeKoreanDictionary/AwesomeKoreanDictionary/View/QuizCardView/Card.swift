@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-/**
- QuizView에서 Vocabulary를 보여줄 카드 구조체
- */
 struct Card: Identifiable {
     var cardId: Int
     var name: String

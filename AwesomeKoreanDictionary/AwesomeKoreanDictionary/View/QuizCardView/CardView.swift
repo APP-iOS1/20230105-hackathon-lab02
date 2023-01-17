@@ -19,7 +19,6 @@ struct CardView: View {
     var body: some View {
         LazyVStack {
             Spacer(minLength: 0)
-
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom), content: {
                 VStack {
                     HStack {
@@ -29,7 +28,6 @@ struct CardView: View {
                                 .fontWeight(.heavy)
                                 .foregroundColor(Color(hex: "737DFE"))
                             
-                            // TODO: - 넣을 데이터 생각해보기
                             Text("이 단어의 뜻은 무엇일까요?")
                                 .font(.system(size: 20))
                                 .kerning(-1)
@@ -64,7 +62,6 @@ struct CardView: View {
             .background(Color.white)
             .cornerRadius(25)
             .padding(.horizontal, 30 + (CGFloat(card.cardId - swipedIndex) * 10))
-            // 필요한 코드 건들지 X
             .offset(y:card.cardId - swipedIndex <= 2 ? CGFloat(card.cardId - swipedIndex) * 25 : 50)
             .shadow(color: Color.black.opacity(0.12), radius: 5, x: 0, y: 5)
 
