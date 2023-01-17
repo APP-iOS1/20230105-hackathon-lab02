@@ -13,15 +13,11 @@ struct SignedInMyPage: View {
     @EnvironmentObject var authManager: AuthManager
     @State private var userNickname: String = ""
     @State private var showEditViewModal: Bool = false
-    @State var sheet1: Bool = false //개인정보 보호정책
-    @State var sheet2: Bool = false //이용약관
+    @State var isPrivacySheetOn: Bool = false //개인정보 보호정책
+    @State var isCreditSheetOn: Bool = false //크레딧
     @State private var showingAlert = false
     @State private var isAdmin = false
     var body: some View {
-        
-        let firstMyPageList: [String] = ["내가 북마크한 단어들", "내가 등록한 단어들"]
-        let secondMyPageList: [String] = ["언어"]
-        let thirdMyPageList: [String] = ["개인정보 보호정책", "크레딧"]
         
         NavigationStack{
             VStack {
@@ -61,17 +57,17 @@ struct SignedInMyPage: View {
                             Text("마이 페이지")
                                 .font(.title3)
                                 .padding(.top)
-                            
+
                             NavigationLink{
                                 MyBookmarkView()
                             } label: {
-                                Text("\(firstMyPageList[0])")
+                                Text("내가 북마크한 단어들")
                                     .padding(.horizontal)
                             }
                             NavigationLink {
                                 MyRegisterView()
                             } label: {
-                                Text("\(firstMyPageList[1])")
+                                Text("내가 등록한 단어들")
                                     .padding(.horizontal)
                             }
                             Text("설정")
@@ -80,48 +76,26 @@ struct SignedInMyPage: View {
                             NavigationLink{
                                 SelectingLanguageView()
                             } label: {
-                                ForEach(secondMyPageList, id: \.self) {
-                                    listString in
-                                    HStack {
-                                        Text(listString)
-                                        Spacer()
-                                    }
-                                }
-                                .padding(.horizontal)
-                                
-                            } // 첫번째 리스트 끝
+                                Text("언어")
+                            }
                             
                             Text("도움")
                                 .font(.title3)
                                 .padding(.top)
                             
-                            ForEach(0..<thirdMyPageList.count, id: \.self) {
-                                index in
-                                Button(action: {
-                                    if thirdMyPageList[0] ==  thirdMyPageList[index] {
-                                        sheet1.toggle()
-                                    }
-                                    if thirdMyPageList[1] ==  thirdMyPageList[index] {
-                                        sheet2.toggle()
-                                    }
-                                }) {
-                                    HStack {
-                                        Text(thirdMyPageList[index])
-                                        Spacer()
-                                        Image(systemName: "arrow.up.right")
-                                    }
-                                    
-                                }
-                                //개인정보 보호정책 시트뷰
-                                .sheet(isPresented: $sheet1, content: {
-                                    PrivacyPolicyView(sheet1: $sheet1)
-                                })
-                                // 크레딧 시트뷰
-                                .sheet(isPresented: $sheet2, content: {
-                                    CreditsView(isSheetOn: $sheet2)
-                                })
-                                .padding(.horizontal)
-                            } // 두번째 리스트 끝
+                            NavigationLink{
+                                PrivacyPolicyView(isSheetOn: $isPrivacySheetOn)
+                            } label: {
+                                Text("개인정보 보호정책")
+                                    .padding(.horizontal)
+                            }
+                            
+                            NavigationLink{
+                                CreditsView(isSheetOn: $isCreditSheetOn)
+                            } label: {
+                                Text("크레딧")
+                                    .padding(.horizontal)
+                            }
                             
                             Text("관리자 로그인")
                                 .font(.title3)
