@@ -5,6 +5,8 @@
   Created by 추현호 on 2023/01/06.
   
 */
+"퀴즈 새로 불러오기" = "one more play";
+"카드를 왼쪽으로 스와이프 하세요." = "Swipe left to see a new quiz";
 "언어 선택" = "Select Language";
 "번역:" = "T/L:";
 "번역" = "T/L";
@@ -18,7 +20,7 @@
 
 "정의" = "definition";
 "예시" = "example";
-"한국 신조어/속어 퀴즈 챌린지" = "Korean New Words/Slang Quiz Challenge";
+"한국 신조어&속어 퀴즈 챌린지" = "Korean New Words/Slang Quiz Challenge";
 "당신의 한국어 능력을 테스트하세요!" = "Test your Korean skills!";
 "이 단어의 뜻은 무엇일까요?" = "What does this word mean?";
 "정답 보기" = "See the answer.";

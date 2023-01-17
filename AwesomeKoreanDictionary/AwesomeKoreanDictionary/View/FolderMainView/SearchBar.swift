@@ -42,9 +42,6 @@ struct SearchBar: View {
                 
                 TextField("Search", text: $searchText)
                     .foregroundColor(.primary)
-                    .onChange(of: searchText) { newValue in
-                        print("검색 입력: \(newValue)")
-                    }
                 
                 if !searchText.isEmpty {
                     Button(action: {
