@@ -185,7 +185,7 @@ struct SlangRegistrationView: View {
                                         }
                                 }
                             }
-                            .alert("필수문항을 모두 입력해주세요.", isPresented: $isOnlyWithBlank) {
+                            .alert("필수 문항을 모두 입력해주세요.", isPresented: $isOnlyWithBlank) {
                                 Button("Ok") { }
                             }
                         }
