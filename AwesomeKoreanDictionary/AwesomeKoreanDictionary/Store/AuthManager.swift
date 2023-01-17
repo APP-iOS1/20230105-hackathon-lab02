@@ -151,6 +151,10 @@ final class AuthManager: ObservableObject {
     }
     
     //MARK: - Apple log-in
+    
+    
+    
+    
     func authenticate(credential: ASAuthorizationAppleIDCredential){
         
         guard let token = credential.identityToken else{
@@ -167,6 +171,38 @@ final class AuthManager: ObservableObject {
         let firebaseCredential = OAuthProvider.credential(withProviderID: "apple.com", idToken: tokenString, rawNonce: nonce)
         
         Auth.auth().signIn(with: firebaseCredential) { (result, err) in
+            let db = Firestore.firestore()
+            let currentUserID = result?.user.uid ?? ""
+            let userRef = db.collection("user").document(currentUserID)
+            
+            userRef.getDocument {
+                (document, error) in
+                if document!.exists {
+                    let docData = document!.data()
+                    let id: String = docData?["id"] as? String ?? ""
+                    let isAdmin: Bool = docData?["isAdmin"] as? Bool ?? false
+                    let userEmail: String = docData?["userEmail"] as? String ?? ""
+                    let userNickname: String = docData?["userNickname"] as? String ?? ""
+                    
+                    self.currentUserInfo.id = id
+                    self.currentUserInfo.isAdmin = isAdmin
+                    self.currentUserInfo.userEmail = userEmail
+                    self.currentUserInfo.userNickname = userNickname
+                } else {
+                    userRef.setData([
+                        "id": currentUserID,
+                        "isAdmin": false,
+                        "userEmail": result?.user.email ?? "",
+                        "userNickname": result?.user.email ?? ""
+                    ], merge: true)
+                    
+                    self.currentUserInfo.id = currentUserID
+                    self.currentUserInfo.isAdmin = false
+                    self.currentUserInfo.userEmail = result?.user.email ?? ""
+                    self.currentUserInfo.userNickname = result?.user.email ?? ""
+                }
+            }
+            
             if let error = err{
 #if DEBUG
                 print("\(error.localizedDescription)")
@@ -174,9 +210,9 @@ final class AuthManager: ObservableObject {
                 return
             }
         }
-        
+#if DEBUG
         print("Logged In")
-        
+#endif
         withAnimation(.easeInOut){
             self.state = .signedIn
         }
