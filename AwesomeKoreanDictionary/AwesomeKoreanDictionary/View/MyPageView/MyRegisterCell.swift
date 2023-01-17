@@ -14,7 +14,7 @@
 
 import SwiftUI
 
-struct MyPageView_MyRegisterCell: View {
+struct MyRegisterCell: View {
     var vocabulary: Vocabulary
     var languages = ["KOR", "ENG", "CHN", "JPN"]
     
@@ -66,9 +66,9 @@ struct MyPageView_MyRegisterCell: View {
     }
 }
 
-struct MyPageView_MyRegisterView_Previews: PreviewProvider {
+struct MyRegisterCell_Previews: PreviewProvider {
     static var previews: some View {
-        MyPageView_MyRegisterCell(vocabulary: dictionary[0])
+        MyRegisterCell(vocabulary: dictionary[0])
     }
 }
 

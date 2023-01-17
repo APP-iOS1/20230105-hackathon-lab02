@@ -9,7 +9,7 @@ import SwiftUI
 import AuthenticationServices
 import _AuthenticationServices_SwiftUI
 
-struct MyPageView_SignOut: View {
+struct SignedOutMyPage: View {
     
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var userInfoManager: UserInfoManager
@@ -72,7 +72,7 @@ struct MyPageView_SignOut: View {
                             .padding(.top)
                         
                         NavigationLink{
-                            MyPageView_MyBookmarkView()
+                            MyBookmarkView()
                         } label: {
                             Text("내가 북마크한 단어들")
                                 .padding(.horizontal)
@@ -83,7 +83,7 @@ struct MyPageView_SignOut: View {
                             .font(.title3)
                             .padding(.top)
                         NavigationLink{
-                            MyPageView_SelectingLanguageView()
+                            SelectingLanguageView()
                         } label: {
                             Text(firstMyPageList[0])
                                 .padding(.horizontal)
@@ -115,7 +115,7 @@ struct MyPageView_SignOut: View {
                             })
                             // 이용약관 시트뷰
                             .sheet(isPresented: $sheet2, content: {
-                                TermsAndConditionsView(sheet2: $sheet2)
+                                CreditsView(isSheetOn: $sheet2)
                             })
                             .padding(.horizontal)
                         } // 두번째 리스트
@@ -132,8 +132,8 @@ struct MyPageView_SignOut: View {
 }
 
 
-struct MyPageView_Previews: PreviewProvider {
+struct SignedOutMyPage_Preview: PreviewProvider {
     static var previews: some View {
-        MyPageView_SignOut()
+        SignedOutMyPage()
     }
 }

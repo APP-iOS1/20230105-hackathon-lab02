@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct MyPageView_MyBookmarkView: View {
+struct MyBookmarkView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @Environment(\.editMode) var editMode
     @FetchRequest(sortDescriptors: [SortDescriptor(\.word)]) var vocabularies: FetchedResults<BookmarkedVoca>
@@ -67,8 +67,8 @@ struct MyPageView_MyBookmarkView: View {
     }
 }
 
-struct MyPageView_MyBookmarkView_Previews: PreviewProvider {
+struct MyBookmarkView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPageView_MyBookmarkView()
+        MyBookmarkView()
     }
 }

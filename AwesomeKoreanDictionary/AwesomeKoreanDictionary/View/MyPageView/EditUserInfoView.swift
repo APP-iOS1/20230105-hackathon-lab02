@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MyPageView_EditUserInfoView: View {
+struct EditUserInfoView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var userNickname: String
     @EnvironmentObject var userInfoManager: UserInfoManager

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MyPageView_SignIn: View {
+struct SignedInMyPage: View {
     
     @EnvironmentObject var userInfoManager: UserInfoManager
     @EnvironmentObject var authManager: AuthManager
@@ -50,7 +50,7 @@ struct MyPageView_SignIn: View {
                         .padding(.trailing, 25)
                         .buttonStyle(.plain)
                             .fullScreenCover(isPresented: $showEditViewModal){
-                                MyPageView_EditUserInfoView(userNickname: $userNickname)
+                                EditUserInfoView(userNickname: $userNickname)
                             }
                     } // 상단 내 닉네임 노출 및 개인 정보 수정 HStack 끝
                     
@@ -63,13 +63,13 @@ struct MyPageView_SignIn: View {
                                 .padding(.top)
                             
                             NavigationLink{
-                                MyPageView_MyBookmarkView()
+                                MyBookmarkView()
                             } label: {
                                 Text("\(firstMyPageList[0])")
                                     .padding(.horizontal)
                             }
                             NavigationLink {
-                                MyPageView_MyRegisterView()
+                                MyRegisterView()
                             } label: {
                                 Text("\(firstMyPageList[1])")
                                     .padding(.horizontal)
@@ -78,7 +78,7 @@ struct MyPageView_SignIn: View {
                                 .font(.title3)
                                 .padding(.top)
                             NavigationLink{
-                                MyPageView_SelectingLanguageView()
+                                SelectingLanguageView()
                             } label: {
                                 ForEach(secondMyPageList, id: \.self) {
                                     listString in
@@ -118,7 +118,7 @@ struct MyPageView_SignIn: View {
                                 })
                                 // 이용약관 시트뷰
                                 .sheet(isPresented: $sheet2, content: {
-                                    TermsAndConditionsView(sheet2: $sheet2)
+                                    CreditsView(isSheetOn: $sheet2)
                                 })
                                 .padding(.horizontal)
                             } // 두번째 리스트 끝
@@ -145,8 +145,6 @@ struct MyPageView_SignIn: View {
                             
                         } label: {
                             Text("로그아웃")
-                            //                                    .font(.title3)
-                            //                                    .padding(.top)
                         }.buttonStyle(.plain)
                             .alert(isPresented: $showingAlert){
                                 Alert(title: Text("정말 로그아웃\n하시겠습니까?"), message: Text(""), primaryButton: .destructive(Text("로그아웃")){authManager.signOut()}, secondaryButton: .cancel())
@@ -154,9 +152,8 @@ struct MyPageView_SignIn: View {
                     }
                 }
                 .listStyle(.plain)
-                // 리스트 끝
-            }// 전체 한칸 안쪽 VStack 끝
-        } // 전체 VStack 끝
+            }
+        }
         .onAppear {
             Task {
                 await userInfoManager.fetchUserInfo(userId: authManager.currentUserInfo.id)
@@ -169,9 +166,9 @@ struct MyPageView_SignIn: View {
 }
 
 
-struct MyPage_SignIn_Previews: PreviewProvider {
+struct SignedInMyPage_Preview: PreviewProvider {
     static var previews: some View {
-        MyPageView_SignIn()
+        SignedInMyPage()
             .environmentObject(AuthManager())
             .environmentObject(UserInfoManager())
     }

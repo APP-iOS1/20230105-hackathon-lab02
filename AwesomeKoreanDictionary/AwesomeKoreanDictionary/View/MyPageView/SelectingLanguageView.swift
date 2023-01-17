@@ -27,7 +27,7 @@ enum Languages: String, CaseIterable{
     }
 }
 
-struct MyPageView_SelectingLanguageView: View {
+struct SelectingLanguageView: View {
     @AppStorage("selectedLanguage") private var selectedLanguage: String?
         
     private let languages = ["Korean", "English", "Japanese","Chinese"]
@@ -67,8 +67,8 @@ struct MyPageView_SelectingLanguageView: View {
 }
 
 
-struct MyPage_SelectingLanguageView_Previews: PreviewProvider {
+struct SelectingLanguageView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPageView_SelectingLanguageView()
+        SelectingLanguageView()
     }
 }

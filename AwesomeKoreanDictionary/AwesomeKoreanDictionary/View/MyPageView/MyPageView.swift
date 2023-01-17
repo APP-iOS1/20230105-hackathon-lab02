@@ -12,14 +12,14 @@ struct MyPageView: View {
     @EnvironmentObject var userInfoManager: UserInfoManager
     var body: some View {
         if authManager.state == .signedIn {
-            MyPageView_SignIn().environmentObject(userInfoManager)
+            SignedInMyPage().environmentObject(userInfoManager)
         } else {
-            MyPageView_SignOut()
+            SignedOutMyPage()
         }
     }
 }
 
-struct MyPageView1_Previews: PreviewProvider {
+struct MyPageView_Previews: PreviewProvider {
     static var previews: some View {
         MyPageView()
     }

@@ -24,7 +24,7 @@ struct SlangRegistrationView: View {
     //(선택) 속어 발음
     @State private (set) var slangPronunciationTextField: String = ""
     
-    var DescriptionExample: String = "외국인의 ‘농협은행 어디예요?’라는 발음을 한국 사람이 ‘너무 예쁘네요’로 잘못 알아들은 썰에서 나온 신조어.‘너무 예쁘다’라는 뜻으로 쓰임."
+    var descriptionExample: String = "외국인의 ‘농협은행 어디예요?’라는 발음을 한국 사람이 ‘너무 예쁘네요’로 잘못 알아들은 썰에서 나온 신조어.‘너무 예쁘다’라는 뜻으로 쓰임."
     var SituationUsedExample: String = """
 외국인 : 넘흐예쁘냉?
 나 : 예? 아~(기대기대, 내가 쫌 예쁘지)
@@ -101,7 +101,7 @@ struct SlangRegistrationView: View {
                                 .lineLimit(7, reservesSpace: true)
                                 .frame(width: 320, height: 150, alignment: .top)
                             
-                            Text("예시) \(DescriptionExample)")
+                            Text("예시) \(descriptionExample)")
                                 .font(.caption)
                             
                                 .foregroundColor(.gray)

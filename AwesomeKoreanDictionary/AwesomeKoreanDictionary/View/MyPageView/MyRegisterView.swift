@@ -8,7 +8,7 @@
 import SwiftUI
 import FirebaseAuth
 
-struct MyPageView_MyRegisterView: View {
+struct MyRegisterView: View {
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
     var body: some View {
         ZStack {
@@ -24,7 +24,7 @@ struct MyPageView_MyRegisterView: View {
                     ForEach(vocabularyNetworkManager.vocabularies, id: \.self) { vocabulary in
                         
                         if Auth.auth().currentUser?.uid == vocabulary.creatorId {
-                            MyPageView_MyRegisterCell(vocabulary: vocabulary)
+                            MyRegisterCell(vocabulary: vocabulary)
                         }
                     }
                     
@@ -38,8 +38,8 @@ struct MyPageView_MyRegisterView: View {
 }
 
 
-struct SwiftUIView_Previews: PreviewProvider {
+struct MyRegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPageView_MyRegisterView()
+        MyRegisterView()
     }
 }

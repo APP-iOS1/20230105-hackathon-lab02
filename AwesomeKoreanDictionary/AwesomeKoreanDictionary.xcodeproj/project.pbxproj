@@ -33,16 +33,16 @@
 		36BD6BEB2966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 36BD6BE92966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodeld */; };
 		36BD6BED2966BBC000DC6387 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD6BEC2966BBC000DC6387 /* DataController.swift */; };
 		4CE1621729673B4E00533369 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1621629673B4E00533369 /* PrivacyPolicyView.swift */; };
-		4CE1621929673B5D00533369 /* TermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1621829673B5D00533369 /* TermsAndConditionsView.swift */; };
+		4CE1621929673B5D00533369 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1621829673B5D00533369 /* CreditsView.swift */; };
 		6505FC342966633D0054591D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6505FC332966633D0054591D /* Assets.xcassets */; };
 		6505FC372966633D0054591D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6505FC362966633D0054591D /* Preview Assets.xcassets */; };
 		65229B3C2967637700417654 /* WaitingApproveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65229B3B2967637700417654 /* WaitingApproveView.swift */; };
 		65229B3E2967638C00417654 /* ApprovedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65229B3D2967638C00417654 /* ApprovedView.swift */; };
 		65229B4029676BEB00417654 /* WaitingApproveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65229B3F29676BEB00417654 /* WaitingApproveCell.swift */; };
 		65229B422967BAA000417654 /* MainLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65229B412967BAA000417654 /* MainLoadingView.swift */; };
-		65487B2D29671D4700D7AB0A /* MyPageView_MyRegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65487B2C29671D4700D7AB0A /* MyPageView_MyRegisterCell.swift */; };
-		65487B3129671E5A00D7AB0A /* MyPageView_MyBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65487B3029671E5A00D7AB0A /* MyPageView_MyBookmarkView.swift */; };
-		65487B332967238F00D7AB0A /* MyPageView_MyRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65487B322967238E00D7AB0A /* MyPageView_MyRegisterView.swift */; };
+		65487B2D29671D4700D7AB0A /* MyRegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65487B2C29671D4700D7AB0A /* MyRegisterCell.swift */; };
+		65487B3129671E5A00D7AB0A /* MyBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65487B3029671E5A00D7AB0A /* MyBookmarkView.swift */; };
+		65487B332967238F00D7AB0A /* MyRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65487B322967238E00D7AB0A /* MyRegisterView.swift */; };
 		65487B352967382E00D7AB0A /* AdminMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65487B342967382E00D7AB0A /* AdminMainView.swift */; };
 		65487B3829673BA500D7AB0A /* AdminView_SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65487B3729673BA500D7AB0A /* AdminView_SignInView.swift */; };
 		65FB3931296703BB008756AA /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB3930296703BB008756AA /* MyPageView.swift */; };
@@ -50,10 +50,10 @@
 		7649454D2966B1620017D830 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649454C2966B1610017D830 /* MainView.swift */; };
 		7649454F2966B1670017D830 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649454E2966B1670017D830 /* SearchBar.swift */; };
 		764945512966B16D0017D830 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764945502966B16D0017D830 /* ListCell.swift */; };
-		C5AB90272966B6FC005A6CFF /* MyPageView_SignOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB90262966B6FC005A6CFF /* MyPageView_SignOut.swift */; };
-		C5AB90292966B700005A6CFF /* MyPageView_SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB90282966B700005A6CFF /* MyPageView_SignIn.swift */; };
-		C5AB902B2966B705005A6CFF /* MyPageView_SelectingLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB902A2966B704005A6CFF /* MyPageView_SelectingLanguageView.swift */; };
-		C5AB902D2966B70D005A6CFF /* MyPageView_EditUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB902C2966B70D005A6CFF /* MyPageView_EditUserInfoView.swift */; };
+		C5AB90272966B6FC005A6CFF /* SignedOutMyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB90262966B6FC005A6CFF /* SignedOutMyPage.swift */; };
+		C5AB90292966B700005A6CFF /* SignedInMyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB90282966B700005A6CFF /* SignedInMyPage.swift */; };
+		C5AB902B2966B705005A6CFF /* SelectingLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB902A2966B704005A6CFF /* SelectingLanguageView.swift */; };
+		C5AB902D2966B70D005A6CFF /* EditUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB902C2966B70D005A6CFF /* EditUserInfoView.swift */; };
 		C5F90DA3296666CE00DE5024 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F90DA2296666CE00DE5024 /* LoginView.swift */; };
 		C5F90DA5296667CF00DE5024 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F90DA4296667CF00DE5024 /* SignUpView.swift */; };
 		C5F90DB12966A40D00DE5024 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5F90DB02966A40C00DE5024 /* GoogleService-Info.plist */; };
@@ -84,7 +84,7 @@
 		36BD6BEA2966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookmarkedVocaModel.xcdatamodel; sourceTree = "<group>"; };
 		36BD6BEC2966BBC000DC6387 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		4CE1621629673B4E00533369 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
-		4CE1621829673B5D00533369 /* TermsAndConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsView.swift; sourceTree = "<group>"; };
+		4CE1621829673B5D00533369 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
 		6505FC2C2966633C0054591D /* AwesomeKoreanDictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeKoreanDictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6505FC2F2966633C0054591D /* AwesomeKoreanDictionaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeKoreanDictionaryApp.swift; sourceTree = "<group>"; };
 		6505FC312966633C0054591D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -94,9 +94,9 @@
 		65229B3D2967638C00417654 /* ApprovedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedView.swift; sourceTree = "<group>"; };
 		65229B3F29676BEB00417654 /* WaitingApproveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingApproveCell.swift; sourceTree = "<group>"; };
 		65229B412967BAA000417654 /* MainLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLoadingView.swift; sourceTree = "<group>"; };
-		65487B2C29671D4700D7AB0A /* MyPageView_MyRegisterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView_MyRegisterCell.swift; sourceTree = "<group>"; };
-		65487B3029671E5A00D7AB0A /* MyPageView_MyBookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView_MyBookmarkView.swift; sourceTree = "<group>"; };
-		65487B322967238E00D7AB0A /* MyPageView_MyRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView_MyRegisterView.swift; sourceTree = "<group>"; };
+		65487B2C29671D4700D7AB0A /* MyRegisterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRegisterCell.swift; sourceTree = "<group>"; };
+		65487B3029671E5A00D7AB0A /* MyBookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookmarkView.swift; sourceTree = "<group>"; };
+		65487B322967238E00D7AB0A /* MyRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRegisterView.swift; sourceTree = "<group>"; };
 		65487B342967382E00D7AB0A /* AdminMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMainView.swift; sourceTree = "<group>"; };
 		65487B3729673BA500D7AB0A /* AdminView_SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView_SignInView.swift; sourceTree = "<group>"; };
 		65FB3930296703BB008756AA /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
@@ -104,10 +104,10 @@
 		7649454C2966B1610017D830 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		7649454E2966B1670017D830 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		764945502966B16D0017D830 /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
-		C5AB90262966B6FC005A6CFF /* MyPageView_SignOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageView_SignOut.swift; sourceTree = "<group>"; };
-		C5AB90282966B700005A6CFF /* MyPageView_SignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageView_SignIn.swift; sourceTree = "<group>"; };
-		C5AB902A2966B704005A6CFF /* MyPageView_SelectingLanguageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageView_SelectingLanguageView.swift; sourceTree = "<group>"; };
-		C5AB902C2966B70D005A6CFF /* MyPageView_EditUserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageView_EditUserInfoView.swift; sourceTree = "<group>"; };
+		C5AB90262966B6FC005A6CFF /* SignedOutMyPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignedOutMyPage.swift; sourceTree = "<group>"; };
+		C5AB90282966B700005A6CFF /* SignedInMyPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignedInMyPage.swift; sourceTree = "<group>"; };
+		C5AB902A2966B704005A6CFF /* SelectingLanguageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectingLanguageView.swift; sourceTree = "<group>"; };
+		C5AB902C2966B70D005A6CFF /* EditUserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserInfoView.swift; sourceTree = "<group>"; };
 		C5AB90312966B7DF005A6CFF /* SlangRegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlangRegistrationView.swift; sourceTree = "<group>"; };
 		C5F90DA2296666CE00DE5024 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = AwesomeKoreanDictionary/View/LoginView.swift; sourceTree = SOURCE_ROOT; };
 		C5F90DA4296667CF00DE5024 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -247,16 +247,16 @@
 		C5AB90252966B6E6005A6CFF /* MyPageView */ = {
 			isa = PBXGroup;
 			children = (
-				C5AB902C2966B70D005A6CFF /* MyPageView_EditUserInfoView.swift */,
-				C5AB902A2966B704005A6CFF /* MyPageView_SelectingLanguageView.swift */,
-				C5AB90282966B700005A6CFF /* MyPageView_SignIn.swift */,
-				C5AB90262966B6FC005A6CFF /* MyPageView_SignOut.swift */,
+				C5AB902C2966B70D005A6CFF /* EditUserInfoView.swift */,
+				C5AB902A2966B704005A6CFF /* SelectingLanguageView.swift */,
+				C5AB90282966B700005A6CFF /* SignedInMyPage.swift */,
+				C5AB90262966B6FC005A6CFF /* SignedOutMyPage.swift */,
 				65FB3930296703BB008756AA /* MyPageView.swift */,
-				65487B2C29671D4700D7AB0A /* MyPageView_MyRegisterCell.swift */,
-				65487B322967238E00D7AB0A /* MyPageView_MyRegisterView.swift */,
-				65487B3029671E5A00D7AB0A /* MyPageView_MyBookmarkView.swift */,
+				65487B2C29671D4700D7AB0A /* MyRegisterCell.swift */,
+				65487B322967238E00D7AB0A /* MyRegisterView.swift */,
+				65487B3029671E5A00D7AB0A /* MyBookmarkView.swift */,
 				4CE1621629673B4E00533369 /* PrivacyPolicyView.swift */,
-				4CE1621829673B5D00533369 /* TermsAndConditionsView.swift */,
+				4CE1621829673B5D00533369 /* CreditsView.swift */,
 				22C832DA2973260A00AF995C /* BookmarkedWordCell.swift */,
 			);
 			path = MyPageView;
@@ -372,10 +372,10 @@
 				22C832D829731CC600AF995C /* ContentView.swift in Sources */,
 				22C832D629731C2D00AF995C /* AwesomeKoreanDictionaryApp.swift in Sources */,
 				65FB3931296703BB008756AA /* MyPageView.swift in Sources */,
-				4CE1621929673B5D00533369 /* TermsAndConditionsView.swift in Sources */,
+				4CE1621929673B5D00533369 /* CreditsView.swift in Sources */,
 				65229B3E2967638C00417654 /* ApprovedView.swift in Sources */,
 				C5F90DA5296667CF00DE5024 /* SignUpView.swift in Sources */,
-				65487B2D29671D4700D7AB0A /* MyPageView_MyRegisterCell.swift in Sources */,
+				65487B2D29671D4700D7AB0A /* MyRegisterCell.swift in Sources */,
 				65229B4029676BEB00417654 /* WaitingApproveCell.swift in Sources */,
 				4CE1621729673B4E00533369 /* PrivacyPolicyView.swift in Sources */,
 				65229B3C2967637700417654 /* WaitingApproveView.swift in Sources */,
@@ -389,21 +389,21 @@
 				22D990B529671E070050913A /* Card.swift in Sources */,
 				65487B3829673BA500D7AB0A /* AdminView_SignInView.swift in Sources */,
 				36BD6BED2966BBC000DC6387 /* DataController.swift in Sources */,
-				C5AB90292966B700005A6CFF /* MyPageView_SignIn.swift in Sources */,
+				C5AB90292966B700005A6CFF /* SignedInMyPage.swift in Sources */,
 				6ED4CFBB2967587400F568DE /* ColorExtension.swift in Sources */,
 				764945512966B16D0017D830 /* ListCell.swift in Sources */,
 				7649454F2966B1670017D830 /* SearchBar.swift in Sources */,
-				C5AB90272966B6FC005A6CFF /* MyPageView_SignOut.swift in Sources */,
+				C5AB90272966B6FC005A6CFF /* SignedOutMyPage.swift in Sources */,
 				22D990B429671E070050913A /* CardView.swift in Sources */,
 				22D990B229671E070050913A /* QuizView.swift in Sources */,
 				36BD6BE22966876300DC6387 /* AuthManager.swift in Sources */,
 				22D990AD2966F6470050913A /* Message.swift in Sources */,
-				C5AB902D2966B70D005A6CFF /* MyPageView_EditUserInfoView.swift in Sources */,
+				C5AB902D2966B70D005A6CFF /* EditUserInfoView.swift in Sources */,
 				36BD6BE02966875500DC6387 /* VocabularyNetworkManager.swift in Sources */,
 				36BD6BEB2966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodeld in Sources */,
-				C5AB902B2966B705005A6CFF /* MyPageView_SelectingLanguageView.swift in Sources */,
-				65487B3129671E5A00D7AB0A /* MyPageView_MyBookmarkView.swift in Sources */,
-				65487B332967238F00D7AB0A /* MyPageView_MyRegisterView.swift in Sources */,
+				C5AB902B2966B705005A6CFF /* SelectingLanguageView.swift in Sources */,
+				65487B3129671E5A00D7AB0A /* MyBookmarkView.swift in Sources */,
+				65487B332967238F00D7AB0A /* MyRegisterView.swift in Sources */,
 				65487B352967382E00D7AB0A /* AdminMainView.swift in Sources */,
 				7649454D2966B1620017D830 /* MainView.swift in Sources */,
 				36BD6BDC296686CA00DC6387 /* Vocabulary.swift in Sources */,
