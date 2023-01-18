@@ -130,6 +130,14 @@ struct ListCell: View {
                 }
             }
             
+            VStack(alignment: .leading, spacing: 5) {
+                Text("작성자")
+                    .foregroundColor(.secondary)
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(vocabulary.creatorId)
+                }
+            }
+            
             Divider().padding(.vertical,-1)
             
             // 좋아요 버튼
@@ -196,6 +204,9 @@ struct ListCell: View {
         .frame(width: 360)
         .background(Color.white)
         .cornerRadius(20)
+        .onAppear {
+            print("word: \(vocabulary.word), register: \(vocabulary.creatorId)")
+        }
     }
     
     private func isBookmarked() {
