@@ -54,63 +54,70 @@ struct SignedInMyPage: View {
                     VStack {
                         
                         List {
-                            Text("마이 페이지")
-                                .font(.title3)
-                                .padding(.top)
-
-                            NavigationLink{
-                                MyBookmarkView()
-                            } label: {
-                                Text("내가 북마크한 단어들")
-                                    .padding(.horizontal)
-                            }
-                            NavigationLink {
-                                MyRegisterView()
-                            } label: {
-                                Text("내가 등록한 단어들")
-                                    .padding(.horizontal)
-                            }
-                            Text("설정")
-                                .font(.title3)
-                                .padding(.top)
-                            NavigationLink{
-                                SelectingLanguageView()
-                            } label: {
-                                Text("언어")
-                            }
-                            
-                            Text("도움")
-                                .font(.title3)
-                                .padding(.top)
-                            
-                            NavigationLink{
-                                PrivacyPolicyView(isSheetOn: $isPrivacySheetOn)
-                            } label: {
-                                Text("개인정보 보호정책")
-                                    .padding(.horizontal)
-                            }
-                            
-                            NavigationLink{
-                                CreditsView(isSheetOn: $isCreditSheetOn)
-                            } label: {
-                                Text("크레딧")
-                                    .padding(.horizontal)
-                            }
-                            
-                            Text("관리자 로그인")
-                                .font(.title3)
-                                .padding(.top)
-                            
-                            if userInfoManager.userInfo?.isAdmin == true {
+                            Group {
+                                Text("마이 페이지")
+                                    .font(.title3)
+                                    .padding(.top)
+                                
                                 NavigationLink{
-                                    AdminMainView()
-                                        .onAppear{print("\(isAdmin)")}
-                                } label : {
-                                    Text("관리자 로그인하기")
+                                    MyBookmarkView()
+                                } label: {
+                                    Text("내가 북마크한 단어들")
+                                        .padding(.horizontal)
+                                }
+                                NavigationLink {
+                                    MyRegisterView()
+                                } label: {
+                                    Text("내가 등록한 단어들")
+                                        .padding(.horizontal)
+                                }
+                                NavigationLink {
+                                    DeleteAccountView()
+                                } label: {
+                                    Text("계정 삭제")
+                                        .padding(.horizontal)
+                                }
+                                Text("설정")
+                                    .font(.title3)
+                                    .padding(.top)
+                                NavigationLink{
+                                    SelectingLanguageView()
+                                } label: {
+                                    Text("언어")
+                                }
+                                
+                                Text("도움")
+                                    .font(.title3)
+                                    .padding(.top)
+                                
+                                NavigationLink{
+                                    PrivacyPolicyView(isSheetOn: $isPrivacySheetOn)
+                                } label: {
+                                    Text("개인정보 보호정책")
                                         .padding(.horizontal)
                                 }
                                 
+                                NavigationLink{
+                                    CreditsView(isSheetOn: $isCreditSheetOn)
+                                } label: {
+                                    Text("크레딧")
+                                        .padding(.horizontal)
+                                }
+                                
+                                Text("관리자 로그인")
+                                    .font(.title3)
+                                    .padding(.top)
                             }
+                                if userInfoManager.userInfo?.isAdmin == true {
+                                    NavigationLink{
+                                        AdminMainView()
+                                            .onAppear{print("\(isAdmin)")}
+                                    } label : {
+                                        Text("관리자 로그인하기")
+                                            .padding(.horizontal)
+                                    }
+                                }
+                            
                         }
                         
                         
