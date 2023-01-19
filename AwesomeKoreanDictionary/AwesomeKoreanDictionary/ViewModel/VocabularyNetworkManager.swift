@@ -9,12 +9,6 @@ import SwiftUI
 import Firebase
 import FirebaseFirestore
 
-//struct Likes: Hashable, Identifiable {
-//    var id: String
-//    var likeCount: Int
-//    var dislikeCount: Int
-//}
-
 final class VocabularyNetworkManager: ObservableObject {
     
     @Published var vocabularies: [Vocabulary] = []
@@ -52,26 +46,6 @@ final class VocabularyNetworkManager: ObservableObject {
         }
     }
     
-    
-    //    func countLikes() async -> Void {
-    //        do {
-    //            let documents = try await
-    //            database.collection("likes").getDocuments()
-    //            self.likes.removeAll()
-    //            for document in documents.documents {
-    //                let id = document.documentID
-    //                let likeArray: [String] = document["likeArray"] as? [String] ?? []
-    //                let dislikeArray: [String] = document["dislikeArray"] as? [String] ?? []
-    //                self.likes.append(Likes(id: id, likeCount: likeArray.count, dislikeCount: dislikeArray.count))
-    //            }
-    //        } catch {
-    //#if DEBUG
-    //            print("\(error.localizedDescription)")
-    //#endif
-    //        }
-    //    }
-    
-    
     //MARK: - 단어 생성 폼 제출 시 불러올 함수
     @MainActor
     public func createVoca(voca: Vocabulary) async -> Void {
@@ -95,19 +69,7 @@ final class VocabularyNetworkManager: ObservableObject {
 #endif
         }
     }
-    public func updateFields(voca: Vocabulary) async -> Void {
-        let path = database.collection("vocabulary")
-        do {
-            try await path.document(voca.id).updateData([
-                "likeArray": [],
-                "dislikeArray": []
-            ])
-        } catch {
-#if DEBUG
-            print("\(error.localizedDescription)")
-#endif
-        }
-    }
+    
     func tapLikeVoca(voca: Vocabulary) {
         Task {
             if voca.likeArray.contains(currentUserId) {
@@ -138,31 +100,6 @@ final class VocabularyNetworkManager: ObservableObject {
         }
     }
     
-    
-    //    public func addLikes(voca: Vocabulary) async -> Void {
-    //        let path = database.collection("likes")
-    //        do {
-    //            try await path.document(voca.id).updateData([
-    //                "likeArray": FieldValue.arrayUnion(["\(currentUserId)"])
-    //            ])
-    //        } catch {
-    //#if DEBUG
-    //            print("\(error.localizedDescription)")
-    //#endif
-    //        }
-    //    }
-    //    public func addDisLikes(voca: Vocabulary) async -> Void {
-    //        let path = database.collection("likes")
-    //        do {
-    //            try await path.document(voca.id).updateData([
-    //                "dislikeArray": FieldValue.arrayUnion(["\(currentUserId)"])
-    //            ])
-    //        } catch {
-    //#if DEBUG
-    //            print("\(error.localizedDescription)")
-    //#endif
-    //        }
-    //    }
     
     //MARK: - 등록 신청된 단어 승인 함수
     @MainActor

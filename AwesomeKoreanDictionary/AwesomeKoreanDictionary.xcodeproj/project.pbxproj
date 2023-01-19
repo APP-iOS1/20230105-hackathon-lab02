@@ -49,7 +49,6 @@
 		7649454D2966B1620017D830 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649454C2966B1610017D830 /* MainView.swift */; };
 		7649454F2966B1670017D830 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649454E2966B1670017D830 /* SearchBar.swift */; };
 		764945512966B16D0017D830 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764945502966B16D0017D830 /* ListCell.swift */; };
-		76ED38CA2979A13E00F55203 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED38C92979A13E00F55203 /* TextView.swift */; };
 		C5AB90272966B6FC005A6CFF /* SignedOutMyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB90262966B6FC005A6CFF /* SignedOutMyPage.swift */; };
 		C5AB90292966B700005A6CFF /* SignedInMyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB90282966B700005A6CFF /* SignedInMyPage.swift */; };
 		C5AB902B2966B705005A6CFF /* SelectingLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB902A2966B704005A6CFF /* SelectingLanguageView.swift */; };
@@ -102,7 +101,6 @@
 		7649454C2966B1610017D830 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		7649454E2966B1670017D830 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		764945502966B16D0017D830 /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
-		76ED38C92979A13E00F55203 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		C5AB90262966B6FC005A6CFF /* SignedOutMyPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignedOutMyPage.swift; sourceTree = "<group>"; };
 		C5AB90282966B700005A6CFF /* SignedInMyPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignedInMyPage.swift; sourceTree = "<group>"; };
 		C5AB902A2966B704005A6CFF /* SelectingLanguageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectingLanguageView.swift; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 				7649454C2966B1610017D830 /* MainView.swift */,
 				7649454E2966B1670017D830 /* SearchBar.swift */,
 				764945502966B16D0017D830 /* ListCell.swift */,
-				76ED38C92979A13E00F55203 /* TextView.swift */,
 			);
 			path = FolderMainView;
 			sourceTree = "<group>";
@@ -376,7 +373,6 @@
 				22C832D929731CDB00AF995C /* SlangRegistrationView.swift in Sources */,
 				22C832D829731CC600AF995C /* ContentView.swift in Sources */,
 				22C832D629731C2D00AF995C /* AwesomeKoreanDictionaryApp.swift in Sources */,
-				76ED38CA2979A13E00F55203 /* TextView.swift in Sources */,
 				65FB3931296703BB008756AA /* MyPageView.swift in Sources */,
 				4CE1621929673B5D00533369 /* CreditsView.swift in Sources */,
 				65229B3E2967638C00417654 /* ApprovedView.swift in Sources */,

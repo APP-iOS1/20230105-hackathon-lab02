@@ -14,8 +14,6 @@ struct ListCell: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.word)]) var voca: FetchedResults<BookmarkedVoca>
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
-//    @State private var isLike: Bool = false
-//    @State private var isDislike: Bool = false
     @State private var isBookmark: Bool = false
     @State private var sharedSheet: Bool = false
     @State private var selection: String = "ko"
@@ -134,7 +132,6 @@ struct ListCell: View {
                         await vocabularyNetworkManager.requestVocabularyList()
 
                     }
-//                    isLike.toggle()
                 } label: {
                     HStack(spacing: 5) {
                         Image(systemName: vocabulary.likeArray.contains(vocabularyNetworkManager.currentUserId) ? "hand.thumbsup.fill" : "hand.thumbsup")
@@ -153,7 +150,6 @@ struct ListCell: View {
                     Task {
                         await vocabularyNetworkManager.requestVocabularyList()
                     }
-//                    isDislike.toggle()
                 } label: {
                     HStack(spacing: 5) {
                         Image(systemName: vocabulary.dislikeArray.contains(vocabularyNetworkManager.currentUserId) ? "hand.thumbsdown.fill" : "hand.thumbsdown")
@@ -176,12 +172,6 @@ struct ListCell: View {
                 }
             }
             .padding(.top, -5)
-//            .onChange(of: isLike) { val in
-//                if val { isDislike = false }
-//            }
-//            .onChange(of: isDislike) { val in
-//                if val { isLike = false }
-//            }
         }
         .foregroundColor(.black)
         .padding(35)
