@@ -74,7 +74,7 @@ struct SignedInMyPage: View {
                                 NavigationLink {
                                     DeleteAccountView()
                                 } label: {
-                                    Text("계정 삭제")
+                                    Text("계정 탈퇴하기")
                                         .padding(.horizontal)
                                 }
                                 Text("설정")
