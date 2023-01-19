@@ -13,7 +13,6 @@ final class VocabularyNetworkManager: ObservableObject {
     
     @Published var vocabularies: [Vocabulary] = []
     @Published var cards: [Card] = []
-    //    @Published var likes: [Likes] = []
     
     let database = Firestore.firestore()
     let currentUserId = Auth.auth().currentUser?.uid ?? ""
@@ -70,6 +69,7 @@ final class VocabularyNetworkManager: ObservableObject {
         }
     }
     
+    //MARK: - 좋아요 싫어요 클릭 시 작동되는 함수
     func tapLikeVoca(voca: Vocabulary) {
         Task {
             if voca.likeArray.contains(currentUserId) {
@@ -93,13 +93,12 @@ final class VocabularyNetworkManager: ObservableObject {
                 ])
             } else {
                 try await database.collection("vocabulary").document(voca.id).updateData([
-                    "likeArray": FieldValue.arrayRemove([currentUserId]),
-                    "dislikeArray": FieldValue.arrayUnion([currentUserId])
+                    "dislikeArray": FieldValue.arrayUnion([currentUserId]),
+                    "likeArray": FieldValue.arrayRemove([currentUserId])
                 ])
             }
         }
     }
-    
     
     //MARK: - 등록 신청된 단어 승인 함수
     @MainActor
@@ -133,7 +132,6 @@ final class VocabularyNetworkManager: ObservableObject {
                 if idx < 7 {
                     let id = count
                     let word = document["word"] as? String ?? ""
-                    
                     let definition = document["definition"] as? String ?? ""
                     let isApproved = document["isApproved"] as? Bool ?? false
                     

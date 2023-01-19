@@ -138,8 +138,6 @@ struct ListCell: View {
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
                         
-                        
-                        
                             Text("\(vocabulary.likeArray.count)")
 
                     }
