@@ -9,17 +9,10 @@ import SwiftUI
 import Firebase
 import FirebaseFirestore
 
-struct Likes: Hashable, Identifiable {
-    var id: String
-    var likeCount: Int
-    var dislikeCount: Int
-}
-
 final class VocabularyNetworkManager: ObservableObject {
     
     @Published var vocabularies: [Vocabulary] = []
     @Published var cards: [Card] = []
-    @Published var likes: [Likes] = []
     
     let database = Firestore.firestore()
     let currentUserId = Auth.auth().currentUser?.uid ?? ""
@@ -38,11 +31,12 @@ final class VocabularyNetworkManager: ObservableObject {
                 let pronunciation = document["pronunciation"] as? String ?? ""
                 let definition = document["definition"] as? String ?? ""
                 let example = document["example"] as? String ?? ""
-                let likes = document["likes"] as? Int ?? 0
-                let dislikes = document["dislikes"] as? Int ?? 0
                 let creatorId = document["creatorId"] as? String ?? ""
                 let isApproved = document["isApproved"] as? Bool ?? false
-                self.vocabularies.append(Vocabulary(id: id, word: word, pronunciation: pronunciation, definition: definition, example: example, likes: likes, dislikes: dislikes, creatorId: creatorId, isApproved: isApproved))
+                let likeArray = document["likeArray"] as? [String] ?? []
+                let dislikeArray = document["dislikeArray"] as? [String] ?? []
+                
+                self.vocabularies.append(Vocabulary(id: id, word: word, pronunciation: pronunciation, definition: definition, example: example, likeArray: likeArray, dislikeArray: dislikeArray, creatorId: creatorId, isApproved: isApproved))
             }
         } catch {
 #if DEBUG
@@ -50,26 +44,6 @@ final class VocabularyNetworkManager: ObservableObject {
 #endif
         }
     }
-    
-    @MainActor
-    func countLikes() async -> Void {
-        do {
-            let documents = try await
-            database.collection("likes").getDocuments()
-            self.likes.removeAll()
-            for document in documents.documents {
-                let id = document.documentID
-                let likeArray: [String] = document["likeArray"] as? [String] ?? []
-                let dislikeArray: [String] = document["dislikeArray"] as? [String] ?? []
-                self.likes.append(Likes(id: id, likeCount: likeArray.count, dislikeCount: dislikeArray.count))
-            }
-        } catch {
-#if DEBUG
-            print("\(error.localizedDescription)")
-#endif
-        }
-    }
-    
     
     //MARK: - 단어 생성 폼 제출 시 불러올 함수
     @MainActor
@@ -82,16 +56,12 @@ final class VocabularyNetworkManager: ObservableObject {
                 "pronunciation": voca.pronunciation,
                 "definition": voca.definition,
                 "example": voca.example,
-                "likes": voca.likes,
-                "dislikes": voca.dislikes,
                 "creatorId": voca.creatorId,
-                "isApproved": voca.isApproved
-            ])
-            try await database.collection("likes").document(voca.id).setData([
-                "id": voca.id,
+                "isApproved": voca.isApproved,
                 "likeArray": [],
                 "dislikeArray": []
             ])
+            
         } catch {
 #if DEBUG
             print("\(error.localizedDescription)")
@@ -99,31 +69,37 @@ final class VocabularyNetworkManager: ObservableObject {
         }
     }
     
-    public func addLikes(voca: Vocabulary) async -> Void {
-        let path = database.collection("likes")
-        do {
-            try await path.document(voca.id).updateData([
-                "likeArray": FieldValue.arrayUnion(["\(currentUserId)"])
-            ])
-        } catch {
-#if DEBUG
-            print("\(error.localizedDescription)")
-#endif
+    //MARK: - 좋아요 싫어요 클릭 시 작동되는 함수
+    func tapLikeVoca(voca: Vocabulary) {
+        Task {
+            if voca.likeArray.contains(currentUserId) {
+                try await database.collection("vocabulary").document(voca.id).updateData([
+                    "likeArray": FieldValue.arrayRemove([currentUserId])
+                ])
+            } else {
+                try await database.collection("vocabulary").document(voca.id).updateData([
+                    "likeArray": FieldValue.arrayUnion([currentUserId]),
+                    "dislikeArray": FieldValue.arrayRemove([currentUserId])
+                ])
+            }
         }
     }
-    public func addDisLikes(voca: Vocabulary) async -> Void {
-        let path = database.collection("likes")
-        do {
-            try await path.document(voca.id).updateData([
-                "dislikeArray": FieldValue.arrayUnion(["\(currentUserId)"])
-            ])
-        } catch {
-#if DEBUG
-            print("\(error.localizedDescription)")
-#endif
+    
+    func tapDislikeVoca(voca: Vocabulary) {
+        Task {
+            if voca.dislikeArray.contains(currentUserId) {
+                try await database.collection("vocabulary").document(voca.id).updateData([
+                    "dislikeArray": FieldValue.arrayRemove([currentUserId])
+                ])
+            } else {
+                try await database.collection("vocabulary").document(voca.id).updateData([
+                    "dislikeArray": FieldValue.arrayUnion([currentUserId]),
+                    "likeArray": FieldValue.arrayRemove([currentUserId])
+                ])
+            }
         }
     }
-
+    
     //MARK: - 등록 신청된 단어 승인 함수
     @MainActor
     public func updateVocaApproved(voca: Vocabulary) async -> Void {
@@ -156,7 +132,6 @@ final class VocabularyNetworkManager: ObservableObject {
                 if idx < 7 {
                     let id = count
                     let word = document["word"] as? String ?? ""
-                    
                     let definition = document["definition"] as? String ?? ""
                     let isApproved = document["isApproved"] as? Bool ?? false
                     

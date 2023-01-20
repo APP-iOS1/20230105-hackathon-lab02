@@ -25,7 +25,7 @@ struct MainView: View {
                     Spacer(minLength: 10)
                     
                     LazyVStack(spacing: 15) {
-                        ForEach(filteredVoca.shuffled(), id: \.self) { vocabulary in
+                        ForEach(filteredVoca, id: \.self) { vocabulary in
                             
                             ListCell(vocabulary: vocabulary)
                         }
@@ -41,7 +41,7 @@ struct MainView: View {
             .task {
                 await vocabularyNetworkManager.requestVocabularyList()
                 
-                await vocabularyNetworkManager.countLikes()
+//                await vocabularyNetworkManager.countLikes()
             }
         }
         .tint(.black)

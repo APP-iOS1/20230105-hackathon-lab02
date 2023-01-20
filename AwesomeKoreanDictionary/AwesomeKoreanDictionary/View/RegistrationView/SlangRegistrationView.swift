@@ -136,8 +136,8 @@ struct SlangRegistrationView: View {
                                                                             pronunciation: slangPronunciationTextField,
                                                                             definition: trimslangDescriptionTextField,
                                                                             example: trimslangSituationUsedTextField,
-                                                                            likes: 0,
-                                                                            dislikes: 0,
+                                                                            likeArray: [],
+                                                                            dislikeArray: [],
                                                                             creatorId: authManager.currentUserInfo.id))
                                         
                                         isKorean = true

@@ -14,8 +14,9 @@ struct Vocabulary: Identifiable, Hashable {
     var pronunciation: String
     var definition: String
     var example: String
-    var likes: Int
-    var dislikes: Int
+    var likeArray: [String]
+    var dislikeArray: [String]
     var creatorId: String
     var isApproved: Bool = false
+    
 }
