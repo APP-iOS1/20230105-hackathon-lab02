@@ -16,7 +16,6 @@
 - 파파고 API
 - Localization
 <br>
-<br>
 
 
 ## 화면 구성
@@ -101,7 +100,7 @@ AwesomeKoreanDictionary
  ┣ GoogleService-Info.plist
  ┗ Info.plist
  ```
-
+<br>
 
 
 ## 참여자
