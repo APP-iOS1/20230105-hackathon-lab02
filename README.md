@@ -13,7 +13,7 @@ Localization
 ```
 
 ## 화면 구성
-<img src=https://user-images.githubusercontent.com/114331071/214083703-0279d45b-11aa-49d6-b227-13f216f0f43f.jpg"width="400"height="500" />
+<img src=https://user-images.githubusercontent.com/114331071/214083703-0279d45b-11aa-49d6-b227-13f216f0f43f.jpg" width="400" height="500" />
 
 
 
