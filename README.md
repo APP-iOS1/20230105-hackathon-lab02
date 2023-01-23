@@ -6,7 +6,8 @@
 
 ## 앱 스토어 다운로드 링크
 <a href="https://apps.apple.com/kr/app/awesome-korean-dictionary/id1665422867">앱 스토어로 이동</a>
-
+<br>
+<br>
 
 
 ## 핵심 키워드
@@ -14,13 +15,16 @@
 - MVVM 패턴 지향
 - 파파고 API
 - Localization
+<br>
+<br>
 
 
 ## 화면 구성
 <img src="https://user-images.githubusercontent.com/114331071/214083703-0279d45b-11aa-49d6-b227-13f216f0f43f.jpg" 
      width="1100" 
      height="600" />
-
+<br>
+<br>
 
 
 
