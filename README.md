@@ -1,8 +1,12 @@
 # Awesome Korean Dictionary
 ```
-Awesome Korean Dictionary
 어썸 코리안 딕셔너리
+한국어 슬랭을 배우고 싶은 외국인을 타겟으로 만들어진 앱 
 ```
+
+## 앱 스토어 다운로드 링크
+<a href="https://apps.apple.com/kr/app/awesome-korean-dictionary/id1665422867">App Store Download Link</a>
+
 
 ## 핵심 키워드
 ```
