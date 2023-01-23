@@ -5,7 +5,7 @@
 ```
 
 ## 앱 스토어 다운로드 링크
-<a href="https://apps.apple.com/kr/app/awesome-korean-dictionary/id1665422867">앱 다운로드 링크로 가기</a>
+<a href="https://apps.apple.com/kr/app/awesome-korean-dictionary/id1665422867">앱 스토어로 이동</a>
 
 
 
