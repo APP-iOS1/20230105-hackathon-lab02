@@ -4,6 +4,18 @@ Awesome Korean Dictionary
 어썸 코리안 딕셔너리
 ```
 
+## 핵심 키워드
+```
+Swift UI
+MVVM 패턴 지향
+파파고 API
+Localization
+```
+
+## 화면 구성
+![AwesomeDic_화면구조](https://user-images.githubusercontent.com/114331071/214083703-0279d45b-11aa-49d6-b227-13f216f0f43f.jpg)
+
+
 ## 주요기능
 ```
 Everyone knows K - culture is the main trend. If you want to see deeply inside, then you really need this Dictionary.
