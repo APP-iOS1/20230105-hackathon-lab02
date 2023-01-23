@@ -27,7 +27,8 @@
 <br>
 
 ## 디렉토리 구조
-```AwesomeKoreanDictionary
+```
+AwesomeKoreanDictionary
  ┣ Assets.xcassets
  ┃ ┣ AccentColor.colorset
  ┃ ┃ ┗ Contents.json
