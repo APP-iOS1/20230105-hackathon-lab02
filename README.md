@@ -28,71 +28,15 @@
 ## 디렉토리 구조
 ```
 AwesomeKoreanDictionary
- ┣ Assets.xcassets
- ┃ ┣ AccentColor.colorset
- ┃ ┃ ┗ Contents.json
- ┃ ┣ AppIcon.appiconset
- ┃ ┃ ┣ 1024.png
- ┃ ┃ ┗ Contents.json
- ┃ ┣ appLogo.imageset
- ┃ ┃ ┣ Contents.json
- ┃ ┃ ┗ appLogo.png
- ┃ ┣ logoColor.colorset
- ┃ ┃ ┗ Contents.json
- ┃ ┗ Contents.json
- ┣ Extension
- ┃ ┗ BundleExtension.swift
  ┣ Model
- ┃ ┣ BookmarkedVocaModel.xcdatamodeld
- ┃ ┃ ┗ BookmarkedVocaModel.xcdatamodel
- ┃ ┃ ┃ ┗ contents
- ┃ ┣ DataController.swift
- ┃ ┣ Message.swift
- ┃ ┣ User.swift
- ┃ ┗ Vocabulary.swift
  ┣ Preview Content
- ┃ ┗ Preview Assets.xcassets
- ┃ ┃ ┗ Contents.json
  ┣ Store
- ┃ ┣ AuthManager.swift
- ┃ ┣ PapagoNetworkManager.swift
- ┃ ┣ UserInfoManager.swift
- ┃ ┗ VocabularyNetworkManager.swift
  ┣ View
- ┃ ┣ AdminView
- ┃ ┃ ┣ AdminMainView.swift
- ┃ ┃ ┣ AdminView_SignInView.swift
- ┃ ┃ ┣ ApprovedView.swift
- ┃ ┃ ┣ WaitingApproveCell.swift
- ┃ ┃ ┗ WaitingApproveView.swift
- ┃ ┣ FolderMainView
- ┃ ┃ ┣ ListCell.swift
- ┃ ┃ ┣ MainView.swift
- ┃ ┃ ┣ SearchBar.swift
- ┃ ┃ ┗ SearchTestView.swift
- ┃ ┣ MyPageView
- ┃ ┃ ┣ BookmarkedWordCell.swift
- ┃ ┃ ┣ MyPageView.swift
- ┃ ┃ ┣ MyPageView_EditUserInfoView.swift
- ┃ ┃ ┣ MyPageView_MyBookmarkView.swift
- ┃ ┃ ┣ MyPageView_MyRegisterCell.swift
- ┃ ┃ ┣ MyPageView_MyRegisterView.swift
- ┃ ┃ ┣ MyPageView_SelectingLanguageView.swift
- ┃ ┃ ┣ MyPageView_SignIn.swift
- ┃ ┃ ┣ MyPageView_SignOut.swift
- ┃ ┃ ┣ PrivacyPolicyView.swift
- ┃ ┃ ┗ TermsAndConditionsView.swift
  ┃ ┣ QuizCardView
- ┃ ┃ ┣ Card.swift
- ┃ ┃ ┣ CardView.swift
- ┃ ┃ ┣ Detail.swift
- ┃ ┃ ┗ QuizView.swift
  ┃ ┣ RegistrationView
- ┃ ┃ ┗ SlangRegistrationView.swift
- ┃ ┣ ColorExtension.swift
- ┃ ┣ LoginView.swift
- ┃ ┣ MainLoadingView.swift
- ┃ ┗ SignUpView.swift
+ ┃ ┣ AdminView
+ ┃ ┣ MyPageView
+ ┃ ┗ FolderMainView.swift
  ┣ APIInfo.plist
  ┣ AwesomeKoreanDictionary.entitlements
  ┣ AwesomeKoreanDictionaryApp.swift
