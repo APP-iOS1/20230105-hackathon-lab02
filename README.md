@@ -47,6 +47,10 @@ AwesomeKoreanDictionary
 <br>
 
 ## 시연 영상
+![gif1](https://user-images.githubusercontent.com/114331071/214237843-e525b1e1-35ce-4b48-a192-083bcd2965ab.gif)
+![git2](https://user-images.githubusercontent.com/114331071/214237877-1d188b82-4528-421f-a104-1ab85c955e62.gif)
+![gif3](https://user-images.githubusercontent.com/114331071/214237879-5d4382b6-78f3-42af-9664-77c874f929e4.gif)
+![gif4](https://user-images.githubusercontent.com/114331071/214237887-4ec6cacd-ae91-49b9-85ed-0a660b91f32b.gif)
 
 
 ## 참여자
