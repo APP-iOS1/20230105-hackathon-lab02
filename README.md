@@ -47,9 +47,10 @@ AwesomeKoreanDictionary
 <br>
 
 ## 시연 영상
+| MainView | MainView | QuizView | ?? |
 | <img src="https://user-images.githubusercontent.com/114331071/214237843-e525b1e1-35ce-4b48-a192-083bcd2965ab.gif" width="180"/> | <img src="https://user-images.githubusercontent.com/114331071/214237877-1d188b82-4528-421f-a104-1ab85c955e62.gif" width="180"/> | <img src="https://user-images.githubusercontent.com/114331071/214237879-5d4382b6-78f3-42af-9664-77c874f929e4.gif" width="180"/> | <img src="https://user-images.githubusercontent.com/114331071/214237887-4ec6cacd-ae91-49b9-85ed-0a660b91f32b.gif" width="180"/> |
 | :-: | :-: | :-: | :-: |
-| gif1 | gif2 | gif3 | gif4 |
+| 앱 내 모든 슬랭을 랜덤으로 볼 수 있습니다. 각 설명은 한,영,중,일 총 4가지 언어로 제공됩니다. | 궁금한 슬랭은 직접 검색할 수 있습니다. | 등록하고 싶은 슬랭이 있다면 사용자가 앱 관리자에게 제출할 수 있습니다. | ?? |
 <br>
 
 ## 참여자
