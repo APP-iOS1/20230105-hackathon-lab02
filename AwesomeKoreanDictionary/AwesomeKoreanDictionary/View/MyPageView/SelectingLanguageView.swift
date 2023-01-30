@@ -8,10 +8,10 @@
 import SwiftUI
 
 enum Languages: String, CaseIterable{
-    case korean = "Korean"
-    case english = "English"
-    case japanese = "Japanese"
-    case chinese = "Chinese"
+    case korean = "한국어"
+    case english = "영어"
+    case japanese = "일본어"
+    case chinese = "중국어"
     
     func getLanguageCode() -> String{
         switch self {
@@ -32,7 +32,7 @@ struct SelectingLanguageView: View {
         
     private let languages = ["Korean", "English", "Japanese","Chinese"]
     
-    @State private var defaultLanguage: String = "한국어"
+    @State private var defaultLanguage: String = "Korean"
     @State private var showingOptions: Bool = false
     
     var body: some View {
@@ -51,10 +51,11 @@ struct SelectingLanguageView: View {
                         } label: {
                             Text("\(language)")
                         }
-                        .confirmationDialog("해당 언어로 설정을 변경합니다. 껐다 키세요!", isPresented: $showingOptions, titleVisibility: .visible) {
-                            Button(selectedLanguage ?? "") {
+                        .confirmationDialog("언어설정을 바꾼뒤 앱을 재가동해야합니다. 선택된 언어로 바꾸시겠습니까?", isPresented: $showingOptions, titleVisibility: .visible) {
+                            Button("변경") {
                                 defaultLanguage = selectedLanguage ?? ""
                                 UserDefaults.standard.set([defaultLanguage], forKey: "AppleLanguages")
+                                //이코드 누가 씀...? 질문질문
                                 UIApplication.shared.requestSceneSessionActivation(nil, userActivity: nil, options: nil, errorHandler: nil)
                             }
                         }
