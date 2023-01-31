@@ -7,32 +7,12 @@
 
 import SwiftUI
 
-enum Languages: String, CaseIterable{
-    case korean = "한국어"
-    case english = "영어"
-    case japanese = "일본어"
-    case chinese = "중국어"
-    
-    func getLanguageCode() -> String{
-        switch self {
-        case .korean:
-            return "kr"
-        case .english:
-            return "en"
-        case .japanese:
-            return "jp"
-        case .chinese:
-            return "ch"
-        }
-    }
-}
-
 struct SelectingLanguageView: View {
     @AppStorage("selectedLanguage") private var selectedLanguage: String?
         
     private let languageDict: [String: String] = ["한국어": "Korean", "영어": "English", "일본어": "Japanese", "중국어": "Chinese"]
     
-    @State private var defaultLanguage: String = "한국어"
+    @State private var defaultLanguage: String = "영어"
     @State private var showingOptions: Bool = false
     
     var body: some View {
