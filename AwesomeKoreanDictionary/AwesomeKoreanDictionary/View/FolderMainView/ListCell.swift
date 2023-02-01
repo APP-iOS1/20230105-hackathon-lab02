@@ -88,7 +88,7 @@ struct ListCell: View {
                             }
                         }
                     } else {
-                        DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, pronunciation: vocabulary.pronunciation, context: managedObjContext)
+                        DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, pronunciation: vocabulary.pronunciation, example: vocabulary.example, context: managedObjContext)
                     }
                 } label: {
                     if let index = voca.firstIndex(where: { $0.word == vocabulary.word }) {
