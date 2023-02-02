@@ -58,7 +58,7 @@ struct LoginView: View {
                     .frame(width: 313, height: 40)
                     
                     GoogleSignInButton()
-                        .frame(width: 320)
+                        .frame(width: 320, height: 40)
                         .onTapGesture {
                             authManager.signIn()
                         }

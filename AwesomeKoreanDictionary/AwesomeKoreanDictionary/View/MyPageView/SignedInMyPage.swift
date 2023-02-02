@@ -24,9 +24,14 @@ struct SignedInMyPage: View {
                 VStack(alignment: .leading) {
                     
                     HStack{
-                        Text("\(userNickname) 입니다.")
+                        Text("안녕하세요!")
                             .font(.title2)
+                            .padding(.leading, 10)
+                        Text("\(userNickname)")
                             .padding()
+                            .font(.title2)
+                        
+
                         
                         Spacer()
                         

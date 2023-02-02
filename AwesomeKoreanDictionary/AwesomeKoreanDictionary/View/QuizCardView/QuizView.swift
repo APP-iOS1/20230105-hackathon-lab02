@@ -106,7 +106,7 @@ struct QuizView: View {
                     .offset(y: -25)
                 }
                 .padding(.top, 10)
-                Text(("카드를 왼쪽으로 스와이프하세요."))
+                Text("카드를 왼쪽으로 스와이프하세요.")
                     .foregroundColor(.white)
                     .font(.title3)
                     .bold()
