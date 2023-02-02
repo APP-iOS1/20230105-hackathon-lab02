@@ -7,18 +7,8 @@
 
 import SwiftUI
 
-//enum RegistedWordView: String{
-//    case waitingApprove = "승인 대기중"
-//    case approved = "승인 완료"
-//}
-
 struct AdminMainView: View {
-    
     @EnvironmentObject var authManager: AuthManager
-    //@State var registedWordView: RegistedWordView = .waitingApprove
-    
-    //var registedWordArray: [RegistedWordView] = [.waitingApprove, .approved]
-    
     @State var isApprovedView: Bool = false
     
     var body: some View {
@@ -52,21 +42,6 @@ struct AdminMainView: View {
                 } else {
                     ApprovedView()
                 }
-                
-                //                        Button {
-                //                            registedWordView = select
-                //                        } label: {
-                //                            Text(select.rawValue)
-                //                                .foregroundColor(registedWordView == select ? Color(.black) : Color(.gray))
-                //                                .font(.body)
-                //                        }
-                //                switch registedWordView{
-                //                case .waitingApprove:
-                //                    WaitingApproveView()
-                //                case .approved:
-                //                    ApprovedView()
-                //                }
-                
             }
             .padding()
         }

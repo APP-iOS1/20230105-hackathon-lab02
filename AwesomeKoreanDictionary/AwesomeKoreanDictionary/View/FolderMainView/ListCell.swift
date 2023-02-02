@@ -11,12 +11,9 @@ import SwiftUI
 import AVFoundation
 
 struct ListCell: View {
-    
     @Environment(\.managedObjectContext) var managedObjContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.word)]) var voca: FetchedResults<BookmarkedVoca>
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
-    @State private var isLike: Bool = false
-    @State private var isDislike: Bool = false
     @State private var isBookmark: Bool = false
     @State private var sharedSheet: Bool = false
     @State private var selection: String = "ko"
@@ -30,8 +27,6 @@ struct ListCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            
-            // 단어의 이름
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     HStack {
@@ -41,9 +36,7 @@ struct ListCell: View {
                             .padding(.bottom, -3)
                             .foregroundColor(Color(hex: "292929"))
                         Button {
-                            let utterance = AVSpeechUtterance(string: vocabulary.word)
-                            utterance.voice = AVSpeechSynthesisVoice(language: "ko")
-                            synthesizer.speak(utterance)
+                            wordSpeech(word: vocabulary.word)
                         } label: {
                             Image(systemName: "speaker.wave.2")
                         }
@@ -95,10 +88,8 @@ struct ListCell: View {
                             }
                         }
                     } else {
-                        DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, pronunciation: vocabulary.pronunciation, context: managedObjContext)
+                        DataController().addVoca(word: vocabulary.word, definition: vocabulary.definition, pronunciation: vocabulary.pronunciation, example: vocabulary.example, context: managedObjContext)
                     }
-                    //                    isBookmark.toggle()
-                    
                 } label: {
                     if let index = voca.firstIndex(where: { $0.word == vocabulary.word }) {
                         Image(systemName: managedObjContext.registeredObjects.contains(voca[index]) ? "bookmark.fill" : "bookmark")
@@ -114,11 +105,10 @@ struct ListCell: View {
                 }
             }
             
-            // 내용
             VStack(alignment: .leading, spacing: 5) {
                 Text("정의")
                     .foregroundColor(.gray)
-                Text(selection == "ko" ? vocabulary.definition : translatedDefinition) // 이 내용을 번역본으로 변경
+                Text(selection == "ko" ? vocabulary.definition : translatedDefinition)
                     .lineSpacing(7)
             }
             .padding(.bottom, -10)
@@ -127,51 +117,45 @@ struct ListCell: View {
                 Text("예시")
                     .foregroundColor(.gray)
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(selection == "ko" ? "• \(vocabulary.example)" : "• \(translatedExample)") // 이 내용을 번역본으로 변경
+                    Text(selection == "ko" ? "• \(vocabulary.example)" : "• \(translatedExample)")
                         .italic()
                 }
             }
             
             Divider().padding(.vertical,-1)
             
-            // 좋아요 버튼
             HStack(spacing: 17) {
                 Button {
+                    vocabularyNetworkManager.tapLikeVoca(voca: vocabulary)
+
                     Task {
-                        await vocabularyNetworkManager.addLikes(voca: vocabulary)
-                        await vocabularyNetworkManager.countLikes()
+                        await vocabularyNetworkManager.requestVocabularyList()
+
                     }
-                    isLike.toggle()
                 } label: {
                     HStack(spacing: 5) {
-                        Image(systemName: isLike ? "hand.thumbsup.fill" : "hand.thumbsup")
+                        Image(systemName: vocabulary.likeArray.contains(vocabularyNetworkManager.currentUserId) ? "hand.thumbsup.fill" : "hand.thumbsup")
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
                         
-                        ForEach(vocabularyNetworkManager.likes) { like in
-                            if like.id == vocabulary.id {
-                                Text("\(like.likeCount)")
-                            }
-                        }
+                            Text("\(vocabulary.likeArray.count)")
+
                     }
                 }
                 Button {
+                    vocabularyNetworkManager.tapDislikeVoca(voca: vocabulary)
+
                     Task {
-                        await vocabularyNetworkManager.addDisLikes(voca: vocabulary)
-                        await vocabularyNetworkManager.countLikes()
+                        await vocabularyNetworkManager.requestVocabularyList()
                     }
-                    isDislike.toggle()
                 } label: {
                     HStack(spacing: 5) {
-                        Image(systemName: isDislike ? "hand.thumbsdown.fill" : "hand.thumbsdown")
+                        Image(systemName: vocabulary.dislikeArray.contains(vocabularyNetworkManager.currentUserId) ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                             .font(.title2)
                             .foregroundColor(Color(hex: "737DFE"))
                         
-                        ForEach(vocabularyNetworkManager.likes) { like in
-                            if like.id == vocabulary.id {
-                                Text("\(like.dislikeCount)")
-                            }
-                        }
+                            Text("\(vocabulary.dislikeArray.count)")
+
                     }
                 }
                 
@@ -186,12 +170,6 @@ struct ListCell: View {
                 }
             }
             .padding(.top, -5)
-            .onChange(of: isLike) { val in
-                if val { isDislike = false }
-            }
-            .onChange(of: isDislike) { val in
-                if val { isLike = false }
-            }
         }
         .foregroundColor(.black)
         .padding(35)
@@ -203,8 +181,13 @@ struct ListCell: View {
     private func isBookmarked() {
         if let index = voca.firstIndex(where: { $0.word == vocabulary.word }) {
             managedObjContext
-            //            managedObjContext.delete(voca[index])
         }
+    }
+    
+    private func wordSpeech(word: String) {
+        let utterance = AVSpeechUtterance(string: word)
+        utterance.voice = AVSpeechSynthesisVoice(language: "ko")
+        synthesizer.speak(utterance)
     }
 }
 

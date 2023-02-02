@@ -7,14 +7,12 @@
 
 import SwiftUI
 
-struct MyPageView_EditUserInfoView: View {
-    
+struct EditUserInfoView: View {
     @Environment(\.dismiss) var dismiss
-    
     @Binding var userNickname: String
-    
     @EnvironmentObject var userInfoManager: UserInfoManager
     @EnvironmentObject var authManager: AuthManager
+    @State private var showingAlert = false
     
     var body: some View {
         ZStack {
@@ -43,18 +41,22 @@ struct MyPageView_EditUserInfoView: View {
                         .foregroundColor(.gray)
                         .background(Color.white)
                         .frame(width: 350, height: 65)
+                        .cornerRadius(10)
                     
                 }
                 .padding(.bottom, 20)
                 
-                Button(action: {
-                    Task{
-                        await userInfoManager.updateUserNickName(id: authManager.currentUserInfo.id, nickname: userNickname)
-                        await userInfoManager.fetchUserInfo(userId: authManager.currentUserInfo.id)
-                        dismiss()
+                Button {
+                    if userNickname == "" {
+                       showingAlert = true
+                    } else {
+                        Task {
+                            await userInfoManager.updateUserNickName(id: authManager.currentUserInfo.id, nickname: userNickname)
+                            await userInfoManager.fetchUserInfo(userId: authManager.currentUserInfo.id)
+                            dismiss()
+                        }
                     }
-                    
-                }) {
+                } label: {
                     VStack {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color(hex: "737DFE"))
@@ -67,15 +69,19 @@ struct MyPageView_EditUserInfoView: View {
                             }
                     }
                 }
+                .alert("한 글자 이상 입력해주세요.", isPresented: $showingAlert) {
+                    Button("Ok") { }
+                }
                 Spacer()
-                
             }
         }
         .onAppear(){
-            userNickname = userInfoManager.userInfo!.userNickname
+            userNickname = userInfoManager.userInfo?.userNickname ?? ""
         }
     }
 }
+
+//프리뷰 하나 추가
 
 //struct MyPageView_EditUserInfoView_Previews: PreviewProvider {
 //    static var previews: some View {

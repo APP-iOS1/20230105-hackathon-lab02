@@ -8,20 +8,16 @@
 import SwiftUI
 
 struct Detail: View {
-
     @Binding var isShowing: Bool
-
     @EnvironmentObject var papagoNetworkManager: PapagoNetworkManager
-
+    @State private var selectedLanguage: String = ""
+    @State private var translate: String = ""
+    
     var card: Card
     var name: Namespace.ID
-
     var languageCodes: [String] = ["en", "zh-CN", "ja"]
     var languages: [String] = ["English", "Chinese", "Japanese"]
-    @State private var selectedLanguage: String = ""
-
-    @State private var translate: String = ""
-
+    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color(hex: "737DFE"), Color(hex: "FFCAC9")]),
@@ -45,9 +41,7 @@ struct Detail: View {
                 })
                 .padding(.leading, 20)
                 .padding([.top, .bottom, .trailing])
-
                 
-                // For smaller size phones
                 ScrollView(.vertical, showsIndicators: false, content: {
                     VStack(alignment: .leading) {
                         HStack {
@@ -64,10 +58,9 @@ struct Detail: View {
                                 ForEach(0..<languages.count) { idx in
                                     Text(languages[idx]).tag(languageCodes[idx])
                                 }
-
                             }
                             .onChange(of: selectedLanguage, perform: { value in
-
+                                
                                 Task {
                                     self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: String(value))
                                 }
@@ -75,8 +68,6 @@ struct Detail: View {
                         }
                         .padding(.top, 20)
                         .padding(.bottom, 50)
-                        
-                        // TODO: - text alignment
                         
                         VStack(alignment: .leading) {
                             Text("정의: \(card.definition)")
@@ -92,37 +83,15 @@ struct Detail: View {
                                 .lineSpacing(10)
                             
                             Spacer()
-
+                            
                         }
                     }
                     .padding(.horizontal, 20)
                 })
             }
         }
-            .navigationBarBackButtonHidden(true)
-            .background(Color.white)
-//        .onAppear { //  (Void) return
-////            "en","zh-CN","ja"
-//            if (selectedLanguage == "en") {
-//                Task {
-//                    self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: PapagoNetworkManager.TargetLanguage.english)
-//
-//                    print("EN: \(translate)")
-//                }
-//            } else if (selectedLanguage == "zh-CN") {
-//                Task {
-//                    self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: PapagoNetworkManager.TargetLanguage.chinese)
-//
-//                    print("CN: \(translate)")
-//                }
-//            } else if (selectedLanguage == "ja") {
-//                Task {
-//                    self.translate = try await PapagoNetworkManager.shared.requestTranslate(sourceString: card.definition, target: PapagoNetworkManager.TargetLanguage.japanese)
-//
-//                    print("JP: \(translate)")
-//                }
-//            }
-//        }
+        .navigationBarBackButtonHidden(true)
+        .background(Color.white)
     }
 }
 

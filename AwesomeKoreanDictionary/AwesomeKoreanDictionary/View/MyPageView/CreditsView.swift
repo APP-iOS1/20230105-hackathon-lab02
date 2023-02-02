@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct TermsAndConditionsView: View {
+struct CreditsView: View {
     @Environment(\.dismiss) private var dismiss
-     @Binding var sheet2: Bool
+    @Binding var isSheetOn: Bool
      
      var body: some View {
          VStack{
@@ -56,8 +56,8 @@ struct TermsAndConditionsView: View {
  """
 
  }
-struct TermsAndConditionsView_Previews: PreviewProvider {
+struct CreditsView_Previews: PreviewProvider {
     static var previews: some View {
-        TermsAndConditionsView(sheet2: .constant(true))
+        CreditsView(isSheetOn: .constant(true))
     }
 }

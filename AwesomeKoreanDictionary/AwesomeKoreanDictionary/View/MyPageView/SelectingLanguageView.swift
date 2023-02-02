@@ -7,33 +7,12 @@
 
 import SwiftUI
 
-enum Languages: String, CaseIterable{
-    case korean = "Korean"
-    case english = "English"
-    case japanese = "Japanese"
-    case chinese = "Chinese"
-    
-    func getLanguageCode() -> String{
-        switch self {
-        case .korean:
-            return "kr"
-        case .english:
-            return "en"
-        case .japanese:
-            return "jp"
-        case .chinese:
-            return "ch"
-        }
-    }
-}
-
-struct MyPageView_SelectingLanguageView: View {
+struct SelectingLanguageView: View {
     @AppStorage("selectedLanguage") private var selectedLanguage: String?
         
-    private let languages = ["Korean", "English", "Japanese","Chinese"]
+    private let languageDict: [String: String] = ["한국어": "Korean", "영어": "English", "일본어": "Japanese", "중국어": "Chinese"]
     
-    @State private var defaultLanguage: String = "한국어"
-//    @State private var selectedLanguage: String?
+    @State private var defaultLanguage: String = "영어"
     @State private var showingOptions: Bool = false
     
     var body: some View {
@@ -44,18 +23,20 @@ struct MyPageView_SelectingLanguageView: View {
                         .font(.title3)
                         .padding(.top)
                     
-                    ForEach(languages, id: \.self) { language in
+                    ForEach(Array(languageDict.keys), id: \.self) { language in
                         
                         Button {
-                            self.selectedLanguage = language
+                            //요부분 수정에 한국어 들어가는중
+                            self.selectedLanguage = languageDict[language]
                             showingOptions.toggle()
                         } label: {
-                            Text("\(language)")
+                            Text(LocalizedStringKey(language))
                         }
-                        .confirmationDialog("해당 언어로 설정을 변경합니다. 껐다 키세요!", isPresented: $showingOptions, titleVisibility: .visible) {
-                            Button(selectedLanguage ?? "") {
+                        .confirmationDialog("언어설정을 바꾼뒤 앱을 재가동해야합니다. 선택된 언어로 바꾸시겠습니까?", isPresented: $showingOptions, titleVisibility: .visible) {
+                            Button("변경") {
                                 defaultLanguage = selectedLanguage ?? ""
                                 UserDefaults.standard.set([defaultLanguage], forKey: "AppleLanguages")
+                                //이코드 누가 씀...? 질문질문
                                 UIApplication.shared.requestSceneSessionActivation(nil, userActivity: nil, options: nil, errorHandler: nil)
                             }
                         }
@@ -68,8 +49,8 @@ struct MyPageView_SelectingLanguageView: View {
 }
 
 
-struct MyPage_SelectingLanguageView_Previews: PreviewProvider {
+struct SelectingLanguageView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPageView_SelectingLanguageView()
+        SelectingLanguageView()
     }
 }

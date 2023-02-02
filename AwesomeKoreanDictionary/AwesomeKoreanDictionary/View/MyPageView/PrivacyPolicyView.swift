@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PrivacyPolicyView: View {
     @Environment(\.dismiss) private var dismiss
-     @Binding var sheet1: Bool
+     @Binding var isSheetOn: Bool
      
      var body: some View {
          VStack{
@@ -104,6 +104,6 @@ struct PrivacyPolicyView: View {
  }
 struct PrivacyPolicyView_Previews: PreviewProvider {
     static var previews: some View {
-        PrivacyPolicyView(sheet1: .constant(true))
+        PrivacyPolicyView(isSheetOn: .constant(true))
     }
 }

@@ -8,14 +8,12 @@
 import Foundation
 
 final class PapagoNetworkManager: ObservableObject {
-
     enum TargetLanguage: String {
         case english = "en"
         case chinese = "zh-CN"
         case japanese = "ja"
     }
 
-    // singleton
     static let shared: PapagoNetworkManager = PapagoNetworkManager()
     init() { }
 
@@ -50,7 +48,7 @@ final class PapagoNetworkManager: ObservableObject {
             return try JSONDecoder().decode(T.self, from: data)
         } catch (let error) {
             print(error)
-            fatalError("Fail to decode Data")
+            preconditionFailure("Fail to decode Data")
         }
     }
 

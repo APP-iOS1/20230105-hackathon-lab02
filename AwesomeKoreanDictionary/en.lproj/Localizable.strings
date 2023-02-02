@@ -5,33 +5,39 @@
   Created by 추현호 on 2023/01/06.
   
 */
-
-// 퀴즈
+"변경" = "Change";
+"언어설정을 바꾼뒤 앱을 재가동해야합니다. 선택된 언어로 바꾸시겠습니까?" = "You must restart the app after selecting system language. Do you really want to change system language?";
+"계정 탈퇴하기" = "delete account";
+"퀴즈 새로 불러오기" = "one more play";
+"카드를 왼쪽으로 스와이프 하세요." = "Swipe left to see a new quiz";
+"언어 선택" = "Select Language";
+"번역:" = "T/L:";
 "번역" = "T/L";
-"정답 보기" = "Answer";
+"정답 보기 >" = "Answer >";
 "언어" = "Language";
 "구글 로그인하기" = "Google Sign in";
 "크레딧" = "Credit";
-"내가 북마크한 단어들" = "Bookmarked";
-"내가 등록한 단어들" = "Words I submitted";
+"내가 등록한 단어들" = "submitted Words";
 "입니다." = "Annyeong!";
+// 퀴즈
+
 "정의" = "definition";
 "예시" = "example";
-"한국 신조어/속어 퀴즈 챌린지" = "Korean New Words/Slang Quiz Challenge";
+"한국 신조어&속어 퀴즈 챌린지" = "Korean New Words/Slang Quiz Challenge";
 "당신의 한국어 능력을 테스트하세요!" = "Test your Korean skills!";
 "이 단어의 뜻은 무엇일까요?" = "What does this word mean?";
 "정답 보기" = "See the answer.";
 
 // 등록
-"새로운 신조어/속어를 공유해주세요!" = "Please share new slang words/slangs!";
+"새로운 신조어/속어를 공유해주세요!" = "Please share new words/slangs!";
 "외국인을 위한 한국어 신조어/속어 사전입니다." = "It's a dictionary of new Korean words/slang words for foreigners.";
 "한글로 내용을 작성해 주시면, 번역 기능을 사용해 외국인이 쉽게 볼 수 있습니다." = "If you write the contents in Korean, foreigners can easily see it using the translation function.";
 "해당 단어의 의미와 유래, 예문을 함께 작성해 주시면 외국인의 단어 이해에 큰 도움이 됩니다!" = "If you write the meaning, origin, and example sentence of the word together, it will be very helpful for foreigners to understand the word!";
 "등록해 주신 단어는 관리자의 검수 및 승인 이후 노출되며, 최종 등록까지 최대 3일이 소요될 수 있습니다." = "The words you have registered will be exposed after the administrator's inspection and approval, and it may take up to three days for the final registration.";
-"*한글 필수 문항 (영어, 공백만 입력 불가능)" = "* Mandatory Korean questions (English and spaces are not allowed)";
+"*한글 필수 문항 (영어, 공백만 입력 불가능)" = "* Korean essential questions (English and spaces are not allowed)";
 "신조어/속어의 의미와 유래를 설명해주세요." = "Please explain the meaning and origin of new words/slangs.";
 "예) 농협은행" = "e.g. Nonghyup Bank";
-"영어 필수 문항 (한글, 공백만 입력 불가능)" = "Mandatory English questions (only Korean and spaces cannot be entered)";
+"영어 필수 문항 (한글, 공백만 입력 불가능)" = "English essential questions (only Korean and spaces cannot be entered)";
 "신조어/속어가 사용되는 상황을 설명해주세요." = "Please explain the situation in which new words/slangs are used.";
 "예시) Nonghyupeunhaeng" = "예시) Nonghyupeunhaeng";
 "속어에 사용되는 단어의 의미를 설명해주세요." = "Please explain the meaning of the word used in slang.";
@@ -52,14 +58,14 @@
 // 마이페이지 - 로그인
 "수정하기" = "To modify";
 "마이 페이지" = "My Page";
-"내가 북마크한 단어들" = "The words I bookmarked.";
-"내가 등록한 단어들" = "The words I registered.";
+"내가 북마크한 단어들" = "bookmarked words";
+"내가 등록한 단어들" = "registered words";
 "설정" = "Settings";
 "언어" = "Language";
 "도움" = "Support";
 "개인정보 보호정책" = "Privacy Policy";
 "이용 약관" = "Terms and Conditions";
-"관리자 로그인" = "Log in to the Administrator";
+"관리자 로그인" = "Login to the Administrator";
 "로그아웃" = "Sign out";
 "북마크한 단어들" = "Bookmarked words";
 "승인여부" = "Approval status";

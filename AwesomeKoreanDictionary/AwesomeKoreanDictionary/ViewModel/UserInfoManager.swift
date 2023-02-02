@@ -48,17 +48,29 @@ final class UserInfoManager: ObservableObject {
     // MARK: - 유저 닉네임 변경 업데이트 함수
 
     @MainActor
-    
     public func updateUserNickName(id: String, nickname: String) async -> Void {
         //        guard let currentUserId else { return }
         let path = database.collection("user")
         do {
             try await path.document(id).updateData(["userNickname": nickname])
         } catch {
-            print(error.localizedDescription)
+#if DEBUG
+            print("\(error.localizedDescription)")
+#endif
         }
     }
+    
 
+    /**
+     유저 삭제 함수, FireStore User Collection에서 해당 id를 가진 User document를 삭제한다.
+     
+    - parameters:
+        - id: user document의 id field값
+     */
+    public func deleteUser(id: String) {
+        let path = database.collection("user")
+        path.document(id).delete()
+    }
     
 }
 

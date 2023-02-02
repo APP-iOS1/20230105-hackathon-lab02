@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//이거도 없애야할거같은데 프리뷰쪽에 연결된 게 많네요..
 var dictionary: [Vocabulary] = [
     Vocabulary(
         id: UUID().uuidString,
@@ -14,8 +15,8 @@ var dictionary: [Vocabulary] = [
         pronunciation: "[ King-batne ]",
         definition: "'킹받다'는 '열 받다'를 강조하기 위해 킹(king·왕)을 접두어처럼 사용한 신조어다. 한 마디로 엄청 화났다는 뜻이다.",
         example: "아, 시험 떨어졌어. 진짜 킹받네.",
-        likes: 150,
-        dislikes: 10,
+        likeArray: [],
+        dislikeArray: [],
         creatorId: "덕이",
         isApproved: true
     ),
@@ -25,8 +26,8 @@ var dictionary: [Vocabulary] = [
         pronunciation: "[ Joongkkeokma ]",
         definition: "‘중요한 건 꺾이지 않는 마음’의 줄임말",
         example: "패배해도 괜찮아, 중요한 건 꺾이지 않는 마음이야.",
-        likes: 300,
-        dislikes: 10,
+        likeArray: [],
+        dislikeArray: [],
         creatorId: "종이",
         isApproved: true
     )
@@ -42,12 +43,6 @@ struct SearchBar: View {
                 
                 TextField("Search", text: $searchText)
                     .foregroundColor(.primary)
-//                    .onSubmit(of: .search) {
-//                        print("검색 완료: \(searchText)")
-//                    }
-                    .onChange(of: searchText) { newValue in
-                        print("검색 입력: \(newValue)")
-                    }
                 
                 if !searchText.isEmpty {
                     Button(action: {
@@ -65,8 +60,6 @@ struct SearchBar: View {
             .background(Color(.secondarySystemBackground))
             .cornerRadius(10.0)
         }
-        
-//        .padding(.horizontal)
     }
 }
 

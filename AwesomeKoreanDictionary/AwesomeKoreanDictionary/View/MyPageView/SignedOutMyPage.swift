@@ -9,17 +9,14 @@ import SwiftUI
 import AuthenticationServices
 import _AuthenticationServices_SwiftUI
 
-struct MyPageView_SignOut: View {
+struct SignedOutMyPage: View {
     
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var userInfoManager: UserInfoManager
-    @State var sheet1: Bool = false //개인정보 보호정책
-    @State var sheet2: Bool = false //이용약관
+    @State var isPrivacySheetOn: Bool = false //개인정보 보호정책
+    @State var isCreditSheetOn: Bool = false //크레딧
     var body: some View {
-        
-        let firstMyPageList: [String] = ["언어"]
-        let secondMyPageList: [String] = ["개인정보 보호정책", "크레딧"]
-        let thirdMyPageList: [String] = ["관리자 로그인"]
+
         NavigationStack{
             VStack {
                 VStack {
@@ -49,6 +46,7 @@ struct MyPageView_SignOut: View {
                     }
                     .signInWithAppleButtonStyle(.black)
                     .frame(width: 200, height: 40)
+                    .cornerRadius(10)
                     
                     Button {
                         authManager.signIn()
@@ -64,7 +62,6 @@ struct MyPageView_SignOut: View {
                     }
                 }
                 
-                // 리스트 시작
                 VStack {
                     List {
                         Text("마이 페이지")
@@ -72,55 +69,40 @@ struct MyPageView_SignOut: View {
                             .padding(.top)
                         
                         NavigationLink{
-                            MyPageView_MyBookmarkView()
+                            MyBookmarkView()
                         } label: {
                             Text("내가 북마크한 단어들")
                                 .padding(.horizontal)
                         }
                         
-                        
                         Text("설정")
                             .font(.title3)
                             .padding(.top)
                         NavigationLink{
-                            MyPageView_SelectingLanguageView()
+                            SelectingLanguageView()
                         } label: {
-                            Text(firstMyPageList[0])
+                            Text("언어")
                                 .padding(.horizontal)
                             
-                        } // 첫번째 리스트
+                        }
                         Text("도움")
                             .font(.title3)
                             .padding(.top)
                         
-                        ForEach(0..<secondMyPageList.count, id: \.self) {
-                            index in
-                            Button(action: {
-                                if secondMyPageList[0] ==  secondMyPageList[index] {
-                                    sheet1.toggle()
-                                }
-                                if secondMyPageList[1] ==  secondMyPageList[index] {
-                                    sheet2.toggle()
-                                }
-                            }) {
-                                HStack {
-                                    Text(secondMyPageList[index])
-                                    Spacer()
-                                    Image(systemName: "arrow.up.right")
-                                }
-                            }
-                            //개인정보 보호정책 시트뷰
-                            .sheet(isPresented: $sheet1, content: {
-                                PrivacyPolicyView(sheet1: $sheet1)
-                            })
-                            // 이용약관 시트뷰
-                            .sheet(isPresented: $sheet2, content: {
-                                TermsAndConditionsView(sheet2: $sheet2)
-                            })
-                            .padding(.horizontal)
-                        } // 두번째 리스트
+                        NavigationLink{
+                            PrivacyPolicyView(isSheetOn: $isPrivacySheetOn)
+                        } label: {
+                            Text("개인정보 보호정책")
+                                .padding(.horizontal)
+                        }
                         
-                        
+                        NavigationLink{
+                            CreditsView(isSheetOn: $isCreditSheetOn)
+                        } label: {
+                            Text("크레딧")
+                                .padding(.horizontal)
+                        }
+
                         .foregroundColor(.black)
                     } // 리스트 끝
                     .listStyle(.plain)
@@ -132,8 +114,8 @@ struct MyPageView_SignOut: View {
 }
 
 
-struct MyPageView_Previews: PreviewProvider {
+struct SignedOutMyPage_Preview: PreviewProvider {
     static var previews: some View {
-        MyPageView_SignOut()
+        SignedOutMyPage()
     }
 }
