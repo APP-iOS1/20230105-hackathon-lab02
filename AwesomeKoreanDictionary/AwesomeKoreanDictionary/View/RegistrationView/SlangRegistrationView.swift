@@ -14,38 +14,30 @@ struct SlangRegistrationView: View {
     @EnvironmentObject var authManager: AuthManager
     @Environment(\.dismiss) private var dismiss
     
-    //MARK: - 텍스트필드 작성시 사용되는 속성들
-    //(필수) 속어
+    // MARK: - 텍스트필드 작성시 사용되는 속성들 (속어 이름, 설명, 상황 재연, 발음)
     @State private (set) var slangTextField: String = ""
-    //(필수) 속어 단어 설명
     @State private (set) var slangDescriptionTextField: String = ""
-    //(선택) 속어 상황 재연
     @State private (set) var slangSituationUsedTextField: String = ""
-    //(선택) 속어 발음
     @State private (set) var slangPronunciationTextField: String = ""
     
     var descriptionExample: String = "'Case by case'의 줄임말. 어떤 규칙이 꼭 모든 상황에 공통되게 적용되지 않고 때에 따라 다르다는 것을 이르는 말."
     var situationUsedExample: String = "교수님이 좀 바쁘셔서, 수업을 일찍 끝낼 때도 있고 아닐 때도 있어. 케바케야."
     
-    //속어 입력 텍스트필드 공백체크
+    // MARK: 공백체크용 텍스트필드
     private var trimslangTextField: String {
         slangTextField.trimmingCharacters(in: .whitespaces)
     }
-    //속어 단어의미 설명 텍스트필드 공백체크
     private var trimslangDescriptionTextField: String {
         slangDescriptionTextField.trimmingCharacters(in: .whitespaces)
     }
-    //속어 상황 재연 텍스트필드 공백체크
     private var trimslangSituationUsedTextField: String {
         slangSituationUsedTextField.trimmingCharacters(in: .whitespaces)
     }
-    //속어 발음 텍스트필드 공백체크
     private var trimslangPronunciationTextField: String {
         slangPronunciationTextField.trimmingCharacters(in: .whitespaces)
     }
-    // 공백문자 없으면 띄우는 얼럿
+    
     @State private var haveNoBlank: Bool = false
-    // 공백문자만 있으면 띄우는 얼럿
     @State private var isOnlyWithBlank: Bool = false
     @State private var isKorean: Bool = false
     
@@ -55,65 +47,74 @@ struct SlangRegistrationView: View {
                 if authManager.state == .signedIn {
                     //MARK: - 텍스트필드 4개
                     Form {
-                        descriptionText
+                        DescriptionTextView()
+                        
                         //속어 입력 텍스트필드(필수)
                         Section {
-                            
                             Text("* 한글로 입력해주세요. (영단어 입력 불가)")
-                                .font(.caption)
-                                .foregroundColor(Color(hex: "ff598e"))
-                            TextField("신조어를 입력해주세요.", text: $slangTextField)
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .lineLimit(1, reservesSpace: true)
-                                .frame(width: 320, height: 30, alignment: .top)
+                                .modifier(SmallTitleModifier())
+                            HStack {
+                                TextField("신조어를 입력해주세요.", text: $slangTextField)
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .lineLimit(1, reservesSpace: true)
+                                    .frame(width: 300, height: 30)
+                                
+                                Image(systemName: KonameValidation(text: slangTextField) &&
+                                      slangTextField.count > 0 ?
+                                      "checkmark.circle" : "x.circle")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(KonameValidation(text: slangTextField) &&
+                                                 slangTextField.count > 0 ?
+                                                .green : .red)
+                            }
                             Text("예) 케바케")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                            
+                                .modifier(CaptionModifier())
                         }
+                        
                         //속어 발음 입력 텍스트필드(필수)
                         Section {
                             Text("* 영어로 입력해주세요.")
-                                .font(.caption)
-                                .foregroundColor(Color(hex: "ff598e"))
-                            TextField("신조어의 발음을 알파벳으로 입력해 주세요.", text: $slangPronunciationTextField)
-                                .font(.callout)
-                                .fontWeight(.bold)
-                                .lineLimit(1, reservesSpace: true)
-                                .frame(width: 320, height: 30, alignment: .top)
+                                .modifier(SmallTitleModifier())
+                            HStack {
+                                TextField("신조어의 발음을 알파벳으로 입력해 주세요.", text: $slangPronunciationTextField)
+                                    .font(.subheadline)
+                                    .lineLimit(1, reservesSpace: true)
+                                    .frame(width: 300, height: 30)
+                                
+                                Image(systemName: EnnameValidation(text: slangPronunciationTextField) &&
+                                      slangPronunciationTextField.count > 0 ?
+                                      "checkmark.circle" : "x.circle")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(EnnameValidation(text: slangPronunciationTextField) &&
+                                                 slangPronunciationTextField.count > 0
+                                                 ? .green : .red)
+                            }
                             Text("예시) kebake")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                .modifier(CaptionModifier())
                         }
+                        
                         //속어에 사용되는 단어 의미 설명 텍스트필드(필수)
                         Section {
-                            
                             Text("* 한글로 입력해주세요.")
-                                .font(.caption)
-                                .foregroundColor(Color(hex: "ff598e"))
+                                .modifier(SmallTitleModifier())
                             TextField("신조어의 의미와 유래를 설명해주세요.", text: $slangDescriptionTextField, axis: .vertical)
-                                .font(.subheadline)
-                                .lineLimit(7, reservesSpace: true)
-                                .frame(width: 320, height: 150, alignment: .top)
+                                .modifier(DescSituModifier())
                             
                             Text("예시) \(descriptionExample)")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                .modifier(CaptionModifier())
                         }
+                        
                         //속어가 사용되는 상활 재연(필수)
                         Section {
                             Text("* 한글로 입력해주세요.")
-                                .font(.caption)
-                                .foregroundColor(Color(hex: "ff598e"))
+                                .modifier(SmallTitleModifier())
                             TextField("신조어가 실제로 사용되는 상황을 \n'예문'으로 재미있게 공유해주세요!", text: $slangSituationUsedTextField, axis: .vertical)
-                                .font(.subheadline)
-                                .lineLimit(7, reservesSpace: true)
-                                .frame(width: 320, height: 150, alignment: .top)
+                                .modifier(DescSituModifier())
                             Text("예시) \(situationUsedExample)")
-                                .font(.caption)
-                            
-                                .foregroundColor(.gray)
+                                .modifier(CaptionModifier())
                         }
                     }
                     .padding(.bottom)
@@ -127,8 +128,6 @@ struct SlangRegistrationView: View {
                             Button {
                                 Task {
                                     if KonameValidation(text: trimslangTextField) &&
-                                        KonameValidation(text: trimslangDescriptionTextField) &&
-                                        KonameValidation(text: trimslangSituationUsedTextField) &&
                                         EnnameValidation(text: trimslangPronunciationTextField) {
                                         await vocaManager.createVoca(voca:
                                                                         Vocabulary(
@@ -219,32 +218,31 @@ struct SlangRegistrationView: View {
     }
 }
 
-extension SlangRegistrationView {
-    private var descriptionText: some View {
-        VStack {
-            HStack {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("새로운 신조어를 공유해주세요!")
-                }
-                .font(.title3)
-                .bold()
-                Spacer()
-            }
-            .padding(5)
-            HStack {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("'Awesome Korean Dictionary'는 외국인을 위한 한국어 신조어&속어 사전입니다. 한글로 내용을 작성해 주시면, 번역 기능을 사용해 외국인이 쉽게 볼 수 있습니다.")
-                    Text("해당 단어의 의미와 유래, 예문을 함께 작성해 주시면 외국인의 단어 이해에 큰 도움이 됩니다!")
-                    Text("등록해 주신 단어는 관리자의 검수 및 승인 이후 노출되며,\n최종 등록까지 최대 3일이 소요될 수 있습니다.")
-                        .font(.caption)
-                        .foregroundColor(.blue)
-                        .padding(.vertical,5)
-                }
-                .font(.subheadline)
-                .padding(5)
-                Spacer()
-            }
-        }
+struct DescSituModifier: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .font(.subheadline)
+            .lineLimit(7, reservesSpace: true)
+            .frame(width: 320, height: 150, alignment: .top)
+    }
+}
+
+struct CaptionModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.caption)
+            .foregroundColor(.gray)
+        
+    }
+}
+
+struct SmallTitleModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.caption)
+            .foregroundColor(Color(hex: "ff598e"))
+        
     }
 }
 

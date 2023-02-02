@@ -56,6 +56,7 @@
 		C5AB902D2966B70D005A6CFF /* EditUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AB902C2966B70D005A6CFF /* EditUserInfoView.swift */; };
 		C5F90DA3296666CE00DE5024 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F90DA2296666CE00DE5024 /* LoginView.swift */; };
 		C5F90DB12966A40D00DE5024 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5F90DB02966A40C00DE5024 /* GoogleService-Info.plist */; };
+		C5FE7D982988151600B552E9 /* DescriptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE7D972988151600B552E9 /* DescriptionTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		C5AB90312966B7DF005A6CFF /* SlangRegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlangRegistrationView.swift; sourceTree = "<group>"; };
 		C5F90DA2296666CE00DE5024 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = AwesomeKoreanDictionary/View/LoginView.swift; sourceTree = SOURCE_ROOT; };
 		C5F90DB02966A40C00DE5024 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C5FE7D972988151600B552E9 /* DescriptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				C5AB90312966B7DF005A6CFF /* SlangRegistrationView.swift */,
+				C5FE7D972988151600B552E9 /* DescriptionTextView.swift */,
 			);
 			path = RegistrationView;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				C5AB902D2966B70D005A6CFF /* EditUserInfoView.swift in Sources */,
 				36BD6BE02966875500DC6387 /* VocabularyNetworkManager.swift in Sources */,
 				36BD6BEB2966B9F600DC6387 /* BookmarkedVocaModel.xcdatamodeld in Sources */,
+				C5FE7D982988151600B552E9 /* DescriptionTextView.swift in Sources */,
 				C5AB902B2966B705005A6CFF /* SelectingLanguageView.swift in Sources */,
 				65487B3129671E5A00D7AB0A /* MyBookmarkView.swift in Sources */,
 				65487B332967238F00D7AB0A /* MyRegisterView.swift in Sources */,
