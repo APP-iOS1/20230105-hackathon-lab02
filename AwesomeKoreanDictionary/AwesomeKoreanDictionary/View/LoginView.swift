@@ -58,8 +58,7 @@ struct LoginView: View {
                     .frame(width: 313, height: 40)
                     
                     GoogleSignInButton()
-//                        .frame(width: 320)
-                        .frame(width: 313, height: 40)
+                        .frame(width: 320)
                         .onTapGesture {
                             authManager.signIn()
                         }
@@ -89,12 +88,6 @@ struct GoogleSignInButton: UIViewRepresentable {
         button.colorScheme = colorScheme == .dark ? .dark : .light
     }
 }
-
-//extension GoogleSignInButton {
-//    func expandTap(tap: @escaping () -> ()) -> some View {
-//        self.modifier(GoogleSignInButton()).onTapGesture(perform: tap)
-//    }
-//}
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
