@@ -13,8 +13,6 @@ struct BookmarkedWordCell: View {
     @State private var selection: String = "ko"
     
     let vocabulary: BookmarkedVoca
-    var languages = ["ENG", "CHN", "JPN"]
-    var languageCodes = ["en", "zh-CN", "ja"]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -43,16 +41,11 @@ struct BookmarkedWordCell: View {
                 Text("Example")
                     .foregroundColor(.secondary)
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("• voca example")
+                    Text(vocabulary.example ?? "There are no examples.")
                         .italic()
                 }
             }
-            HStack {
-                Text("by voca creatorId")
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(hex: "292929"))
-                Spacer()
-            }
+            
             
             Divider().padding(.vertical, -1)
             
