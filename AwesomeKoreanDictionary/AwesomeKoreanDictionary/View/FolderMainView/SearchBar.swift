@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//이거도 없애야할거같은데 프리뷰쪽에 연결된 게 많네요..
 var dictionary: [Vocabulary] = [
     Vocabulary(
         id: UUID().uuidString,
@@ -59,8 +60,6 @@ struct SearchBar: View {
             .background(Color(.secondarySystemBackground))
             .cornerRadius(10.0)
         }
-        
-//        .padding(.horizontal)
     }
 }
 

@@ -131,6 +131,7 @@
 		22D990A72966F2CA0050913A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				369D01D32977751A004CB739 /* ColorExtension */,
 				22D990AA2966F2EA0050913A /* BundleExtension.swift */,
 			);
 			path = Extension;
@@ -221,7 +222,6 @@
 				65487B362967384600D7AB0A /* AdminView */,
 				C5AB90252966B6E6005A6CFF /* MyPageView */,
 				7649454B2966B14A0017D830 /* FolderMainView */,
-				369D01D32977751A004CB739 /* ColorExtension */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -5,6 +5,8 @@
   Created by 추현호 on 2023/01/06.
   
 */
+"변경" = "Change";
+"언어설정을 바꾼뒤 앱을 재가동해야합니다. 선택된 언어로 바꾸시겠습니까?" = "You must restart the app after selecting system language. Do you really want to change system language?";
 "계정 탈퇴하기" = "delete account";
 "퀴즈 새로 불러오기" = "one more play";
 "카드를 왼쪽으로 스와이프 하세요." = "Swipe left to see a new quiz";
