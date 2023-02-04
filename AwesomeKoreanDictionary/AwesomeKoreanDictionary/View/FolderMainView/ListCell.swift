@@ -36,7 +36,7 @@ struct ListCell: View {
                             .padding(.bottom, -3)
                             .foregroundColor(Color(hex: "292929"))
                         Button {
-                            wordSpeech(word: vocabulary.word)
+                            speakWordPronunciation(word: vocabulary.word)
                         } label: {
                             Image(systemName: "speaker.wave.2")
                         }
@@ -184,10 +184,25 @@ struct ListCell: View {
         }
     }
     
-    private func wordSpeech(word: String) {
-        let utterance = AVSpeechUtterance(string: word)
-        utterance.voice = AVSpeechSynthesisVoice(language: "ko")
-        synthesizer.speak(utterance)
+    //https://www.advancedswift.com/play-a-sound-in-swift/#play-a-sound-on-button-press
+    // silent일 때 재생가능
+    // option: 다른 사운드가 재생 중일 때 소리를 줄이고, word 재생
+    private func speakWordPronunciation(word: String) {
+        do {
+            // Configure and activate the AVAudioSession
+            try AVAudioSession.sharedInstance().setCategory(
+                AVAudioSession.Category.playback, options: AVAudioSession.CategoryOptions.duckOthers
+            )
+            
+            try AVAudioSession.sharedInstance().setActive(true)
+
+            let utterance = AVSpeechUtterance(string: word)
+            utterance.voice = AVSpeechSynthesisVoice(language: "ko")
+            synthesizer.speak(utterance)
+        }
+        catch {
+            // Handle error
+        }
     }
 }
 
