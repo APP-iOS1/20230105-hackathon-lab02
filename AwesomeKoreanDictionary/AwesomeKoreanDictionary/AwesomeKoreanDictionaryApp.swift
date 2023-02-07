@@ -8,11 +8,26 @@
 import SwiftUI
 import FirebaseCore
 import GoogleSignIn
+import AVFoundation
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
+      FirebaseApp.configure()
+      do {
+          //             Configure and activate the AVAudioSession
+          try AVAudioSession.sharedInstance().setCategory(
+            AVAudioSession.Category.playback, options: AVAudioSession.CategoryOptions.duckOthers
+          )
+          
+          try AVAudioSession.sharedInstance().setActive(true)
+          print("hello")
+          
+      }
+      catch {
+          // Handle error
+          print("hello2")
+      }
 
     return true
   }
