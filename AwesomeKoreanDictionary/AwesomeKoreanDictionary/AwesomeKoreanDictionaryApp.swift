@@ -14,6 +14,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
       FirebaseApp.configure()
+      
       do {
           //             Configure and activate the AVAudioSession
           try AVAudioSession.sharedInstance().setCategory(
@@ -21,12 +22,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
           )
           
           try AVAudioSession.sharedInstance().setActive(true)
-          print("hello")
           
       }
       catch {
           // Handle error
-          print("hello2")
       }
 
     return true
