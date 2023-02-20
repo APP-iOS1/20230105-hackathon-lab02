@@ -5,7 +5,7 @@ struct MainView: View {
     @EnvironmentObject var vocabularyNetworkManager: VocabularyNetworkManager
     @EnvironmentObject var authManager: AuthManager
     @State private var searchText = ""
-    
+
     var filteredVoca: [Vocabulary] {
         if searchText.isEmpty {
             return vocabularyNetworkManager.vocabularies.filter { $0.isApproved }
@@ -44,7 +44,7 @@ struct MainView: View {
 //                await vocabularyNetworkManager.countLikes()
             }
         }
-        .tint(.black)
+        .tint(.AKDBlack)
     }
 }
 
@@ -66,23 +66,23 @@ struct ToolbarModifier: ViewModifier {
                         QuizView()
                     } label: {
                         Image(systemName: "trophy.fill")
-                            .foregroundColor(Color(hex: "292929"))
+                            .foregroundColor(Color.AKDBlack)
                     }
                     NavigationLink {
                         SlangRegistrationView()
                     } label: {
                         Image(systemName: "plus.rectangle.portrait.fill")
-                            .foregroundColor(Color(hex: "292929"))
+                            .foregroundColor(Color.AKDBlack)
                     }
                     NavigationLink {
                         MyPageView()
                     } label: {
                         Image(systemName: "person.circle.fill")
-                            .foregroundColor(Color(hex: "292929"))
+                            .foregroundColor(Color.AKDBlack)
                             .font(.title3)
                     }
                 }
-                .foregroundColor(.black)
+                .foregroundColor(.AKDBlack)
             }
     }
 }

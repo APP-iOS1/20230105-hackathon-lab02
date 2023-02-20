@@ -51,8 +51,8 @@ struct PrivacyPolicyView: View {
                          .frame(width: 350, height: 60)
                          .overlay {
                              Text("확인")
-                                 .foregroundColor(.white)
-                                 .fontWeight(.black)
+                                 .foregroundColor(.AKDWhite)
+                                 .fontWeight(.heavy)
                                  .font(.title3)
                          }
                  }.padding(.top)

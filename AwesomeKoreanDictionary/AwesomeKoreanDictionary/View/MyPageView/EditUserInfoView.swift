@@ -26,7 +26,7 @@ struct EditUserInfoView: View {
                     Image(systemName: "xmark")
                         .resizable()
                         .frame(width: 25, height: 25)
-                        .foregroundColor(Color.white.opacity(0.7))
+                        .foregroundColor(Color.AKDWhite.opacity(0.7))
                 }
                 .padding(20)
                 .padding(.bottom, 45)
@@ -38,8 +38,8 @@ struct EditUserInfoView: View {
                     TextField("닉네임을 입력하세요.", text: $userNickname)
                         .scrollContentBackground(.hidden)
                         .padding()
-                        .foregroundColor(.gray)
-                        .background(Color.white)
+                        .foregroundColor(.AKDGray)
+                        .background(Color.AKDWhite)
                         .frame(width: 350, height: 65)
                         .cornerRadius(10)
                     
@@ -63,8 +63,8 @@ struct EditUserInfoView: View {
                             .frame(width: 350, height: 60)
                             .overlay {
                                 Text("저장하기")
-                                    .foregroundColor(.white)
-                                    .fontWeight(.black)
+                                    .foregroundColor(.AKDWhite)
+                                    .fontWeight(.heavy)
                                     .font(.title3)
                             }
                     }

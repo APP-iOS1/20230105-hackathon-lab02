@@ -39,7 +39,7 @@ struct SignedInMyPage: View {
                             self.showEditViewModal.toggle()
                         } label: {
                             Text("수정하기")
-                                .foregroundColor(.white)
+                                .foregroundColor(.AKDWhite)
                                 .frame(width: 80, height: 30)
                                 .padding(.horizontal,10)
                                 .font(.subheadline)

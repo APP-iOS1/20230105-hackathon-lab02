@@ -75,10 +75,10 @@ struct BookmarkedWordCell: View {
                 }
             }
         }
-        .foregroundColor(.black)
+        .foregroundColor(.AKDBlack)
         .padding(10)
         .frame(width: 360)
-        .background(Color.white)
+        .background(Color.AKDWhite)
         .cornerRadius(20)
     }
 }

@@ -34,7 +34,7 @@ struct ListCell: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .padding(.bottom, -3)
-                            .foregroundColor(Color(hex: "292929"))
+                            .foregroundColor(Color.AKDGray)
                         Button {
                             wordSpeech(word: vocabulary.word)
                         } label: {
@@ -71,7 +71,7 @@ struct ListCell: View {
                     
                 })
                 .frame(height: 30)
-                .tint(.black)
+                .tint(.AKDBlack)
                 
                 Button {
                     if let index = voca.firstIndex(where: { $0.word == vocabulary.word }) {
@@ -107,7 +107,7 @@ struct ListCell: View {
             
             VStack(alignment: .leading, spacing: 5) {
                 Text("정의")
-                    .foregroundColor(.gray)
+                    .foregroundColor(.AKDGray)
                 Text(selection == "ko" ? vocabulary.definition : translatedDefinition)
                     .lineSpacing(7)
             }
@@ -115,7 +115,7 @@ struct ListCell: View {
             
             VStack(alignment: .leading, spacing: 5) {
                 Text("예시")
-                    .foregroundColor(.gray)
+                    .foregroundColor(.AKDGray)
                 VStack(alignment: .leading, spacing: 10) {
                     Text(selection == "ko" ? "• \(vocabulary.example)" : "• \(translatedExample)")
                         .italic()
@@ -171,10 +171,10 @@ struct ListCell: View {
             }
             .padding(.top, -5)
         }
-        .foregroundColor(.black)
+        .foregroundColor(.AKDBlack)
         .padding(35)
         .frame(width: 360)
-        .background(Color.white)
+        .background(Color.AKDWhite)
         .cornerRadius(20)
     }
     

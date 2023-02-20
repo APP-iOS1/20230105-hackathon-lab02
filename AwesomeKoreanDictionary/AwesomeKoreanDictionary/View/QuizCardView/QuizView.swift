@@ -26,13 +26,13 @@ struct QuizView: View {
                             .fontWeight(.heavy)
                             .kerning(-1)
                             .font(.system(size: 45))
-                            .foregroundColor(.white)
+                            .foregroundColor(.AKDWhite)
                         
                         HStack(spacing: 5) {
                             Text("당신의 한국어 능력을 테스트하세요!")
                                 .kerning(-1)
                                 .font(.system(size: 25))
-                                .foregroundColor(Color.white.opacity(0.7))
+                                .foregroundColor(Color.AKDWhite.opacity(0.7))
                         }
                         .padding(.leading,5)
                     }
@@ -64,7 +64,7 @@ struct QuizView: View {
                                 Text(test)
                             }
                             .font(.title)
-                            .foregroundColor(.white)
+                            .foregroundColor(.AKDWhite)
                             .offset(x: 0)
                         }
                         
@@ -107,7 +107,7 @@ struct QuizView: View {
                 }
                 .padding(.top, 10)
                 Text("카드를 왼쪽으로 스와이프하세요.")
-                    .foregroundColor(.white)
+                    .foregroundColor(.AKDWhite)
                     .font(.title3)
                     .bold()
                     .kerning(-1)

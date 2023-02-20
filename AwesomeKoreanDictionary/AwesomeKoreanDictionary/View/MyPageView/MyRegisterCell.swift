@@ -58,10 +58,10 @@ struct MyRegisterCell: View {
             }
  
         }
-        .foregroundColor(.black)
+        .foregroundColor(.AKDBlack)
         .padding(20)
         .frame(width: 365)
-        .background(Color.white)
+        .background(Color.AKDWhite)
         .cornerRadius(20)
     }
 }

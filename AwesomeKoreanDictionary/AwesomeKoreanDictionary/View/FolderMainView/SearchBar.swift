@@ -42,7 +42,7 @@ struct SearchBar: View {
                 Image(systemName: "magnifyingglass")
                 
                 TextField("Search", text: $searchText)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.AKDGray)
                 
                 if !searchText.isEmpty {
                     Button(action: {

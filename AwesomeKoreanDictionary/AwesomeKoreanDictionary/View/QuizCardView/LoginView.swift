@@ -27,13 +27,13 @@ struct LoginView: View {
                 Text("SIGN IN")
                     .font(.largeTitle)
                     .fontWeight(.light)
-                    .foregroundColor(.white)
+                    .foregroundColor(.AKDWhite)
                 VStack {
                     Text("Please sign in to register new words!")
                         .font(.title3)
                         .fontWeight(.medium)
                         .kerning(-0.5)
-                        .foregroundColor(.white)
+                        .foregroundColor(.AKDWhite)
                         .padding(.top, 10)
 
                     SignInWithAppleButton { (request) in
@@ -54,7 +54,7 @@ struct LoginView: View {
                             print(error.localizedDescription)
                         }
                     }
-                    .signInWithAppleButtonStyle(.black)
+                    .signInWithAppleButtonStyle(.whiteOutline)
                     .frame(width: 313, height: 40)
                     
                     GoogleSignInButton()
