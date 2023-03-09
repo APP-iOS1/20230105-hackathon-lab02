@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseAuth
 import GoogleSignIn
+import UIKit
 
 struct SlangRegistrationView: View {
     @ObservedObject var vocaManager: VocabularyNetworkManager = VocabularyNetworkManager()
@@ -36,7 +37,7 @@ struct SlangRegistrationView: View {
     private var trimslangPronunciationTextField: String {
         slangPronunciationTextField.trimmingCharacters(in: .whitespaces)
     }
-    
+
     @State private var haveNoBlank: Bool = false
     @State private var isOnlyWithBlank: Bool = false
     @State private var isKorean: Bool = false
@@ -70,7 +71,7 @@ struct SlangRegistrationView: View {
                             }
                             Text("예) 케바케")
                                 .font(.caption)
-                                .foregroundColor(.gray)
+                                .foregroundColor(.AKDGray)
                             
                         }
                         //속어 발음 입력 텍스트필드(필수)
@@ -155,8 +156,8 @@ struct SlangRegistrationView: View {
                                         .frame(width: 350, height: 60)
                                         .overlay {
                                             Text("제출하기")
-                                                .foregroundColor(.white)
-                                                .fontWeight(.black)
+                                                .foregroundColor(.AKDWhite)
+                                                .fontWeight(.heavy)
                                                 .font(.title3)
                                         }
                                 }
@@ -181,13 +182,13 @@ struct SlangRegistrationView: View {
                                         .fill(Color.clear)
                                         .frame(width: 350, height: 70)
                                     RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.gray)
+                                        .fill(Color.AKDGray)
                                         .frame(width: 350, height: 60)
                                         .overlay {
                                             Text("제출하기")
-                                                .foregroundColor(.white)
-                                                .fontWeight(.black)
+                                                .foregroundColor(.AKDWhite)
                                                 .font(.title3)
+                                                .fontWeight(.heavy)
                                         }
                                 }
                             }
@@ -201,6 +202,7 @@ struct SlangRegistrationView: View {
                 }
             }
             .padding(.top, -20)
+
         }
     }
     
@@ -217,6 +219,7 @@ struct SlangRegistrationView: View {
     }
 }
 
+
 struct DescSituModifier: ViewModifier {
     
     func body(content: Content) -> some View {
@@ -231,7 +234,7 @@ struct CaptionModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.caption)
-            .foregroundColor(.gray)
+            .foregroundColor(.AKDGray)
     }
 }
 

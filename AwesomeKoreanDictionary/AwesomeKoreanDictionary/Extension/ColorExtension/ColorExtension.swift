@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UIKit
 
 extension Color {
   init(hex: String) {
@@ -21,4 +22,10 @@ extension Color {
     let b = Double((rgb >>  0) & 0xFF) / 255.0
     self.init(red: r, green: g, blue: b)
   }
+    
+    
+    static let AKDBlack = Color("AKDBlack")
+    static let AKDWhite = Color("AKDWhite")
+    static let AKDGray = Color("AKDGray")
+
 }

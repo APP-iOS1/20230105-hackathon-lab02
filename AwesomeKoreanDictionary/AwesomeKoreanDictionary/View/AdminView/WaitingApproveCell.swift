@@ -63,14 +63,14 @@ struct WaitingApproveCell: View {
                 .padding(5)
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color(hex: "737DFE")))
                 
-                .foregroundColor(.white)
+                .foregroundColor(.AKDWhite)
                 }
             }
         }
-        .foregroundColor(.black)
+        .foregroundColor(.AKDBlack)
         .padding(35)
         .frame(width: 365)
-        .background(Color.white)
+        .background(Color.AKDWhite)
         .cornerRadius(20)
     }
 }

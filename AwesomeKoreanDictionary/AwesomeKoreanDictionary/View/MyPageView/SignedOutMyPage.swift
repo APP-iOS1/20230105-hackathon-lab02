@@ -16,14 +16,14 @@ struct SignedOutMyPage: View {
     @State var isPrivacySheetOn: Bool = false //개인정보 보호정책
     @State var isCreditSheetOn: Bool = false //크레딧
     var body: some View {
-
+        
         NavigationStack{
             VStack {
                 VStack {
                     
                     Text("새로운 단어를 정의하려면 로그인하세요")
                         .font(.title2)
-                        .foregroundColor(.black)
+                        .foregroundColor(.AKDBlack)
                         .padding()
                     
                     SignInWithAppleButton { (request) in
@@ -44,9 +44,8 @@ struct SignedOutMyPage: View {
                             print(error.localizedDescription)
                         }
                     }
-                    .signInWithAppleButtonStyle(.black)
                     .frame(width: 200, height: 40)
-                    .cornerRadius(10)
+                    .signInWithAppleButtonStyle(.whiteOutline)
                     
                     Button {
                         authManager.signIn()
@@ -55,9 +54,13 @@ struct SignedOutMyPage: View {
                             Rectangle()
                                 .frame(width: 200, height: 40)
                                 .foregroundColor(Color(hex: "737DFE"))
-                                .cornerRadius(10)
-                            Text("구글 로그인하기")
-                                .foregroundColor(.white)
+                                .cornerRadius(6)
+                            HStack {
+                                Image(systemName: "g.circle.fill")
+                                Text("Google로 로그인")
+                                    .font(.subheadline)
+                            }
+                            .foregroundColor(.AKDWhite)
                         }
                     }
                 }
@@ -102,13 +105,12 @@ struct SignedOutMyPage: View {
                             Text("크레딧")
                                 .padding(.horizontal)
                         }
-
-                        .foregroundColor(.black)
+                        
+                        .foregroundColor(.AKDBlack)
                     } // 리스트 끝
                     .listStyle(.plain)
                 }// 전체 한칸 안쪽 VStack 끝
-            }
-            // 전체 VStack 끝
+            }// 전체 VStack 끝
         } // NavigationStack 끝
     }
 }

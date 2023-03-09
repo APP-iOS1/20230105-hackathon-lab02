@@ -33,7 +33,7 @@ struct Detail: View {
                         Image(systemName: "chevron.left")
                             .resizable()
                             .frame(width: 25, height: 25)
-                            .foregroundColor(Color.white.opacity(0.7))
+                            .foregroundColor(Color.AKDWhite.opacity(0.7))
                     })
                     
                     Spacer(minLength: 0)
@@ -48,7 +48,7 @@ struct Detail: View {
                             VStack(alignment: .leading, spacing: 12, content: {
                                 Text(card.name)
                                     .font(.system(size: 45, weight: .heavy))
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.AKDWhite)
                             })
                             
                             Spacer(minLength: 0)
@@ -100,7 +100,7 @@ struct Detail: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        .background(Color.white)
+        .background(Color.AKDWhite)
     }
 }
 

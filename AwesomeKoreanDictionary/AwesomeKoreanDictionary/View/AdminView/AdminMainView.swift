@@ -26,13 +26,13 @@ struct AdminMainView: View {
                         isApprovedView = true
                     }, label: {
                         Text("승인 대기중")
-                            .foregroundColor(isApprovedView ? Color.black : Color.gray)
+                            .foregroundColor(isApprovedView ? Color.AKDBlack : Color.gray)
                     })
                     Button(action: {
                         isApprovedView = false
                     }, label: {
                         Text("승인 완료")
-                            .foregroundColor(isApprovedView ? Color.gray : Color.black)
+                            .foregroundColor(isApprovedView ? Color.AKDGray : Color.AKDBlack)
                     })
                 }
                 Spacer()
